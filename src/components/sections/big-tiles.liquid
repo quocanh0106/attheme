@@ -1,0 +1,102 @@
+<section aria-labelledby="collections-heading" class="bg-offBG">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto py-16 sm:py-medium lg:py-large lg:max-w-none">
+      <h2
+        id="collections-heading"
+        class="text-2xl font-extrabold text-headerColor"
+      >
+        {{ section.settings.title }}
+      </h2>
+
+      <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when "slide" %}
+              <div class="group relative" {{ block.shopify_attributes }}>
+                <a href="{{ block.settings.link }}">
+                  <div class="relative w-full h-80 bg-white rounded-large overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
+                    {% if block.settings.image %}
+                      <img class="w-full h-full object-center object-cover" src="{{ block.settings.image | image_url: width: 2048 | image_tag }}">
+                    {% else %}
+                      {{ "product-1"| placeholder_svg_tag: "w-20 h-20 object-cover border"}}
+                    {% endif %}
+                  </div>
+                  <h3 class="mt-6 text-sm text-copyColor">
+                    {{ block.settings.subtitle }}
+                  </h3>
+                  <p class="text-base font-semibold text-headerColor">
+                    {{ block.settings.title }}
+                  </p>
+                </a>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "large-image-blocks",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Large Image Blocks",
+      "label": "Title"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "name": "Tile",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "subtitle"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "large-image-blocks",
+      "settings": {
+        "title": "Large Image Blocks"
+      },
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ],
+  "templates": [
+    "article",
+    "index",
+    "page",
+    "product"
+  ]
+}
+{% endschema %}

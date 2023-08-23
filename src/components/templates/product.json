@@ -1,0 +1,60 @@
+{
+  "sections": {
+    "template": {
+      "type": "template-product",
+      "settings": {
+      }
+    },
+    "165992801979b5cc1d": {
+      "type": "product-recommendations",
+      "settings": {
+        "title": "Customers also bought"
+      }
+    },
+    "16599280233a21bfc2": {
+      "type": "big-tiles",
+      "blocks": {
+        "165992802335b94b19-0": {
+          "type": "slide",
+          "settings": {
+            "title": "WFH never looked better",
+            "link": "shopify:\/\/products\/linkcart-limited-tee",
+            "subtitle": "Working from home",
+            "image": "shopify:\/\/shop_images\/designer-at-desk.jpg"
+          }
+        },
+        "165992802335b94b19-1": {
+          "type": "slide",
+          "settings": {
+            "title": "How a dog predicted the 2016 ellection",
+            "link": "shopify:\/\/collections\/all",
+            "subtitle": "Woof",
+            "image": "shopify:\/\/shop_images\/business-pug-working-on-laptop.jpg"
+          }
+        },
+        "ef06c272-2bbc-4ea1-b948-e569d54abccb": {
+          "type": "slide",
+          "settings": {
+            "title": "Mobile products",
+            "link": "shopify:\/\/collections\/all",
+            "subtitle": "Products",
+            "image": "shopify:\/\/shop_images\/hand-over-a-cellphone-showing-shopify-app.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "165992802335b94b19-0",
+        "165992802335b94b19-1",
+        "ef06c272-2bbc-4ea1-b948-e569d54abccb"
+      ],
+      "settings": {
+        "title": "Large Image Blocks"
+      }
+    }
+  },
+  "order": [
+    "template",
+    "165992801979b5cc1d",
+    "16599280233a21bfc2"
+  ]
+}

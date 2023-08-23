@@ -1,0 +1,85 @@
+{% comment %} need to make this auto scroll with js {% endcomment %}
+<section class='carousel' aria-label='carousel' Tabindex='0'>
+  <a class='carousel__skip-link' href='#skip-link'>Skip the Carousel</a>
+  <div class='slides overflow-hidden'>
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'slide' %}
+          {% if block.settings.image %}
+            <div
+            class='slides-item slide-{{ forloop.index }}'
+            id='slide-{{ forloop.index }}'
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.image | image_url: width: 2048 | image_tag }}
+          </div>
+          {% endif %}
+
+      {% endcase %}
+    {% endfor %}
+  </div>
+  <div class='carousel__nav'>
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'slide' %}
+          <a
+            class='slider-nav'
+            href='#slide-{{ forloop.index }}'
+            aria-label='Go to slide {{ forloop.index }}'
+          >
+            {{- forloop.index -}}
+          </a>
+      {% endcase %}
+    {% endfor %}
+  </div>
+  <div class='carousel__skip-message' id='skip-link' tabindex='0'></div>
+</section>
+
+{% schema %}
+{
+  "name": "banner-carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Slideshow"
+    }
+  ],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "name": "Slide",
+      "type": "slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Carousel",
+      "settings": {
+        "title": "Banner Carousel"
+      },
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ],
+  "templates": [
+    "article",
+    "index",
+    "page",
+    "product"
+  ]
+}
+{% endschema %}

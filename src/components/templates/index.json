@@ -1,0 +1,99 @@
+{
+  "sections": {
+    "16598842355cc4bd7d": {
+      "type": "image-banner",
+      "settings": {
+        "title": "Level up your desk",
+        "content": "Make your desk beautiful and organized. Post a picture to social media and watch it get more likes than life-changing announcements. Reflect on the shallow nature of existence. At least you have a really nice desk setup.",
+        "image": "shopify:\/\/shop_images\/designer-at-desk.jpg",
+        "buttontext": "Shop office",
+        "buttonurl": "shopify:\/\/pages\/contact"
+      }
+    },
+    "165992791990ac8a0e": {
+      "type": "big-tiles",
+      "blocks": {
+        "1659927919d1743325-0": {
+          "type": "slide",
+          "settings": {
+            "title": "So much comfort",
+            "link": "shopify:\/\/products\/linkcart-limited-tee",
+            "subtitle": "Apparel",
+            "image": "shopify:\/\/shop_images\/man-in-white-and-light-tan-outfit.jpg"
+          }
+        },
+        "1659927919d1743325-1": {
+          "type": "slide",
+          "settings": {
+            "title": "Things for the office",
+            "link": "shopify:\/\/collections\/apparel",
+            "subtitle": "Office",
+            "image": "shopify:\/\/shop_images\/macbook-air-on-desk.jpg"
+          }
+        },
+        "6820e483-2d60-4120-9bba-e1bb4b22d98e": {
+          "type": "slide",
+          "settings": {
+            "title": "When you're out and about",
+            "link": "shopify:\/\/pages\/contact",
+            "subtitle": "Travel",
+            "image": "shopify:\/\/shop_images\/outdoors-laptop-and-water-bottle-lay-on-pink-yoga-mat.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "1659927919d1743325-0",
+        "1659927919d1743325-1",
+        "6820e483-2d60-4120-9bba-e1bb4b22d98e"
+      ],
+      "settings": {
+        "title": "Large Image Blocks"
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Trending",
+        "featured_collection": "apparel",
+        "number_of_products_to_show": 4
+      }
+    },
+    "1659884276037ea226": {
+      "type": "banner-carousel",
+      "blocks": {
+        "6d4277b8-044e-4b67-ba1f-4d16bc615ff1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/leaf-mural-office-space.jpg"
+          }
+        },
+        "1659884276e1c3f66a-0": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/business-pug-working-on-laptop.jpg"
+          }
+        },
+        "1659884276e1c3f66a-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/two-people-sitting-in-their-lounge.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "6d4277b8-044e-4b67-ba1f-4d16bc615ff1",
+        "1659884276e1c3f66a-0",
+        "1659884276e1c3f66a-1"
+      ],
+      "settings": {
+        "title": "Banner Carousel"
+      }
+    }
+  },
+  "order": [
+    "16598842355cc4bd7d",
+    "165992791990ac8a0e",
+    "featured-collection",
+    "1659884276037ea226"
+  ]
+}
