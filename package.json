@@ -1,12 +1,12 @@
 {
-  "name": "timind-2.0",
+  "name": "attheme",
   "version": "1.0.0",
   "description": "Webpack with Shopify CLI, tailwindcss, preact, cypress testing and more",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
     "webpack": "yarn install && webpack --watch --progress",
-    "deploy": "cd dist && shopify theme push -t 150320152906",
+    "deploy": "cd dist && shopify theme push -t 157786669348",
     "fetch": "cd src && cd components && shopify theme pull --only templates/*.json",
     "cy": "cypress open",
     "cy:run": "cypress run",

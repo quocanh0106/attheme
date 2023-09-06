@@ -11,14 +11,286 @@
     "name": "General settings",
     "settings": [
       {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo"
+        "type": "header",
+        "content": "Logo"
       },
       {
         "type": "image_picker",
-        "id": "favicon",
-        "label": "Favicon"
+        "id": "logo",
+        "label": "Logo desktop"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 250,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo desktop width"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_mb",
+        "label": "Logo mobile"
+      },
+      {
+        "type": "range",
+        "id": "logo_width_mb",
+        "min": 50,
+        "max": 150,
+        "step": 1,
+        "default": 100,
+        "unit": "px",
+        "label": "Logo mobile width"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Color primary"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Color secondary"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Color background"
+      },
+      {
+        "type": "header",
+        "content": "Text & Link"
+      },
+      {
+        "type": "color",
+        "id": "color_heading",
+        "label": "Heading"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text"
+      },
+      {
+        "type": "color",
+        "id": "color_subtext",
+        "label": "Sub text"
+      },
+      {
+        "type": "color",
+        "id": "color_link",
+        "label": "Link"
+      },
+      {
+        "type": "color",
+        "id": "color_link_hover",
+        "label": "Link hover"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border"
+      },
+      {
+        "type": "color",
+        "id": "color_border_secondary",
+        "label": "Border secondary"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_text",
+        "label": "Text"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_background",
+        "label": "Background"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_text_hover",
+        "label": "Text hover"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_background_hover",
+        "label": "Background hover"
+      },
+      {
+        "type": "header",
+        "content": "Message notifycation"
+      },
+      {
+        "type": "color",
+        "id": "color_error",
+        "label": "Error"
+      },
+      {
+        "type": "color",
+        "id": "color_warning",
+        "label": "Warning"
+      },
+      {
+        "type": "color",
+        "id": "color_success",
+        "label": "Success"
+      },
+      {
+        "type": "header",
+        "content": "Card badge"
+      },
+      {
+        "type": "color",
+        "id": "sale_label_bg",
+        "label": "Sale label background color",
+        "default": "#FF6D4D"
+      },
+      {
+        "type": "color",
+        "id": "sold_out_badge_color",
+        "label": "Sold out background color",
+        "default": "#8C8C8C"
+      },
+      {
+        "type": "color",
+        "id": "hot_label_bg",
+        "label": "Best seller label background color",
+        "default": "#FF6D4D",
+        "info": "Show if product tags contain 'Best seller'"
+      },
+      {
+        "type": "color",
+        "id": "new_label_bg",
+        "label": "New label background color",
+        "default": "#87D6F2"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Heading font"
+      },
+      {
+        "type": "text",
+        "label": "Font name",
+        "id": "heading_font",
+        "default": "Josefin Sans"
+      },
+      {
+        "type": "header",
+        "content": "Body font"
+      },
+      {
+        "type": "text",
+        "label": "Font name",
+        "id": "body_font",
+        "default": "Josefin Sans"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1100,
+        "max": 1300,
+        "step": 4,
+        "default": 1264,
+        "unit": "px",
+        "label": "Page width"
+      },
+      {
+        "type": "range",
+        "id": "padding_desktop",
+        "min": 0,
+        "max": 64,
+        "step": 4,
+        "default": 64,
+        "unit": "px",
+        "label": "Padding desktop"
+      },
+      {
+        "type": "range",
+        "id": "padding_tablet",
+        "min": 0,
+        "max": 48,
+        "step": 4,
+        "default": 32,
+        "unit": "px",
+        "label": "Padding tablet"
+      },
+      {
+        "type": "range",
+        "id": "padding_mobile",
+        "min": 0,
+        "max": 32,
+        "step": 4,
+        "default": 16,
+        "unit": "px",
+        "label": "Padding mobile"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.cards.name",
+    "settings": [
+
+      {
+        "type": "header",
+        "content": "Product elements"
+      },
+      {
+        "type": "select",
+        "id": "image_ratio",
+        "options": [
+          {
+            "value": "adapt",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+          },
+          {
+            "value": "portrait",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+          },
+          {
+            "value": "square",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+          }
+        ],
+        "default": "adapt",
+        "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_secondary_image",
+        "default": false,
+        "label": "Show second image on hover"
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_vendor",
+        "label": "Hide vendor",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_product_type",
+        "label": "Hide product type",
+        "default": true
       }
     ]
   }
