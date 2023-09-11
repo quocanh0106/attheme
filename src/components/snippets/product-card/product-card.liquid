@@ -1,20 +1,99 @@
-
-
-<div class="group relative">
-  <a href="{{ product.url }}">
-      <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-medium overflow-hidden lg:h-80 lg:aspect-none">
-        <img src="{{ product.featured_image | image_url: width: '240' }}" lazy alt="{{ product.featured_image.alt }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full hover:scale-[105%] transition-all">
-      </div>
-      <div class="mt-4 flex justify-between">
-        <div>
-          <h3 class="text-sm text-headerColor font-medium">
-            {{ product.title }}
-          </h3>
-          <p class="mt-1 text-sm text-copyColor">{{ product.vendor }}</p>
+{%- if product and product != empty -%}
+  <div class="card-wrapper product-card-wrapper" data-handle="{{ product.handle }}">
+    {%- if product.featured_media -%}
+      <a href="{{ product.url | within: collection }}"
+        class="relative block group overflow-hidden"
+        title="{{ product.title }}">
+        <img
+          srcset="
+        {%- if product.featured_media.width >= 165 -%}
+          {{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+        {%- if product.featured_media.width >= 360 -%}
+          {{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+        {%- if product.featured_media.width >= 533 -%}
+          {{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+        {%- if product.featured_media.width >= 720 -%}
+          {{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+        {%- if product.featured_media.width >= 940 -%}
+          {{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+        {%- if product.featured_media.width >= 1066 -%}
+          {{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}"
+        src="{{ product.featured_media | image_url: width: 533 }}"
+        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+        alt="{{ product.featured_media | split: "/" | last | replace: "-", " " | split: "." | first }}"
+        class="block group-hover:scale-105 transition-all w-full"
+        {% unless lazy_load == false %}
+        loading="lazy"
+        {% endunless %}
+        width="{{ product.featured_media.width }}"
+        height="{{ product.featured_media.height }}">
+        {%- if product.media[1] != null and show_secondary_image -%}
+          <img
+            srcset="
+          {%- if product.media[1].width >= 165 -%}
+            {{ product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
+          {%- if product.media[1].width >= 360 -%}
+            {{ product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
+          {%- if product.media[1].width >= 533 -%}
+            {{ product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
+          {%- if product.media[1].width >= 720 -%}
+            {{ product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
+          {%- if product.media[1].width >= 940 -%}
+            {{ product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
+          {%- if product.media[1].width >= 1066 -%}
+            {{ product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}"
+          src="{{ product.media[1] | image_url: width: 533 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+          alt="{{ product.media[1] | split: "/" | last | replace: "-", " " | split: "." | first }}"
+          class="block group-hover:scale-105 transition-all w-full"
+          loading="lazy"
+          width="{{ product.media[1].width }}"
+          height="{{ product.media[1].height }}">
+        {%- endif -%}
+        <div class="flex gap-2 justify-end items-center px-2 w-full absolute bottom-auto top-2 lg:bottom-4 lg:top-auto lg:translate-y-button-card lg:group-hover:translate-y-0 transition-all duration-500">
+          <wishlist-button class="flex justify-center items-center bg-btn-background w-6 h-6 lg:w-8 lg:h-8 rounded-full overflow-hidden cursor-pointer" data-product-handle="{{ product.handle }}">
+            {% render 'icon-wishlist', class: "w-3 h-3 lg:w-4 lg:h-4" %}
+          </wishlist-button>
         </div>
-        <p class="text-sm font-medium text-headerColor">{{ product.price | money }}</p>
-      </div>
+        {% render 'product-badges'
+         , product: product,
+         collection: collections %}
+      </a>
+    {%- endif -%}
+    <div class="px-2 mt-3">
+      <a href="{{ product.url | within: collection }}" class="flex bg-btn-backgroundHover text-btn-textHover hover:opacity-80 transition-all rounded-3xl text-base font-semibold capitalize items-center justify-center leading-5 p-1.5 flex-[1_0_auto]">Customize</a>
 
-      
-  </a>
-</div>
+      <h3>
+        <a href="{{ product.url | within: collection }}" class="text-sm md:text-base font-medium leading-6 tracking-[0] truncate-line two-line overflow-hidden break-all">{{ product.title | escape }}</a>
+      </h3>
+      <div class="flex items-center justify-between gap-1">
+        <span class="block uppercase text-xxs tracking-[0] text-text mb-1">{{ product.type }}</span>
+        {% render 'price', product: product, use_variant: true %}
+      </div>
+    </div>
+  </div>
+{%- else -%}
+  <div class="card-wrapper product-card-wrapper">
+    <div class="relative block group overflow-hidden">
+      {%- if placeholder_image -%}
+        {{ placeholder_image | placeholder_svg_tag: 'block group-hover:scale-105 w-full h-fit transition-all' }}
+      {%- else -%}
+        {{ 'product-apparel-2' | placeholder_svg_tag: 'block group-hover:scale-105 w-full h-fit transition-all' }}
+      {%- endif -%}
+    </div>
+    <div class="px-2 mt-3">
+      <h3 class="text-overline-lg font-normal leading-[1.6] tracking-[0] overflow-hidden break-all">
+        <a
+          role="link"
+          aria-disabled="true"
+          class="text-overline-lg font-normal leading-[1.6] tracking-[0] truncate-line one-line overflow-hidden break-all">
+          {{ 'onboarding.product_title' | t }}
+        </a>
+      </h3>
+      <div class="card-information">
+        <div class="block uppercase text-xxs tracking-[0] text-text mb-1">{{ 'products.product.product_type' | t }}</div>
+        {% render 'price' %}
+      </div>
+    </div>
+  </div>
+{%- endif -%}

@@ -1,0 +1,64 @@
+{% comment %}
+  Renders a list of product's price (regular, sale)
+
+  Accepts:
+  - product: {Object} Product Liquid object (optional)
+  - use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
+  - show_badges: {Boolean} Renders 'Sale' and 'Sold Out' tags if the product matches the condition (optional)
+  - price_class: {String} Adds a price class to the price element (optional)
+
+  Usage:
+  {% render 'price', product: product %}
+{% endcomment %}
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price | default: 1999
+  assign available = target.available | default: false
+  assign money_price = price | money
+  if settings.currency_code_enabled
+    assign money_price = price | money_with_currency
+  endif
+
+  if target == product and product.price_varies
+    assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+  endif
+-%}
+
+<div class="flex gap-1 items-start{% if template.name contains 'product' and show %} mb-4{% endif %}">
+  {% if product %}
+    <div class="{% if compare_at_price > price %}text-secondary text-opacity-25 line-through text-xs md:text-sm font-medium{% else %}text-primary text-sm md:text-base font-bold{% if template.name contains 'product' and show %}font-normal{% else %}font-bold{% endif %}{% endif %} !leading-none">{{ compare_at_price | money }}</div>
+    <div class="text-primary text-sm md:text-base font-bold {% if template.name contains 'product' and show %}font-normal{% else %}font-bold{% endif %}{% unless compare_at_price > price %} hidden{% endunless %} !leading-none">{{ price | money }}</div>
+  {% else %}
+    <div class="text-primary text-sm md:text-base font-bold {% if template.name contains 'product' and show %}font-normal{% else %}font-bold{% endif %} !leading-none">{{ price | money }}</div>
+  {% endif %}
+  {% unless product.selected_or_first_available_variant.unit_price_measurement == nil %}
+    <small class="items-center{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% else %} flex{% endif %}">
+      <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
+      <span aria-hidden="true">/</span>
+      <span>
+        {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+          {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+        {%- endif -%}
+        {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+      </span>
+    </small>
+  {% endunless %}
+</div>
+{% if template.name contains 'product' and show %}
+  <div class="mb-4 h-6 relative">
+    <div 
+      class="absolute w-full top-0 left-0"
+      data-pp-message
+      data-pp-style-layout="text"
+      data-pp-style-logo-type="primary"
+      data-pp-style-text-color="black"
+      data-pp-amount="{{ price | money_without_currency | replace: ',', '.' }}">
+    </div>
+  </div>
+{% endif %}

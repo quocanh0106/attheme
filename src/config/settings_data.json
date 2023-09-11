@@ -19,21 +19,21 @@
             "settings": {
               "text": "<p>Summer Sale - 25% OFF Chocolate Boxes*<\/p>",
               "link": "",
-              "open_new_window": true
+              "open_new_window": false
             }
           },
-          "97e61c04-e5d6-460a-9891-ed44e30ced71": {
+          "announcement-bar-1": {
             "type": "announcement",
             "settings": {
               "text": "<p>Summer Sale - 25% OFF Chocolate Boxes*<\/p>",
               "link": "",
-              "open_new_window": true
+              "open_new_window": false
             }
           }
         },
         "block_order": [
           "announcement-bar-0",
-          "97e61c04-e5d6-460a-9891-ed44e30ced71"
+          "announcement-bar-1"
         ],
         "settings": {
           "background_color": "#eeab47",
@@ -43,14 +43,14 @@
       "header": {
         "type": "header",
         "blocks": {
-          "1cf25701-bb04-4954-ab77-2ef70d3d1d70": {
+          "2c7b85e8-ec5a-47a8-a092-7f579a815c2e": {
             "type": "mega-menu",
             "settings": {
               "title": "Black Friday",
               "url": "",
               "menu": "",
               "title_img_mega_menu": "",
-              "banner_background_color": "#ebeeee",
+              "banner_background_color": "",
               "enable_banner": false,
               "banner_url": "",
               "open_new_window": false,
@@ -59,14 +59,14 @@
               "open_new_window_two": false
             }
           },
-          "52824ee8-53e8-465e-8a1f-225d1a4e71f7": {
+          "4646a520-d801-44d6-a8ef-8ac773b0e604": {
             "type": "mega-menu",
             "settings": {
               "title": "Best Seller",
               "url": "",
               "menu": "",
               "title_img_mega_menu": "",
-              "banner_background_color": "#ebeeee",
+              "banner_background_color": "",
               "enable_banner": false,
               "banner_url": "",
               "open_new_window": false,
@@ -75,14 +75,14 @@
               "open_new_window_two": false
             }
           },
-          "0bad83cc-5ccb-45ed-b17b-51494db0ab4a": {
+          "624850dd-0cf8-442d-8533-fbb0337871bf": {
             "type": "mega-menu",
             "settings": {
               "title": "Recipient",
               "url": "",
               "menu": "",
               "title_img_mega_menu": "",
-              "banner_background_color": "#ebeeee",
+              "banner_background_color": "",
               "enable_banner": false,
               "banner_url": "",
               "open_new_window": false,
@@ -91,14 +91,14 @@
               "open_new_window_two": false
             }
           },
-          "a0593047-2caa-4723-a53e-584a20d163e8": {
+          "a742cc15-fe84-4c9f-bb90-3a7819c2cd72": {
             "type": "mega-menu",
             "settings": {
               "title": "Occasions",
               "url": "",
               "menu": "",
               "title_img_mega_menu": "",
-              "banner_background_color": "#ebeeee",
+              "banner_background_color": "",
               "enable_banner": false,
               "banner_url": "",
               "open_new_window": false,
@@ -107,14 +107,14 @@
               "open_new_window_two": false
             }
           },
-          "941a1c31-792d-4af8-986d-1de1beb6f0e6": {
+          "0684b140-ea30-45da-9779-ab750c8708a7": {
             "type": "mega-menu",
             "settings": {
               "title": "Anniversary",
               "url": "",
               "menu": "",
               "title_img_mega_menu": "",
-              "banner_background_color": "#ebeeee",
+              "banner_background_color": "",
               "enable_banner": false,
               "banner_url": "",
               "open_new_window": false,
@@ -123,14 +123,14 @@
               "open_new_window_two": false
             }
           },
-          "16098603-ae95-43dc-8be9-2d7aacfcf753": {
+          "1054a5f1-31f5-469f-80ff-302036654e3d": {
             "type": "mega-menu",
             "settings": {
               "title": "Birthday",
               "url": "",
               "menu": "",
               "title_img_mega_menu": "",
-              "banner_background_color": "#ebeeee",
+              "banner_background_color": "",
               "enable_banner": false,
               "banner_url": "",
               "open_new_window": false,
@@ -139,14 +139,14 @@
               "open_new_window_two": false
             }
           },
-          "798a260e-edef-4c08-8c58-c3f6e35b5d14": {
+          "2a7c1279-2dd4-47b1-93e2-de1bb051b19a": {
             "type": "mega-menu",
             "settings": {
               "title": "Products",
               "url": "",
               "menu": "",
               "title_img_mega_menu": "",
-              "banner_background_color": "#ebeeee",
+              "banner_background_color": "",
               "enable_banner": false,
               "banner_url": "",
               "open_new_window": false,
@@ -157,13 +157,13 @@
           }
         },
         "block_order": [
-          "1cf25701-bb04-4954-ab77-2ef70d3d1d70",
-          "52824ee8-53e8-465e-8a1f-225d1a4e71f7",
-          "0bad83cc-5ccb-45ed-b17b-51494db0ab4a",
-          "a0593047-2caa-4723-a53e-584a20d163e8",
-          "941a1c31-792d-4af8-986d-1de1beb6f0e6",
-          "16098603-ae95-43dc-8be9-2d7aacfcf753",
-          "798a260e-edef-4c08-8c58-c3f6e35b5d14"
+          "2c7b85e8-ec5a-47a8-a092-7f579a815c2e",
+          "4646a520-d801-44d6-a8ef-8ac773b0e604",
+          "624850dd-0cf8-442d-8533-fbb0337871bf",
+          "a742cc15-fe84-4c9f-bb90-3a7819c2cd72",
+          "0684b140-ea30-45da-9779-ab750c8708a7",
+          "1054a5f1-31f5-469f-80ff-302036654e3d",
+          "2a7c1279-2dd4-47b1-93e2-de1bb051b19a"
         ],
         "settings": {
           "menu": "main-menu",

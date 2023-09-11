@@ -1,27 +1,3 @@
-{{ 'template-product.css' | asset_url | stylesheet_tag }}
-<script>
-  window.product = {{ product | json }}
-</script>
-<script>
-  console.log({{ product.metafields.custom.related_products }})
-</script>
-<style>
-  .swiper-button-prev,
-  .swiper-button-next {
-    color: #000;
-    top: auto;
-    height: 20px;
-  }
-
-  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    font-size: 20px;
-  }
-
-  .swiper-pagination-bullet-active {
-    background: #000;
-  }
-</style>
 
 {%- assign selected_variant = product.selected_or_first_available_variant -%}
 
@@ -253,8 +229,5 @@
 
 {% capture src_url %}{{ 'template-product.js' | asset_url }}{% endcapture %} 
 {%render 'atom_script', src: src_url, priority: 'normal', type: "defer" %} 
-
-{% capture src_url %}{{ 'product-gallery.js' | asset_url }}{% endcapture %} 
-{% render 'atom_script', src: src_url, priority: 'important', type: "async" %} 
 
 {% schema %} {"name": "Product", "blocks": [] } {% endschema %}

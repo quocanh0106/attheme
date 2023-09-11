@@ -1,0 +1,170 @@
+{%- style -%}
+  [data-section-id="{{ section.id }}"] {
+    background: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top_mb }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mb }}px;
+  }
+  @media screen and (min-width: 1024px) {
+    [data-section-id="{{ section.id }}"] {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="w-full">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 533 }}" srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}{%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}{%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}{%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}{%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}{%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}{%- if section.settings.image.width >= 2800 -%}{{ section.settings.image | image_url: width: 2800 }} 2800w{%- endif -%}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" 
+          {% if section.settings.image.alt != blank %}
+          alt="{{ section.settings.image.alt | escape }}"
+          {% else %}
+          alt="{{ section.settings.image | split: "/" | last | replace: "-", " " | split: "." | first }}"
+          {% endif %}
+          loading="lazy"
+          class="block mb-4{% if section.settings.text_align_item == 'text-center' %} mx-auto{% elsif section.settings.text_align_item == 'text-left' %} mr-auto{% else %} ml-auto{% endif %}"
+          width="{{ section.settings.image.width }}" 
+          height="{{ section.settings.image.height }}"/>
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'section mb-4' }}
+      {% endif %}
+    </div>
+    <div class="w-full">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 533 }}" srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}{%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}{%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}{%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}{%- if section.settings.image.width >= 1780 -%}{{ section.settings.image | image_url: width: 1780 }} 1780w,{%- endif -%}{%- if section.settings.image.width >= 2000 -%}{{ section.settings.image | image_url: width: 2000 }} 2000w,{%- endif -%}{%- if section.settings.image.width >= 2800 -%}{{ section.settings.image | image_url: width: 2800 }} 2800w{%- endif -%}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" 
+          {% if section.settings.image.alt != blank %}
+          alt="{{ section.settings.image.alt | escape }}"
+          {% else %}
+          alt="{{ section.settings.image | split: "/" | last | replace: "-", " " | split: "." | first }}"
+          {% endif %}
+          loading="lazy"
+          class="block mb-4{% if section.settings.text_align_item == 'text-center' %} mx-auto{% elsif section.settings.text_align_item == 'text-left' %} mr-auto{% else %} ml-auto{% endif %}"
+          width="{{ section.settings.image.width }}" 
+          height="{{ section.settings.image.height }}"/>
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'section mb-4' }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Image with text",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Padding settings"
+      }, 
+      {
+        "type": "range",
+        "id": "padding_top_mb",
+        "label": "Padding mobile top",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1,
+        "default": 64
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mb",
+        "label": "Padding mobile bottom",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1,
+        "default": 64
+      },
+       {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding desktop top",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1,
+        "default": 92
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding desktop bottom",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1,
+        "default": 92
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Image",
+        "type": "image",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "position",
+            "label": "Image position",
+            "default": "bottom",
+            "options": [
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              },
+              {
+                "value": "center",
+                "label": "Center"
+              },
+              {
+                "value": "top",
+                "label": "Top"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Text",
+        "type": "Text",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with text"
+      }
+    ]
+  }
+{% endschema %}

@@ -23,9 +23,9 @@
         "type": "range",
         "id": "logo_width",
         "min": 200,
-        "max": 400,
+        "max": 350,
         "step": 2,
-        "default": 250,
+        "default": 278,
         "unit": "px",
         "label": "Logo desktop width"
       },
@@ -38,9 +38,9 @@
         "type": "range",
         "id": "logo_width_mb",
         "min": 50,
-        "max": 250,
+        "max": 200,
         "step": 2,
-        "default": 200,
+        "default": 178,
         "unit": "px",
         "label": "Logo mobile width"
       }

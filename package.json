@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "webpack": "yarn install && webpack --watch --progress",
-    "deploy": "cd dist && shopify theme push -t 157786669348",
+    "deploy": "cd dist && shopify theme push",
     "fetch": "cd src && cd components && shopify theme pull --only templates/*.json",
     "cy": "cypress open",
     "cy:run": "cypress run",
