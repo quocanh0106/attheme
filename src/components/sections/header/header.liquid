@@ -1,0 +1,264 @@
+<div class="page-width flex bg-background justify-between items-center py-4 lg:py-8">
+  <div class="flex items-center gap-x-10 w-full max-w-1/3">
+    <a href="{{ routes.root_url }}" class="hidden lg:inline-block no-underline" title="{{ shop.name }}" style="max-width: {{ settings.logo_width }}px;">
+      {%- if settings.logo != blank -%}
+        {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+        {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+        <img srcset="{%- if settings.logo.width >= 100 -%}{{ settings.logo | img_url: '100x' }} 100w,{%- endif -%}
+        {%- if settings.logo.width >= 120 -%}{{ settings.logo | img_url: '120x' }} 120w,{%- endif -%}
+        {%- if settings.logo.width >= 140 -%}{{ settings.logo | img_url: '140x' }} 140w,{%- endif -%}
+        {%- if settings.logo.width >= 160 -%}{{ settings.logo | img_url: '160x' }} 160w,{%- endif -%}
+        {%- if settings.logo.width >= 180 -%}{{ settings.logo | img_url: '180x' }} 180w,{%- endif -%}
+        {%- if settings.logo.width >= 200 -%}{{ settings.logo | img_url: '200x' }} 200w,{%- endif -%}
+        {{ settings.logo | img_url: 'master' }} {{ settings.logo_width }}w" 
+        src="{{ settings.logo | image_url: width: settings.logo_width }}" 
+        loading="lazy" 
+        sizes="{{ settings.logo_width }}px" 
+        width="{{ settings.logo_width }}" 
+        height="{{ logo_height }}" 
+        alt="{{ logo_alt }}">
+      {%- else -%}
+        <span class="h2">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+    <a href="{{ routes.root_url }}" class="inline-block lg:hidden no-underline" title="{{ shop.name }}" style="max-width: {{ settings.logo_width_mb }}px;">
+      {%- if settings.logo_mb != blank -%}
+        {%- assign logo_mb_alt = settings.logo_mb.alt | default: shop.name | escape -%}
+        {%- assign logo_mb_height = settings.logo_mb_width | divided_by: settings.logo_mb.aspect_ratio -%}
+        <img srcset="{%- if settings.logo_mb.width >= 100 -%}{{ settings.logo_mb | img_url: '100x' }} 100w,{%- endif -%}
+        {%- if settings.logo_mb.width >= 120 -%}{{ settings.logo_mb | img_url: '120x' }} 120w,{%- endif -%}
+        {%- if settings.logo_mb.width >= 140 -%}{{ settings.logo_mb | img_url: '140x' }} 140w,{%- endif -%}
+        {%- if settings.logo_mb.width >= 160 -%}{{ settings.logo_mb | img_url: '160x' }} 160w,{%- endif -%}
+        {%- if settings.logo_mb.width >= 180 -%}{{ settings.logo_mb | img_url: '180x' }} 180w,{%- endif -%}
+        {%- if settings.logo_mb.width >= 200 -%}{{ settings.logo_mb | img_url: '200x' }} 200w,{%- endif -%}
+        {{ settings.logo_mb | img_url: 'master' }} {{ settings.logo_mb_width }}w" 
+        src="{{ settings.logo_mb | image_url: width: settings.logo_width_mb }}" 
+        loading="lazy" 
+        sizes="{{ settings.logo_width_mb }}px" 
+        width="{{ settings.logo_width_mb }}" 
+        height="{{ logo_mb_height }}" 
+        alt="{{ logo_mb_alt }}">
+      {%- else -%}
+        <span class="h3">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+  </div>
+  <div class="flex items-center max-w-2/3 w-full justify-end gap-x-4 lg:justify-between">
+    <predictive-search class="flex justify-end w-fit lg:w-full lg:max-w-1/2">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="absolute top-0 left-0 h-full lg:h-12.5 z-10 transition-all opacity-0 invisible lg:opacity-100 lg:visible lg:static lg:max-w-[450px] w-full lg:rounded-circle lg:overflow-hidden">
+        <div class="relative w-full center h-full lg:h-12.5">
+          <input class="lg:border-primary lg:!border-2 lg:!border-solid lg:h-12.5 rounded-sm lg:rounded-3xl text-secondary !border-none w-full h-full pl-14 pr-8 appearance-none !outline-none !shadow-none !ring-transparent"
+            id="Search-In-Modal-1"
+            type="search"
+            name="q"
+            value=""
+            pattern="^(?=.*\S).+$"
+            role="combobox"
+            aria-expanded="false"
+            aria-owns="predictive-search-results"
+            aria-controls="predictive-search-results"
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
+            autocorrect="off"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Search gift and personalise ..."
+          >
+          <input type="hidden" name="options[prefix]" value="last">
+          <button type="reset" class="absolute right-4 top-1/2 -translate-y-1/2 text-primary" aria-label="reset">{% render 'icon-close' %}</button>
+          <button type="submit" class="absolute top-1/2 -translate-y-1/2 left-4 w-5 h-5 text-primary">{% render 'icon-search' %}</button>
+        </div>
+        <span class="predictive-search-status hidden" role="status" aria-hidden="true"></span>
+      </form>
+      <div class="predictive-search predictive-search--header hidden absolute z-20 top-full lg:top-search left-0 w-full bg-background shadow-megamenu overflow-y-auto max-h-searchmb lg:max-h-searchdt" tabindex="-1" data-predictive-search>
+        <div class="predictive-search__loading-state w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </div>
+      <span class="block lg:hidden w-5 h-5 cursor-pointer text-primary" id="open-search">{% render 'icon-search' %}</span>
+    </predictive-search>
+    <div class="flex items-center gap-x-4 lg:gap-x-10 m-0 p-0 justify-end w-fit lg:w-full lg:max-w-1/2">
+      <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="account" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5">
+        {% render 'icon-customer', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
+        <span class="hidden lg:block lg:text-sm text-center mt-3.5">Account</span>
+      </a>
+      <a href="/pages/wishlist" title="account" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5">
+        {% render 'icon-wishlist', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
+        <span class="hidden lg:block lg:text-sm text-center mt-3.5">Wishlist</span>
+        <wishlist-count class="absolute bg-primary text-secondary min-w-[1rem] h-4 rounded-full flex justify-center items-center bottom-2.5 left-3" style="display:none;">
+          <span aria-hidden="true" class="flex justify-center items-center h-full text-[10px] leading-none"></span>
+        </wishlist-count>
+      </a>
+      <a href="{{ routes.cart_url }}" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5" title="cart">
+        {%- render 'icon-cart', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' -%}
+        <span class="hidden lg:block lg:text-sm text-center mt-3.5">Basket</span>
+        
+        <div class="absolute bg-primary text-secondary min-w-[1rem] h-4 rounded-full flex justify-center items-center bottom-2.5 left-3 empty:hidden" id="cart-icon-bubble">
+          {%- if cart != empty -%}
+            {%- if cart.item_count < 100 -%}
+              <span class="flex justify-center items-center h-full text-[10px] leading-none">{{ cart.item_count }}</span>
+            {% else %}
+              <span class="flex justify-center items-center h-full text-[10px]">+99</span>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </a>
+      <modal-opener class="bright-link inline-block lg:hidden cursor-pointer " data-id="#menu-drawer">
+        {% render 'icon-hamburger', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
+      </modal-opener>
+    </div>
+  </div>
+</div>
+
+{% if section.blocks.size > 0 %}
+  {% render 'megamenu' %}
+{% endif %}
+
+{% capture src_url %}{{ 'header.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "tag": "header",
+    "class": "section-header sticky z-20 top-0 bg-background transition-all",
+    "settings": [
+
+      {
+        "type": "link_list",
+        "id": "menu",
+        "default": "main-menu",
+        "label": "Menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sticky_header",
+        "default": true,
+        "label": "Enable sticky header"
+      },
+      {
+        "type": "header",
+        "content": "Mini menu"
+      },
+      {
+        "type": "text",
+        "id": "title_img_mega_menu_mb",
+        "label": "Title banner menu",
+        "default": "Occasions"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_image_mb_1",
+        "label": "Background Image 1"
+      },
+      {
+        "type": "url",
+        "id": "banner_url_mb",
+        "label": "Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_image_mb_2",
+        "label": "Background Image 2"
+      },
+      {
+        "type": "url",
+        "id": "banner_url_mb_2",
+        "label": "Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "mega-menu",
+        "name": "Mega menu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Mega navigation trigger"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+          },
+          {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Megamenu"
+          },
+          {
+            "type": "header",
+            "content": "Banner"
+          },
+          {
+            "type": "text",
+            "id": "title_img_mega_menu",
+            "label": "Title banner menu",
+            "info": "Occasions"
+          },
+          {
+            "type": "color",
+            "id": "banner_background_color",
+            "label": "Background color"
+          },
+          {
+            "type": "header",
+            "content": "Banner 1"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_banner",
+            "label": "Show banner",
+            "default": false
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_image",
+            "label": "Background Image"
+          },
+          {
+            "type": "url",
+            "id": "banner_url",
+            "label": "Link"
+          },
+          {
+            "type": "checkbox",
+            "id": "open_new_window",
+            "label": "Open link in new tab",
+            "default": false
+          },
+          {
+            "type": "header",
+            "content": "Banner 2"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_banner_two",
+            "label": "Show banner",
+            "default": false
+          },
+          {
+            "type": "image_picker",
+            "id": "banner_image_two",
+            "label": "Background Image"
+          },
+          {
+            "type": "url",
+            "id": "banner_url_two",
+            "label": "Link"
+          },
+          {
+            "type": "checkbox",
+            "id": "open_new_window_two",
+            "label": "Open link in new tab",
+            "default": false
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

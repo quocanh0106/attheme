@@ -1,0 +1,100 @@
+<div class="py-2 relative z-20 shadow" {%- if section.settings.background_color -%}style="color:{{- section.settings.text_color -}};background-color: {{- section.settings.background_color -}};"{%- endif -%}>
+  <div class="page-width mx-auto overflow-hidden md:max-w-md relative w-full">
+    <button type="button" class="prev-{{ section.id }} z-10 absolute top-1/2 -translate-y-1/2 left-4" {%- if section.settings.text_color -%}style="color:{{- section.settings.text_color -}};"{%- endif -%} name="previous">
+      {%- render 'icon-left', class: 'w-3 h-3 lg:w-3.5 lg:h-3.5' -%}
+    </button>
+    <swiper-component class="flex mx-4 overflow-hidden" data-infor-swiper='{
+                "modules": ["Autoplay","Navigation"],
+                "navigation": {
+                  "nextEl": ".next-{{ section.id }}",
+                  "prevEl": ".prev-{{ section.id }}"
+                },
+                "slidesPerView": 1,
+                "slidesPerGroup": 1,
+                "loop": true,
+                "autoplay": {
+                  "delay": 5000
+                }
+              }'>
+      <div class="swiper-wrapper list flex justify-between w-full">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'announcement' -%}
+            <div class="swiper-slide text-center px-2 w-auto" role="region">
+              {%- if block.settings.text != blank -%}
+                {%- if block.settings.link != blank -%}
+                  <a
+                    href="{{ block.settings.link }}"
+                    class="!no-underline block "
+                    {%- if section.settings.text_color -%}style="color:{{- section.settings.text_color -}};"{%- endif -%}
+                    {% if block.settings.open_new_window %}
+                    target="_blank"
+                    {% endif %}>
+                  {%- endif -%}
+                  <span class="block text-xs lg:text-base leading-none font-bold capitalize font-heading" {%- if section.settings.text_color -%}style="color:{{- section.settings.text_color -}};"{%- endif -%}>
+                    {{ block.settings.text }}
+                  </span>
+                  {%- if block.settings.link != blank -%}
+                  </a>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </swiper-component>
+    <button type="button" class="next-{{ section.id }} z-10 absolute top-1/2 -translate-y-1/2 right-4" {%- if section.settings.text_color -%}style="color:{{- section.settings.text_color -}};"{%- endif -%} name="next">
+      {%- render 'icon-right', class: 'w-3 h-3 lg:w-3.5 lg:h-3.5' -%}
+    </button>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Announcement bar",
+    "tag": "section",
+    "max_blocks": 12,
+    "settings": [
+      {
+        "type": "header",
+        "content": "Color"
+      }, {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color"
+      }, {
+        "type": "color",
+        "id": "text_color",
+        "label": "Color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "announcement",
+        "name": "Announcement bar",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Announcement label"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Announcement link"
+          }, {
+            "type": "checkbox",
+            "id": "open_new_window",
+            "label": "Open link in new tab",
+            "default": false
+          }
+        ]
+      }
+    ],
+    "default": {
+      "blocks": [
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  }
+{% endschema %}

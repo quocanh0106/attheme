@@ -1,1 +1,190 @@
-{"current":{},"presets":{"Default":{}}}
+{
+  "current": {
+    "logo": "shopify:\/\/shop_images\/Personal_House.png",
+    "logo_width": 278,
+    "logo_mb": "shopify:\/\/shop_images\/Personal_House.png",
+    "logo_width_mb": 178,
+    "color_primary": "#eeab47",
+    "color_secondary": "#333333",
+    "color_background": "#fff",
+    "color_error": "#ff6d4d",
+    "color_warning": "#eeab47",
+    "color_success": "#76f0b6",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "announcement-bar-0": {
+            "type": "announcement",
+            "settings": {
+              "text": "<p>Summer Sale - 25% OFF Chocolate Boxes*<\/p>",
+              "link": "",
+              "open_new_window": true
+            }
+          },
+          "97e61c04-e5d6-460a-9891-ed44e30ced71": {
+            "type": "announcement",
+            "settings": {
+              "text": "<p>Summer Sale - 25% OFF Chocolate Boxes*<\/p>",
+              "link": "",
+              "open_new_window": true
+            }
+          }
+        },
+        "block_order": [
+          "announcement-bar-0",
+          "97e61c04-e5d6-460a-9891-ed44e30ced71"
+        ],
+        "settings": {
+          "background_color": "#eeab47",
+          "text_color": "#ffffff"
+        }
+      },
+      "header": {
+        "type": "header",
+        "blocks": {
+          "1cf25701-bb04-4954-ab77-2ef70d3d1d70": {
+            "type": "mega-menu",
+            "settings": {
+              "title": "Black Friday",
+              "url": "",
+              "menu": "",
+              "title_img_mega_menu": "",
+              "banner_background_color": "#ebeeee",
+              "enable_banner": false,
+              "banner_url": "",
+              "open_new_window": false,
+              "enable_banner_two": false,
+              "banner_url_two": "",
+              "open_new_window_two": false
+            }
+          },
+          "52824ee8-53e8-465e-8a1f-225d1a4e71f7": {
+            "type": "mega-menu",
+            "settings": {
+              "title": "Best Seller",
+              "url": "",
+              "menu": "",
+              "title_img_mega_menu": "",
+              "banner_background_color": "#ebeeee",
+              "enable_banner": false,
+              "banner_url": "",
+              "open_new_window": false,
+              "enable_banner_two": false,
+              "banner_url_two": "",
+              "open_new_window_two": false
+            }
+          },
+          "0bad83cc-5ccb-45ed-b17b-51494db0ab4a": {
+            "type": "mega-menu",
+            "settings": {
+              "title": "Recipient",
+              "url": "",
+              "menu": "",
+              "title_img_mega_menu": "",
+              "banner_background_color": "#ebeeee",
+              "enable_banner": false,
+              "banner_url": "",
+              "open_new_window": false,
+              "enable_banner_two": false,
+              "banner_url_two": "",
+              "open_new_window_two": false
+            }
+          },
+          "a0593047-2caa-4723-a53e-584a20d163e8": {
+            "type": "mega-menu",
+            "settings": {
+              "title": "Occasions",
+              "url": "",
+              "menu": "",
+              "title_img_mega_menu": "",
+              "banner_background_color": "#ebeeee",
+              "enable_banner": false,
+              "banner_url": "",
+              "open_new_window": false,
+              "enable_banner_two": false,
+              "banner_url_two": "",
+              "open_new_window_two": false
+            }
+          },
+          "941a1c31-792d-4af8-986d-1de1beb6f0e6": {
+            "type": "mega-menu",
+            "settings": {
+              "title": "Anniversary",
+              "url": "",
+              "menu": "",
+              "title_img_mega_menu": "",
+              "banner_background_color": "#ebeeee",
+              "enable_banner": false,
+              "banner_url": "",
+              "open_new_window": false,
+              "enable_banner_two": false,
+              "banner_url_two": "",
+              "open_new_window_two": false
+            }
+          },
+          "16098603-ae95-43dc-8be9-2d7aacfcf753": {
+            "type": "mega-menu",
+            "settings": {
+              "title": "Birthday",
+              "url": "",
+              "menu": "",
+              "title_img_mega_menu": "",
+              "banner_background_color": "#ebeeee",
+              "enable_banner": false,
+              "banner_url": "",
+              "open_new_window": false,
+              "enable_banner_two": false,
+              "banner_url_two": "",
+              "open_new_window_two": false
+            }
+          },
+          "798a260e-edef-4c08-8c58-c3f6e35b5d14": {
+            "type": "mega-menu",
+            "settings": {
+              "title": "Products",
+              "url": "",
+              "menu": "",
+              "title_img_mega_menu": "",
+              "banner_background_color": "#ebeeee",
+              "enable_banner": false,
+              "banner_url": "",
+              "open_new_window": false,
+              "enable_banner_two": false,
+              "banner_url_two": "",
+              "open_new_window_two": false
+            }
+          }
+        },
+        "block_order": [
+          "1cf25701-bb04-4954-ab77-2ef70d3d1d70",
+          "52824ee8-53e8-465e-8a1f-225d1a4e71f7",
+          "0bad83cc-5ccb-45ed-b17b-51494db0ab4a",
+          "a0593047-2caa-4723-a53e-584a20d163e8",
+          "941a1c31-792d-4af8-986d-1de1beb6f0e6",
+          "16098603-ae95-43dc-8be9-2d7aacfcf753",
+          "798a260e-edef-4c08-8c58-c3f6e35b5d14"
+        ],
+        "settings": {
+          "menu": "main-menu",
+          "enable_sticky_header": true,
+          "title_img_mega_menu_mb": "Occasions",
+          "banner_url_mb": "",
+          "banner_url_mb_2": ""
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
+  "presets": {
+    "Default": {
+    }
+  }
+}

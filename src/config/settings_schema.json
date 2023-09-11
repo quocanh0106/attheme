@@ -22,9 +22,10 @@
       {
         "type": "range",
         "id": "logo_width",
-        "min": 50,
-        "max": 250,
-        "step": 10,
+        "min": 200,
+        "max": 400,
+        "step": 2,
+        "default": 250,
         "unit": "px",
         "label": "Logo desktop width"
       },
@@ -37,11 +38,26 @@
         "type": "range",
         "id": "logo_width_mb",
         "min": 50,
-        "max": 150,
-        "step": 1,
-        "default": 100,
+        "max": 250,
+        "step": 2,
+        "default": 200,
         "unit": "px",
         "label": "Logo mobile width"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1100,
+        "max": 1300,
+        "step": 4,
+        "default": 1200,
+        "unit": "px",
+        "label": "Page width"
       }
     ]
   },
@@ -62,69 +78,6 @@
         "type": "color",
         "id": "color_background",
         "label": "Color background"
-      },
-      {
-        "type": "header",
-        "content": "Text & Link"
-      },
-      {
-        "type": "color",
-        "id": "color_heading",
-        "label": "Heading"
-      },
-      {
-        "type": "color",
-        "id": "color_text",
-        "label": "Text"
-      },
-      {
-        "type": "color",
-        "id": "color_subtext",
-        "label": "Sub text"
-      },
-      {
-        "type": "color",
-        "id": "color_link",
-        "label": "Link"
-      },
-      {
-        "type": "color",
-        "id": "color_link_hover",
-        "label": "Link hover"
-      },
-      {
-        "type": "color",
-        "id": "color_border",
-        "label": "Border"
-      },
-      {
-        "type": "color",
-        "id": "color_border_secondary",
-        "label": "Border secondary"
-      },
-      {
-        "type": "header",
-        "content": "Button"
-      },
-      {
-        "type": "color",
-        "id": "color_btn_text",
-        "label": "Text"
-      },
-      {
-        "type": "color",
-        "id": "color_btn_background",
-        "label": "Background"
-      },
-      {
-        "type": "color",
-        "id": "color_btn_text_hover",
-        "label": "Text hover"
-      },
-      {
-        "type": "color",
-        "id": "color_btn_background_hover",
-        "label": "Background hover"
       },
       {
         "type": "header",
@@ -196,53 +149,8 @@
       {
         "type": "text",
         "label": "Font name",
-        "id": "body_font",
+        "id": "base_font",
         "default": "Josefin Sans"
-      }
-    ]
-  },
-  {
-    "name": "Layout",
-    "settings": [
-      {
-        "type": "range",
-        "id": "page_width",
-        "min": 1100,
-        "max": 1300,
-        "step": 4,
-        "default": 1264,
-        "unit": "px",
-        "label": "Page width"
-      },
-      {
-        "type": "range",
-        "id": "padding_desktop",
-        "min": 0,
-        "max": 64,
-        "step": 4,
-        "default": 64,
-        "unit": "px",
-        "label": "Padding desktop"
-      },
-      {
-        "type": "range",
-        "id": "padding_tablet",
-        "min": 0,
-        "max": 48,
-        "step": 4,
-        "default": 32,
-        "unit": "px",
-        "label": "Padding tablet"
-      },
-      {
-        "type": "range",
-        "id": "padding_mobile",
-        "min": 0,
-        "max": 32,
-        "step": 4,
-        "default": 16,
-        "unit": "px",
-        "label": "Padding mobile"
       }
     ]
   },
@@ -291,6 +199,25 @@
         "id": "hide_product_type",
         "label": "Hide product type",
         "default": true
+      }
+    ]
+  },
+  {
+    "name": "Insert custom code into head",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Home page"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_code_index",
+        "label": "Custom code at the home page"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_code_all",
+        "label": "Custom code at the all pages"
       }
     ]
   }

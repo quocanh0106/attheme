@@ -1,0 +1,100 @@
+{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+{%- if predictive_search.performed -%}
+{% assign first_column_results_size = predictive_search.resources.queries.size
+| plus: predictive_search.resources.collections.size
+%}
+{% comment %} | plus: predictive_search.resources.pages.size
+| plus: predictive_search.resources.articles.size {% endcomment %}
+  <div id="predictive-search-results" class="page-width py-4 md:py-7.5 lg:py-12.5" role="listbox">
+    {%- if first_column_results_size > 0 or predictive_search.resources.products.size > 0 -%}
+      <div id="predictive-search-results-groups-wrapper" class="flex flex-wrap gap-y-2">
+        {% assign limit = 8 %}
+        {%- if first_column_results_size > 0 -%}
+          {% assign limit = 6 %}
+          <div class="predictive-search__result-group w-full md:w-1/3 flex flex-col gap-4 lg:pr-4">
+            {%- if predictive_search.resources.queries.size > 0 -%}
+              <h5 class="font-montserrat text-sm leading-5 font-semibold uppercase">Suggestions</h5>
+              <ul class="mb-4 last:mb-0">
+                {%- for query in predictive_search.resources.queries -%}
+                  <li class="mb-2 last:mb-0 leading-none" role="option" aria-selected="false">
+                    <a href="{{ query.url }}" class="block" tabindex="-1">
+                      <p class="one-line overflow-hidden truncate-line text-sm leading-5" aria-label="{{ query.text }}">{{ query.styled_text }}</p>
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+            {% if predictive_search.resources.collections.size > 0 %}
+              <h5 class="font-montserrat text-sm leading-5 font-semibold uppercase">Collections</h5>
+              <ul class="mb-4 last:mb-0">
+                {%- for collection in predictive_search.resources.collections -%}
+                  <li class="mb-2 last:mb-0 leading-none" role="option" aria-selected="false">
+                    <a href="{{ collection.url }}" class="one-line overflow-hidden truncate-line text-sm leading-5" tabindex="-1" title="{{ collection.title }}">{{ collection.title }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {% endif %}
+            {% if predictive_search.resources.articles.size > 0 %}
+              <h5 class="font-montserrat text-sm leading-5 font-semibold uppercase">Blog posts</h5>
+              <ul class="mb-4 last:mb-0">
+                {%- for article in predictive_search.resources.articles -%}
+                  <li class="mb-2 last:mb-0 leading-none" role="option" aria-selected="false">
+                    <a href="{{ article.url }}" class="one-line overflow-hidden truncate-line text-sm leading-5" tabindex="-1" title="{{ article.title }}">{{ article.title }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {% endif %}
+          </div>
+        {%- endif -%}
+        {%- if predictive_search.resources.products.size > 0 -%}
+          <div class="predictive-search__result-group w-full{% if first_column_results_size > 0 %} md:w-2/3{% endif %} flex flex-col gap-4">
+            {%- if predictive_search.resources.products.size > 0 -%}
+              <h5 class="font-montserrat text-sm leading-5 font-semibold uppercase">Products</h5>
+              <ul id="predictive-search-results-products-list" class="grid grid-cols-2{% if first_column_results_size > 0 %} lg:grid-cols-3{% else %} lg:grid-cols-4{% endif %} gap-x-1 gap-y-2.5 md:gap-x-2.5" role="group" aria-labelledby="predictive-search-products">
+                {%- for product in predictive_search.resources.products limit: limit -%}
+                  <li id="predictive-search-option-product-{{ forloop.index }}" class="predictive-search__list-item" role="option" aria-selected="false">
+                    {% render 'product-card', product: product %}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="predictive-search__loading-state w-5 h-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden" aria-hidden="true">
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="spinner"
+        viewBox="0 0 66 66"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </div>
+  </div>
+
+  <span class="hidden" data-predictive-search-live-region-count-value>
+    {% liquid
+      assign total_results = predictive_search.resources.products.size | plus: first_column_results_size
+      if total_results == 0
+        echo 'templates.search.no_results' | t: terms: predictive_search.terms
+      else
+        echo 'templates.search.results_with_count' | t: count: total_results | append: ': '
+        if predictive_search.resources.queries.size > 0
+          assign count = predictive_search.resources.queries.size | plus: predictive_search.resources.collections.size
+          echo 'templates.search.results_suggestions_with_count' | t: count: count | append: ', '
+        endif
+        if predictive_search.resources.pages.size > 0
+          assign count = predictive_search.resources.pages.size | plus: predictive_search.resources.articles.size
+          echo 'templates.search.results_pages_with_count' | t: count: count | append: ', '
+        endif
+        if predictive_search.resources.products.size > 0
+          echo 'templates.search.results_products_with_count' | t: count: predictive_search.resources.products.size
+        endif
+      endif
+    %}
+  </span>
+{%- endif -%}
