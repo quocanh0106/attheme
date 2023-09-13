@@ -1,0 +1,37 @@
+{%- liquid
+  if ratio == 'landscape'
+    assign image_ratio = 5 | divided_by: 3.0
+  else
+    assign image_ratio = 1
+  endif
+  if sort == 'title'
+    assign order_title = 'order-1'
+    assign order_image = 'order-2'
+  else
+    assign order_image = 'order-1'
+    assign order_title = 'order-2'
+  endif
+-%}
+
+{% if title != blank or image != blank %}
+  <{% if url %}a href="{{ url }}" title="{{title}}"{% else %}div{% endif %} class="flex flex-col overflow-hidden swiper-slide" style="border-radius: {{ radius }}px;">
+    {% if title != blank %}
+      <div class="w-full text-center px-2 py-4 {{ order_title }} bg-[#eee]">
+        <{{ tag }} class="truncate-line one-line overflow-hidden text-base font-semibold leading-none capitalize text-secondary">{{ title }}</{{ tag }}>
+      </div>
+    {% endif %}
+    {% if image != blank %}
+      <div class="relative w-full overflow-hidden group {{ order_image }}" style="padding-bottom: {{ 1 | divided_by: image_ratio | times: 100 }}%;">
+        <img 
+          src="{{ image | image_url: width: 533 }}" 
+          srcset="{%- if image.width >= 375 -%}{{ image | image_url: width: 375 }} 375w,{%- endif -%}{%- if image.width >= 750 -%}{{ image | image_url: width: 750 }} 750w,{%- endif -%}{%- if image.width >= 1100 -%}{{ image | image_url: width: 1100 }} 1100w,{%- endif -%}{%- if image.width >= 1500 -%}{{ image | image_url: width: 1500 }} 1500w,{%- endif -%}{%- if image.width >= 1780 -%}{{ image | image_url: width: 1780 }} 1780w,{%- endif -%}{%- if image.width >= 2000 -%}{{ image | image_url: width: 2000 }} 2000w,{%- endif -%}{%- if image.width >= 2800 -%}{{ image | image_url: width: 2800 }} 2800w{%- endif -%}" 
+          sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+          alt="{{ image | split: "/" | last | replace: "-", " " | split: "." | first }}"
+          class="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-all duration-200"
+          width="{{ image.width }}" 
+          height="{{ image.height }}"
+        />
+      </div>
+    {% endif %}
+  </{% if url %}a{% else %}div{% endif %}>
+{% endif %}

@@ -48,7 +48,7 @@
             "settings": {
               "title": "Black Friday",
               "url": "",
-              "menu": "",
+              "menu": "main-menu",
               "title_img_mega_menu": "",
               "banner_background_color": "",
               "enable_banner": false,

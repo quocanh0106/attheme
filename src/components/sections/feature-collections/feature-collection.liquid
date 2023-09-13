@@ -1,0 +1,283 @@
+{%- style -%}
+  [data-section-id="{{ section.id }}"] {
+    background: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top_mb }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mb }}px;
+  }
+  @media screen and (min-width: 768px) {
+    [data-section-id="{{ section.id }}"] {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+{% if section.blocks.size > 0 %}
+  <span class="!hidden grid md:grid-cols-1 md:grid-cols-2 md:grid-cols-3 md:grid-cols-4 md:grid-cols-5 lg:grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 lg:grid-cols-5"></span>
+  <div data-section-id="{{ section.id }}" class="page-width">
+    {% if section.settings.heading != blank %}
+      <{{ section.settings.heading_tag }} class="text-center text-primary text-xl md:text-2xl lg:text-3xl !leading-none font-bold mb-6 lg:mb-9">{{ section.settings.heading }}</{{ section.settings.heading_tag }}>
+    {% endif %}
+    {% if section.settings.slider %}
+      <div class="flex items-center gap-4 justify-end mb-3">
+        <button class="prev-{{ section.id }} flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary hover:bg-opacity-30 overflow-hidden w-10 h-10">{% render 'icon-chevron-left', class: 'w-2 h-3' %}</button>
+        <button class="next-{{ section.id }} flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary hover:bg-opacity-30 overflow-hidden w-10 h-10">{% render 'icon-chevron-right', class: 'w-2 h-3' %}</button>
+      </div>
+    {% endif %}
+    <{% if section.settings.slider %}swiper-component{% else %}div{% endif %} class="block overflow-hidden" data-infor-swiper='{
+      "modules": ["Navigation", "Scrollbar"],
+      "slidesPerView": {{ section.settings.col_mb }},
+      "slidesPerGroup": 1,
+      "spaceBetween": 16,
+      "navigation": {
+        "nextEl": ".next-{{ section.id }}",
+        "prevEl": ".prev-{{ section.id }}"
+      },
+      "scrollbar": {
+        "el": ".scrollbar-product-slider--{{ section.id }}",
+        "draggable": true
+      },
+      "breakpoints": {
+        "768": {
+          "slidesPerView": {{ section.settings.col_tl }},
+          "slidesPerGroup": 1,
+          "spaceBetween": 20
+        },
+        "1024": {
+          "slidesPerView": {{ section.settings.col_dt }},
+          "slidesPerGroup": 1,
+          "spaceBetween": 40
+        }
+      },
+      "speed": 400
+    }'>
+      <div class="{% if section.settings.slider %}swiper-wrapper flex{% else %}grid gap-4 lg:gap-10 grid-cols-{{ section.settings.col_mb }} md:grid-cols-{{ section.settings.col_tl }} lg:grid-cols-{{ section.settings.col_dt }}{% endif %}">
+        {% for block in section.blocks %}
+          {% render 'box-card', tag: section.settings.block_heading_tag, radius: section.settings.block_radius, ratio: section.settings.block_ratio, sort: section.settings.block_sort, title: block.settings.title, image: block.settings.image, url: block.settings.url %}
+        {% endfor %}
+      </div>
+    </{% if section.settings.slider %}swiper-component{% else %}div{% endif %}>
+  </div>
+{% endif %}
+{% schema %}
+  {
+    "name": "Feature collections",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "slider",
+        "label": "Enable slider"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "Heading 1"
+          },
+          {
+            "value": "h2",
+            "label": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "label": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "label": "Heading 4"
+          },
+          {
+            "value": "h5",
+            "label": "Heading 5"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Block settings"
+      }, 
+      {
+        "type": "select",
+        "id": "block_heading_tag",
+        "label": "Block heading tag",
+        "default": "h3",
+        "options": [
+          {
+            "value": "h1",
+            "label": "Heading 1"
+          },
+          {
+            "value": "h2",
+            "label": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "label": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "label": "Heading 4"
+          },
+          {
+            "value": "h5",
+            "label": "Heading 5"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "block_ratio",
+        "label": "Block ratio",
+        "default": "square",
+        "options": [
+          {
+            "value": "square",
+            "label": "Square"
+          },
+          {
+            "value": "landscape",
+            "label": "Landscape"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "block_radius",
+        "label": "Block radius",
+        "min": 0,
+        "max": 200,
+        "unit": "px",
+        "step": 2,
+        "default": 20
+      },
+      {
+        "type": "select",
+        "id": "block_sort",
+        "label": "Block sort",
+        "default": "title",
+        "options": [
+          {
+            "value": "title",
+            "label": "Title first"
+          },
+          {
+            "value": "image",
+            "label": "Image first"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Column per row"
+      }, 
+      {
+        "type": "range",
+        "id": "col_dt",
+        "label": "Column per row desktop",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "col_tl",
+        "label": "Column per row tablet",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "type": "range",
+        "id": "col_mb",
+        "label": "Column per row mobile",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 2
+      },
+      {
+        "type": "header",
+        "content": "Padding settings"
+      }, 
+      {
+        "type": "range",
+        "id": "padding_top_mb",
+        "label": "Padding mobile top",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1,
+        "default": 64
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mb",
+        "label": "Padding mobile bottom",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1,
+        "default": 64
+      },
+       {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Padding desktop top",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1,
+        "default": 92
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Padding desktop bottom",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "step": 1,
+        "default": 92
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Block",
+        "type": "block",
+        "settings": [
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link to"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Feature collections"
+      }
+    ]
+  }
+{% endschema %}

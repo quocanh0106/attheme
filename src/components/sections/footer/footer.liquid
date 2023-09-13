@@ -1,0 +1,365 @@
+<div class="bg-primary text-background md:pt-2 lg:pt-20">
+  <span class="md:last:order-2 md:last:order-3 md:last:order-4 md:last:order-5 hidden"></span>
+  <div class="page-width">
+    {%- if section.blocks.size > 0 -%}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 lg:flex">
+        {%- for block in section.blocks -%}
+          <style>
+            @media (min-width: 1024px) {
+              [data-block-id="{{ block.id }}"] {
+                max-width: {{block.settings.width}}%;
+                width: 100%;
+              }
+            }
+          </style>
+          <{% unless block.type == 'link_list' %}div{% else %}accordion-toggle{% endunless %} data-block-id="{{ block.id }}" class="{% if block.type == 'image' and forloop.first %}hidden lg:block {% endif %}last:-order-1 order-{{forloop.index}} {% if forloop.last %}md:last:order-{{forloop.index}} pt-8 lg:pt-0{% endif %} {% if block.type == 'link_list' %}grid py-8 lg:py-0 border-b border-border md:0 md:border-none grid-rows-[min-content] auto-rows-min{% endif %}">
+            {%- if block.settings.heading != blank -%}
+              <div class="summary flex items-center justify-between gap-x-2 h-fit">
+                <h4 class="text-sm font-heading p-0 leading-tight tracking-normal text-background font-bold">{{- block.settings.heading | escape -}}</h4>
+                {% if block.type == 'link_list' %}
+                  <span class="icon-add md:!hidden">{%- render 'icon-add' -%}</span>
+                  <span class="icon-minus md:!hidden">{%- render 'icon-minus-3', fill: "#fff" -%}</span>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            {%- case block.type -%}
+              {%- when 'text' -%}
+                <div class="footer-block__details-content block-text">
+                  {% if block.settings.subtext != blank %}
+                    {{ block.settings.subtext }}
+                  {% endif %}
+                  <ul class="mt-4">
+                    {%- if block.settings.email != blank -%}
+                      <li>
+                        <a href="mailto:{{ block.settings.email }}" class="flex items-center gap-2.5 !text-background opacity-80 hover:opacity-100" title="{{ block.settings.email }}">
+                          {%- render 'icon-mail', class: 'w-4 h-4 flex-none' -%}{{ block.settings.email }}
+                        </a>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.address != blank -%}
+                      <li>
+                        <p class="flex items-center gap-2.5 text-background opacity-80">
+                          {%- render 'icon-map', class: 'w-4 h-4 flex-none' -%}{{ block.settings.address }}
+                        </p>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.time_work != blank -%}
+                      <li>
+                        <p class="flex items-center gap-2.5 text-background opacity-80">
+                          {%- render 'icon-hour', class: 'w-4 h-4 flex-none' -%}{{ block.settings.time_work }}
+                        </p>
+                      </li>
+                    {%- endif -%}
+                  </ul>
+
+                  {%- if block.settings.show_social == true -%}
+                    <ul class="flex flex-wrap gap-4 items-center mt-8" role="list">
+                      {%- if settings.social_facebook_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_facebook_link }}" class="!text-background opacity-80 hover:opacity-100" title="Facebook">
+                            {%- render 'icon-facebook' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_twitter_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_twitter_link }}" class="!text-background opacity-80 hover:opacity-100" title="Twitter">
+                            {%- render 'icon-twitter' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_instagram_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_instagram_link }}" class="!text-background opacity-80 hover:opacity-100" title="Instagram">
+                            {%- render 'icon-instagram' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_tiktok_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_tiktok_link }}" class="!text-background opacity-80 hover:opacity-100" title="Tiktok">
+                            {%- render 'icon-tiktok' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_youtube_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_youtube_link }}" class="!text-background opacity-80 hover:opacity-100" title="Youtube">
+                            {%- render 'icon-youtube' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_pinterest_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_pinterest_link }}" class="!text-background opacity-80 hover:opacity-100" title="Pinterest">
+                            {%- render 'icon-pinterest' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_tumblr_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_tumblr_link }}" class="!text-background opacity-80 hover:opacity-100" title="Tumblr">
+                            {%- render 'icon-tumblr' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_snapchat_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_snapchat_link }}" class="!text-background opacity-80 hover:opacity-100" title="Snapchat">
+                            {%- render 'icon-snapchat' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_vimeo_link != blank -%}
+                        <li class="w-5 h-5">
+                          <a href="{{ settings.social_vimeo_link }}" class="!text-background opacity-80 hover:opacity-100" title="Vimeo">
+                            {%- render 'icon-vimeo' -%}
+                          </a>
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  {%- endif -%}
+
+                  {%- if block.settings.payment_enable == true -%}
+                    <ul class="hidden md:flex gap-2 items-center flex-wrap mt-8" role="list">
+                      {% if block.settings.use_payment_default %}
+                        {%- assign enabled_payment_types = shop.enabled_payment_types -%}
+                      {% else %}
+                        {%- assign enabled_payment_types = block.settings.custom_payment | remove: ' ' | split: ',' -%}
+                      {% endif %}
+                      {% for type in enabled_payment_types %}
+                        <li class="list-payment__item">
+                          {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
+                          {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
+                          {{- first_svg -}}{{- last_svg -}}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </div>
+              {%- when 'link_list' -%}
+                {%- if block.settings.menu != blank -%}
+                  <ul class="details md:!mt-4 md:!max-h-full p-0 grid gap-y-4">
+                    {%- for link in block.settings.menu.links -%}
+                      <li>
+                        {% if link.url contains 'help-center' %}
+                          <span-link href="{{ link.url }}" class="cursor-pointer text-sm p-0 tracking-normal transition-all opacity-80 text-background hover:text-background hover:opacity-100">
+                            {{ link.title }}
+                          </span-link>
+                        {% else %}
+                          <a href="{{ link.url }}" class="text-sm p-0 tracking-normal opacity-80 text-background hover:text-background hover:opacity-100" title="{{ link.title }}">
+                            {{ link.title }}
+                          </a>
+                        {% endif %}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              {%- when 'image' -%}
+                <style>
+                  @media (min-width: 1024px) {
+                    [data-block-id="{{ block.id }}"] img {
+                      max-width: {{ block.settings.image_width }}px;
+                    }
+                  }
+                </style>
+                {%- if block.settings.image != blank -%}
+                  {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+                  <img srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}" 
+                       src="{{ block.settings.image | image_url: width: block.settings.image_width }}"
+                       {% if block.settings.image.alt != blank %}
+                        alt="{{ block.settings.image.alt | escape }}"
+                       {% else %}
+                        alt="{{ block.settings.image | split: "/" | last | replace: "-", " " | split: "." | first }}"
+                       {% endif %}
+                       class="hidden md:block w-full"
+                       loading="lazy" 
+                       width="{{ block.settings.image.width }}" 
+                       height="{{ block.settings.image.height }}">
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                {%- endif -%}
+            {%- endcase -%}
+          </{% unless block.type == 'link_list' %}div{% else %}accordion-toggle{% endunless %}>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="bg-primary text-background py-10">
+    <div class="page-width">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.payment_enable -%}
+          <ul class="flex items-center gap-2 justify-center md:hidden mb-6 md:mb-0" role="list">
+            {% for type in enabled_payment_types %}
+              <li>
+                {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
+                {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
+                {{- first_svg -}}{{- last_svg -}}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if section.blocks.size > 0 -%}
+        {% if  section.settings.copyright != blank %}
+          <p class="text-center text-xxs text-border-secondary">{{ section.settings.copyright }}</p>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div id="scrollToTop" class="hidden">
+    {%- render 'icon-back' -%}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "tag": "footer",
+    "blocks": [
+      {
+        "type": "link_list",
+        "name": "Link list",
+        "settings": [
+          {
+            "type": "text",
+            "id": "width",
+            "info": " unit:%",
+            "label": "Width block"
+          }, 
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Quick links",
+            "label": "Heading"
+          }, 
+          {
+            "type": "link_list",
+            "id": "menu",
+            "default": "footer",
+            "label": "Menu",
+            "info": "Displays only top-level menu items."
+          }
+        ]
+      }, 
+      {
+        "type": "text",
+        "name": "Infor",
+        "settings": [
+          {
+            "type": "text",
+            "id": "width",
+            "info": "unit: %",
+            "label": "Width block"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Heading",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "email",
+            "default": "support@personalchic.com",
+            "label": "Email"
+          },
+          {
+            "type": "text",
+            "id": "address",
+            "default": "Masthead House, 5 Royal Crest Av, London, LND E16 2PG",
+            "label": "Address"
+          }, 
+          {
+            "type": "text",
+            "id": "time_work",
+            "default": "Mon - Sun",
+            "label": "Time work"
+          },
+          {
+            "type": "header",
+            "content": "Setting social media"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_social",
+            "default": false,
+            "label": "t:sections.footer.settings.show_social.label"
+          },
+          {
+            "type": "header",
+            "content": "Setting payment"
+          },
+          {
+            "type": "checkbox",
+            "id": "payment_enable",
+            "default": true,
+            "label": "t:sections.footer.settings.payment_enable.label"
+          },
+          {
+            "type": "checkbox",
+            "id": "use_payment_default",
+            "default": false,
+            "label": "Use payment icons default"
+          },
+          {
+            "type": "text",
+            "id": "custom_payment",
+            "default": "american_express,apple_pay,master,paypal,visa",
+            "label": "Custom payment icons",
+            "info": "Divided by comma. [Learn more](https://help.shopify.com/en/manual/online-store/themes/themes-by-shopify/vintage-themes/customizing-vintage-themes/add-credit-card-icons)"
+          }
+        ]
+      }, 
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "text",
+            "id": "width",
+            "info": " unit: %",
+            "label": "Width block"
+          }, 
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, 
+          {
+            "type": "range",
+            "id": "image_width",
+            "min": 100,
+            "max": 200,
+            "step": 1,
+            "unit": "px",
+            "label": "Image width",
+            "default": 192
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "header",
+        "content": "Copyright section"
+      },
+      {
+        "type": "textarea",
+        "id": "copyright",
+        "default": "© 2022 CustomChic™️. Powered by Shopify",
+        "label": "Copyright"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,8 +1,226 @@
 {
   "sections": {
-
+    "af57cdfa-9900-4ccb-a962-7db0c52b0cdf": {
+      "type": "image-width-text",
+      "blocks": {
+        "4a230095-d237-4652-904d-88af9453247b": {
+          "type": "Text",
+          "settings": {
+            "heading": "Beyond Just A Prensent",
+            "heading_tag": "h2",
+            "description": "Discover unique gift ideas from Personal House and customise your present with our personalisation options"
+          }
+        },
+        "58f3421f-26fc-4002-a0c9-fc10eed69498": {
+          "type": "image",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/personalised-gifts-banner_1_b8849248-bbfd-4a84-9cba-cd97845e570f.png",
+            "radius_image": 20,
+            "position": "bottom",
+            "position_mobile": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "4a230095-d237-4652-904d-88af9453247b",
+        "58f3421f-26fc-4002-a0c9-fc10eed69498"
+      ],
+      "settings": {
+        "background_color": "#eeab47",
+        "text_color": "#000000",
+        "padding_top_mb": 44,
+        "padding_bottom_mb": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top_mb": 0,
+        "margin_bottom_mb": 50,
+        "margin_top": 0,
+        "margin_bottom": 50
+      }
+    },
+    "46e7af1b-0155-441a-ab4b-0920a00afcf4": {
+      "type": "feature-collection",
+      "blocks": {
+        "2e9a3fd6-72a7-475d-83f3-33cb079cef48": {
+          "type": "block",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/1.png",
+            "title": "Gifts for Mom"
+          }
+        },
+        "d34a0cc5-e660-44dd-bf97-4e515a3a02ac": {
+          "type": "block",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/2.png",
+            "title": "Halloween Gifts"
+          }
+        },
+        "80e4d628-0db3-469e-a2b8-bbeb53453339": {
+          "type": "block",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/3.png",
+            "title": "For Pet Lovers"
+          }
+        },
+        "dbb9c593-02cb-4393-a2c0-5d83ad6e9325": {
+          "type": "block",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/4.png",
+            "title": "18th Birthday Gifts"
+          }
+        }
+      },
+      "block_order": [
+        "2e9a3fd6-72a7-475d-83f3-33cb079cef48",
+        "d34a0cc5-e660-44dd-bf97-4e515a3a02ac",
+        "80e4d628-0db3-469e-a2b8-bbeb53453339",
+        "dbb9c593-02cb-4393-a2c0-5d83ad6e9325"
+      ],
+      "settings": {
+        "slider": true,
+        "heading": "Personalised Gifts By Occasion",
+        "heading_tag": "h2",
+        "block_heading_tag": "h3",
+        "block_ratio": "landscape",
+        "block_radius": 20,
+        "block_sort": "title",
+        "col_dt": 4,
+        "col_tl": 3,
+        "col_mb": 2,
+        "padding_top_mb": 64,
+        "padding_bottom_mb": 64,
+        "padding_top": 92,
+        "padding_bottom": 92
+      }
+    },
+    "9310e01e-88bc-486a-86d9-2990f204eb29": {
+      "type": "image-width-text",
+      "blocks": {
+        "9f6b43de-779a-4343-bba9-d7288dccccdc": {
+          "type": "image",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/personalised-gifts-banner_2.png",
+            "radius_image": 20,
+            "position": "bottom",
+            "position_mobile": "top"
+          }
+        },
+        "bf5d18f2-91af-4de2-bd5a-eb167bdf96c7": {
+          "type": "Text",
+          "settings": {
+            "heading": "Personalised Gifts For Everyone",
+            "heading_tag": "h2",
+            "description": "Discover unique gift ideas from Personal House and customise your present with our personalisation options"
+          }
+        }
+      },
+      "block_order": [
+        "9f6b43de-779a-4343-bba9-d7288dccccdc",
+        "bf5d18f2-91af-4de2-bd5a-eb167bdf96c7"
+      ],
+      "settings": {
+        "background_color": "#ffe771",
+        "text_color": "#000000",
+        "padding_top_mb": 0,
+        "padding_bottom_mb": 44,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top_mb": 100,
+        "margin_bottom_mb": 0,
+        "margin_top": 100,
+        "margin_bottom": 0
+      }
+    },
+    "8005bcc5-d636-40b7-8c78-26cc24c01ec1": {
+      "type": "image-width-text",
+      "blocks": {
+        "6c34c35c-1454-4c8f-ae4c-db6583e027a6": {
+          "type": "Text",
+          "settings": {
+            "heading": "Unique Gifts For Everyone Occasion",
+            "heading_tag": "h2",
+            "description": "Discover unique gift ideas from Personal House and customise your present with our personalisation options"
+          }
+        },
+        "b8f488fd-4a3c-4116-bd16-1ac2483337ff": {
+          "type": "image",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/personalised-gifts-banner_3.png",
+            "radius_image": 20,
+            "position": "top",
+            "position_mobile": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "6c34c35c-1454-4c8f-ae4c-db6583e027a6",
+        "b8f488fd-4a3c-4116-bd16-1ac2483337ff"
+      ],
+      "settings": {
+        "background_color": "#87d6f2",
+        "text_color": "#000000",
+        "padding_top_mb": 44,
+        "padding_bottom_mb": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top_mb": 0,
+        "margin_bottom_mb": 50,
+        "margin_top": 50,
+        "margin_bottom": 50
+      }
+    },
+    "d7a098f5-6245-40b0-a38a-0cdcc2d6c66f": {
+      "type": "image-width-text",
+      "blocks": {
+        "9714afbf-5f2d-40e9-83fa-78b9ac519c92": {
+          "type": "image",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/personalised-gifts-banner_4.png",
+            "radius_image": 20,
+            "position": "bottom",
+            "position_mobile": "top"
+          }
+        },
+        "8e1dc928-06e9-447e-99d3-ec825e82552b": {
+          "type": "Text",
+          "settings": {
+            "heading": "One-of-a-kind Personalised Gifts",
+            "heading_tag": "h2",
+            "description": "Discover unique gift ideas from Personal House and customise your present with our personalisation options"
+          }
+        }
+      },
+      "block_order": [
+        "9714afbf-5f2d-40e9-83fa-78b9ac519c92",
+        "8e1dc928-06e9-447e-99d3-ec825e82552b"
+      ],
+      "settings": {
+        "background_color": "#76f0b6",
+        "text_color": "#000000",
+        "padding_top_mb": 0,
+        "padding_bottom_mb": 44,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top_mb": 100,
+        "margin_bottom_mb": 0,
+        "margin_top": 100,
+        "margin_bottom": 0
+      }
+    }
   },
   "order": [
-
+    "af57cdfa-9900-4ccb-a962-7db0c52b0cdf",
+    "46e7af1b-0155-441a-ab4b-0920a00afcf4",
+    "9310e01e-88bc-486a-86d9-2990f204eb29",
+    "8005bcc5-d636-40b7-8c78-26cc24c01ec1",
+    "d7a098f5-6245-40b0-a38a-0cdcc2d6c66f"
   ]
 }

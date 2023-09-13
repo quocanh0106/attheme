@@ -1,7 +1,7 @@
 <menu-drawer class="block page-width !px-0 lg:!px-4 fixed lg:static z-20 w-full h-full top-0 left-0 invisible lg:visible lg:before:content-none lg:translate-x-0 lg:bg-none 
                         before:content-empty before:bg-overlay before:top-0 before:left-0 before:absolute before:w-full before:h-full 
                         before:transition-all before:duration-500 before:backdrop-blur-sm" id="menu-drawer">
-  <menu-hover-effect class="block w-3/4 lg:w-full h-full ">
+  <menu-hover-effect class="block lg:flex lg:items-center lg:justify-between lg:gap-4 w-3/4 lg:w-full h-full ">
     <ul class="flex flex-col lg:flex-row items-start justify-start w-full h-full lg:h-fit lg:items-center transition-all relative megamenu bg-background duration-500 -translate-x-full lg:translate-x-0">
       <li class="lg:hidden flex items-center justify-between w-full px-3 py-4 border-b border-border">
         <span class="h6 font-heading">Menu</span>
@@ -54,15 +54,15 @@
           <div class="summary flex items-center justify-between w-full pr-3 lg:pr-0">
             <a
               href="{% if block.settings.url != blank %}{{ block.settings.url }}{% else %}#{% endif %}"
-              class="font-bold flex relative items-center px-3 lg:px-5 {% if forloop.first %}lg:pl-0 {% endif %}py-4 text-base text-secondary font-normal capitalize no-underline font-heading"
+              class="font-bold flex relative items-center px-3 lg:px-5 {% if forloop.first %}lg:pl-0 {% endif %}py-4 text-base text-secondary capitalize no-underline font-heading"
               title="{{ block.settings.title }}">
-              <span class="before:!-bottom-4 before:!h-0.5 group-hover:before:w-full">
+              <span class="before:!-bottom-4 before:!h-0.5 group-hover:before:w-full !leading-none">
                 {{ block.settings.title | split: '[' | first }}
               </span>
 
             </a>
             {% if link.links != blank %}
-              {% render 'icon-arrow-right', class: 'lg:hidden' %}
+              {% render 'icon-right', class: 'lg:hidden' %}
             {% endif %}
           </div>
           {% if link.links != blank %}
@@ -70,7 +70,7 @@
               <div class="page-width py-4 lg:py-6 flex flex-col lg:flex-row h-full lg:h-fit justify-between overflow-auto lg:overflow-hidden">
                 <menu-hover-effect class="flex flex-col {% if banner_image or banner_image_two %}lg:max-w-2/3 {% endif %}w-full h-fit lg:pr-5 pb-4 lg:pb-0 relative">
                   <div class="back lg:hidden flex items-center w-full pb-4 border-b border-border">
-                    <span class="inline-block pr-2">{% render 'icon-arrow-left', class: "w-3 h-3" %}</span>
+                    <span class="inline-block pr-2">{% render 'icon-left', class: "w-3 h-3" %}</span>
                     <span class="h6 font-heading">{{ block.settings.title }}</span>
                   </div>
                   {% for child_link in link.links %}
@@ -83,7 +83,7 @@
                       endif 
                       %}
                       <div class="summary lg:max-w-1/5 w-full flex items-center justify-between gap-x-2.5">
-                        <a href="{{ child_link.url }}" class="font-medium uppercase text-primary">
+                        <a href="{{ child_link.url }}" class="font-medium uppercase">
                           <span class="menu-group-hover:before:w-full">
                             {{ child_link.title | split: '[' | first }}
                             {%- if child_link.title contains '[' -%}
@@ -92,13 +92,13 @@
                           </span>
                         </a>
                         {% if hasChild %}
-                          {% render 'icon-arrow-right' %}
+                          {% render 'icon-right' %}
                         {% endif %}
                       </div>
                       {% if hasChild %}
                         <ul class="details scrollbar-thin -translate-x-full lg:translate-x-0 absolute w-full h-full bg-background top-0 right-0 lg:max-w-3/4 grid grid-rows-[min-content] auto-rows-min grid-cols-2 gap-2.5 opacity-0 invisible menu-group-hover:lg:visible menu-group-hover:lg:opacity-100 transition-all z-20 lg:overflow-auto">
                           <li class="back lg:hidden flex items-center w-full pb-4 border-b border-border col-span-2 h-fit">
-                            <span class="inline-block pr-2">{% render 'icon-arrow-left', class: "w-3 h-3" %}</span>
+                            <span class="inline-block pr-2">{% render 'icon-left', class: "w-3 h-3" %}</span>
                             <span class="h6 font-heading">{{ child_link.title | split: '[' | first }}</span>
                           </li>
                           {% for grandchild_link in child_link.links %}
@@ -106,7 +106,7 @@
                               {% if grandchild_link.url != '#' %}
                                 <a
                                   href="{{ grandchild_link.url }}"
-                                  class="py-4 block font-medium capitalize text-primary"
+                                  class="py-4 block font-medium capitalize"
                                   title="{{ grandchild_link.title | split: '[' | first }}">
                                   <span>
                                     {{ grandchild_link.title | split: '[' | first }}
@@ -116,7 +116,7 @@
                                   </span>
                                 </a>
                               {% else %}
-                                <span class="py-4 block font-medium capitalize text-primary">
+                                <span class="py-4 block font-medium capitalize">
                                   <span>
                                     {{ grandchild_link.title | split: '[' | first }}
                                     {%- if grandchild_link.title contains '[' -%}
@@ -178,8 +178,7 @@
           {% endif %}
         </li>
       {% endfor %}
-      <li></li>
-      <li class="lg:hidden w-ful px-3">
+      <li class="lg:hidden w-ful px-3 mt-2">
         <a
           href="{{ routes.root_url }}"
           class="inline-block lg:hidden no-underline"
@@ -264,5 +263,6 @@
         </li>
       {% endif %}
     </ul>
+    <a href="#" class="absolute right-4 top-1/2 -translate-y-1/2 bright-link lg:flex items-center gap-2 hidden">{% render 'icon-truck', class: "w-6 h-5" %} <span class="w-max text-xs leading-none"> Order Tracking</span></a>
   </menu-hover-effect>
 </menu-drawer>
