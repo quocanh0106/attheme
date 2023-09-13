@@ -27,47 +27,22 @@
         {% endunless %}
         width="{{ product.featured_media.width }}"
         height="{{ product.featured_media.height }}">
-        {%- if product.media[1] != null and show_secondary_image -%}
-          <img
-            srcset="
-          {%- if product.media[1].width >= 165 -%}
-            {{ product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
-          {%- if product.media[1].width >= 360 -%}
-            {{ product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
-          {%- if product.media[1].width >= 533 -%}
-            {{ product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
-          {%- if product.media[1].width >= 720 -%}
-            {{ product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
-          {%- if product.media[1].width >= 940 -%}
-            {{ product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
-          {%- if product.media[1].width >= 1066 -%}
-            {{ product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}"
-          src="{{ product.media[1] | image_url: width: 533 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-          alt="{{ product.media[1] | split: "/" | last | replace: "-", " " | split: "." | first }}"
-          class="block group-hover:scale-105 transition-all w-full"
-          loading="lazy"
-          width="{{ product.media[1].width }}"
-          height="{{ product.media[1].height }}">
-        {%- endif -%}
-        <div class="flex gap-2 justify-end items-center px-2 w-full absolute bottom-auto top-2 lg:bottom-4 lg:top-auto lg:translate-y-button-card lg:group-hover:translate-y-0 transition-all duration-500">
-          <wishlist-button class="flex justify-center items-center bg-btn-background w-6 h-6 lg:w-8 lg:h-8 rounded-full overflow-hidden cursor-pointer" data-product-handle="{{ product.handle }}">
-            {% render 'icon-wishlist', class: "w-3 h-3 lg:w-4 lg:h-4" %}
-          </wishlist-button>
-        </div>
-        {% render 'product-badges'
-         , product: product,
-         collection: collections %}
+
+        <wishlist-button class="absolute bottom-2.5 right-2.5 flex justify-center items-center border border-primary bg-background text-primary w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden cursor-pointer" data-product-handle="{{ product.handle }}">
+          {% render 'icon-wishlist', class: "w-4 h-4 lg:w-5 lg:h-5" %}
+        </wishlist-button>
+
+        {% render 'product-badges', product: product, collection: collections %}
       </a>
     {%- endif -%}
-    <div class="px-2 mt-3">
-      <a href="{{ product.url | within: collection }}" class="flex bg-btn-backgroundHover text-btn-textHover hover:opacity-80 transition-all rounded-3xl text-base font-semibold capitalize items-center justify-center leading-5 p-1.5 flex-[1_0_auto]">Customize</a>
+    <div class="mt-2.5">
+      <a href="{{ product.url | within: collection }}" class="flex justify-center items-center p-2 rounded-3xl btn" rel="nofollow">Customize</a>
 
-      <h3>
-        <a href="{{ product.url | within: collection }}" class="text-sm md:text-base font-medium leading-6 tracking-[0] truncate-line two-line overflow-hidden break-all">{{ product.title | escape }}</a>
+      <h3 class="mt-3">
+        <a href="{{ product.url | within: collection }}" class="text-sm md:text-base font-medium leading-6 text-secondary tracking-[0] truncate-line two-line overflow-hidden">{{ product.title | escape }}</a>
       </h3>
-      <div class="flex items-center justify-between gap-1">
-        <span class="block uppercase text-xxs tracking-[0] text-text mb-1">{{ product.type }}</span>
+      <div class="flex items-center justify-between gap-1 mt-2.5">
+        <span class="block capitalize text-xxs lg:text-xs leading-5 lg:leading-6 px-3 lg:px-4 text-black bg-primary-opacity-20 rounded-3xl">{{ product.type }}</span>
         {% render 'price', product: product, use_variant: true %}
       </div>
     </div>

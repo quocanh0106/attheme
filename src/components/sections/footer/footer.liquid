@@ -23,35 +23,11 @@
               </div>
             {%- endif -%}
             {%- case block.type -%}
-              {%- when 'text' -%}
+              {%- when 'social' -%}
                 <div class="footer-block__details-content block-text">
                   {% if block.settings.subtext != blank %}
                     {{ block.settings.subtext }}
                   {% endif %}
-                  <ul class="mt-4">
-                    {%- if block.settings.email != blank -%}
-                      <li>
-                        <a href="mailto:{{ block.settings.email }}" class="flex items-center gap-2.5 !text-background opacity-80 hover:opacity-100" title="{{ block.settings.email }}">
-                          {%- render 'icon-mail', class: 'w-4 h-4 flex-none' -%}{{ block.settings.email }}
-                        </a>
-                      </li>
-                    {%- endif -%}
-                    {%- if block.settings.address != blank -%}
-                      <li>
-                        <p class="flex items-center gap-2.5 text-background opacity-80">
-                          {%- render 'icon-map', class: 'w-4 h-4 flex-none' -%}{{ block.settings.address }}
-                        </p>
-                      </li>
-                    {%- endif -%}
-                    {%- if block.settings.time_work != blank -%}
-                      <li>
-                        <p class="flex items-center gap-2.5 text-background opacity-80">
-                          {%- render 'icon-hour', class: 'w-4 h-4 flex-none' -%}{{ block.settings.time_work }}
-                        </p>
-                      </li>
-                    {%- endif -%}
-                  </ul>
-
                   {%- if block.settings.show_social == true -%}
                     <ul class="flex flex-wrap gap-4 items-center mt-8" role="list">
                       {%- if settings.social_facebook_link != blank -%}
@@ -127,23 +103,6 @@
                       {%- endif -%}
                     </ul>
                   {%- endif -%}
-
-                  {%- if block.settings.payment_enable == true -%}
-                    <ul class="hidden md:flex gap-2 items-center flex-wrap mt-8" role="list">
-                      {% if block.settings.use_payment_default %}
-                        {%- assign enabled_payment_types = shop.enabled_payment_types -%}
-                      {% else %}
-                        {%- assign enabled_payment_types = block.settings.custom_payment | remove: ' ' | split: ',' -%}
-                      {% endif %}
-                      {% for type in enabled_payment_types %}
-                        <li class="list-payment__item">
-                          {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
-                          {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
-                          {{- first_svg -}}{{- last_svg -}}
-                        </li>
-                      {%- endfor -%}
-                    </ul>
-                  {%- endif -%}
                 </div>
               {%- when 'link_list' -%}
                 {%- if block.settings.menu != blank -%}
@@ -163,30 +122,30 @@
                     {%- endfor -%}
                   </ul>
                 {%- endif -%}
-              {%- when 'image' -%}
-                <style>
-                  @media (min-width: 1024px) {
-                    [data-block-id="{{ block.id }}"] img {
-                      max-width: {{ block.settings.image_width }}px;
-                    }
-                  }
-                </style>
-                {%- if block.settings.image != blank -%}
-                  {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
-                  <img srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}" 
-                       src="{{ block.settings.image | image_url: width: block.settings.image_width }}"
-                       {% if block.settings.image.alt != blank %}
-                        alt="{{ block.settings.image.alt | escape }}"
-                       {% else %}
-                        alt="{{ block.settings.image | split: "/" | last | replace: "-", " " | split: "." | first }}"
-                       {% endif %}
-                       class="hidden md:block w-full"
-                       loading="lazy" 
-                       width="{{ block.settings.image.width }}" 
-                       height="{{ block.settings.image.height }}">
-                {%- else -%}
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-                {%- endif -%}
+              {% when 'infor' %}
+                <ul class="mt-4">
+                  {%- if block.settings.email != blank -%}
+                    <li>
+                      <a href="mailto:{{ block.settings.email }}" class="flex items-center gap-2.5 !text-background opacity-80 hover:opacity-100" title="{{ block.settings.email }}">
+                        {{ block.settings.email }}
+                      </a>
+                    </li>
+                  {%- endif -%}
+                  {%- if block.settings.address != blank -%}
+                    <li>
+                      <p class="flex items-center gap-2.5 text-background opacity-80">
+                        {{ block.settings.address }}
+                      </p>
+                    </li>
+                  {%- endif -%}
+                  {%- if block.settings.time_work != blank -%}
+                    <li>
+                      <p class="flex items-center gap-2.5 text-background opacity-80">
+                        {{ block.settings.time_work }}
+                      </p>
+                    </li>
+                  {%- endif -%}
+                </ul>
             {%- endcase -%}
           </{% unless block.type == 'link_list' %}div{% else %}accordion-toggle{% endunless %}>
         {%- endfor -%}
@@ -196,19 +155,15 @@
 
   <div class="bg-primary text-background py-10">
     <div class="page-width">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.payment_enable -%}
-          <ul class="flex items-center gap-2 justify-center md:hidden mb-6 md:mb-0" role="list">
-            {% for type in enabled_payment_types %}
-              <li>
-                {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
-                {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
-                {{- first_svg -}}{{- last_svg -}}
-              </li>
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
-      {%- endfor -%}
+      <ul class="flex items-center gap-2 justify-center mb-6 md:mb-0" role="list">
+        {% for type in enabled_payment_types %}
+          <li>
+            {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
+            {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
+            {{- first_svg -}}{{- last_svg -}}
+          </li>
+        {%- endfor -%}
+      </ul>
       {%- if section.blocks.size > 0 -%}
         {% if  section.settings.copyright != blank %}
           <p class="text-center text-xxs text-border-secondary">{{ section.settings.copyright }}</p>
@@ -253,7 +208,35 @@
         ]
       }, 
       {
-        "type": "text",
+        "type": "social",
+        "name": "Social",
+        "settings": [
+          {
+            "type": "text",
+            "id": "width",
+            "info": "unit: %",
+            "label": "Width block"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Heading",
+            "label": "Heading"
+          },
+          {
+            "type": "header",
+            "content": "Setting social media"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_social",
+            "default": false,
+            "label": "t:sections.footer.settings.show_social.label"
+          }
+        ]
+      },
+      {
+        "type": "infor",
         "name": "Infor",
         "settings": [
           {
@@ -285,69 +268,10 @@
             "id": "time_work",
             "default": "Mon - Sun",
             "label": "Time work"
-          },
-          {
-            "type": "header",
-            "content": "Setting social media"
-          },
-          {
-            "type": "checkbox",
-            "id": "show_social",
-            "default": false,
-            "label": "t:sections.footer.settings.show_social.label"
-          },
-          {
-            "type": "header",
-            "content": "Setting payment"
-          },
-          {
-            "type": "checkbox",
-            "id": "payment_enable",
-            "default": true,
-            "label": "t:sections.footer.settings.payment_enable.label"
-          },
-          {
-            "type": "checkbox",
-            "id": "use_payment_default",
-            "default": false,
-            "label": "Use payment icons default"
-          },
-          {
-            "type": "text",
-            "id": "custom_payment",
-            "default": "american_express,apple_pay,master,paypal,visa",
-            "label": "Custom payment icons",
-            "info": "Divided by comma. [Learn more](https://help.shopify.com/en/manual/online-store/themes/themes-by-shopify/vintage-themes/customizing-vintage-themes/add-credit-card-icons)"
-          }
-        ]
-      }, 
-      {
-        "type": "image",
-        "name": "Image",
-        "settings": [
-          {
-            "type": "text",
-            "id": "width",
-            "info": " unit: %",
-            "label": "Width block"
-          }, 
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Image"
-          }, 
-          {
-            "type": "range",
-            "id": "image_width",
-            "min": 100,
-            "max": 200,
-            "step": 1,
-            "unit": "px",
-            "label": "Image width",
-            "default": 192
           }
         ]
       }
+
     ],
     "settings": [
       {

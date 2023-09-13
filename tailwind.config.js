@@ -258,5 +258,32 @@ module.exports = {
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
+    function ({ addUtilities }) {
+      const generateBgOpacityClasses = (colorName) => {
+        const classes = {};
+        for (let i = 0; i <= 100; i++) {
+          classes[`.bg-${colorName}-opacity-${i}`] = {
+            'background-color': `color-mix(in srgb, var(--color-${colorName}) ${i}%, transparent)`,
+          };
+        }
+        return classes;
+      };
+
+      const newUtilities = {
+        ...generateBgOpacityClasses('primary'),
+        ...generateBgOpacityClasses('secondary'),
+        ...generateBgOpacityClasses('background'),
+        ...generateBgOpacityClasses('overlay'),
+        ...generateBgOpacityClasses('error'),
+        ...generateBgOpacityClasses('warning'),
+        ...generateBgOpacityClasses('success'),
+        ...generateBgOpacityClasses('sale'),
+        ...generateBgOpacityClasses('hot'),
+        ...generateBgOpacityClasses('new'),
+        ...generateBgOpacityClasses('soldout')
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
   ],
 };

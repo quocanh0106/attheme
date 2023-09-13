@@ -1,4 +1,4 @@
-<div class="absolute top-auto bottom-2 left-2 md:top-2 md:bottom-auto rounded-3xl ">
+<div class="absolute top-2.5 right-2.5 rounded-3xl ">
   {%- liquid 
     assign product_created_at = product.created_at | date: '%s'
     assign percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | floor
@@ -34,8 +34,7 @@
     elsif product.compare_at_price > product.price and product.available and percent >= 20 and page.template_suffix != 'product'
       echo '<span class="text-xxs uppercase flex items-center bg-background rounded-3xl px-2 py-0.5">'
         echo'<span class="text-xxxs md:text-xxs uppercase inline-block !leading-none font-semibold text-sale">'
-        echo percent
-        echo '% OFF'
+        echo percent | prepend: '-' | append: '%' 
         echo'</span>'
       echo '</span>'
     endif
