@@ -88,7 +88,7 @@
       <a href="/pages/wishlist" title="account" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5">
         {% render 'icon-wishlist', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
         <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Wishlist</span>
-        <wishlist-count class="absolute bg-primary text-secondary min-w-[1rem] h-4 rounded-full flex justify-center items-center bottom-2.5 left-3" style="display:none;">
+        <wishlist-count class="absolute bg-primary text-secondary min-w-[1rem] h-4 rounded-full flex justify-center items-center -top-1 -right-2" style="display:none;">
           <span aria-hidden="true" class="flex justify-center items-center h-full text-[10px] leading-none"></span>
         </wishlist-count>
       </a>
@@ -96,7 +96,7 @@
         {%- render 'icon-cart', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' -%}
         <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Basket</span>
         
-        <div class="absolute bg-primary text-secondary min-w-[1rem] h-4 rounded-full flex justify-center items-center bottom-2.5 left-3 empty:hidden" id="cart-icon-bubble">
+        <div class="absolute bg-primary text-secondary min-w-[1rem] h-4 rounded-full flex justify-center items-center -top-1 -right-2 empty:hidden" id="cart-icon-bubble">
           {%- if cart != empty -%}
             {%- if cart.item_count < 100 -%}
               <span class="flex justify-center items-center h-full text-[10px] leading-none">{{ cart.item_count }}</span>
@@ -120,6 +120,7 @@
 
 {% capture src_url %}{{ 'header.js' | asset_url }}{% endcapture %}
 {% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
+
 
 {% schema %}
   {

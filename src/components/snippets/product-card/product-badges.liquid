@@ -20,20 +20,20 @@
     if product.available == false
       echo 'products.product.sold_out' | t | prepend: '<span class="badge sold-out">' | append: '</span>'
     elsif title_lists == true
-      echo '<span class="text-xxs uppercase flex items-center bg-background rounded-3xl px-2 py-0.5">'
-      echo '<span class="text-xxxs md:text-xxs uppercase inline-block !leading-none font-semibold text-hot">'
-        echo 'products.product.best_seller' | t 
+      echo '<span class="flex items-center justify-center bg-background rounded-3xl px-2.5 py-[7px]">'
+      echo '<span class="text-sm lg:text-base uppercase inline-block !leading-none font-bold text-hot">'
+        echo 'HOT'
       echo '</span>'
     echo '</span>'
     elsif title_check == true
-      echo '<span class="text-xxs uppercase flex items-center bg-background rounded-3xl px-2 py-0.5">'
-        echo'<span class="text-xxxs md:text-xxs uppercase inline-block !leading-none font-semibold text-new">'
-        echo 'products.product.new' | t
+      echo '<span class="flex items-center justify-center bg-background rounded-3xl px-2.5 py-[7px]">'
+        echo'<span class="text-sm lg:text-base uppercase inline-block !leading-none font-bold text-new">'
+        echo 'new'
         echo'</span>'
       echo '</span>'
     elsif product.compare_at_price > product.price and product.available and percent >= 20 and page.template_suffix != 'product'
-      echo '<span class="text-xxs uppercase flex items-center bg-background rounded-3xl px-2 py-0.5">'
-        echo'<span class="text-xxxs md:text-xxs uppercase inline-block !leading-none font-semibold text-sale">'
+      echo '<span class="flex items-center justify-center bg-background rounded-3xl px-2.5 py-[7px]">'
+        echo'<span class="text-sm lg:text-base uppercase inline-block !leading-none font-bold text-sale">'
         echo percent | prepend: '-' | append: '%' 
         echo'</span>'
       echo '</span>'
