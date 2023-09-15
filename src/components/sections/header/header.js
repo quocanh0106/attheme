@@ -64,7 +64,7 @@ class MenuDrawer extends HTMLElement {
 customElements.define('menu-drawer', MenuDrawer);
 
 let headerBounds = {}
-let currentScrollTop = 0;
+// let currentScrollTop = 0;
 
 let observerHeader = new IntersectionObserver((entries, observer) => {
   headerBounds = entries[0].intersectionRect;
@@ -75,13 +75,18 @@ observerHeader.observe(document.querySelector('header'));
 
 document.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  if (scrollTop > currentScrollTop && scrollTop > headerBounds.bottom) {
-    document.body.classList.remove('sticky-header');
-  } else if (scrollTop < currentScrollTop && scrollTop > headerBounds.bottom) {
+  // if (scrollTop >= currentScrollTop && scrollTop > headerBounds.bottom) {
+  //   document.body.classList.remove('sticky-header');
+  // } else if (scrollTop < currentScrollTop && scrollTop > headerBounds.bottom) {
+  //   document.body.classList.add('sticky-header');
+  // } else if (scrollTop <= headerBounds.top) {
+  //   document.body.classList.remove('sticky-header');
+  // }
+  if (scrollTop > headerBounds.bottom) {
     document.body.classList.add('sticky-header');
   } else if (scrollTop <= headerBounds.top) {
     document.body.classList.remove('sticky-header');
   }
 
-  currentScrollTop = scrollTop;
+  // currentScrollTop = scrollTop;
 })

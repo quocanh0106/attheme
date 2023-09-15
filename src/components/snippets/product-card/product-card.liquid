@@ -30,7 +30,7 @@
         height="{{ product.featured_media.height }}">
 
         <wishlist-button class="absolute bottom-2.5 right-2.5 flex justify-center items-center border border-primary bg-background text-primary w-8 h-8 lg:w-10 lg:h-10 rounded-full overflow-hidden cursor-pointer" data-product-handle="{{ product.handle }}">
-          {% render 'icon-wishlist', class: "w-4 h-4 lg:w-5 lg:h-5" %}
+          {% render 'icon-heart', class: "w-4 h-4 lg:w-5 lg:h-5" %}
         </wishlist-button>
 
         {% render 'product-badges', product: product, collection: collections %}

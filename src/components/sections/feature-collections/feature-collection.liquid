@@ -19,8 +19,8 @@
     {% endif %}
     {% if section.settings.slider %}
       <div class="flex items-center gap-4 justify-end mb-3">
-        <button class="prev-{{ section.id }} flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary hover:bg-opacity-30 overflow-hidden w-10 h-10">{% render 'icon-chevron-left', class: 'w-2 h-3' %}</button>
-        <button class="next-{{ section.id }} flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary hover:bg-opacity-30 overflow-hidden w-10 h-10">{% render 'icon-chevron-right', class: 'w-2 h-3' %}</button>
+        <button class="prev-{{ section.id }} flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary-opacity-30 overflow-hidden w-10 h-10 disabled:hidden">{% render 'icon-chevron-left', class: 'w-2 h-3' %}</button>
+        <button class="next-{{ section.id }} flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary-opacity-30 overflow-hidden w-10 h-10 disabled:hidden">{% render 'icon-chevron-right', class: 'w-2 h-3' %}</button>
       </div>
     {% endif %}
     <{% if section.settings.slider %}swiper-component{% else %}div{% endif %} class="block overflow-hidden" data-infor-swiper='{

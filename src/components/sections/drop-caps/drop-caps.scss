@@ -1,0 +1,34 @@
+.drop-caps h1 {
+  @apply font-semibold my-5 text-h3;
+}
+.drop-caps h2 {
+  @apply font-semibold my-5 text-h4;
+}
+.drop-caps h3 {
+  @apply font-semibold my-5 text-h5;
+}
+.drop-caps h4 {
+  @apply font-semibold my-5 text-lg;
+}
+.drop-caps h5 {
+  @apply font-semibold my-5 text-button-lg;
+}
+.drop-caps h6 {
+  @apply font-semibold my-5 text-overline-lg;
+}
+.drop-caps ul {
+  @apply list-inside list-disc pl-4;
+}
+.drop-caps p,
+.drop-caps li {
+  @apply font-normal text-overline-lg;
+}
+.drop-caps p {
+  @apply mt-3 mb-6;
+}
+.drop-caps li {
+  @apply mt-3;
+}
+.drop-content:not(.active) {
+  @apply before:content-empty before:absolute before:w-full before:h-20 before:left-0 before:bottom-0 before:bg-gradient-to-t before:from-secondary before:to-transparent;
+}

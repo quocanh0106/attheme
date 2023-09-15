@@ -210,7 +210,8 @@ module.exports = {
         select: '10px 10px 25px 10px rgba(0, 0, 0, 0.1)',
         note: '0 5px 15px #0000001a',
         popup: '0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)',
-        button: '0 4px 4px 0 rgba(0, 0, 0, 0.25)'
+        button: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
+        header: '0 5px 8px 0 rgba(0,0,0,0.1)'
       },
       maxWidth: {
         container: 'var(--page-width)',

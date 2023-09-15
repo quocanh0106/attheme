@@ -20,7 +20,7 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'announcement' -%}
-            <div class="swiper-slide text-center px-2 w-auto" role="region">
+            <div class="swiper-slide text-center px-2 w-auto cursor-grab" role="region">
               {%- if block.settings.text != blank -%}
                 {%- if block.settings.link != blank -%}
                   <a

@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="{{ 'drop-caps.css' | asset_url }}" />
+
+{%- style -%}
+  [data-section-id="{{ section.id }}"] {
+    padding-top: {{ section.settings.padding_top_mb }}
+    px;
+    padding-bottom: {{ section.settings.padding_bottom_mb }}
+    px;
+  }
+  @media(min-width:1025px) {
+    [data-section-id="{{ section.id }}"] {
+      padding-top: {{ section.settings.padding_top }}
+      px;
+      padding-bottom: {{ section.settings.padding_bottom }}
+      px;
+    }
+  }
+{%- endstyle -%}
+
+{%- if template contains 'collection' -%}
+  {%- if collection.description != blank and current_page == 1 -%}
+    <div data-section-id="{{ section.id }}">
+      <div class="page-width">
+        <drop-caps class="block px-4 py-6 lg:p-8 border border-border">
+          <div class="drop-content relative">
+            <div class="drop-caps max-h-35 overflow-hidden transition-all duration-500">
+              {{ collection.description }}
+            </div>
+          </div>
+          <span
+            class="toggle-button rounded-3xl block w-fit mx-auto text-center text-overline-sm leading-none capitalize text-heading cursor-pointer tracking-normal px-4 py-2 transition-all hover:bg-text hover:text-btn-textHover"
+            data-more="{{ 'sections.drop_caps.see_more' | t }}"
+            data-less="{{ 'sections.drop_caps.see_less' | t }}">
+            {{ 'sections.drop_caps.see_more' | t }}
+          </span>
+        </drop-caps>
+      </div>
+    </div>
+  {%- endif -%}
+{%- else -%}
+  <div data-section-id="{{ section.id }}">
+    <div class="page-width">
+      <drop-caps class="block px-4 py-6 lg:p-8 border border-border">
+        <div class="drop-content relative">
+          <div class="drop-caps max-h-35 overflow-hidden transition-all duration-500">
+            <h2 class="drop-caps__heading rte">
+              {{ block.settings.heading }}
+            </h2>
+            <div class="drop-caps__text rte" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
+          </div>
+        </div>
+        <span class="toggle-button rounded-3xl block w-fit mx-auto text-center text-overline-sm leading-none capitalize text-heading cursor-pointer tracking-normal px-4 py-2 transition-all hover:bg-grey hover:text-white"
+          data-more="{{ 'sections.drop_caps.see_more' | t }}"
+          data-less="{{ 'sections.drop_caps.see_less' | t }}">
+          {{ 'sections.drop_caps.see_more' | t }}
+        </span>
+      </drop-caps>
+    </div>
+  </div>
+{%- endif -%}
+
+{% capture src_url %}
+  {{ 'drop-caps.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
+
+{% schema %}
+  {
+    "name": "Drop caps",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "default": "Talk about your brand",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+        "label": "Description"
+      },
+      {
+        "type": "select",
+        "id": "content_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center",
+        "label": "Content alignment"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top section desktop",
+        "default": 72
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom section desktop",
+        "default": 72
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top section mobile",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom section mobile",
+        "default": 32
+      }
+    ],
+    "presets": [
+      {
+        "name": "Drop caps"
+      }
+    ]
+  }
+{% endschema %}

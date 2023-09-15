@@ -1,0 +1,50 @@
+{%- if article and article != empty -%}
+  {%- liquid
+    assign ratio = 1
+    if media_aspect_ratio != nil
+      assign ratio = media_aspect_ratio
+    endif
+  -%}
+  <div class="h-full flex flex-col">
+    <div class="relative" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
+      <a href="{{ article.url }}"
+        class="block absolute top-0 left-0 w-full h-full group overflow-hidden rounded-t-lg"
+        title="{{ article.title }}"
+        style="border-radius: {{ settings.article_card_radius | default: '20' }}px;">
+        {%- if show_image == true and article.image -%}
+          <img
+            srcset="{%- if article.image.src.width >= 165 -%}
+            {{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
+          {%- if article.image.src.width >= 360 -%}
+            {{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
+          {%- if article.image.src.width >= 533 -%}
+            {{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
+          {%- if article.image.src.width >= 720 -%}
+            {{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
+          {%- if article.image.src.width >= 1000 -%}
+            {{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
+          {%- if article.image.src.width >= 1500 -%}
+            {{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {{ article.image.src | image_url }} {{ article.image.src.width }}w"
+          src="{{ article.image.src | image_url: width: 533 }}"
+          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+          {% if article.image.alt != blank %}alt="{{ article.image.alt | escape }}"{% else %}alt="{{ article.image.src | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}
+          class="w-full h-full object-cover group-hover:scale-105 transition-all"
+          {% unless lazy_load == false %}loading="lazy"{% endunless %} 
+          width="{{ article.image.width | divided_by: 2 }}" 
+          height="{{ article.image.height | divided_by: 2 }}">
+        {% else %}
+          {{ 'collection-6' | placeholder_svg_tag: '' }}
+        {%- endif -%}
+      </a>
+    </div>
+    <{{ headingTag | default: 'h3' }} class="mt-2.5">
+      <a
+        href="{{ article.url }}"
+        class="block text-sm md:text-lg truncate-line two-lines overflow-hidden break-words font-bold"
+        title="{{ article.title }}">
+        {{ article.title | escape }}
+      </a>
+    </{{ headingTag | default: 'h3' }}>
+  </div>
+{%- endif -%}

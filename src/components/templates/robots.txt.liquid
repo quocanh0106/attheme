@@ -5,7 +5,7 @@
 {% for group in robots.default_groups %}
   {{- group.user_agent -}}
   {% if forloop.first %}
-    {% assign customRule = 'Disallow: /products/*?' %}
+    {% assign customRule = 'Disallow: /products/*?*' %}
   {% else %}
     {% assign customRule = '' %}
   {%- endif -%}

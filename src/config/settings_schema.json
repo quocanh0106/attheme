@@ -155,7 +155,7 @@
     ]
   },
   {
-    "name": "t:settings_schema.cards.name",
+    "name": "Product card",
     "settings": [
 
       {
@@ -177,6 +177,21 @@
         "id": "hide_product_type",
         "label": "Hide product type",
         "default": true
+      }
+    ]
+  },
+  {
+    "name": "Article card",
+    "settings": [
+      {
+        "type": "range",
+        "id": "article_card_radius",
+        "min": 0,
+        "max": 200,
+        "step": 5,
+        "default": 20,
+        "unit": "px",
+        "label": "Radius"
       }
     ]
   },
