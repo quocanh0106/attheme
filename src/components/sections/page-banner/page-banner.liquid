@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="{{ 'page-banner.css' | asset_url }}" />
+
+<div class="page-width-desktop">
+  <div data-section-id="{{ section.id }}" class="px-7 py-6 bg-cover">
+    {% if template contains 'product' %}
+      {% elsif template == 'cart'  %}
+        <h1 class="page-title text-center uppercase text-2xl lg:text-4xl leading-tight font-semibold m-0 tracking-tight font-montserrat">{{ 'cart.general.title' | t }}</h1>
+      {% elsif template contains 'collection' and collection.handle %}
+        <h1 class="page-title text-2xl leading-tight font-medium m-0 tracking-normal font-montserrat">{{ collection.title }}</h1>
+        {%- paginate collection.products by 20 -%}
+          {% assign current = paginate.current_page %}
+        {%- endpaginate -%}
+        {% unless current > 1 or collection.metafields.custom.collection_content_banner.value == blank %}
+          <truncate-paragraph class="metafield-rich_text_field mt-2 block leading-none">
+            {% assign json = collection.metafields.custom.collection_content_banner.value %}
+            {% capture results %}
+              {% for element in json.children %}
+                {% for item in element.children %}
+                  {% case item.type %}
+                  {% when 'text' %}
+                    {% if item.value %}
+                      {{ item.value | join: ' ' }}
+                    {% else %}
+                      {% for strong in item.children %}
+                        {% if strong.bold %}
+                          <strong>{{ strong.value | join: ' ' }}</strong>
+                        {% else %}
+                          {{ strong.value }}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  {% when 'link' %}
+                    <a href="{{ item.url }}" target="{{ item.target }}" title="{{ item.title }}">
+                      {% if item.value %}
+                        {{ item.value }}
+                      {% else %}
+                        {% for strong in item.children %}
+                          {% if strong.bold %}
+                            <strong>{{ strong.value }}</strong>
+                          {% else %}
+                            {{ strong.value }}
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </a>
+                  {% endcase %}
+                {% endfor %}
+              {% endfor %}
+            {% endcapture %}
+            <p class="details inline text-sm leading-6 font-light">{{ results }}</p>
+            <span class="inline toggle-truncate text-sm leading-6 font-bold italic cursor-pointer align-top">
+              <span class="see-more">{{ 'sections.collection_template.see_more' | t }}</span>
+              <span class="see-less">{{ 'sections.collection_template.see_less' | t }}</span>
+            </span>
+          </truncate-paragraph>
+        {% endunless %}
+      {% elsif template == 'list-collections' %}
+        <h1 class="page-title text-center uppercase text-2xl lg:text-4xl leading-tight font-semibold m-0 tracking-tight font-montserrat">{{ page_title }}</h1>
+      {% elsif template == 'blog' %}
+        <h1 class="page-title text-2xl leading-tight font-medium m-0 tracking-normal font-montserrat">{{ blog.title }}</h1>
+      {% elsif template contains 'article' %}
+      {% elsif template contains 'page' %}
+        <h1 class="page-title text-2xl leading-tight font-medium m-0 tracking-normal font-montserrat">{{ page.title }}</h1>
+        {%- if template.suffix == 'wishlist' -%}
+        <wishlist-count class="block" style="display:none;">
+          <p class="page-sub-title js-wishlist-count text-sm leading-5 font-light mt-2"><span aria-hidden="true" class=""></span> {{ "templates.search.products" | t }}</p>
+        </wishlist-count>
+        {%- endif -%}
+      {% elsif template contains 'search' %}
+        <h1 class="page-title text-2xl leading-tight font-medium m-0 tracking-normal font-montserrat">{{ 'templates.search.title' | t }}</h1>
+        <p class="page-sub-title text-sm leading-5 font-light mt-2">
+          {{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
+        </p>
+      {% else %}
+        <h1 class="page-title text-2xl leading-tight font-medium m-0 tracking-normal font-montserrat">{{ page_title }}</h1>
+    {% endif %}
+  </div>
+</div>
+
+{% style %}
+  [data-section-id="{{ section.id }}"] {
+    background: {% if section.settings.background_color %}{{ section.settings.background_color }}{% endif %}{% if section.settings.background_image_mb %} url({{ section.settings.background_image_mb | img_url: 'master' }}){% endif %} no-repeat; 
+    background-size: cover;
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+  @media(min-width:768px) {
+    [data-section-id="{{ section.id }}"] {
+      background: {% if section.settings.background_color %}{{ section.settings.background_color }}{% endif %}{% if section.settings.background_image %} url({{ section.settings.background_image | img_url: 'master' }}){% endif %} no-repeat; 
+    }
+  }
+
+  [data-section-id="{{ section.id }}"] h1,
+  [data-section-id="{{ section.id }}"] a,
+  [data-section-id="{{ section.id }}"] .toggle-truncate {
+    color: {{ section.settings.color_title }};
+  }
+  [data-section-id="{{ section.id }}"] p,
+  [data-section-id="{{ section.id }}"] span {
+    color: {{ section.settings.color_subtitle }};
+  }
+{% endstyle %}
+{% capture src_url %}{{ 'page-banner.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
+  
+{% schema %}
+  {
+    "name": "Page banner",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_title",
+        "label": "Color title",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_subtitle",
+        "label": "Color subtitle",
+        "default": "#E6E6E6"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "default": "#000"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background image",
+        "info": "Only show when collection image blank"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image_mb",
+        "label": "Background image mobile",
+        "info": "Only show when collection image blank"
+      },
+      {
+        "type": "richtext",
+        "id": "subtile",
+        "default": "<p>Slash Sales begins in April. Get up to 80% Discount on all products...</p>",
+        "label": "Subtitle"
+      },
+      {
+        "type": "header",
+        "content": "margin"
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin top",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin bottom",
+        "default": 16
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page banner"
+      }
+    ]
+  }
+{% endschema %}

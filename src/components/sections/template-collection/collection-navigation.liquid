@@ -1,0 +1,79 @@
+{% assign linklist = linklists[section.settings.menu] %}
+{% for grandParentLink in linklist.links %}
+  {% if grandParentLink.links.size == 0 and grandParentLink.url == collection.url%}
+    {% assign mainList = linklist.links %}
+    {% break %}
+  {% endif %}
+  {% if grandParentLink.links.size > 0 %}
+    {% if grandParentLink.url == collection.url %}
+      {% assign mainList = grandParentLink.links %}
+      {% break %}
+    {% else %}
+      {% for parentLink in grandParentLink.links %}
+        {% if parentLink.links.size == 0 and parentLink.url == collection.url%}
+          {% assign mainList = grandParentLink.links %}
+          {% break %}
+        {% endif %}
+        {% if parentLink.links.size > 0 %}
+          {% if parentLink.url == collection.url %}
+            {% assign mainList = parentLink.links %}
+            {% break %}
+          {% else %}
+            {% for childLink in parentLink.links %}
+              {% if childLink.url == collection.url %}
+                {% assign mainList = parentLink.links %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{%- paginate collection.products by 20 -%}
+  {% assign current = paginate.current_page %}
+{%- endpaginate -%}
+{% if mainList and current <= 1 %}
+  <div class="page-width">
+    <swiper-component class="block overflow-hidden relative rounded-3xl" data-infor-swiper='{
+        "modules": ["Navigation"],
+        "slidesPerView": "auto",
+        "spaceBetween": 10,
+        "grabCursor": true,
+        "navigation": {
+          "nextEl": ".next-{{ section.id }}",
+          "prevEl": ".prev-{{ section.id }}"
+        }
+      }'>
+      <button class="w-10 h-10 absolute top-1/2 -translate-y-1/2 left-0 z-10 border cursor-pointer disabled:opacity-0 disabled:invisible border-solid border-border bg-background rounded-3xl lg:flex lg:items-center lg:justify-center transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary prev-{{ section.id }}">{%- render 'icon-prev' -%}</button>
+      <div class="swiper-wrapper flex">
+        {% for link in mainList limit: 10 %}
+          {% if link.url != collection.url %}
+            <a href="{{ link.url }}" class="swiper-slide !w-fit mr-2.5 border border-solid border-border rounded-3xl inline-block transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary" title="{{ link.title }}"><h2 class="text-xs leading-5 capitalize py-2.5 px-4 font-normal">{{ link.title }}</h2></a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <button class="w-10 h-10 absolute top-1/2 -translate-y-1/2 right-0 z-10 border cursor-pointer disabled:opacity-0 disabled:invisible border-solid border-border bg-background rounded-3xl lg:flex lg:items-center lg:justify-center transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary next-{{ section.id }}">{%- render 'icon-next' -%}</button>
+    </swiper-component>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Collection navigation",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "default": "main-menu",
+        "label": "Collection navigation"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection navigation"
+      }
+    ]
+  }
+  {% endschema %}

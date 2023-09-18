@@ -1,1 +1,50 @@
-{"sections":{"template":{"type":"template-collection","settings":{}}},"order":["template"]}
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb"
+    },
+    "page-banner": {
+      "type": "page-banner",
+      "settings": {
+        "color_title": "#333",
+        "color_subtitle": "#333",
+        "background_color": "#fff",
+        "subtile": "<p>Slash Sales begins in April. Get up to 80% Discount on all products...<\/p>",
+        "margin_top": 16,
+        "margin_bottom": 16
+      }
+    },
+    "collection-navigation": {
+      "type": "collection-navigation",
+      "settings": {
+        "menu": "collections-box"
+      }
+    },
+    "template": {
+      "type": "template-collection",
+      "settings": {
+        "products_per_page": 20
+      }
+    },
+    "drop-caps": {
+      "type": "drop-caps",
+      "settings": {
+        "heading": "Talk about your brand",
+        "heading_tag": "h2",
+        "text": "<h2><strong>Un tocco personale: Regali personalizzati indimenticabili da Monde Regalo<\/strong><\/h2><p>Ehi tu! Sì, proprio tu, alla ricerca del regalo perfetto che faccia sbocciare un sorriso sul viso di chi lo riceve. Beh, hai trovato il posto giusto! Monde Regalo ti offre una vasta selezione di regali personalizzati che renderanno ogni occasione ancora più divertente e speciale.<\/p><h3><strong>Cosa rende i regali personalizzati così speciali?<\/strong><\/h3><p>Immagina la scena: un compleanno, un anniversario o una festa speciale. Cosa c'è di meglio di un regalo che sia unico al mondo, come quella persona a cui lo stai regalando? I regali personalizzati trasmettono un messaggio personalizzato, fatto su misura per colpire al cuore e far scoppiare di gioia chi lo riceve. Un vero colpo di genio!<\/p><h3><strong>Idee regalo personalizzate per tutti<\/strong><\/h3><ul><li><strong>Regali personalizzati per lei<\/strong><\/li><\/ul><p>Lei, sì proprio lei, merita un regalo personalizzato che le faccia brillare gli occhi. Un ciondolo con il suo nome inciso, una tazza con una frase divertente o una maglietta con un design originale - i regali personalizzati per lei sono un dolce gesto di affetto che la faranno sentire come la regina che è.<\/p><ul><li><strong>Regali personalizzati per lui<\/strong><\/li><\/ul><p>E lui? Beh, lui si merita un regalo che dimostri quanto sia importante nella tua vita. Una cover per il suo telefono con un design esilarante, un set di calzini con il suo volto stampato o una tazza con una battuta personalizzata - i regali personalizzati per lui faranno scoppiare di risate anche il più serio dei tipi!<\/p><ul><li><strong>Regali personalizzati per bambini<\/strong><\/li><\/ul><p>E i bambini? Ah, i bambini! Loro meritano il meglio. Un peluche con il loro nome ricamato, una tazza magica che cambia colore o un puzzle con la loro foto - i regali personalizzati per bambini renderanno ogni momento di gioco un'avventura unica e indimenticabile.<\/p><h3><strong>Come scegliere il regalo personalizzato perfetto<\/strong><\/h3><p>Eccoci al dunque, la scelta del regalo personalizzato perfetto. La chiave è semplice: pensa a ciò che rende speciale la persona a cui stai regalando. Quali sono i suoi interessi, le sue passioni? Scegli un design che le faccia battere il cuore e aggiungi un tocco personale con un messaggio divertente o una foto ricordo. Il risultato? Un regalo da urlo!<\/p><p>Allora, cosa aspetti? Scegli il regalo personalizzato che fa al caso tuo su Monde Regalo e preparati a far scattare scroscianti risate e momenti di pura felicità. Non c'è niente di meglio che vedere un sorriso sul volto di chi ami, e con i nostri regali personalizzati, quel sorriso sarà garantito!<\/p>",
+        "content_alignment": "center",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "padding_top_mb": 24,
+        "padding_bottom_mb": 32
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "page-banner",
+    "collection-navigation",
+    "template",
+    "drop-caps"
+  ]
+}

@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="{{ 'facet.css' | asset_url }}">
+{% paginate collection.products by section.settings.products_per_page %}
+  <div class="page-width-desktop flex flex-wrap pb-5 lg:pt-12 lg:pb-20" data-id="{{ section.id }}" id="ProductGridContainer">
+    {% render 'facet', results: collection %}
+    
+    <div class="w-full lg:max-w-3/4 transition-all duration-500 lg:ml-auto" data-total-pages="{{ paginate.pages }}" data-pagination="{{ products_per_page }}" data-current-page="{{ paginate.current_page }}"  id="product-grid">
+      <div class="lg:flex items-center justify-end my-4 lg:mt-0">
+        <toggle-filter class="block">
+          <button class="flex items-center uppercase lg:normal-case text-xs lg:text-base font-semibold lg:font-normal leading-none text-text font-montserrat lg:font-roboto cursor-pointer gap-2 px-4 md:pl-0">
+            <span class="lg:hidden">{{ 'products.facets.filter_and_sort' | t }}</span>
+            <span class="hidden show">{{- 'products.facets.show_filter' | t -}}</span>
+            <span class="hidden lg:block hide">{{- 'products.facets.hide_filter' | t -}}</span>
+            {% render 'icon-sort', class: 'w-4 h-4' %}
+          </button>  
+        </toggle-filter>
+        <facet-filters-form class="hidden lg:flex items-center justify-end gap-4 sort-by" id="sortby-wrapper">
+          <form id="FacetSortForm">
+            <div class="flex items-center gap-4">
+              <span class="text-text">{{ 'products.facets.sort_by_label' | t }}</span>
+              {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+              <select name="sort_by" class="hidden opacity-0 invisible absolute -z-30" id="SortBy" aria-describedby="a11y-refresh-page-message">
+                {%- for option in collection.sort_options -%}
+                  <option
+                    value="{{ option.value | escape }}"
+                    {% if option.value == sort_by %}
+                      selected="selected"
+                    {% endif %}>
+                    {{ option.name | escape }}
+                  </option>
+                {%- endfor -%}
+              </select>
+              <accordion-toggle class="inline-block relative cursor-pointer sort-by-accordion">
+                <div class="summary flex items-center gap-2.5">
+                  {%- for option in collection.sort_options -%}
+                    {% if option.value == sort_by %}
+                      <span class="inline-block" data-value="{{ option.value | escape }}">{{ option.name | escape }}</span>
+                    {% endif %}
+                  {%- endfor -%}
+                  {% render 'icon-caret', class: 'w-2.5 h-2.5' %}
+                </div>
+                <ul class="shadow-select details absolute w-max z-10 left-auto right-0 top-full bg-background p-2.5 border border-border">
+                  {%- for option in collection.sort_options -%}
+                    <li class="cursor-pointer" data-value="{{ option.value | escape }}">{{ option.name | escape }}</li>
+                  {%- endfor -%}
+                </ul>
+              </accordion-toggle>
+            </div>
+      
+            {% if collection.current_vendor or collection.current_type %}
+              <input type="hidden" name="q" value="{{ collection.current_vendor }}{{ collection.current_type }}">
+            {% endif %}
+      
+            {%- if collection.terms -%}
+              <input type="hidden" name="q" value="{{ collection.terms | escape }}">
+              <input name="options[prefix]" type="hidden" value="last">
+            {%- endif -%}
+          </form>
+        </facet-filters-form>
+      </div>
+      <div id="main-collection-product" class="grid grid-cols-2 md:grid-cols-3 gap-x-1 gap-y-2.5 md:gap-x-2.5 transition-all duration-500">
+        {% assign listIncludeProduct = '' %}
+        {% if collection.products.size > 0 %}
+          {% for product in collection.products %}
+            {% assign lastKey = product.handle | split: '-' | last %}
+            {% unless listIncludeProduct contains lastKey %}
+              {%- render 'product-card', product: product -%}
+              {% assign listIncludeProduct = listIncludeProduct | append: lastKey | append: ',' %}
+            {% endunless %}
+          {% endfor %}
+        {% else %}
+          {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}
+        {% endif %}
+      </div>
+      <collection-loadmore data-click-loadmore="false" class="block mt-4 lg:mt-16 text-center{% if paginate.pages <= 1 %} hidden{% endif %} ">
+        <span data-href="{{ paginate.next.url }}" class="btn btn-2 border border-primary hover:border-border load-more_btn py-3 px-5">{{- 'sections.collection_template.load_more' | t -}}</span>
+        <div id="ProductCountDesktop" class="viewing-currently-product text-sm text-text mt-3">
+          {% liquid
+            assign products_count = paginate.current_page | times: section.settings.products_per_page
+            if products_count > paginate.items
+              assign products_count = paginate.items
+            endif
+          %}
+          {{ 'sections.collection_template.current_view_html' | t: all_products_count: paginate.items , products_count: products_count }}
+        </div>
+      </collection-loadmore>
+    </div>
+  </div>
+{% endpaginate %}
+
+{% capture facet %}{{ 'facet.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: facet, priority: 'normal', type: "defer" %}
+
+{% schema %}
+  {
+    "name": "Collection",
+    "settings": [
+      {
+        "type": "range",
+        "id": "products_per_page",
+        "min": 8,
+        "max": 50,
+        "step": 1,
+        "default": 20,
+        "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+      }
+    ]
+  }
+{% endschema %}

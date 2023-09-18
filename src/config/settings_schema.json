@@ -22,7 +22,7 @@
       {
         "type": "range",
         "id": "logo_width",
-        "min": 200,
+        "min": 150,
         "max": 350,
         "step": 2,
         "default": 278,
