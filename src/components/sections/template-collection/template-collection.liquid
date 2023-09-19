@@ -5,13 +5,8 @@
     
     <div class="w-full lg:max-w-3/4 transition-all duration-500 lg:ml-auto" data-total-pages="{{ paginate.pages }}" data-pagination="{{ products_per_page }}" data-current-page="{{ paginate.current_page }}"  id="product-grid">
       <div class="lg:flex items-center justify-end my-4 lg:mt-0">
-        <toggle-filter class="block">
-          <button class="flex items-center uppercase lg:normal-case text-xs lg:text-base font-semibold lg:font-normal leading-none text-text font-montserrat lg:font-roboto cursor-pointer gap-2 px-4 md:pl-0">
-            <span class="lg:hidden">{{ 'products.facets.filter_and_sort' | t }}</span>
-            <span class="hidden show">{{- 'products.facets.show_filter' | t -}}</span>
-            <span class="hidden lg:block hide">{{- 'products.facets.hide_filter' | t -}}</span>
-            {% render 'icon-sort', class: 'w-4 h-4' %}
-          </button>  
+        <toggle-filter class="block lg:hidden">
+          <button class="flex items-center uppercase lg:normal-case text-xs lg:text-base font-semibold lg:font-normal leading-none text-text font-montserrat lg:font-roboto cursor-pointer gap-2 px-4 md:pl-0">{{ 'products.facets.filter_and_sort' | t }}</button>  
         </toggle-filter>
         <facet-filters-form class="hidden lg:flex items-center justify-end gap-4 sort-by" id="sortby-wrapper">
           <form id="FacetSortForm">

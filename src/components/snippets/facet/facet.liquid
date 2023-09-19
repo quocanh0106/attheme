@@ -27,8 +27,7 @@
           <span class="text-sm uppercase lg:capitalize font-semibold lg:text-2xl leading-none font-montserrat lg:font-bold" tabindex="-1">{{ 'sections.collection_template.active_filter' | t }}</span>
           <facet-remove class="block h-fit">
             <a href="{{ results_url }}" class="block text-sm leading-none uppercase lg:capitalize lg:text-base font-montserrat font-semibold dark-link lg:underline hover:font-semibold" rel="nofollow">
-              <span class="hidden lg:block">{{ 'products.facets.clear_all' | t }}</span>
-              <span class="block lg:hidden">{{ 'sections.collection_template.clear_all' | t }}</span>
+              {{ 'sections.collection_template.reset' | t }}
             </a>
           </facet-remove>
         </div>

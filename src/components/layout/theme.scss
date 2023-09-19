@@ -82,9 +82,6 @@ modal-opener.bright-link {
 }
 
 /***** End button ******/
-.sticky-header header {
-  @apply shadow-header
-}
 .menu-group:hover {
   .menu-group-hover\:lg\:opacity-100 {
     @apply lg:opacity-100;

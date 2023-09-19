@@ -370,7 +370,6 @@ class ToggleFilter extends HTMLElement {
   }
   toggle() {
     document.querySelector('.facet').classList.toggle('active');
-    document.querySelector('#product-grid').classList.toggle('active');
   }
 }
 

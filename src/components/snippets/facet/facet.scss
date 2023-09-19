@@ -8,16 +8,7 @@ input:checked ~ .icon-checkmark {
   @apply opacity-100 visible;
 }
 .facet.active {
-  @apply !translate-x-0 md:!translate-x-0 lg:-ml-1/4 lg:opacity-0 lg:invisible lg:duration-300;
-}
-.facet.active toggle-filter {
-  @apply opacity-100;
-}
-#product-grid.active {
-  @apply lg:max-w-full;
-  #main-collection-product {
-    @apply lg:grid-cols-4;
-  }
+  @apply !translate-x-0 md:!translate-x-0;
 }
 #ProductGridContainer.loading:before {
   @apply content-empty fixed w-full h-full block z-20 left-0 top-0 bg-background opacity-50;
@@ -47,12 +38,4 @@ input:checked ~ .icon-checkmark {
 }
 .range-slider input[type='range']::-moz-focus-outer {
   @apply border-0;
-}
-#product-grid.active {
-  .show {
-    @apply lg:block;
-  }
-  .hide {
-    @apply lg:hidden;
-  }
 }

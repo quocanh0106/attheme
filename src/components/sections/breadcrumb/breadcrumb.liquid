@@ -23,7 +23,7 @@
   <ul class="flex items-center gap-4 overflow-x-auto slider-mobile">
     <li class="flex items-center gap-4 text-xs leading-none">
       <a href="{{ routes.root_url }}" class="whitespace-nowrap" title="{{ 'general.breadcrumbs.home' | t }}">{{ 'general.breadcrumbs.home' | t }}</a>
-      {% render 'icon-right' %}
+      {% render 'icon-chevron-right' %}
     </li>
     {% if template contains 'product' %}
       {%- assign breadcrumbs_linklist = linklists['breadcrumbs-product'] -%}
@@ -39,7 +39,7 @@
       {%- if product_type_link != nil -%}
         <li class="flex items-center gap-4 text-xs leading-none">
           <a class="whitespace-nowrap" href="{{ product_type_link.url }}">{{ product_type_link.title }}</a>
-          {% render 'icon-right' %}
+          {% render 'icon-chevron-right' %}
         </li>
       {%- endif -%}
       <li class="flex items-center gap-4 text-xs leading-none"><span class="whitespace-nowrap">{{ product.title }}</span></li>
@@ -109,20 +109,20 @@
       {%- if grandparent_collection != nil -%}
         <li class="flex items-center gap-4 text-xs leading-none">
           <a class="whitespace-nowrap" href="{{ grandparent_collection.url }}">{{- grandparent_collection.title -}}</a>
-          {% render 'icon-right' %}
+          {% render 'icon-chevron-right' %}
         </li>
       {%- endif -%}
       {%- if parent_collection != nil -%}
         <li class="flex items-center gap-4 text-xs leading-none">
           <a class="whitespace-nowrap" href="{{ parent_collection.url }}">{{- parent_collection.title -}}</a>
-          {% render 'icon-right' %}
+          {% render 'icon-chevron-right' %}
         </li>
       {%- endif -%}
       {% if current_tags %}
         {% capture url %}/collections/{{ collection.handle }}
         {% endcapture %}
         <li class="flex items-center gap-4 text-xs leading-none">{{ current_link.title | link_to: url }}
-          {% render 'icon-right' %}
+          {% render 'icon-chevron-right' %}
         </li>
         <li class="flex items-center gap-4 text-xs leading-none">
           <span class="whitespace-nowrap">{{ current_tags | join: " + " }}
@@ -194,48 +194,34 @@
     {% elsif template == 'blog' %}
       {% if current_tags %}
         <li class="flex items-center gap-4 text-xs leading-none">{{ blog.title | link_to: blog.url }}
-            {% render 'icon-right' %}
+          {% render 'icon-chevron-right' %}
         </li>
         <li class="flex items-center gap-4 text-xs leading-none">
-            <span>{{ current_tags | join: " + " }}
-            </span>
+          <span>{{ current_tags | join: " + " }}</span>
         </li>
       {% else %}
           <li class="flex items-center gap-4 text-xs leading-none">
-            <span class="whitespace-nowrap">{{ blog.title }}
-            </span>
+            <span class="whitespace-nowrap">{{ blog.title }}</span>
           </li>
       {% endif %}
     {% elsif template == 'article' %}
       <li class="flex items-center gap-4 text-xs leading-none">{{ blog.title | link_to: blog.url }}
-        {% render 'icon-right' %}
+        {% render 'icon-chevron-right' %}
       </li>
       <li class="flex items-center gap-4 text-xs leading-none">
-        <span>{{ article.title }}
-        </span>
+        <span>{{ article.title }}</span>
       </li>
     {% elsif template contains 'page' %}
-      {%- if template.suffix == 'search-help-center' -%}
-        <li class="flex items-center gap-4 text-xs leading-none"><a href="/pages/help-center">{{ 'general.breadcrumbs.help_center' | t }}</a>{% render 'icon-right' %}</li>
-        <li class="flex items-center gap-4 text-xs leading-none">
-          <span class="whitespace-nowrap">{{ 'general.breadcrumbs.search_results' | t }}
-          </span>
-        </li>
-      {%- else -%}
-        <li class="flex items-center gap-4 text-xs leading-none">
-          <span class="whitespace-nowrap">{{ page.title }}
-          </span>
-        </li> 
-      {%- endif -%}
+      <li class="flex items-center gap-4 text-xs leading-none">
+        <span class="whitespace-nowrap">{{ page.title }}</span>
+      </li> 
     {% elsif template contains 'search' %}
       <li class="flex items-center gap-4 text-xs leading-none">
-        <span class="whitespace-nowrap">{{ 'general.search.title' | t }}
-        </span>
+        <span class="whitespace-nowrap">{{ 'general.search.title' | t }}</span>
       </li>
     {% else %}
       <li class="flex items-center gap-4 text-xs leading-none">
-        <span class="whitespace-nowrap">{{ page_title }}
-        </span>
+        <span class="whitespace-nowrap">{{ page_title }}</span>
       </li>
     {% endif %}
   </ul>
