@@ -30,7 +30,6 @@ class FacetFiltersForm extends HTMLElement {
     }
     if(this.classList.contains('sort-by') && window.innerWidth >= 1024) {
       this.accordion = this.querySelector('accordion-toggle')
-      this.summary = this.accordion.querySelector('.summary');
       this.details = this.accordion.querySelector('.details');
       this.select = this.querySelector('#SortBy');
 
@@ -43,8 +42,6 @@ class FacetFiltersForm extends HTMLElement {
               option.setAttribute('selected', 'selected');
             }
           })
-          this.summary.querySelector('span').textContent = item.textContent;
-          this.summary.querySelector('span').dataset.value = item.dataset.value;
           this.onSubmitHandler(e);
           this.details.style.maxHeight = 0;
           this.accordion.classList.remove('active');

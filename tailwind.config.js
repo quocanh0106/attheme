@@ -211,7 +211,7 @@ module.exports = {
         note: '0 5px 15px #0000001a',
         popup: '0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)',
         button: '0 4px 4px 0 rgba(0, 0, 0, 0.25)',
-        header: '0 5px 8px 0 rgba(0,0,0,0.1)'
+        header: '0 5px 5px 0 rgba(0,0,0,0.1)'
       },
       maxWidth: {
         container: 'var(--page-width)',
@@ -227,6 +227,7 @@ module.exports = {
         '1/6': 'calc(100%/6)',
         '5/6': 'calc(500%/6)',
         'facet': 'calc(100% - 4rem)',
+        'full-minus-17': 'calc(100% - 4.25rem)',
         '62.5': '15.625rem',
         97.5: '24.375rem',
         '132': '33rem',

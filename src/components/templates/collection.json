@@ -17,7 +17,7 @@
     "collection-navigation": {
       "type": "collection-navigation",
       "settings": {
-        "menu": "collections-box"
+        "menu": "colllections-box"
       }
     },
     "template": {

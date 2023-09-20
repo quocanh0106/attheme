@@ -35,7 +35,7 @@
   {% assign current = paginate.current_page %}
 {%- endpaginate -%}
 {% if mainList and current <= 1 %}
-  <div class="page-width">
+  <div class="px-4 max-w-[832px] mx-auto">
     <swiper-component class="block overflow-hidden relative rounded-3xl" data-infor-swiper='{
         "modules": ["Navigation"],
         "slidesPerView": "auto",
@@ -46,15 +46,15 @@
           "prevEl": ".prev-{{ section.id }}"
         }
       }'>
-      <button class="w-10 h-10 absolute top-1/2 -translate-y-1/2 left-0 z-10 border cursor-pointer disabled:opacity-0 disabled:invisible border-solid border-border bg-background rounded-3xl lg:flex lg:items-center lg:justify-center transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary prev-{{ section.id }}">{%- render 'icon-prev' -%}</button>
+      <button class="w-9 h-9 absolute top-1/2 -translate-y-1/2 left-0 z-10 border cursor-pointer disabled:opacity-0 disabled:invisible border-solid border-border bg-background rounded-3xl lg:flex lg:items-center lg:justify-center transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary prev-{{ section.id }}">{%- render 'icon-chevron-left' -%}</button>
       <div class="swiper-wrapper flex">
         {% for link in mainList limit: 10 %}
           {% if link.url != collection.url %}
-            <a href="{{ link.url }}" class="swiper-slide !w-fit mr-2.5 border border-solid border-border rounded-3xl inline-block transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary" title="{{ link.title }}"><h2 class="text-xs leading-5 capitalize py-2.5 px-4 font-normal">{{ link.title }}</h2></a>
+            <a href="{{ link.url }}" class="swiper-slide !w-fit mr-2.5 border border-solid border-border rounded-3xl inline-block transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary" title="{{ link.title }}"><h2 class="text-xs leading-5 capitalize py-2 px-5 font-normal">{{ link.title }}</h2></a>
           {% endif %}
         {% endfor %}
       </div>
-      <button class="w-10 h-10 absolute top-1/2 -translate-y-1/2 right-0 z-10 border cursor-pointer disabled:opacity-0 disabled:invisible border-solid border-border bg-background rounded-3xl lg:flex lg:items-center lg:justify-center transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary next-{{ section.id }}">{%- render 'icon-next' -%}</button>
+      <button class="w-9 h-9 absolute top-1/2 -translate-y-1/2 right-0 z-10 border cursor-pointer disabled:opacity-0 disabled:invisible border-solid border-border bg-background rounded-3xl lg:flex lg:items-center lg:justify-center transition-all duration-300 hover:border-primary hover:text-background hover:bg-primary next-{{ section.id }}">{%- render 'icon-chevron-right' -%}</button>
     </swiper-component>
   </div>
 {% endif %}

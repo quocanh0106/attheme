@@ -214,7 +214,7 @@ truncate-paragraph {
   }
   &:not(.active) {
     .details {
-      @apply inline-truncate-line one-line overflow-hidden break-all max-w-132;
+      @apply inline-truncate-line one-line overflow-hidden break-all max-w-full-minus-17;
     }
   }
   &.active {

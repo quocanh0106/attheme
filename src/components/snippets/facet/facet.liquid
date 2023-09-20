@@ -25,7 +25,7 @@
       <div id="FacetsWrapperDesktop">
         <div class="flex flex-wrap lg:flex-nowrap justify-between gap-2 items-center border-b border-border p-4 lg:px-0 lg:pt-0">
           <span class="text-sm uppercase lg:capitalize font-semibold lg:text-2xl leading-none font-montserrat lg:font-bold" tabindex="-1">{{ 'sections.collection_template.active_filter' | t }}</span>
-          <facet-remove class="block h-fit">
+          <facet-remove class="block lg:hidden h-fit">
             <a href="{{ results_url }}" class="block text-sm leading-none uppercase lg:capitalize lg:text-base font-montserrat font-semibold dark-link lg:underline hover:font-semibold" rel="nofollow">
               {{ 'sections.collection_template.reset' | t }}
             </a>
@@ -137,7 +137,7 @@
                     <span class="field__currency">{{ cart.currency.symbol }}<span class="max">{{ filter.range_max | money_without_currency | round }}</span></span>
                   </div>
                   <div class="range-slider relative h-8 md:h-12">
-                    <input class="pointer-events-none absolute appearance-none w-full h-[5px] m-0 p-0 rounded-2xl border-[none] left-0 top-5 outline-0 bg-[#b3b3b3]"
+                    <input class="pointer-events-none absolute appearance-none w-full h-[3px] m-0 p-0 rounded-2xl border-[none] left-0 top-5 outline-0 bg-[#b3b3b3]"
                       name="{{ filter.min_value.param_name }}"
                       id="Filter-{{ filter.label | escape | append: 'min' }}-{{ forloop.index }}"
                       {% if filter.min_value.value %}
@@ -154,7 +154,7 @@
                       min="0"
                       max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
                     </input>
-                    <input class="pointer-events-none absolute appearance-none w-full h-[5px] m-0 p-0 rounded-2xl border-[none] left-0 top-5 outline-0 bg-[#b3b3b3]"
+                    <input class="pointer-events-none absolute appearance-none w-full h-[3px] m-0 p-0 rounded-2xl border-[none] left-0 top-5 outline-0 bg-[#b3b3b3]"
                       name="{{ filter.max_value.param_name }}"
                       id="Filter-{{ filter.label | escape | append: 'max' }}-{{ forloop.index | plus: 1 }}"
                       {%- if filter.max_value.value -%}
@@ -171,7 +171,7 @@
                       min="0"
                       max="{{ filter.range_max | money_without_currency | round }}">
                     </input>
-                    <div class="blackline h-[5px] w-full absolute z-0 left-0 top-5 bg-text"></div>
+                    <div class="blackline !block h-[3px] w-full absolute z-0 left-0 top-5 bg-secondary"></div>
                   </div>
                   <div class="price-value-min-max flex items-center text-sm leading-none justify-between gap-x-2 pt-2">
                     <span class="price-item price-min">{{ cart.currency.symbol }}<span class="min-price">0</span></span>

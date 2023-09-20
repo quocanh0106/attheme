@@ -19,19 +19,19 @@ input:checked ~ .icon-checkmark {
 }
 .range-slider input[type='range'] {
   @apply appearance-none;
-  -webkit-tap-highlight-color: black;
+  -webkit-tap-highlight-color: var(--color-secondary);
 }
 .range-slider .field__input::-moz-range-thumb {
   @apply z-[1] bg-primary;
 }
 .range-slider input[type='range']::-webkit-slider-thumb {
-  @apply relative appearance-none cursor-pointer z-[1] w-4 h-4 bg-secondary rounded-[50%] border-2 border-solid border-secondary pointer-events-auto outline-0;
+  @apply relative appearance-none cursor-pointer z-[1] w-8 h-8 bg-background rounded-[50%] border border-solid border-secondary pointer-events-auto outline-0;
 }
 .range-slider input[type='range']::-moz-range-thumb {
-  @apply relative cursor-pointer z-[1] block appearance-none w-4 h-4 text-secondary bg-secondary box-border rounded-[50%] border-[5px] border-solid border-secondary pointer-events-auto outline-0;
+  @apply relative cursor-pointer z-[1] block appearance-none w-8 h-8 text-secondary bg-background box-border rounded-[50%] border border-solid border-secondary pointer-events-auto outline-0;
 }
 .range-slider input[type='range']::-ms-thumb {
-  @apply appearance-none relative cursor-pointer z-[1] w-4 h-4 rounded-[50%] border-[5px] border-solid border-secondary outline-0;
+  @apply appearance-none relative cursor-pointer z-[1] w-8 h-8 bg-background rounded-[50%] border border-solid border-secondary outline-0;
 }
 .range-slider input[type='range']:last-of-type::-moz-range-track {
   @apply appearance-none border-0 bg-none bg-transparent;

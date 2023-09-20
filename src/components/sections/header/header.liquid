@@ -88,25 +88,25 @@
       <a href="/pages/wishlist" title="account" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5">
         {% render 'icon-wishlist', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
         <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Wishlist</span>
-        <wishlist-count class="absolute bg-primary text-secondary min-w-[1rem] h-4 rounded-full flex justify-center items-center -top-1 -right-2" style="display:none;">
-          <span aria-hidden="true" class="flex justify-center items-center h-full text-[10px] leading-none"></span>
+        <wishlist-count class="absolute bg-secondary text-success w-4 h-4 lg:w-5 lg:h-5 rounded-full flex justify-center items-center -top-1 left-0 -translate-x-1/2" style="display:none;">
+          <span aria-hidden="true" class="flex justify-center items-center h-full text-xs lg:text-base leading-none font-bold"></span>
         </wishlist-count>
       </a>
       <a href="{{ routes.cart_url }}" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5" title="cart">
         {%- render 'icon-cart', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' -%}
         <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Basket</span>
         
-        <div class="absolute bg-primary text-secondary min-w-[1rem] h-4 rounded-full flex justify-center items-center -top-1 -right-2 empty:hidden" id="cart-icon-bubble">
+        <div class="absolute bg-secondary text-success w-4 h-4 lg:w-5 lg:h-5 rounded-full flex justify-center items-center -top-1 left-0 -translate-x-1/2 empty:hidden" id="cart-icon-bubble">
           {%- if cart != empty -%}
             {%- if cart.item_count < 100 -%}
-              <span class="flex justify-center items-center h-full text-[10px] leading-none">{{ cart.item_count }}</span>
+              <span class="flex justify-center items-center h-full text-xs lg:text-base leading-none font-bold">{{ cart.item_count }}</span>
             {% else %}
-              <span class="flex justify-center items-center h-full text-[10px]">+99</span>
+              <span class="flex justify-center items-center h-full text-xs lg:text-base leading-none font-bold">+99</span>
             {%- endif -%}
           {%- endif -%}
         </div>
       </a>
-      <modal-opener class="bright-link inline-block lg:hidden cursor-pointer " data-id="#menu-drawer">
+      <modal-opener class="bright-link inline-block lg:hidden cursor-pointer" data-id="#menu-drawer">
         {% render 'icon-hamburger', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
       </modal-opener>
     </div>

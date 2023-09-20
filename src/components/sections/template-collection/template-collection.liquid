@@ -1,58 +1,56 @@
 <link rel="stylesheet" href="{{ 'facet.css' | asset_url }}">
 {% paginate collection.products by section.settings.products_per_page %}
+  <div class="w-full shadow-header">
+    <div class="page-width lg:flex items-center justify-end my-4 lg:mt-0">
+      <toggle-filter class="block lg:hidden">
+        <button class="flex items-center uppercase lg:normal-case text-xs lg:text-base font-semibold lg:font-normal leading-none text-text font-heading lg:font-roboto cursor-pointer gap-2 px-4 md:pl-0">{{ 'products.facets.filter_and_sort' | t }}</button>  
+      </toggle-filter>
+      <facet-filters-form class="hidden lg:flex items-center justify-end gap-4 sort-by" id="sortby-wrapper">
+        <form id="FacetSortForm">
+          <div class="flex items-center gap-4">
+            <facet-remove class="hidden lg:block h-fit">
+              <a href="{{ collection.url }}" class="block text-sm leading-none uppercase lg:capitalize lg:text-base font-heading font-semibold dark-link hover:font-semibold" rel="nofollow">
+                {{ 'sections.collection_template.reset' | t }}
+              </a>
+            </facet-remove>
+            {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+            <select name="sort_by" class="hidden opacity-0 invisible absolute -z-30" id="SortBy" aria-describedby="a11y-refresh-page-message">
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected="selected"{% endif %}>
+                  {{ option.name | escape }}
+                </option>
+              {%- endfor -%}
+            </select>
+            <accordion-toggle class="inline-block relative cursor-pointer sort-by-accordion">
+              <div class="summary flex items-center gap-2.5">
+                <span class="inline-block">{{ 'products.facets.sort_by_labels' | t }}</span>
+                {% render 'icon-caret', class: 'w-2.5 h-2.5' %}
+              </div>
+              <ul class="shadow-select details absolute w-max z-10 left-auto right-0 top-full bg-background p-2.5 border border-border">
+                {%- for option in collection.sort_options -%}
+                  <li class="cursor-pointer" data-value="{{ option.value | escape }}">{{ option.name | escape }}</li>
+                {%- endfor -%}
+              </ul>
+            </accordion-toggle>
+          </div>
+    
+          {% if collection.current_vendor or collection.current_type %}
+            <input type="hidden" name="q" value="{{ collection.current_vendor }}{{ collection.current_type }}">
+          {% endif %}
+    
+          {%- if collection.terms -%}
+            <input type="hidden" name="q" value="{{ collection.terms | escape }}">
+            <input name="options[prefix]" type="hidden" value="last">
+          {%- endif -%}
+        </form>
+      </facet-filters-form>
+    </div>
+  </div>
   <div class="page-width-desktop flex flex-wrap pb-5 lg:pt-12 lg:pb-20" data-id="{{ section.id }}" id="ProductGridContainer">
     {% render 'facet', results: collection %}
     
     <div class="w-full lg:max-w-3/4 transition-all duration-500 lg:ml-auto" data-total-pages="{{ paginate.pages }}" data-pagination="{{ products_per_page }}" data-current-page="{{ paginate.current_page }}"  id="product-grid">
-      <div class="lg:flex items-center justify-end my-4 lg:mt-0">
-        <toggle-filter class="block lg:hidden">
-          <button class="flex items-center uppercase lg:normal-case text-xs lg:text-base font-semibold lg:font-normal leading-none text-text font-montserrat lg:font-roboto cursor-pointer gap-2 px-4 md:pl-0">{{ 'products.facets.filter_and_sort' | t }}</button>  
-        </toggle-filter>
-        <facet-filters-form class="hidden lg:flex items-center justify-end gap-4 sort-by" id="sortby-wrapper">
-          <form id="FacetSortForm">
-            <div class="flex items-center gap-4">
-              <span class="text-text">{{ 'products.facets.sort_by_label' | t }}</span>
-              {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-              <select name="sort_by" class="hidden opacity-0 invisible absolute -z-30" id="SortBy" aria-describedby="a11y-refresh-page-message">
-                {%- for option in collection.sort_options -%}
-                  <option
-                    value="{{ option.value | escape }}"
-                    {% if option.value == sort_by %}
-                      selected="selected"
-                    {% endif %}>
-                    {{ option.name | escape }}
-                  </option>
-                {%- endfor -%}
-              </select>
-              <accordion-toggle class="inline-block relative cursor-pointer sort-by-accordion">
-                <div class="summary flex items-center gap-2.5">
-                  {%- for option in collection.sort_options -%}
-                    {% if option.value == sort_by %}
-                      <span class="inline-block" data-value="{{ option.value | escape }}">{{ option.name | escape }}</span>
-                    {% endif %}
-                  {%- endfor -%}
-                  {% render 'icon-caret', class: 'w-2.5 h-2.5' %}
-                </div>
-                <ul class="shadow-select details absolute w-max z-10 left-auto right-0 top-full bg-background p-2.5 border border-border">
-                  {%- for option in collection.sort_options -%}
-                    <li class="cursor-pointer" data-value="{{ option.value | escape }}">{{ option.name | escape }}</li>
-                  {%- endfor -%}
-                </ul>
-              </accordion-toggle>
-            </div>
-      
-            {% if collection.current_vendor or collection.current_type %}
-              <input type="hidden" name="q" value="{{ collection.current_vendor }}{{ collection.current_type }}">
-            {% endif %}
-      
-            {%- if collection.terms -%}
-              <input type="hidden" name="q" value="{{ collection.terms | escape }}">
-              <input name="options[prefix]" type="hidden" value="last">
-            {%- endif -%}
-          </form>
-        </facet-filters-form>
-      </div>
-      <div id="main-collection-product" class="grid grid-cols-2 md:grid-cols-3 gap-x-1 gap-y-2.5 md:gap-x-2.5 transition-all duration-500">
+      <div id="main-collection-product" class="grid grid-cols-2 md:grid-cols-3 gap-4 transition-all duration-500">
         {% assign listIncludeProduct = '' %}
         {% if collection.products.size > 0 %}
           {% for product in collection.products %}
