@@ -65,7 +65,7 @@
         "min": 1100,
         "max": 1300,
         "step": 4,
-        "default": 1200,
+        "default": 1100,
         "unit": "px",
         "label": "Page width"
       }

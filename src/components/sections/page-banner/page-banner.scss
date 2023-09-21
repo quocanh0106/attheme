@@ -1,5 +1,5 @@
 .metafield-rich_text_field {
-  a, a * {
-    @apply font-bold italic; 
+  a, a *, .toggle-truncate span {
+    @apply font-normal italic underline text-primary hover:text-secondary transition-all; 
   }
 }

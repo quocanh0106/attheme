@@ -1,15 +1,28 @@
 <link rel="stylesheet" href="{{ 'facet.css' | asset_url }}">
 {% paginate collection.products by section.settings.products_per_page %}
+  {% liquid
+    assign products_count = paginate.current_page | times: section.settings.products_per_page
+    if products_count > paginate.items
+      assign products_count = paginate.items    
+    endif
+  %}
   <div class="w-full shadow-header">
-    <div class="page-width lg:flex items-center justify-end my-4 lg:mt-0">
-      <toggle-filter class="block lg:hidden">
-        <button class="flex items-center uppercase lg:normal-case text-xs lg:text-base font-semibold lg:font-normal leading-none text-text font-heading lg:font-roboto cursor-pointer gap-2 px-4 md:pl-0">{{ 'products.facets.filter_and_sort' | t }}</button>  
+    <div class="page-width flex items-center justify-between py-3 lg:mt-0">
+      <span id="ProductCountNumberDisplay" class="text-sm lg:text-base !leading-5 font-light order-3">
+        {% if paginate.items > 1 %}
+          {{ 'sections.collection_template.product_count.other' | t: product_count: paginate.items }}
+        {% else %}
+          {{ 'sections.collection_template.product_count.one' | t: product_count: paginate.items }}
+        {% endif %}
+      </span>
+      <toggle-filter class="block lg:hidden order-1">
+        <button class="flex items-center uppercase lg:normal-case text-xs lg:text-base font-semibold lg:font-normal leading-none text-text font-heading lg:font-roboto cursor-pointer gap-2">{{ 'products.facets.filter_and_sort' | t }}</button>  
       </toggle-filter>
-      <facet-filters-form class="hidden lg:flex items-center justify-end gap-4 sort-by" id="sortby-wrapper">
+      <facet-filters-form class="hidden lg:flex items-center justify-end gap-4 sort-by order-2 lg:order-4" id="sortby-wrapper">
         <form id="FacetSortForm">
           <div class="flex items-center gap-4">
             <facet-remove class="hidden lg:block h-fit">
-              <a href="{{ collection.url }}" class="block text-sm leading-none uppercase lg:capitalize lg:text-base font-heading font-semibold dark-link hover:font-semibold" rel="nofollow">
+              <a href="{{ collection.url }}" class="block text-sm leading-none capitalize lg:text-base font-heading font-bold bright-link underline" rel="nofollow">
                 {{ 'sections.collection_template.reset' | t }}
               </a>
             </facet-remove>
@@ -46,11 +59,11 @@
       </facet-filters-form>
     </div>
   </div>
-  <div class="page-width-desktop flex flex-wrap pb-5 lg:pt-12 lg:pb-20" data-id="{{ section.id }}" id="ProductGridContainer">
+  <div class="page-width flex flex-wrap pb-5 pt-10 lg:pt-12 lg:pb-20" data-id="{{ section.id }}" id="ProductGridContainer">
     {% render 'facet', results: collection %}
     
-    <div class="w-full lg:max-w-3/4 transition-all duration-500 lg:ml-auto" data-total-pages="{{ paginate.pages }}" data-pagination="{{ products_per_page }}" data-current-page="{{ paginate.current_page }}"  id="product-grid">
-      <div id="main-collection-product" class="grid grid-cols-2 md:grid-cols-3 gap-4 transition-all duration-500">
+    <div class="w-full lg:max-w-[calc(100%_-_236px)] transition-all duration-500 lg:ml-auto" data-total-pages="{{ paginate.pages }}" data-pagination="{{ products_per_page }}" data-current-page="{{ paginate.current_page }}"  id="product-grid">
+      <div id="main-collection-product" class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-10 transition-all duration-500">
         {% assign listIncludeProduct = '' %}
         {% if collection.products.size > 0 %}
           {% for product in collection.products %}
@@ -66,13 +79,15 @@
       </div>
       <collection-loadmore data-click-loadmore="false" class="block mt-4 lg:mt-16 text-center{% if paginate.pages <= 1 %} hidden{% endif %} ">
         <span data-href="{{ paginate.next.url }}" class="btn btn-2 border border-primary hover:border-border load-more_btn py-3 px-5">{{- 'sections.collection_template.load_more' | t -}}</span>
-        <div id="ProductCountDesktop" class="viewing-currently-product text-sm text-text mt-3">
-          {% liquid
-            assign products_count = paginate.current_page | times: section.settings.products_per_page
-            if products_count > paginate.items
-              assign products_count = paginate.items
-            endif
-          %}
+
+        <span id="ProductCountNumber" class="hidden">
+          {% if paginate.items > 1 %}
+            {{ 'sections.collection_template.product_count.other' | t: product_count: paginate.items }}
+          {% else %}
+            {{ 'sections.collection_template.product_count.one' | t: product_count: paginate.items }}
+          {% endif %}
+        </span>
+        <div id="ProductCountLoadmore" class="viewing-currently-product text-sm text-text mt-3">
           {{ 'sections.collection_template.current_view_html' | t: all_products_count: paginate.items , products_count: products_count }}
         </div>
       </collection-loadmore>

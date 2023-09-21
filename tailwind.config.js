@@ -162,7 +162,8 @@ module.exports = {
         sale: 'var(--color-sale)',
         hot: 'var(--color-hot)',
         new: 'var(--color-new)',
-        soldout: 'var(--color-sold-out)'
+        soldout: 'var(--color-sold-out)',
+        overlay: 'rgba(0,0,0,0.5)'
       },
       spacing: {
         4.5: '1.125rem',
@@ -197,6 +198,7 @@ module.exports = {
         'slide-3': 'calc((100% - 20px)/3)',
         'slide-4': 'calc((100% - 30px)/4)',
         'slide-5': 'calc((100% - 40px)/5)',
+        '3full': '300%'
       },
       height: {
         0.25: '0.0625rem',
@@ -262,28 +264,34 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
     function ({ addUtilities }) {
-      const generateBgOpacityClasses = (colorName) => {
+      const generateOpacityClasses = (colorName) => {
         const classes = {};
         for (let i = 0; i <= 100; i++) {
           classes[`.bg-${colorName}-opacity-${i}`] = {
             'background-color': `color-mix(in srgb, var(--color-${colorName}) ${i}%, transparent)`,
+          };
+          classes[`.text-${colorName}-opacity-${i}`] = {
+            'color': `color-mix(in srgb, var(--color-${colorName}) ${i}%, transparent)`,
+          };
+          classes[`.border-${colorName}-opacity-${i}`] = {
+            'border-color': `color-mix(in srgb, var(--color-${colorName}) ${i}%, transparent)`,
           };
         }
         return classes;
       };
 
       const newUtilities = {
-        ...generateBgOpacityClasses('primary'),
-        ...generateBgOpacityClasses('secondary'),
-        ...generateBgOpacityClasses('background'),
-        ...generateBgOpacityClasses('overlay'),
-        ...generateBgOpacityClasses('error'),
-        ...generateBgOpacityClasses('warning'),
-        ...generateBgOpacityClasses('success'),
-        ...generateBgOpacityClasses('sale'),
-        ...generateBgOpacityClasses('hot'),
-        ...generateBgOpacityClasses('new'),
-        ...generateBgOpacityClasses('soldout')
+        ...generateOpacityClasses('primary'),
+        ...generateOpacityClasses('secondary'),
+        ...generateOpacityClasses('background'),
+        ...generateOpacityClasses('overlay'),
+        ...generateOpacityClasses('error'),
+        ...generateOpacityClasses('warning'),
+        ...generateOpacityClasses('success'),
+        ...generateOpacityClasses('sale'),
+        ...generateOpacityClasses('hot'),
+        ...generateOpacityClasses('new'),
+        ...generateOpacityClasses('soldout')
       };
 
       addUtilities(newUtilities, ['responsive', 'hover']);

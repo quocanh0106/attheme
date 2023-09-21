@@ -465,10 +465,9 @@
       },
       "max_price": "The highest price is {{ price }}",
       "product_count": {
-        "one": "Showing {{ product_count }} of {{ count }} product",
-        "other": "Showing {{ product_count }} of {{ count }} products"
+        "one": "{{ product_count }} product",
+        "other": "{{ product_count }} products"
       },
-      "reset": "Reset",
       "sort_button": "Sort",
       "sort_by_label": "Sort by",
       "to": "To",

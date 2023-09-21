@@ -65,7 +65,7 @@
       :root {
         --font-heading: {{ settings.heading_font }};
         --font-base: {{ settings.base_font }};
-        --page-width: {{ settings.page_width | plus: 32 | divided_by: 16 | append: 'rem' }};
+        --page-width: {{ settings.page_width | plus: 32 | divided_by: 16.0 | append: 'rem' }};
         --color-primary: {{ settings.color_primary }};
         --color-secondary: {{ settings.color_secondary }};
         --color-background: {{ settings.color_background }};

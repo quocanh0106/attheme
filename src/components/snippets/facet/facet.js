@@ -68,12 +68,7 @@ class FacetFiltersForm extends HTMLElement {
   static renderPage(searchParams, event, updateURLHash = true, loadmore = false) {
     FacetFiltersForm.searchParamsPrev = searchParams;
     const sections = FacetFiltersForm.getSections();
-    const countContainerDesktop = document.getElementById('ProductCountDesktop');
     document.getElementById('ProductGridContainer').classList.add('loading');
-
-    if (countContainerDesktop) {
-      countContainerDesktop.classList.add('loading');
-    }
 
     sections.forEach((section) => {
       const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
@@ -122,11 +117,15 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderProductCount(html) {
-    const count = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductCountDesktop').innerHTML;
-    const containerDesktop = document.getElementById('ProductCountDesktop');
-    if (containerDesktop) {
-      containerDesktop.innerHTML = count;
-      containerDesktop.classList.remove('loading');
+    const count = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductCountLoadmore').innerHTML;
+    const countNumber = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductCountNumber').innerHTML;
+    const loadmoreCount = document.getElementById('ProductCountLoadmore');
+    const productCount = document.getElementById('ProductCountNumberDisplay');
+    if (loadmoreCount) {
+      loadmoreCount.innerHTML = count;
+    }
+    if (productCount) {
+      productCount.innerHTML = countNumber;
     }
   }
 
