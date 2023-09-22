@@ -1,0 +1,120 @@
+{% comment %}
+  Renders a product media gallery. Should be used with 'media-gallery.js'
+  Also see 'product-media-modal'
+
+  Accepts:
+  - product: {Object} Product liquid object
+  - variant_images: {Array} Product images associated with a variant
+  - is_duplicate: {Boolean} Prevents rendering uneeded elements and duplicate ids for subsequent instances
+
+  Usage:
+  {% render 'product-media-gallery', is_duplicate: true %}
+{% endcomment %}
+
+{%- liquid
+  if section.settings.hide_variants and variant_images.size == product.media.size
+    assign single_media_visible = true
+  endif
+
+  assign media_count = product.media.size
+  if section.settings.hide_variants and media_count > 1 and variant_images.size > 0
+    assign media_count = media_count | minus: variant_images.size | plus: 1
+  endif
+
+  if media_count == 1 or single_media_visible
+    assign single_media_visible_mobile = true
+  endif
+
+  if media_count == 0 or single_media_visible_mobile or section.settings.mobile_thumbnails == 'show' or section.settings.mobile_thumbnails == 'columns' and media_count < 3
+    assign hide_mobile_slider = true
+  endif
+
+  if section.settings.media_size == 'large'
+    assign media_width = 0.65
+  elsif section.settings.media_size == 'medium'
+    assign media_width = 0.55
+  elsif section.settings.media_size == 'small'
+    assign media_width = 0.45
+  endif
+
+  assign id_append = ''
+  if is_duplicate
+    assign id_append = '-duplicate'
+  endif
+-%}
+
+<media-gallery class="block">
+  <div class="relative swiper main-slider-media overflow-hidden" data-infor-swiper='{
+      "modules": ["Navigation", "Thumbs"],
+      "slidesPerView": 1,
+      "spaceBetween": 10,
+      "allowTouchMove": false,
+      "navigation": {
+        "nextEl": ".next-main-{{ section.id }}",
+        "prevEl": ".prev-main-{{ section.id }}"
+      }
+    }'>
+    <ul class="flex swiper-wrapper">
+      {%- if product.selected_or_first_available_variant.featured_media != null -%}
+        {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
+        <li class="swiper-slide">
+          {%- assign media_position = 1 -%}
+          {% render 'product-thumbnail', media: featured_media, lazy_load: false %}
+        </li>
+      {%- endif -%}
+      {%- for media in product.media -%}
+        {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+          <li class="swiper-slide">
+            {%- liquid
+              assign media_position = media_position | default: 0 | plus: 1
+              assign lazy_load = false
+              if media_position > 1
+                assign lazy_load = true
+              endif
+            -%}
+            {% render 'product-thumbnail', media: media, lazy_load: true, thumb: false %}
+          </li>
+        {%- endunless -%}
+      {%- endfor -%}
+    </ul>
+    <wishlist-button class="absolute top-4 right-4 z-20 flex justify-center items-center bg-background w-8 h-8 lg:w-14 lg:h-14 rounded-full overflow-hidden cursor-pointer" data-product-handle="{{ product.handle }}">
+      {% render 'icon-heart', class: "w-4 h-4 lg:w-6 lg:h-6" %}
+    </wishlist-button>
+    <button
+      type="button"
+      class="prev-main-{{ section.id }} absolute top-1/2 -translate-y-1/2 left-2.5 z-10 h-7 w-7 bg-neutral-100 disabled:!bg-neutral-100 leading-none cursor-pointer transition-all flex items-center justify-center p-0 rounded-full border-0 hover:bg-[#ccc] disabled:!bg-opacity-75 disabled:text-text"
+      name="previous"
+      aria-label="{{ 'accessibility.previous_slide' | t }}">
+      {%- render 'icon-chevron-left' -%}</button>
+    <button
+      type="button"
+      class="next-main-{{ section.id }} absolute top-1/2 -translate-y-1/2 right-2.5 z-10 h-7 w-7 bg-neutral-100 disabled:!bg-neutral-100 leading-none cursor-pointer transition-all flex items-center justify-center p-0 rounded-full border-0 hover:bg-[#ccc] disabled:!bg-opacity-75 disabled:text-text"
+      name="next"
+      aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-chevron-right' -%}</button>
+  </div>
+  {%- if media_count > 1 -%}
+    <div class="swiper sub-slider-media mt-2.5 !px-4 md:!px-0 overflow-hidden" thumbsSlider="" data-infor-swiper='{
+        "freeMode": true,
+        "watchSlidesProgress": true,
+        "spaceBetween": 10,
+        "slideToClickedSlide": true,
+        "slidesPerView": 4
+      }'>
+      <ul class="flex swiper-wrapper">
+        {%- if featured_media != null -%}
+          <li class="swiper-slide border border-transparent">
+            {% render 'product-thumbnail', media: featured_media, lazy_load: true, thumb: true %}
+          </li>
+        {%- endif -%}
+        {%- for media in product.media -%}
+          {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+            <li class="swiper-slide border border-transparent !w-16 md:!w-slide-4">
+            {% render 'product-thumbnail', media: media, lazy_load: true, thumb: true %}
+            </li>
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+
+    </div>
+  {%- endif -%}
+</media-gallery>

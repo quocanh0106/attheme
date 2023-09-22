@@ -30,5 +30,5 @@
   @apply mt-3;
 }
 .drop-content:not(.active) {
-  @apply before:content-empty before:absolute before:w-full before:h-20 before:left-0 before:bottom-0 before:bg-gradient-to-t before:from-secondary before:to-transparent;
+  @apply before:content-empty before:absolute before:w-full before:h-32 before:left-0 before:bottom-0 before:bg-gradient-to-t before:from-[#F5F5F5_41.67%] before:to-[rgba(245,245,245,0.00)_100%];
 }

@@ -1,0 +1,70 @@
+<modal-dialog id="PopupModal-Sizeguide" class="hidden fixed top-0 left-0 bg-black bg-opacity-20 w-full h-full z-20">
+  <div class="absolute p-4 lg:p-16 bg-background h-fit left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-h-screen w-full max-w-[calc(100vw - 30px)] lg:max-w-3xl scrollbar-thin overflow-y-auto">
+    <div class="size-guide-section">
+      <span class="close absolute top-6 right-6 cursor-pointer">{% render 'icon-close' %}</span>
+      <div class="main-size">
+        <div class="text-base font-semibold font-montserrat uppercase lg:text-xl text-center text-text">{{ 'products.product.size_guide_popup.find_your_size' | t }}</div>
+        <caculator-size class="block pb-10 border-b border-border mb-4" data-unit="in">
+          <ul class="size-unit flex text-center bg-border-secondary w-fit mx-auto rounded-full mt-4 mb-8 lg:mt-6 lg:mb-10 overflow-hidden">
+            <li class="cursor-pointer text-center text-xs lg:text-xl uppercase rounded-full py-1 lg:py-2 lg:px-11 min-w-[76px] transition-all change-resize change-resize-in active">in</li>
+            <li class="cursor-pointer text-center text-xs lg:text-xl uppercase rounded-full py-1 lg:py-2 lg:px-11 min-w-[76px] transition-all change-resize change-resize-cm">cm</li>
+          </ul>
+          <div class="text-base font-semibold font-montserrat uppercase lg:text-xl text-center text-text mb-4 lg:mb-6">{{ 'products.product.size_guide_popup.size_chart'| t }}</div>
+          <table tabindex="0" class="w-full text-center">
+            <thead>
+              <tr>
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="col">{{ 'products.product.size_guide_popup.size' | t }}</th>
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="col">{{ 'products.product.size_guide_popup.width' | t }}</th>
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="col">{{ 'products.product.size_guide_popup.length' | t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd:bg-[#F2F2F2]">
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="row">s</th>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-1" class="size-data" data-in="19.7">19.7</td>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-2" class="size-data" data-in="24.4">24.4</td>
+              </tr>
+              <tr class="odd:bg-[#F2F2F2]">
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="row">m</th>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-3" class="size-data" data-in="20.9">20.9</td>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-4" class="size-data" data-in="28.3">28.3</td>
+              </tr>
+              <tr class="odd:bg-[#F2F2F2]">
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="row">l</th>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-5" class="size-data" data-in="22.0">22.0</td>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-6" class="size-data" data-in="29.1">29.1</td>
+              </tr>
+              <tr class="odd:bg-[#F2F2F2]">
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="row">xl</th>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-7" class="size-data" data-in="22.8">22.8</td>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-8" class="size-data" data-in="29.9">29.9</td>
+              </tr>
+              <tr class="odd:bg-[#F2F2F2]">
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="row">xxl</th>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-9" class="size-data" data-in="24.4">24.4</td>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-10" class="size-data" data-in="30.7">30.7</td>
+              </tr>
+              <tr class="odd:bg-[#F2F2F2]">
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="row">3xl</th>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-11" class="size-data" data-in="25.2">25.2</td>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-12" class="size-data" data-in="31.5">31.5</td> 
+              </tr>
+              <tr class="odd:bg-[#F2F2F2]">
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="row">4xl</th>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-13" class="size-data" data-in="26.8">26.8</td>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-14" class="size-data" data-in="33.1">33.1</td>
+              </tr>
+              <tr class="odd:bg-[#F2F2F2]">
+                <th class="text-sm font-bold w-1/3 lg:text-base py-2.5 text-text font-montserrat uppercase" scope="row">5xl</th>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-15" class="size-data" data-in="28.3">28.3</td>
+                <td class="font-montserrat w-1/3 text-xs lg:text-sm text-subtext" id="size-16" class="size-data" data-in="34.6">34.6</td>
+              </tr>
+            </tbody>
+          </table>
+        </caculator-size>
+        <span class="block text-text text-sm">Length: Measured from hight point of shoulder from front.</span>
+        <span class="block text-text text-sm">Width: Measured across the chest one inch below armhole when laid flat.</span>
+      </div>
+    </div>
+  </div>
+</modal-dialog>

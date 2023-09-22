@@ -1,11 +1,31 @@
-{%- case media.media_type -%}
-  {%- when 'image' -%}
-    <img 
-      class="object-cover w-full h-full" 
-      src="{{ media | image_url: width: '240' }}" 
-      alt="{{ media.preview_image.alt }}"
-      width="240"
-      height="240"
-      loading="lazy"
-      >
-{%- endcase -%}
+{% assign aspect_ratio = media.aspect_ratio | default: 1.0 %}
+<div class="relative w-full" style="padding-bottom: {{ aspect_ratio | times: 100 }}%">
+  <img
+    srcset="{%- if media.preview_image.width >= 330 -%}
+      {{ media.preview_image | image_url: width: 330 }} 165w,{%- endif -%}
+    {%- if media.preview_image.width >= 720 -%}
+      {{ media.preview_image | image_url: width: 720 }} 360w,{%- endif -%}
+    {%- if media.preview_image.width >= 1066 -%}
+      {{ media.preview_image | image_url: width: 1066 }} 533w,{%- endif -%}
+    {%- if media.preview_image.width >= 1440 -%}
+      {{ media.preview_image | image_url: width: 1440 }} 720w,{%- endif -%}
+    {%- if media.preview_image.width >= 1880 -%}
+      {{ media.preview_image | image_url: width: 1880 }} 940w,{%- endif -%}
+    {%- if media.preview_image.width >= 2500 -%}
+      {{ media.preview_image | image_url: width: 2500 }} 1066w,{%- endif -%}"
+    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+    src="{{ media.preview_image | image_url }}"
+    {% if lazy_load %}
+    loading="lazy"
+    {% endif %}
+    class="absolute top-0 left-0 block w-full h-full"
+    {% if thumb %}
+    width="{{ media.preview_image.width | divided_by: 4 }}"
+    height="{{ media.preview_image.height | divided_by: 4 }}"
+    {% else %}
+    width="{{ media.preview_image.width }}"
+    height="{{ media.preview_image.height }}"
+    {% endif %}
+    data-media-id="{{ media.id }}"
+    alt="{{ media.preview_image | split: "/" | last | replace: "-", " " | split: "." | first }}">
+</div>

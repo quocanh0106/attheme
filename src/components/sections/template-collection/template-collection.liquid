@@ -77,9 +77,7 @@
           {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}
         {% endif %}
       </div>
-      <collection-loadmore data-click-loadmore="false" class="block mt-4 lg:mt-16 text-center{% if paginate.pages <= 1 %} hidden{% endif %} ">
-        <span data-href="{{ paginate.next.url }}" class="btn btn-2 border border-primary hover:border-border load-more_btn py-3 px-5">{{- 'sections.collection_template.load_more' | t -}}</span>
-
+      <collection-loadmore data-click-loadmore="false" class="block mt-6 lg:mt-12 text-center{% if paginate.pages <= 1 %} hidden{% endif %} ">
         <span id="ProductCountNumber" class="hidden">
           {% if paginate.items > 1 %}
             {{ 'sections.collection_template.product_count.other' | t: product_count: paginate.items }}
@@ -87,9 +85,10 @@
             {{ 'sections.collection_template.product_count.one' | t: product_count: paginate.items }}
           {% endif %}
         </span>
-        <div id="ProductCountLoadmore" class="viewing-currently-product text-sm text-text mt-3">
+        <div id="ProductCountLoadmore" class="viewing-currently-product text-xs mb-2.5">
           {{ 'sections.collection_template.current_view_html' | t: all_products_count: paginate.items , products_count: products_count }}
         </div>
+        <span data-href="{{ paginate.next.url }}" class="load-more_btn cursor-pointer block w-fit mx-auto bg-[#eee] rounded-[10px] text-secondary hover:text-background hover:bg-primary transition-all text-base leading-6 py-3 px-10">{{- 'sections.collection_template.load_more' | t -}}</span>
       </collection-loadmore>
     </div>
   </div>

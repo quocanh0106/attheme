@@ -1,0 +1,61 @@
+.sub-slider-media .swiper-slide-thumb-active {
+  @apply border-primary;
+}
+input:checked+label:not(.color) {
+  @apply bg-primary text-background border-primary;
+}
+
+input:checked+label.color {
+  @apply border-primary;
+}
+#customily-options {
+  @apply p-0 lg:p-6 lg:pb-0 !mb-6 lg:bg-[#FAFAFA];
+  #cl_optionsapp {
+    label {
+      @apply mt-0;
+    }
+    .help-text {
+      @apply text-xs text-[#9e9e9e];
+    }
+    .customily_option {
+      @apply pb-6 mb-0;
+    }
+  }
+  .option_name {
+    @apply font-heading text-sm mb-2 mt-0 font-medium;
+  }
+  .customily-download-button {
+    @apply uppercase font-semibold font-heading text-xs p-3 mb-2 bg-primary text-background hover:bg-primary hover:text-background transition-all rounded-none;
+  }
+  .cl_remove-image {
+    @apply bg-[#e6e6e6] py-3 px-5 rounded-sm font-heading text-xs hover:bg-primary;
+  }
+}
+#customily-preview-button {
+  -webkit-text-fill-color: initial !important;
+  @apply !w-full !h-10 lg:!h-13 !mb-4 !relative !top-0 !left-0 !uppercase !border !font-heading !text-background !bg-primary hover:!text-background hover:!bg-primary hover:!border-primary !whitespace-nowrap !inline-block !tracking-[0] !transition-all !cursor-pointer !shadow-none !underline-offset-[0.3rem] !no-underline !rounded-[100px] !border !font-semibold;
+}
+
+.product-form__submit,
+.product-form__submit.ld-over-inverse {
+  @apply !w-full !z-10 !h-10 !absolute !bottom-0 !left-0 lg:!h-13 !mb-4 !uppercase !border !font-heading !text-background !bg-primary !border-primary hover:!text-background hover:!bg-primary hover:!border !whitespace-nowrap !inline-block !tracking-[0] !transition-all !cursor-pointer !shadow-none !underline-offset-[0.3rem] !no-underline !rounded-[100px] !font-semibold;
+}
+
+.product-form__submit.ld-over-inverse.sticky-button {
+  @apply !rounded-none !fixed !bottom-0 !left-0 !border-0 !mb-0 !border-t lg:!border lg:!mb-4 lg:!absolute lg:!rounded-[100px];
+}
+.product-form__submit.ld-over-inverse.btn-secondary {
+  @apply !text-background !bg-primary !border hover:!text-background hover:!bg-primary hover:!border-primary;
+}
+accordion-toggle:not(.active) .icon-text::before {
+  @apply opacity-0 invisible;
+}
+.cl-canvas-container canvas {
+  @apply -z-10;
+}
+.sticky-header cart-notification {
+  @apply top-3 lg:top-[23px];
+}
+.change-resize.active {
+  @apply bg-primary text-secondary;
+}

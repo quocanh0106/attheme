@@ -173,7 +173,7 @@ module.exports = {
         15: '3.75rem',
         17: '4.25rem',
         18: '4.5rem',
-        25: '6.375rem',
+        25: '6.25rem',
         26: '6.5rem',
         '1/2': '50%',
         '1/3': 'calc(100%/3)',
@@ -241,6 +241,7 @@ module.exports = {
       },
       maxHeight: {
         '35': '8.75rem',
+        76: '19rem',
         searchmb: 'calc(100vh - 100%)',
         searchdt: 'calc(100vh + 60.8px - 100%)',
       },
