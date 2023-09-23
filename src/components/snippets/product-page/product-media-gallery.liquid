@@ -43,9 +43,36 @@
   endif
 -%}
 
-<media-gallery class="block">
-  <div class="relative swiper main-slider-media overflow-hidden" data-infor-swiper='{
+<media-gallery class="flex gap-5">
+  {%- if media_count > 1 -%}
+    <div class="swiper sub-slider-media !px-4 md:!px-0 max-w-1/5 w-full overflow-hidden" thumbsSlider="" data-infor-swiper='{
+        "direction": "vertical",
+        "freeMode": true,
+        "watchSlidesProgress": true,
+        "spaceBetween": 10,
+        "slideToClickedSlide": true,
+        "slidesPerView": 4
+      }'>
+      <ul class="flex flex-col swiper-wrapper">
+        {%- if featured_media != null -%}
+          <li class="swiper-slide !h-fit border-solid border-4 border-transparent rounded-[15px] overflow-hidden">
+            {% render 'product-thumbnail', media: featured_media, lazy_load: true, thumb: true %}
+          </li>
+        {%- endif -%}
+        {%- for media in product.media -%}
+          {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+            <li class="swiper-slide !h-fit border-solid border-4 border-transparent rounded-[15px] overflow-hidden">
+              {% render 'product-thumbnail', media: media, lazy_load: true, thumb: true %}
+            </li>
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+
+    </div>
+  {%- endif -%}
+  <div class="relative swiper main-slider-media overflow-hidden max-w-4/5 w-full h-fit aspect-1 rounded-[25px]" data-infor-swiper='{
       "modules": ["Navigation", "Thumbs"],
+      "direction": "vertical",
       "slidesPerView": 1,
       "spaceBetween": 10,
       "allowTouchMove": false,
@@ -54,17 +81,17 @@
         "prevEl": ".prev-main-{{ section.id }}"
       }
     }'>
-    <ul class="flex swiper-wrapper">
+    <ul class="flex flex-col swiper-wrapper">
       {%- if product.selected_or_first_available_variant.featured_media != null -%}
         {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
-        <li class="swiper-slide">
+        <li class="swiper-slide !h-fit">
           {%- assign media_position = 1 -%}
           {% render 'product-thumbnail', media: featured_media, lazy_load: false %}
         </li>
       {%- endif -%}
       {%- for media in product.media -%}
         {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
-          <li class="swiper-slide">
+          <li class="swiper-slide !h-fit">
             {%- liquid
               assign media_position = media_position | default: 0 | plus: 1
               assign lazy_load = false
@@ -77,8 +104,8 @@
         {%- endunless -%}
       {%- endfor -%}
     </ul>
-    <wishlist-button class="absolute top-4 right-4 z-20 flex justify-center items-center bg-background w-8 h-8 lg:w-14 lg:h-14 rounded-full overflow-hidden cursor-pointer" data-product-handle="{{ product.handle }}">
-      {% render 'icon-heart', class: "w-4 h-4 lg:w-6 lg:h-6" %}
+    <wishlist-button class="absolute bottom-4 right-4 z-20 flex justify-center border-primary border items-center bg-background text-primary w-8 h-8 lg:w-15 lg:h-15 rounded-full overflow-hidden cursor-pointer" data-product-handle="{{ product.handle }}">
+      {% render 'icon-heart', class: "w-4 h-4 lg:w-7 lg:h-7" %}
     </wishlist-button>
     <button
       type="button"
@@ -92,29 +119,4 @@
       name="next"
       aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-chevron-right' -%}</button>
   </div>
-  {%- if media_count > 1 -%}
-    <div class="swiper sub-slider-media mt-2.5 !px-4 md:!px-0 overflow-hidden" thumbsSlider="" data-infor-swiper='{
-        "freeMode": true,
-        "watchSlidesProgress": true,
-        "spaceBetween": 10,
-        "slideToClickedSlide": true,
-        "slidesPerView": 4
-      }'>
-      <ul class="flex swiper-wrapper">
-        {%- if featured_media != null -%}
-          <li class="swiper-slide border border-transparent">
-            {% render 'product-thumbnail', media: featured_media, lazy_load: true, thumb: true %}
-          </li>
-        {%- endif -%}
-        {%- for media in product.media -%}
-          {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
-            <li class="swiper-slide border border-transparent !w-16 md:!w-slide-4">
-            {% render 'product-thumbnail', media: media, lazy_load: true, thumb: true %}
-            </li>
-          {%- endunless -%}
-        {%- endfor -%}
-      </ul>
-
-    </div>
-  {%- endif -%}
 </media-gallery>

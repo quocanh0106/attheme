@@ -18,7 +18,7 @@
     {% if lazy_load %}
     loading="lazy"
     {% endif %}
-    class="absolute top-0 left-0 block w-full h-full"
+    class="absolute top-0 left-0 block w-full h-full object-cover"
     {% if thumb %}
     width="{{ media.preview_image.width | divided_by: 4 }}"
     height="{{ media.preview_image.height | divided_by: 4 }}"
