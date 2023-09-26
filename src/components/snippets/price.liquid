@@ -30,12 +30,12 @@
   endif
 -%}
 
-<div class="flex gap-1 items-end{% if template.name contains 'product' and show %} mb-4{% endif %}">
+<div class="flex gap-1 items-end{% if template.name contains 'product' and show %} my-10{% endif %}">
   {% if product %}
-    <div class="{% if compare_at_price > price %}text-secondary text-opacity-25 line-through text-xs md:text-sm font-medium{% else %}text-primary text-sm md:text-base font-bold{% if template.name contains 'product' and show %}font-normal{% else %}font-bold{% endif %}{% endif %} !leading-none">{{ compare_at_price | money }}</div>
-    <div class="text-primary text-sm md:text-base font-bold {% if template.name contains 'product' and show %}font-normal{% else %}font-bold{% endif %}{% unless compare_at_price > price %} hidden{% endunless %} !leading-none">{{ price | money }}</div>
+    <div class="{% if compare_at_price > price %}text-opacity-25 line-through text-xs md:text-sm font-medium{% else %}text-primary text-sm md:text-base font-bold{% endif %} !leading-none{% if template.name contains 'product' and show %} text-black lg:text-xl order-2 {% else %} text-secondary {% endif %}">{{ compare_at_price | money }}</div>
+    <div class="text-primary text-sm md:text-base font-bold {% if template.name contains 'product' and show %}lg:text-3xl order-1{% else %}font-bold{% endif %}{% unless compare_at_price > price %} hidden{% endunless %} !leading-none">{{ price | money }}</div>
   {% else %}
-    <div class="text-primary text-sm md:text-base font-bold {% if template.name contains 'product' and show %}font-normal{% else %}font-bold{% endif %} !leading-none">{{ price | money }}</div>
+    <div class="text-primary text-sm md:text-base font-bold {% if template.name contains 'product' and show %}lg:text-3xl{% else %}font-bold{% endif %} !leading-none">{{ price | money }}</div>
   {% endif %}
   {% unless product.selected_or_first_available_variant.unit_price_measurement == nil %}
     <small class="items-center{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% else %} flex{% endif %}">
@@ -50,15 +50,3 @@
     </small>
   {% endunless %}
 </div>
-{% if template.name contains 'product' and show %}
-  <div class="mb-4 h-6 relative">
-    <div 
-      class="absolute w-full top-0 left-0"
-      data-pp-message
-      data-pp-style-layout="text"
-      data-pp-style-logo-type="primary"
-      data-pp-style-text-color="black"
-      data-pp-amount="{{ price | money_without_currency | replace: ',', '.' }}">
-    </div>
-  </div>
-{% endif %}

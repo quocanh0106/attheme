@@ -109,14 +109,17 @@
     </wishlist-button>
     <button
       type="button"
-      class="prev-main-{{ section.id }} absolute top-1/2 -translate-y-1/2 left-2.5 z-10 h-7 w-7 bg-neutral-100 disabled:!bg-neutral-100 leading-none cursor-pointer transition-all flex items-center justify-center p-0 rounded-full border-0 hover:bg-[#ccc] disabled:!bg-opacity-75 disabled:text-text"
+      class="prev-main-{{ section.id }} absolute top-[calc(50%_-_24px)] -translate-y-1/2 right-2.5 z-10 h-10 w-10 hover:bg-backgorund disabled:!bg-background-opacity-20 leading-none cursor-pointer transition-all flex items-center justify-center p-0 rounded-full border-0 bg-background-opacity-80 disabled:!bg-opacity-75 disabled:text-text"
       name="previous"
       aria-label="{{ 'accessibility.previous_slide' | t }}">
-      {%- render 'icon-chevron-left' -%}</button>
+      {%- render 'icon-chevron-up' -%}</button>
     <button
       type="button"
-      class="next-main-{{ section.id }} absolute top-1/2 -translate-y-1/2 right-2.5 z-10 h-7 w-7 bg-neutral-100 disabled:!bg-neutral-100 leading-none cursor-pointer transition-all flex items-center justify-center p-0 rounded-full border-0 hover:bg-[#ccc] disabled:!bg-opacity-75 disabled:text-text"
+      class="next-main-{{ section.id }} absolute top-[calc(50%_+_24px)] -translate-y-1/2 right-2.5 z-10 h-10 w-10 hover:bg-backgorund disabled:!bg-background-opacity-20 leading-none cursor-pointer transition-all flex items-center justify-center p-0 rounded-full border-0 bg-background-opacity-80 disabled:!bg-opacity-75 disabled:text-text"
       name="next"
-      aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-chevron-right' -%}</button>
+      aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-chevron-down' -%}</button>
   </div>
 </media-gallery>
+<div class="free-shipping flex justify-center items-center text-subtext text-base gap-2.5 mt-4">
+  {% render 'icon-truck', class: 'text-primary' %}<span class="text-base font-medium leading-6">Estimated delivery time: <strong class="text-lg leading-6">Aug 23 - Aug 25</strong></span>
+</div>
