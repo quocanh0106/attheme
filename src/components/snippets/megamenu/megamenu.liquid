@@ -1,7 +1,7 @@
 <menu-drawer class="block page-width !px-0 lg:!px-4 fixed lg:static z-20 w-full h-full top-0 left-0 invisible lg:visible lg:before:content-none lg:translate-x-0 lg:bg-none 
                         before:content-empty before:bg-overlay before:top-0 before:left-0 before:absolute before:w-full before:h-full 
                         before:transition-all before:duration-500 before:backdrop-blur-sm" id="menu-drawer">
-  <menu-hover-effect class="block lg:flex lg:items-center lg:justify-between lg:gap-4 w-3/4 lg:w-full h-full ">
+  <div class="block lg:flex lg:items-center lg:justify-between lg:gap-4 w-3/4 lg:w-full h-full ">
     <ul class="flex flex-col lg:flex-row items-start justify-start w-full h-full lg:h-fit lg:items-center transition-all relative megamenu bg-background duration-500 -translate-x-full lg:translate-x-0">
       <li class="lg:hidden flex items-center justify-between w-full px-3 py-4 border-b border-border">
         <span class="h6 font-heading">Menu</span>
@@ -51,218 +51,232 @@
             endif
         %}
         <li class="flex h-fit lg:h-full group parent-menu-effect hover:!opacity-100 w-full lg:w-fit">
-          <div class="summary flex items-center justify-between w-full pr-3 lg:pr-0">
-            <a
-              href="{% if block.settings.url != blank %}{{ block.settings.url }}{% else %}#{% endif %}"
-              class="font-bold flex relative items-center px-3 lg:px-5 {% if forloop.first %}lg:pl-0 {% endif %}py-4 text-base text-secondary capitalize no-underline font-heading"
-              title="{{ block.settings.title }}">
-              <span class="before:!-bottom-4 before:!h-0.5 group-hover:before:w-full !leading-none">
-                {{ block.settings.title | split: '[' | first }}
-              </span>
+            <div class="summary flex items-center justify-between w-full pr-3 lg:pr-0">
+              <a
+                href="{% if block.settings.url != blank %}{{ block.settings.url }}{% else %}#{% endif %}"
+                class="font-bold flex relative items-center px-3 lg:px-5 {% if forloop.first %}lg:pl-0 {% endif %}py-4 text-base text-secondary capitalize no-underline font-heading"
+                title="{{ block.settings.title }}">
+                <span class="before:!-bottom-4 before:!h-0.5 group-hover:before:w-full !leading-none">
+                  {{ block.settings.title | split: '[' | first }}
+                </span>
 
-            </a>
+              </a>
+              {% if link.links != blank %}
+                {% render 'icon-right', class: 'lg:hidden' %}
+              {% endif %}
+            </div>
             {% if link.links != blank %}
-              {% render 'icon-right', class: 'lg:hidden' %}
-            {% endif %}
-          </div>
-          {% if link.links != blank %}
-            <div class="details -translate-x-full lg:translate-x-0 absolute top-0 left-0 lg:top-full z-20 text-left list-none block invisible opacity-0 text-sm w-full h-full lg:h-fit bg-background group-hover:lg:visible group-hover:lg:opacity-100 transition-all transition-menu shadow-megamenu">
-              <div class="page-width py-4 lg:py-6 flex flex-col lg:flex-row h-full lg:h-fit justify-between overflow-auto lg:overflow-hidden">
-                <menu-hover-effect class="flex flex-col {% if banner_image or banner_image_two %}lg:max-w-2/3 {% endif %}w-full h-fit lg:pr-5 pb-4 lg:pb-0 relative">
-                  <div class="back lg:hidden flex items-center w-full pb-4 border-b border-border">
-                    <span class="inline-block pr-2">{% render 'icon-left', class: "w-3 h-3" %}</span>
-                    <span class="h6 font-heading">{{ block.settings.title }}</span>
-                  </div>
-                  {% for child_link in link.links %}
-                    <div class="menu-effect flex w-full menu-group py-4 hover:!opacity-100 transition-all">
-                      {% liquid
-                      assign child_list_handle = child_link.title | handle 
-                      assign hasChild = false 
-                      if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 
-                        assign hasChild = true 
-                      endif 
-                      %}
-                      <div class="summary lg:max-w-1/5 w-full flex items-center justify-between gap-x-2.5">
-                        <a href="{{ child_link.url }}" class="font-medium uppercase">
-                          <span class="menu-group-hover:before:w-full">
-                            {{ child_link.title | split: '[' | first }}
-                            {%- if child_link.title contains '[' -%}
-                              <span class="label-menu" {% if child_link.title contains '(' %}style="background: {{ child_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ child_link.title | split: '[' | last | split: ']' | first }}</span>
-                            {%- endif -%}
-                          </span>
-                        </a>
+              <div class="details -translate-x-full lg:translate-x-0 absolute top-0 left-0 lg:top-full z-20 text-left list-none block invisible opacity-0 text-sm w-full h-full lg:h-fit bg-background group-hover:lg:visible group-hover:lg:opacity-100 transition-all transition-menu shadow-megamenu">
+                <div class="page-width py-4 lg:py-6 flex flex-col lg:flex-row h-full lg:h-fit justify-between overflow-auto lg:overflow-hidden">
+                  <div class="flex flex-col {% if banner_image or banner_image_two %}lg:max-w-2/3 {% endif %}w-full h-fit lg:pr-5 pb-4 lg:pb-0 relative">
+                    <div class="back lg:hidden flex items-center w-full pb-4 border-b border-border">
+                      <span class="inline-block pr-2">{% render 'icon-left', class: "w-3 h-3" %}</span>
+                      <span class="h6 font-heading">{{ block.settings.title }}</span>
+                    </div>
+                    {% for child_link in link.links %}
+                      <div class="menu-effect flex w-full menu-group py-4 hover:!opacity-100 transition-all">
+                        {% liquid
+                        assign child_list_handle = child_link.title | handle 
+                        assign hasChild = false 
+                        if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 
+                          assign hasChild = true 
+                        endif 
+                        %}
+                        <div class="summary lg:max-w-1/5 w-full flex items-center justify-between gap-x-2.5">
+                          <a href="{{ child_link.url }}" class="font-medium uppercase">
+                            <span class="menu-group-hover:before:w-full">
+                              {{ child_link.title | split: '[' | first }}
+                              {%- if child_link.title contains '[' -%}
+                                <span class="label-menu" {% if child_link.title contains '(' %}style="background: {{ child_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ child_link.title | split: '[' | last | split: ']' | first }}</span>
+                              {%- endif -%}
+                            </span>
+                          </a>
+                          {% if hasChild %}
+                            {% render 'icon-right' %}
+                          {% endif %}
+                        </div>
                         {% if hasChild %}
-                          {% render 'icon-right' %}
+                          <ul class="details scrollbar-thin -translate-x-full lg:translate-x-0 absolute w-full h-full bg-background top-0 right-0 lg:max-w-3/4 grid grid-rows-[min-content] auto-rows-min grid-cols-2 gap-2.5 opacity-0 invisible menu-group-hover:lg:visible menu-group-hover:lg:opacity-100 transition-all z-20 lg:overflow-auto">
+                            <li class="back lg:hidden flex items-center w-full pb-4 border-b border-border col-span-2 h-fit">
+                              <span class="inline-block pr-2">{% render 'icon-left', class: "w-3 h-3" %}</span>
+                              <span class="h6 font-heading">{{ child_link.title | split: '[' | first }}</span>
+                            </li>
+                            {% for grandchild_link in child_link.links %}
+                              <li>
+                                {% if grandchild_link.url != '#' %}
+                                  <a
+                                    href="{{ grandchild_link.url }}"
+                                    class="py-4 block font-medium capitalize"
+                                    title="{{ grandchild_link.title | split: '[' | first }}">
+                                    <span>
+                                      {{ grandchild_link.title | split: '[' | first }}
+                                      {%- if grandchild_link.title contains '[' -%}
+                                        <span class="label-menu" {% if grandchild_link.title contains '(' %}style="background: {{ grandchild_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ grandchild_link.title | split: '[' | last | split: ']' | first }}</span>
+                                      {%- endif -%}
+                                    </span>
+                                  </a>
+                                {% else %}
+                                  <span class="py-4 block font-medium capitalize">
+                                    <span>
+                                      {{ grandchild_link.title | split: '[' | first }}
+                                      {%- if grandchild_link.title contains '[' -%}
+                                        <span class="label-menu" {% if grandchild_link.title contains '(' %}style="background: {{ grandchild_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ grandchild_link.title | split: '[' | last | split: ']' | first }}</span>
+                                      {%- endif -%}
+                                    </span>
+                                  </span>
+                                {% endif %}
+                                {% if grandchild_link.links.size > 0 %}
+                                  <ul class="grid gap-y-1">
+                                    {% for lastchild_link in grandchild_link.links %}
+                                      <li>
+                                        <a href="{{ lastchild_link.url }}" title="{{ lastchild_link.title | split: '[' | first }}">
+                                          <span>
+                                            {{ lastchild_link.title | split: '[' | first }}
+                                            {%- if lastchild_link.title contains '[' -%}
+                                              <span class="label-menu" {% if lastchild_link.title contains '(' %}style="background: {{ grandchild_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ grandchild_link.title | split: '[' | last | split: ']' | first }}</span>
+                                            {%- endif -%}
+                                          </span>
+                                        </a>
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
                         {% endif %}
                       </div>
-                      {% if hasChild %}
-                        <ul class="details scrollbar-thin -translate-x-full lg:translate-x-0 absolute w-full h-full bg-background top-0 right-0 lg:max-w-3/4 grid grid-rows-[min-content] auto-rows-min grid-cols-2 gap-2.5 opacity-0 invisible menu-group-hover:lg:visible menu-group-hover:lg:opacity-100 transition-all z-20 lg:overflow-auto">
-                          <li class="back lg:hidden flex items-center w-full pb-4 border-b border-border col-span-2 h-fit">
-                            <span class="inline-block pr-2">{% render 'icon-left', class: "w-3 h-3" %}</span>
-                            <span class="h6 font-heading">{{ child_link.title | split: '[' | first }}</span>
-                          </li>
-                          {% for grandchild_link in child_link.links %}
-                            <li>
-                              {% if grandchild_link.url != '#' %}
-                                <a
-                                  href="{{ grandchild_link.url }}"
-                                  class="py-4 block font-medium capitalize"
-                                  title="{{ grandchild_link.title | split: '[' | first }}">
-                                  <span>
-                                    {{ grandchild_link.title | split: '[' | first }}
-                                    {%- if grandchild_link.title contains '[' -%}
-                                      <span class="label-menu" {% if grandchild_link.title contains '(' %}style="background: {{ grandchild_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ grandchild_link.title | split: '[' | last | split: ']' | first }}</span>
-                                    {%- endif -%}
-                                  </span>
-                                </a>
-                              {% else %}
-                                <span class="py-4 block font-medium capitalize">
-                                  <span>
-                                    {{ grandchild_link.title | split: '[' | first }}
-                                    {%- if grandchild_link.title contains '[' -%}
-                                      <span class="label-menu" {% if grandchild_link.title contains '(' %}style="background: {{ grandchild_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ grandchild_link.title | split: '[' | last | split: ']' | first }}</span>
-                                    {%- endif -%}
-                                  </span>
-                                </span>
-                              {% endif %}
-                              {% if grandchild_link.links.size > 0 %}
-                                <ul class="grid gap-y-1">
-                                  {% for lastchild_link in grandchild_link.links %}
-                                    <li>
-                                      <a href="{{ lastchild_link.url }}" title="{{ lastchild_link.title | split: '[' | first }}">
-                                        <span>
-                                          {{ lastchild_link.title | split: '[' | first }}
-                                          {%- if lastchild_link.title contains '[' -%}
-                                            <span class="label-menu" {% if lastchild_link.title contains '(' %}style="background: {{ grandchild_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ grandchild_link.title | split: '[' | last | split: ']' | first }}</span>
-                                          {%- endif -%}
-                                        </span>
-                                      </a>
-                                    </li>
-                                  {% endfor %}
-                                </ul>
-                              {% endif %}
-                            </li>
-                          {% endfor %}
-                        </ul>
+                    {% endfor %}
+                  </div>
+                  {% if banner_image or banner_image_two %}
+                    <div data-block-id="{{ blockid }}" class="h-fit py-6 bg-[#ebeeee] lg:max-w-1/3 w-full">
+                      {% if title_img_mega_menu != blank %}
+                        <p class="uppercase m-0 mb-2 p-0 px-8 font-semibold text-xs">{{ title_img_mega_menu }}</p>
+                      {% endif %}
+                      {% if enable_banner %}
+                        {% if banner_image %}
+                          <div class="px-8">
+                            <a href="{% if banner_url != blank %} {{ banner_url }} {% else %}#{% endif %}" class="block w-full">
+                              <img srcset="{{ banner_image | image_url: width: 320 }} 320w"src="{{ banner_image | image_url: width: 320 }}"class="w-full"sizes="calc(100vw - 30px)"{% if banner_image.alt != blank %}alt="{{ banner_image.alt | escape }}"{% else %}alt="{{ banner_image | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}loading="lazy"width="{%- if banner_image.width >= 360 -%}360{% else %}{{ banner_image.width }}{%- endif -%}"height="{%- if banner_image.height >= 240 -%}240{% else %}{{ banner_image.height }}{%- endif -%}">
+                            </a>
+                          </div>
+                        {% endif %}
+                      {% endif %}
+                      {% if enable_banner_two %}
+                        {% if banner_image_two %}
+                          <div class="px-8">
+                            <a href="{% if banner_url_two != blank %} {{ banner_url_two }} {% else %}#{% endif %}" class="block w-full">
+                              <img srcset="{{ banner_image_two | image_url: width: 320 }} 320w"src="{{ banner_image_two | image_url: width: 320 }}"class="w-full"sizes="calc(100vw - 30px)"loading="lazy"{% if banner_image_two.alt != blank %}alt="{{ banner_image_two.alt | escape }}"{% else %}alt="{{ banner_image_two | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}width="{%- if banner_image.width >= 360 -%}360{% else %}{{ banner_image.width }}{%- endif -%}"height="{%- if banner_image.height >= 240 -%}240{% else %}{{ banner_image.height }}{%- endif -%}">
+                            </a>
+                          </div>
+                        {% endif %}
                       {% endif %}
                     </div>
-                  {% endfor %}
-                </menu-hover-effect>
-                {% if banner_image or banner_image_two %}
-                  <div data-block-id="{{ blockid }}" class="h-fit py-6 bg-[#ebeeee] lg:max-w-1/3 w-full">
-                    {% if title_img_mega_menu != blank %}
-                      <p class="uppercase m-0 mb-2 p-0 px-8 font-semibold text-xs">{{ title_img_mega_menu }}</p>
-                    {% endif %}
-                    {% if enable_banner %}
-                      {% if banner_image %}
-                        <div class="px-8">
-                          <a href="{% if banner_url != blank %} {{ banner_url }} {% else %}#{% endif %}" class="block w-full">
-                            <img srcset="{{ banner_image | image_url: width: 320 }} 320w"src="{{ banner_image | image_url: width: 320 }}"class="w-full"sizes="calc(100vw - 30px)"{% if banner_image.alt != blank %}alt="{{ banner_image.alt | escape }}"{% else %}alt="{{ banner_image | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}loading="lazy"width="{%- if banner_image.width >= 360 -%}360{% else %}{{ banner_image.width }}{%- endif -%}"height="{%- if banner_image.height >= 240 -%}240{% else %}{{ banner_image.height }}{%- endif -%}">
-                          </a>
-                        </div>
-                      {% endif %}
-                    {% endif %}
-                    {% if enable_banner_two %}
-                      {% if banner_image_two %}
-                        <div class="px-8">
-                          <a href="{% if banner_url_two != blank %} {{ banner_url_two }} {% else %}#{% endif %}" class="block w-full">
-                            <img srcset="{{ banner_image_two | image_url: width: 320 }} 320w"src="{{ banner_image_two | image_url: width: 320 }}"class="w-full"sizes="calc(100vw - 30px)"loading="lazy"{% if banner_image_two.alt != blank %}alt="{{ banner_image_two.alt | escape }}"{% else %}alt="{{ banner_image_two | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}width="{%- if banner_image.width >= 360 -%}360{% else %}{{ banner_image.width }}{%- endif -%}"height="{%- if banner_image.height >= 240 -%}240{% else %}{{ banner_image.height }}{%- endif -%}">
-                          </a>
-                        </div>
-                      {% endif %}
-                    {% endif %}
-                  </div>
-                {% endif %}
+                  {% endif %}
+                </div>
               </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+        <li class="flex lg:hidden items-center gap-x-4 lg:gap-x-10 m-0 p-4 justify-end w-fit lg:w-full lg:max-w-1/2">
+          <button type="button" onclick="document.getElementById('open-search').click()" class="w-5 h-5 text-primary">{% render 'icon-search' %}</button>
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="account" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5">
+            {% render 'icon-customer', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
+            <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Account</span>
+          </a>
+          <a href="/pages/wishlist" title="account" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5">
+            {% render 'icon-wishlist', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
+            <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Wishlist</span>
+            <wishlist-count class="absolute bg-secondary text-success w-4 h-4 lg:w-5 lg:h-5 rounded-full flex justify-center items-center -top-1 left-0 -translate-x-1/2" style="display:none;">
+              <span aria-hidden="true" class="flex justify-center items-center h-full text-xs lg:text-base leading-none font-bold"></span>
+            </wishlist-count>
+          </a>
+        </li>
+        <li class="lg:hidden w-ful px-3 mt-2">
+          <a
+            href="{{ routes.root_url }}"
+            class="inline-block lg:hidden no-underline"
+            title="{{ shop.name }}"
+            style="max-width: {{ settings.logo_width_mb }}px;">
+            {%- if settings.logo_mb != blank -%}
+              {%- assign logo_mb_alt = settings.logo_mb.alt | default: shop.name | escape -%}
+              {%- assign logo_mb_height = settings.logo_mb_width | divided_by: settings.logo_mb.aspect_ratio -%}
+              <img
+                srcset="{%- if settings.logo_mb.width >= 100 -%}
+                {{ settings.logo_mb | img_url: '100x' }} 100w,{%- endif -%}
+              {%- if settings.logo_mb.width >= 120 -%}
+                {{ settings.logo_mb | img_url: '120x' }} 120w,{%- endif -%}
+              {%- if settings.logo_mb.width >= 140 -%}
+                {{ settings.logo_mb | img_url: '140x' }} 140w,{%- endif -%}
+              {%- if settings.logo_mb.width >= 160 -%}
+                {{ settings.logo_mb | img_url: '160x' }} 160w,{%- endif -%}
+              {%- if settings.logo_mb.width >= 180 -%}
+                {{ settings.logo_mb | img_url: '180x' }} 180w,{%- endif -%}
+              {%- if settings.logo_mb.width >= 200 -%}
+                {{ settings.logo_mb | img_url: '200x' }} 200w,{%- endif -%}
+              {{ settings.logo_mb | img_url: 'master' }} {{ settings.logo_mb_width }}w"
+              src="{{ settings.logo_mb | image_url: width: settings.logo_width_mb }}"
+              loading="lazy"
+              sizes="{{ settings.logo_width_mb }}px"
+              width="{{ settings.logo_width_mb }}"
+              height="{{ logo_mb_height }}"
+              alt="{{ logo_mb_alt }}">
+            {%- else -%}
+              <span class="h3">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+        </li>
+        {% if section.settings.banner_image_mb_1 != blank or section.settings.banner_image_mb_2 != blank %}
+          <li class="lg:hidden w-ful px-3 h-fit py-6 bg-[#ebeeee] lg:max-w-1/3 w-full">
+            <p class="uppercase m-0 mb-2 p-0 px-8 font-semibold text-xs">
+              {{ section.settings.title_img_mega_menu_mb }}</p>
+            <div class="px-8">
+              {% if section.settings.banner_image_mb_1 != blank %}
+                <a href="{% if section.settings.banner_url_mb %}{{ section.settings.banner_url_mb }}{% else %}#{% endif %}" class="block w-full">
+                  <img
+                    srcset="{%- if section.settings.banner_image_mb_1.width >= 180 -%}
+                    {{ section.settings.banner_image_mb_1 | image_url: width: 180 }} 180w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_1.width >= 360 -%}
+                    {{ section.settings.banner_image_mb_1 | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_1.width >= 540 -%}
+                    {{ section.settings.banner_image_mb_1 | image_url: width: 540 }} 540w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_1.width >= 720 -%}
+                    {{ section.settings.banner_image_mb_1 | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_1.width >= 900 -%}
+                    {{ section.settings.banner_image_mb_1 | image_url: width: 900 }} 900w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_1.width >= 1080 -%}
+                    {{ section.settings.banner_image_mb_1 | image_url: width: 1080 }} 1080w{%- endif -%}"
+                  src="{{ section.settings.banner_image_mb_1 | image_url: width: 737 }}"
+                  sizes="calc(100vw - 30px)"
+                  class="w-full"
+                  {% if section.settings.banner_image_mb_1.alt != blank %}alt="{{ section.settings.banner_image_mb_1.alt | escape }}"{% else %}alt="{{ section.settings.banner_image_mb_1 | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}loading="lazy"width="{{ section.settings.banner_image_mb_1.width }}"height="{{ section.settings.banner_image_mb_1.height }}">
+                </a>
+              {% endif %}
+              {% if section.settings.banner_image_mb_2 != blank %}
+                <a href="{% if section.settings.banner_url_mb_2 %}{{ section.settings.banner_url_mb_2 }}{% else %}#{% endif %}" class="block w-full">
+                  <img
+                    srcset="{%- if section.settings.banner_image_mb_2.width >= 180 -%}
+                    {{ section.settings.banner_image_mb_2 | image_url: width: 180 }} 180w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_2.width >= 360 -%}
+                    {{ section.settings.banner_image_mb_2 | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_2.width >= 540 -%}
+                    {{ section.settings.banner_image_mb_2 | image_url: width: 540 }} 540w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_2.width >= 720 -%}
+                    {{ section.settings.banner_image_mb_2 | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_2.width >= 900 -%}
+                    {{ section.settings.banner_image_mb_2 | image_url: width: 900 }} 900w,{%- endif -%}
+                  {%- if section.settings.banner_image_mb_2.width >= 1080 -%}
+                    {{ section.settings.banner_image_mb_2 | image_url: width: 1080 }} 1080w{%- endif -%}"
+                  src="{{ section.settings.banner_image_mb_2 | image_url: width: 737 }}"
+                  sizes="calc(100vw - 30px)"
+                  class="w-full"
+                  {% if section.settings.banner_image_mb_2.alt != blank %}alt="{{ section.settings.banner_image_mb_2.alt | escape }}"{% else %}alt="{{ section.settings.banner_image_mb_2 | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}loading="lazy"class="motion-reduce"width="{{ section.settings.banner_image_mb_2.width }}"height="{{ section.settings.banner_image_mb_2.height }}">
+                </a>
+              {% endif %}
             </div>
-          {% endif %}
-        </li>
-      {% endfor %}
-      <li class="lg:hidden w-ful px-3 mt-2">
-        <a
-          href="{{ routes.root_url }}"
-          class="inline-block lg:hidden no-underline"
-          title="{{ shop.name }}"
-          style="max-width: {{ settings.logo_width_mb }}px;">
-          {%- if settings.logo_mb != blank -%}
-            {%- assign logo_mb_alt = settings.logo_mb.alt | default: shop.name | escape -%}
-            {%- assign logo_mb_height = settings.logo_mb_width | divided_by: settings.logo_mb.aspect_ratio -%}
-            <img
-              srcset="{%- if settings.logo_mb.width >= 100 -%}
-              {{ settings.logo_mb | img_url: '100x' }} 100w,{%- endif -%}
-            {%- if settings.logo_mb.width >= 120 -%}
-              {{ settings.logo_mb | img_url: '120x' }} 120w,{%- endif -%}
-            {%- if settings.logo_mb.width >= 140 -%}
-              {{ settings.logo_mb | img_url: '140x' }} 140w,{%- endif -%}
-            {%- if settings.logo_mb.width >= 160 -%}
-              {{ settings.logo_mb | img_url: '160x' }} 160w,{%- endif -%}
-            {%- if settings.logo_mb.width >= 180 -%}
-              {{ settings.logo_mb | img_url: '180x' }} 180w,{%- endif -%}
-            {%- if settings.logo_mb.width >= 200 -%}
-              {{ settings.logo_mb | img_url: '200x' }} 200w,{%- endif -%}
-            {{ settings.logo_mb | img_url: 'master' }} {{ settings.logo_mb_width }}w"
-            src="{{ settings.logo_mb | image_url: width: settings.logo_width_mb }}"
-            loading="lazy"
-            sizes="{{ settings.logo_width_mb }}px"
-            width="{{ settings.logo_width_mb }}"
-            height="{{ logo_mb_height }}"
-            alt="{{ logo_mb_alt }}">
-          {%- else -%}
-            <span class="h3">{{ shop.name }}</span>
-          {%- endif -%}
-        </a>
-      </li>
-      {% if section.settings.banner_image_mb_1 != blank or section.settings.banner_image_mb_2 != blank %}
-        <li class="lg:hidden w-ful px-3 h-fit py-6 bg-[#ebeeee] lg:max-w-1/3 w-full">
-          <p class="uppercase m-0 mb-2 p-0 px-8 font-semibold text-xs">
-            {{ section.settings.title_img_mega_menu_mb }}</p>
-          <div class="px-8">
-            {% if section.settings.banner_image_mb_1 != blank %}
-              <a href="{% if section.settings.banner_url_mb %}{{ section.settings.banner_url_mb }}{% else %}#{% endif %}" class="block w-full">
-                <img
-                  srcset="{%- if section.settings.banner_image_mb_1.width >= 180 -%}
-                  {{ section.settings.banner_image_mb_1 | image_url: width: 180 }} 180w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_1.width >= 360 -%}
-                  {{ section.settings.banner_image_mb_1 | image_url: width: 360 }} 360w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_1.width >= 540 -%}
-                  {{ section.settings.banner_image_mb_1 | image_url: width: 540 }} 540w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_1.width >= 720 -%}
-                  {{ section.settings.banner_image_mb_1 | image_url: width: 720 }} 720w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_1.width >= 900 -%}
-                  {{ section.settings.banner_image_mb_1 | image_url: width: 900 }} 900w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_1.width >= 1080 -%}
-                  {{ section.settings.banner_image_mb_1 | image_url: width: 1080 }} 1080w{%- endif -%}"
-                src="{{ section.settings.banner_image_mb_1 | image_url: width: 737 }}"
-                sizes="calc(100vw - 30px)"
-                class="w-full"
-                {% if section.settings.banner_image_mb_1.alt != blank %}alt="{{ section.settings.banner_image_mb_1.alt | escape }}"{% else %}alt="{{ section.settings.banner_image_mb_1 | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}loading="lazy"width="{{ section.settings.banner_image_mb_1.width }}"height="{{ section.settings.banner_image_mb_1.height }}">
-              </a>
-            {% endif %}
-            {% if section.settings.banner_image_mb_2 != blank %}
-              <a href="{% if section.settings.banner_url_mb_2 %}{{ section.settings.banner_url_mb_2 }}{% else %}#{% endif %}" class="block w-full">
-                <img
-                  srcset="{%- if section.settings.banner_image_mb_2.width >= 180 -%}
-                  {{ section.settings.banner_image_mb_2 | image_url: width: 180 }} 180w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_2.width >= 360 -%}
-                  {{ section.settings.banner_image_mb_2 | image_url: width: 360 }} 360w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_2.width >= 540 -%}
-                  {{ section.settings.banner_image_mb_2 | image_url: width: 540 }} 540w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_2.width >= 720 -%}
-                  {{ section.settings.banner_image_mb_2 | image_url: width: 720 }} 720w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_2.width >= 900 -%}
-                  {{ section.settings.banner_image_mb_2 | image_url: width: 900 }} 900w,{%- endif -%}
-                {%- if section.settings.banner_image_mb_2.width >= 1080 -%}
-                  {{ section.settings.banner_image_mb_2 | image_url: width: 1080 }} 1080w{%- endif -%}"
-                src="{{ section.settings.banner_image_mb_2 | image_url: width: 737 }}"
-                sizes="calc(100vw - 30px)"
-                class="w-full"
-                {% if section.settings.banner_image_mb_2.alt != blank %}alt="{{ section.settings.banner_image_mb_2.alt | escape }}"{% else %}alt="{{ section.settings.banner_image_mb_2 | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}loading="lazy"class="motion-reduce"width="{{ section.settings.banner_image_mb_2.width }}"height="{{ section.settings.banner_image_mb_2.height }}">
-              </a>
-            {% endif %}
-          </div>
-        </li>
-      {% endif %}
-    </ul>
-    <a href="#" class="absolute right-4 top-1/2 -translate-y-1/2 bright-link lg:flex items-center gap-2 hidden">{% render 'icon-truck', class: "w-6 h-5" %} <span class="w-max text-xs leading-none"> Order Tracking</span></a>
-  </menu-hover-effect>
+          </li>
+        {% endif %}
+      </ul>
+      <a href="#" class="absolute right-4 top-1/2 -translate-y-1/2 bright-link lg:flex items-center gap-2 hidden">{% render 'icon-truck', class: "w-6 h-5" %} <span class="w-max text-xs leading-none"> Order Tracking</span></a>
+    </div>
 </menu-drawer>

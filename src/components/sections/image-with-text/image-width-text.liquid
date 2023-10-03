@@ -17,22 +17,22 @@
 {%- endstyle -%}
 {% if section.blocks.size > 0 %}
   <div data-section-id="{{ section.id }}">
-    <div class="page-width flex flex-wrap items-center justify-between">
+    <div class="page-width flex flex-wrap md:flex-nowrap md:gap-4 lg:gap-25 items-center justify-between">
       {% for block in section.blocks %}
         {% if block.type == 'image' %}
           {%  liquid 
-              assign position = ""
-              if block.settings.position == "top"
-                assign position = "md:-top-11"
-              elsif block.settings.position == "bottom"
-                assign position = "md:-bottom-11"
-              endif
-              assign position_mobile = ""
-              if block.settings.position_mobile == "top"
-                assign position_mobile = "-top-11"
-              elsif block.settings.position_mobile == "bottom"
-                assign position_mobile = "-bottom-11"
-              endif
+            assign position = ""
+            if block.settings.position == "top"
+              assign position = "md:-top-11"
+            elsif block.settings.position == "bottom"
+              assign position = "md:-bottom-11"
+            endif
+            assign position_mobile = ""
+            if block.settings.position_mobile == "top"
+              assign position_mobile = "-top-11"
+            elsif block.settings.position_mobile == "bottom"
+              assign position_mobile = "-bottom-11"
+            endif
           %}
           {% if block.settings.image != blank %}
             <{% if block.settings.url != blank %}a href="{{ block.settings.url }}" target="_blank"{% else %}div{% endif %} class="relative {{ position_mobile }} {{ position }} w-full md:w-fit md:max-w-[533px] shadow-button overflow-hidden" style="border-radius: {{ block.settings.radius_image }}px;">
@@ -66,7 +66,6 @@
             </div>
           {% endif %}
         {% endif %}
-
       {% endfor %}
     </div>
   </div>

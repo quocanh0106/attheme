@@ -7,7 +7,6 @@
     <meta content="" name="theme-color">
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-
     {{ settings.custom_code_all }}
 
     {%- if settings.favicon != blank -%}
@@ -65,7 +64,8 @@
       :root {
         --font-heading: {{ settings.heading_font }};
         --font-base: {{ settings.base_font }};
-        --page-width: {{ settings.page_width | plus: 32 | divided_by: 16.0 | append: 'rem' }};
+        --rem: {{ settings.rem }}px;
+        --page-width: {{ settings.page_width | plus: settings.rem | plus: settings.rem | append: 'px' }};
         --color-primary: {{ settings.color_primary }};
         --color-secondary: {{ settings.color_secondary }};
         --color-background: {{ settings.color_background }};
@@ -129,6 +129,7 @@
         currency_format: '{{ cart.currency.symbol }}{% raw %}{{ amount }}{% endraw %}'
       };
     </script>
+    <meta name="robots" content="noindex,nofollow">
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">

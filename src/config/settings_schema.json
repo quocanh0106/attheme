@@ -61,6 +61,16 @@
     "settings": [
       {
         "type": "range",
+        "id": "rem",
+        "min": 12,
+        "max": 16,
+        "step": 2,
+        "default": 16,
+        "unit": "px",
+        "label": "Rem"
+      },
+      {
+        "type": "range",
         "id": "page_width",
         "min": 1100,
         "max": 1300,

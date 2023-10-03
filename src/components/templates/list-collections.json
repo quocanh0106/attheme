@@ -1,1 +1,31 @@
-{"sections":{"template":{"type":"template-list-collections","settings":{}}},"order":["template"]}
+{
+  "sections": {
+    "72b922c6-d729-4b54-b96e-64249f23ba4c": {
+      "type": "page-banner",
+      "settings": {
+        "color_title": "#333333",
+        "color_subtitle": "#E6E6E6",
+        "background_color": "#ffffff",
+        "subtile": "",
+        "margin_top": 60,
+        "margin_bottom": 60
+      }
+    },
+    "template": {
+      "type": "template-list-collections",
+      "settings": {
+        "block_heading_tag": "h3",
+        "block_ratio": "square",
+        "block_radius": 20,
+        "block_sort": "title",
+        "col_dt": 4,
+        "col_tl": 3,
+        "col_mb": 2
+      }
+    }
+  },
+  "order": [
+    "72b922c6-d729-4b54-b96e-64249f23ba4c",
+    "template"
+  ]
+}

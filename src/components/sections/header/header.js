@@ -1,28 +1,3 @@
-class MenuHoverEffect extends HTMLElement {
-  constructor() {
-    super();
-    this.menu = this?.querySelectorAll('.menu-effect');
-    if (this.querySelectorAll('.parent-menu-effect').length) {
-      this.menu = this.querySelectorAll('.parent-menu-effect');
-    }
-    this.menu.forEach(menuchild => {
-      menuchild?.addEventListener('mouseover', () => {
-        this.menu.forEach(item => {
-          item.classList.add('opacity-50');
-        });
-      });
-
-      menuchild?.addEventListener('mouseout', () => {
-        this.menu.forEach(item => {
-          item.classList.remove('opacity-50');
-        });
-      });
-    });
-  }
-}
-
-customElements.define('menu-hover-effect', MenuHoverEffect);
-
 class MenuDrawer extends HTMLElement {
   constructor() {
     super();
