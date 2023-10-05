@@ -69,10 +69,10 @@ modal-opener.bright-link {
 /***** Button ******/
 
 .btn {
-  @apply font-heading capitalize text-background rounded-[100px] font-bold bg-primary border border-solid border-primary leading-none hover:bg-background transition-all cursor-pointer no-underline;
+  @apply font-heading capitalize text-background rounded-[100px] font-bold bg-primary border border-solid border-primary leading-none hover:bg-primary-opacity-30 transition-all cursor-pointer no-underline;
 }
 .btn-2 {
-  @apply hover:text-background hover:bg-primary;
+  @apply text-primary bg-background;
 }
 .btn.active {
   @apply btn-2;
