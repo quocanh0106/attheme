@@ -3,10 +3,10 @@
     "breadcrumb": {
       "type": "breadcrumb",
       "settings": {
-        "background_color": "#FFFFFF",
-        "color_text_breadcrumb_link": "#333",
-        "color_text_breadcrumb_link_hover": "#EEAB47",
-        "color_text_breadcrumb": "#EEAB47",
+        "background_color": "#ffffff",
+        "color_text_breadcrumb_link": "#333333",
+        "color_text_breadcrumb_link_hover": "#eeab47",
+        "color_text_breadcrumb": "#eeab47",
         "padding_top": 18,
         "padding_bottom": 18,
         "padding_top_mb": 16,
@@ -18,11 +18,6 @@
       "blocks": {
         "title": {
           "type": "title",
-          "settings": {
-          }
-        },
-        "judgeme_preview_badge_product_page_2d328a59": {
-          "type": "shopify:\/\/apps\/judge-me-product-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
           }
         },
@@ -42,11 +37,9 @@
             "show_shipping": true
           }
         }
-
       },
       "block_order": [
         "title",
-        "judgeme_preview_badge_product_page_2d328a59",
         "price",
         "variant_picker",
         "buy_buttons"

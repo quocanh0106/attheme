@@ -1,7 +1,9 @@
 {
   "sections": {
     "breadcrumb": {
-      "type": "breadcrumb"
+      "type": "breadcrumb",
+      "settings": {
+      }
     },
     "page-banner": {
       "type": "page-banner",

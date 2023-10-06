@@ -6,28 +6,28 @@
         "4a230095-d237-4652-904d-88af9453247b": {
           "type": "Text",
           "settings": {
-            "heading": "Beyond Just A Prensent",
+            "heading": "Personalized Gifts For Everyone",
             "heading_tag": "h2",
-            "description": "Discover unique gift ideas from Personal House and customise your present with our personalisation options"
+            "description": "Discover unique gift ideas from Personal Sunday and customise your present with our personalisation options"
           }
         },
-        "58f3421f-26fc-4002-a0c9-fc10eed69498": {
+        "55e59f89-1cfd-4224-88a9-2abb075f2a00": {
           "type": "image",
           "settings": {
             "url": "",
-            "image": "shopify:\/\/shop_images\/personalised-gifts-banner_1_b8849248-bbfd-4a84-9cba-cd97845e570f.png",
-            "radius_image": 20,
-            "position": "bottom",
+            "image": "shopify:\/\/shop_images\/custom-halloween-gifts-banner-01.jpg",
+            "radius_image": 25,
+            "position": "center",
             "position_mobile": "bottom"
           }
         }
       },
       "block_order": [
         "4a230095-d237-4652-904d-88af9453247b",
-        "58f3421f-26fc-4002-a0c9-fc10eed69498"
+        "55e59f89-1cfd-4224-88a9-2abb075f2a00"
       ],
       "settings": {
-        "background_color": "#eeab47",
+        "background_color": "#fdcd52",
         "text_color": "#000000",
         "padding_top_mb": 44,
         "padding_bottom_mb": 0,
@@ -36,7 +36,7 @@
         "margin_top_mb": 0,
         "margin_bottom_mb": 50,
         "margin_top": 0,
-        "margin_bottom": 50
+        "margin_bottom": 100
       }
     },
     "image-with-text-2": {
@@ -46,18 +46,18 @@
           "type": "image",
           "settings": {
             "url": "",
-            "image": "shopify:\/\/shop_images\/personalised-gifts-banner_2.png",
+            "image": "shopify:\/\/shop_images\/christmas-funny-gifts-banner-01.jpg",
             "radius_image": 20,
             "position": "bottom",
-            "position_mobile": "top"
+            "position_mobile": "bottom"
           }
         },
         "bf5d18f2-91af-4de2-bd5a-eb167bdf96c7": {
           "type": "Text",
           "settings": {
-            "heading": "Personalised Gifts For Everyone",
+            "heading": "Personalized Gifts For All Seasons",
             "heading_tag": "h2",
-            "description": "Discover unique gift ideas from Personal House and customise your present with our personalisation options"
+            "description": "Discover unique gift ideas from Personal Sunday and customise your present with our personalisation options"
           }
         }
       },
@@ -66,16 +66,16 @@
         "bf5d18f2-91af-4de2-bd5a-eb167bdf96c7"
       ],
       "settings": {
-        "background_color": "#ffe771",
+        "background_color": "#9394ff",
         "text_color": "#000000",
         "padding_top_mb": 0,
-        "padding_bottom_mb": 44,
+        "padding_bottom_mb": 0,
         "padding_top": 0,
         "padding_bottom": 0,
-        "margin_top_mb": 100,
+        "margin_top_mb": 50,
         "margin_bottom_mb": 0,
-        "margin_top": 100,
-        "margin_bottom": 0
+        "margin_top": 0,
+        "margin_bottom": 100
       }
     },
     "image-with-text-3": {
@@ -84,16 +84,15 @@
         "6c34c35c-1454-4c8f-ae4c-db6583e027a6": {
           "type": "Text",
           "settings": {
-            "heading": "Unique Gifts For Everyone Occasion",
+            "heading": "Personalized Gifts For Your Sunday",
             "heading_tag": "h2",
-            "description": "Discover unique gift ideas from Personal House and customise your present with our personalisation options"
+            "description": "Discover unique gift ideas from Personal Sunday and customise your present with our personalisation options"
           }
         },
         "b8f488fd-4a3c-4116-bd16-1ac2483337ff": {
           "type": "image",
           "settings": {
             "url": "",
-            "image": "shopify:\/\/shop_images\/personalised-gifts-banner_3.png",
             "radius_image": 20,
             "position": "top",
             "position_mobile": "bottom"
@@ -107,14 +106,14 @@
       "settings": {
         "background_color": "#87d6f2",
         "text_color": "#000000",
-        "padding_top_mb": 44,
+        "padding_top_mb": 0,
         "padding_bottom_mb": 0,
         "padding_top": 0,
         "padding_bottom": 0,
         "margin_top_mb": 0,
         "margin_bottom_mb": 50,
         "margin_top": 50,
-        "margin_bottom": 50
+        "margin_bottom": 100
       }
     },
     "image-with-text-4": {
@@ -124,7 +123,6 @@
           "type": "image",
           "settings": {
             "url": "",
-            "image": "shopify:\/\/shop_images\/personalised-gifts-banner_4.png",
             "radius_image": 20,
             "position": "bottom",
             "position_mobile": "top"
@@ -155,12 +153,51 @@
         "margin_top": 100,
         "margin_bottom": 0
       }
+    },
+    "1e8d6f55-7817-4feb-9182-cb130b7f9050": {
+      "type": "image-width-text",
+      "blocks": {
+        "4dee9515-82d2-4f4a-ac7c-42f4d4d3bee9": {
+          "type": "Text",
+          "settings": {
+            "heading": "Personal Sunday: Personalized Gifts Day!",
+            "heading_tag": "h2",
+            "description": ""
+          }
+        },
+        "6e56058f-346f-4e92-9112-20a6826945ac": {
+          "type": "image",
+          "settings": {
+            "url": "",
+            "radius_image": 20,
+            "position": "bottom",
+            "position_mobile": "bottom"
+          }
+        }
+      },
+      "block_order": [
+        "4dee9515-82d2-4f4a-ac7c-42f4d4d3bee9",
+        "6e56058f-346f-4e92-9112-20a6826945ac"
+      ],
+      "settings": {
+        "background_color": "#ffcd4b",
+        "text_color": "#000000",
+        "padding_top_mb": 64,
+        "padding_bottom_mb": 64,
+        "padding_top": 92,
+        "padding_bottom": 92,
+        "margin_top_mb": 0,
+        "margin_bottom_mb": 0,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
     "image-with-text-1",
     "image-with-text-2",
     "image-with-text-3",
-    "image-with-text-4"
+    "image-with-text-4",
+    "1e8d6f55-7817-4feb-9182-cb130b7f9050"
   ]
 }

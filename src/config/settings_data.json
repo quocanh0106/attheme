@@ -1,10 +1,11 @@
 {
   "current": {
-    "logo": "shopify:\/\/shop_images\/Personal_House.png",
-    "logo_width": 278,
-    "logo_mb": "shopify:\/\/shop_images\/Personal_House.png",
+    "logo": "shopify:\/\/shop_images\/Personal_Sunday_logo.svg",
+    "logo_width": 250,
+    "logo_mb": "shopify:\/\/shop_images\/Personal_Sunday_logo.svg",
     "logo_width_mb": 178,
-    "favicon": "shopify:\/\/shop_images\/favicon.png",
+    "favicon": "shopify:\/\/shop_images\/Personal-sunday-logo-icon.svg",
+    "rem": 16,
     "page_width": 1200,
     "color_primary": "#eeab47",
     "color_secondary": "#333333",
@@ -177,8 +178,38 @@
       },
       "footer": {
         "type": "footer",
+        "blocks": {
+          "967b7555-184c-4910-9b04-385a09081539": {
+            "type": "text",
+            "settings": {
+              "heading": "Personal Sunday",
+              "email": "support@personalsunday.com",
+              "address": "Newport Office Tower, 525 Washington Blvd, Jersey City, NJ 07310, USA",
+              "time_work": "Mon - Sun"
+            }
+          },
+          "2a3dd358-67c9-4ef2-aeb7-fa2042fb0c87": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Shopping with us",
+              "menu": "footer"
+            }
+          },
+          "fc6e665b-b792-4b4d-ab69-d6ab91a25771": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Help",
+              "menu": "menu-footer-2"
+            }
+          }
+        },
+        "block_order": [
+          "967b7555-184c-4910-9b04-385a09081539",
+          "2a3dd358-67c9-4ef2-aeb7-fa2042fb0c87",
+          "fc6e665b-b792-4b4d-ab69-d6ab91a25771"
+        ],
         "settings": {
-          "copyright": "© 2022 CustomChic™️. Powered by Shopify"
+          "copyright": "© 2023. Personal Sunday"
         }
       }
     },
