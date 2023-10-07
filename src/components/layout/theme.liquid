@@ -7,6 +7,15 @@
     <meta content="" name="theme-color">
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    {% if settings.heading_font != settings.base_font %}
+      <link href="https://fonts.googleapis.com/css2?family={{ settings.heading_font | replace: ' ', '+' }}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family={{ settings.base_font | replace: ' ', '+' }}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    {% else %}
+      <link href="https://fonts.googleapis.com/css2?family={{ settings.heading_font | replace: ' ', '+' }}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    {% endif %}
     {{ settings.custom_code_all }}
 
     {%- if settings.favicon != blank -%}
@@ -54,13 +63,6 @@
 
 
     {% style %}
-      {% if settings.heading_font != settings.base_font %}
-        @import url('https://fonts.googleapis.com/css2?family={{ settings.heading_font | replace: ' ', '+' }}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family={{ settings.base_font | replace: ' ', '+' }}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-      {% else %}
-        @import url('https://fonts.googleapis.com/css2?family={{ settings.heading_font | replace: ' ', '+' }}:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-      {% endif %}
-
       :root {
         --font-heading: {{ settings.heading_font }};
         --font-base: {{ settings.base_font }};
