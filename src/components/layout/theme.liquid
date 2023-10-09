@@ -144,6 +144,8 @@
       {{ content_for_layout }}
     </main>
 
+    {% section 'social' %}
+    
     {% section 'footer' %}
 
     {%- render 'delay-load', urls: urls, snippets: '', on_delay_load: on_delay_load, load_apps: true, delay: 1000, delay_load: true -%}

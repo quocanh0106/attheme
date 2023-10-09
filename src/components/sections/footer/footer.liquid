@@ -5,7 +5,7 @@
     {%- if section.blocks.size > 0 -%}
       <div class="grid gap-y-6 gap-x-4 md:gap-y-12 lg:gap-4 grid-cols-{{ section.settings.col_per_row_mobile }} md:grid-cols-{{ section.settings.col_per_row_tablet }} lg:grid-cols-{{ section.settings.col_per_row_desktop }}">
         {%- for block in section.blocks -%}
-          <{% unless block.type == 'link_list' %}div{% else %}accordion-toggle{% endunless %} data-block-id="{{ block.id }}" class="col-span-{{ block.settings.col_span_mobile }} md:col-span-{{ block.settings.col_span_tablet }} lg:col-span-{{ block.settings.col_span_desktop }} {% unless forloop.first %}md:justify-center{% endunless %} auto-cols-max {% if block.type == 'link_list' %}grid py-8 lg:py-0 border-b border-grey-250 md:0 md:border-none grid-rows-[min-content] auto-rows-min{% endif %}">
+          <{% unless block.type == 'link_list' %}div{% else %}accordion-toggle{% endunless %} data-block-id="{{ block.id }}" class="col-span-{{ block.settings.col_span_mobile }} md:col-span-{{ block.settings.col_span_tablet }} lg:col-span-{{ block.settings.col_span_desktop }} {% unless forloop.first %}md:justify-center{% endunless %} auto-cols-max {% if block.type == 'link_list' %}md:grid py-8 lg:py-0 border-b border-grey-250 md:0 md:border-none grid-rows-[min-content] auto-rows-min{% endif %}">
             {%- if block.settings.heading != blank -%}
               <div class="summary flex items-center justify-between gap-x-2 h-fit">
                 <h4 class="text-h5 lg:text-h4 font-heading p-0 font-bold">{{- block.settings.heading | escape -}}</h4>
@@ -35,106 +35,102 @@
                       {%- endfor -%}
                     </ul>
                   {%- endif -%}
-                  <ul class="mt-4">
+                  <ul class="mt-4 pl-[22px]">
                     {%- if block.settings.email != blank -%}
-                      <li class="list-disc list-inside">
+                      <li class="list-disc list-outside ">
                         <a href="mailto:{{ block.settings.email }}" class="font-normal text-sm md:text-base" title="{{ block.settings.email }}">
                           {{ block.settings.email }}
                         </a>
                       </li>
                     {%- endif -%}
                     {%- if block.settings.address != blank -%}
-                      <li class="list-disc list-inside">
+                      <li class="list-disc list-outside ">
                         <span class="font-normal text-sm md:text-base">
                           {{ block.settings.address }}
                         </span>
                       </li>
                     {%- endif -%}
                     {%- if block.settings.time_work != blank -%}
-                      <li class="list-disc list-inside">
+                      <li class="list-disc list-outside ">
                         <span class="font-normal text-sm md:text-base">
                           {{ block.settings.time_work }}
                         </span>
                       </li>
                     {%- endif -%}
                   </ul>
+                  <ul class="flex flex-wrap gap-4 items-center mt-8" role="list">
+                    {%- if settings.social_facebook_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_facebook_link }}" class="!text-grey-300 hover:text-grey-50" title="Facebook">
+                          {%- render 'icon-facebook' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
 
-                  {%- if block.settings.show_social == true -%}
-                    <ul class="flex flex-wrap gap-4 items-center mt-8" role="list">
-                      {%- if settings.social_facebook_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_facebook_link }}" class="!text-grey-300 hover:text-grey-50" title="Facebook">
-                            {%- render 'icon-facebook' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
+                    {%- if settings.social_twitter_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_twitter_link }}" class="!text-grey-300 hover:text-grey-50" title="Twitter">
+                          {%- render 'icon-twitter' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
 
-                      {%- if settings.social_twitter_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_twitter_link }}" class="!text-grey-300 hover:text-grey-50" title="Twitter">
-                            {%- render 'icon-twitter' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
+                    {%- if settings.social_instagram_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_instagram_link }}" class="!text-grey-300 hover:text-grey-50" title="Instagram">
+                          {%- render 'icon-instagram' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
 
-                      {%- if settings.social_instagram_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_instagram_link }}" class="!text-grey-300 hover:text-grey-50" title="Instagram">
-                            {%- render 'icon-instagram' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
+                    {%- if settings.social_tiktok_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_tiktok_link }}" class="!text-grey-300 hover:text-grey-50" title="Tiktok">
+                          {%- render 'icon-tiktok' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
 
-                      {%- if settings.social_tiktok_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_tiktok_link }}" class="!text-grey-300 hover:text-grey-50" title="Tiktok">
-                            {%- render 'icon-tiktok' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
+                    {%- if settings.social_youtube_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_youtube_link }}" class="!text-grey-300 hover:text-grey-50" title="Youtube">
+                          {%- render 'icon-youtube' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
 
-                      {%- if settings.social_youtube_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_youtube_link }}" class="!text-grey-300 hover:text-grey-50" title="Youtube">
-                            {%- render 'icon-youtube' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
+                    {%- if settings.social_pinterest_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_pinterest_link }}" class="!text-grey-300 hover:text-grey-50" title="Pinterest">
+                          {%- render 'icon-pinterest' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
 
-                      {%- if settings.social_pinterest_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_pinterest_link }}" class="!text-grey-300 hover:text-grey-50" title="Pinterest">
-                            {%- render 'icon-pinterest' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
+                    {%- if settings.social_tumblr_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_tumblr_link }}" class="!text-grey-300 hover:text-grey-50" title="Tumblr">
+                          {%- render 'icon-tumblr' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
 
-                      {%- if settings.social_tumblr_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_tumblr_link }}" class="!text-grey-300 hover:text-grey-50" title="Tumblr">
-                            {%- render 'icon-tumblr' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
+                    {%- if settings.social_snapchat_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_snapchat_link }}" class="!text-grey-300 hover:text-grey-50" title="Snapchat">
+                          {%- render 'icon-snapchat' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
 
-                      {%- if settings.social_snapchat_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_snapchat_link }}" class="!text-grey-300 hover:text-grey-50" title="Snapchat">
-                            {%- render 'icon-snapchat' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
-
-                      {%- if settings.social_vimeo_link != blank -%}
-                        <li class="w-5 h-5">
-                          <a href="{{ settings.social_vimeo_link }}" class="!text-grey-300 hover:text-grey-50" title="Vimeo">
-                            {%- render 'icon-vimeo' -%}
-                          </a>
-                        </li>
-                      {%- endif -%}
-                    </ul>
-                  {%- endif -%}
-
+                    {%- if settings.social_vimeo_link != blank -%}
+                      <li class="w-5 h-5">
+                        <a href="{{ settings.social_vimeo_link }}" class="!text-grey-300 hover:text-grey-50" title="Vimeo">
+                          {%- render 'icon-vimeo' -%}
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  </ul>
                   {%- if block.settings.payment_enable == true -%}
                     <ul class="hidden md:flex gap-2 items-center flex-wrap mt-8" role="list">
                       {% if block.settings.use_payment_default %}
@@ -178,23 +174,19 @@
   </div>
 
   <div class="bg-grey-900 text-grey-300 py-10">
-    <div class="page-width">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.payment_enable -%}
-          <ul class="flex items-center gap-2 justify-center md:hidden mb-6 md:mb-0" role="list">
-            {% for type in enabled_payment_types %}
-              <li>
-                {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
-                {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
-                {{- first_svg -}}{{- last_svg -}}
-              </li>
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
-      {%- endfor -%}
+    <div class="page-width flex justify-center md:justify-between">
+      <ul class="flex items-center gap-2 justify-center mb-6 md:mb-0 order-1 md:order-2 " role="list">
+        {% for type in shop.enabled_payment_types %}
+          <li>
+            {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
+            {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
+            {{- first_svg -}}{{- last_svg -}}
+          </li>
+        {%- endfor -%}
+      </ul>
       {%- if section.blocks.size > 0 -%}
         {% if  section.settings.copyright != blank %}
-          <p class="text-center text-xxs text-border-secondary">{{ section.settings.copyright }}</p>
+          <p class="text-sm text-background order-2 md:order-1">{{ section.settings.copyright }}</p>
         {% endif %}
       {% endif %}
     </div>
