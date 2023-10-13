@@ -4,7 +4,7 @@
   <div data-section-id="{{ section.id }}" class="px-4{% unless template contains "collection" %} py-6{% endunless %} bg-cover max-w-[832px] mx-auto">
     {% if template contains 'product' %}
       {% elsif template == 'cart'  %}
-        <h1 class="page-title text-center uppercase text-2xl lg:text-4xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ 'cart.general.title' | t }}</h1>
+        <h1 class="page-title flex items-start justify-center gap-4 lg:gap-6 uppercase text-2xl lg:text-5xl font-bold m-0 font-heading">{% render 'icon-cart', class: 'w-5 h-5 lg:w-10 lg:h-10 text-primary' %}<span>{{ 'cart.general.title' | t }}</span></h1>
       {% elsif template contains 'collection' and collection.handle %}
         <h1 class="page-title text-2xl lg:text-3xl leading-tight m-0 tracking-normal font-bold text-center">{{ collection.title }}</h1>
         {%- paginate collection.products by 20 -%}

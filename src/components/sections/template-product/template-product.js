@@ -38,12 +38,6 @@ class VariantSelects extends HTMLElement {
           this.refresh.push(...new Set(available_products.map(o => o.option3)));
           this.changeValue('input[value="'+ available_products[0].option2 +'"')
           this.changeValue('input[value="'+ available_products[0].option3 +'"',false)
-          document.querySelectorAll('.data-layer-1 .form__label .selected-value').forEach((item) => {
-            item.innerHTML = available_products[0].option2 ;
-          })
-          document.querySelectorAll('.data-layer-2 .form__label .selected-value').forEach((item) => {
-            item.innerHTML = available_products[0].option3 ;
-          })
           document.querySelectorAll('.data-layer-2 label, .data-layer-2 input, .data-layer-1 label, .data-layer-1 input').forEach(el => el.classList.add('hidden'))
         }
         break;
@@ -53,9 +47,6 @@ class VariantSelects extends HTMLElement {
         if (available_products && available_products.length > 0) {
           this.refresh = [...new Set(available_products.map(o => o.option3))];
           this.changeValue('input[value="'+ available_products[0].option3 +'"',false)
-          document.querySelectorAll('.data-layer-2 .form__label .selected-value').forEach((item) => {
-            item.innerHTML = available_products[0].option3 ;
-          })
           document.querySelectorAll('.data-layer-2 label, .data-layer-2 input').forEach(el => el.classList.add('hidden'))
         }
         break;
@@ -113,10 +104,7 @@ class VariantSelects extends HTMLElement {
       this.updateURL();
       this.updateVariantInput();
       this.renderProductInfo();
-      var select = this.target.closest('.product-form__input');
-      if (evt.target.closest('input') && select.querySelector('.selected-value')) {
-        var it = evt.target.closest('input').getAttribute('value') ;
-        select.querySelector('.selected-value').innerHTML = it;
+      if (evt.target.closest('input') ) {
         document.querySelector('#on-init').setAttribute('data-current-value', evt.target.closest('input').getAttribute('value'));
       }
     }

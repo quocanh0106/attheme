@@ -50,8 +50,8 @@
       "placeholder": "What can we help you with?"
     },
     "cart": {
-      "view": "View my cart ({{ count }})",
-      "item_added": "Item added to your cart"
+      "view": "View my basket ({{ count }})",
+      "item_added": "Item added to your basket"
     },
     "share": {
       "close": "Close share",
@@ -69,7 +69,7 @@
   },
   "cart": {
     "general": {
-      "title": "Shopping Cart"
+      "title": "My Basket"
     }
   },
   "app_wishlist-king": {
@@ -98,7 +98,7 @@
       "pagetitle": "save to wishlist",
       "page_subtitle": "Don't miss out on exclusive deals and offers for your desired product! Log in now to keep track of your wishlist.",
       "login_or_signup_note_html": "<p>Login or create an account to view to your wishlist. We’ll drop you back at your wishlist after you have entered your details<div><\/p> <a class='btn' href='{{ login_url }}'>login<\/a><a class='btn' href='{{ register_url }}'>sign up<\/a><\/div>",
-      "add_to_cart": "Add to Cart",
+      "add_to_cart": "Add to Basket",
       "sold_out": "Sold Out",
       "quantity": "Quantity",
       "view_product": "View product",
@@ -110,7 +110,7 @@
       "share_by_email": "Share with Email",
       "get_link": "Get link",
       "send_to_customer_service": "Send to customer service",
-      "add_all_to_cart": "Add wishlist to cart",
+      "add_all_to_cart": "Add wishlist to basket",
       "shop_now_product_card": "Shop now"
     }
   },
@@ -178,6 +178,9 @@
   },
   "products": {
     "shipping_information": {
+      "free_shipping": "Free Shipping",
+      "over": "For order over ",
+      "overmb": "Free Shipping for order over ",
       "estimated_arrival": "Estimated arrival",
       "order_placed": "Order placed",
       "order_placed_mess": "After you place your order, We will take 2-4 business days to prepare it for shipment.",
@@ -193,16 +196,15 @@
     "product": {
       "product_type": "style",
       "size": "select size",
-      "add_to_cart": "Add to cart",
+      "add_to_cart": "Add to basket",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
-      "on_sale": "Sale off",
+      "on_sale": "Sale",
       "best_seller": "hot",
       "new": "New",
       "new_arrival": "New Arrival",
       "hot": "Hot",
-      "free_shipping": "FREE SHIPPING on all U.S. orders over $80",
       "shop_now": "Customize Now",
       "product_variants": "Product variants",
       "media": {
@@ -272,7 +274,7 @@
     "facets": {
       "apply": "Apply",
       "clear": "Clear",
-      "reset": "Reset",
+      "clear_all": "Remove all",
       "from": "From",
       "filter_and_sort": "Filters & sort",
       "filter_by_label": "Filter:",
@@ -286,8 +288,8 @@
       "show_less": "Show less",
       "max_price": "The highest price is {{ price }}",
       "product_count": {
-        "one": "{{ product_count }} of {{ count }} product",
-        "other": "{{ product_count }} of {{ count }} products"
+        "one": "{{ product_count }} product",
+        "other": "{{ product_count }} products"
       },
       "product_count_simple": {
         "one": "{{ count }} product",
@@ -298,6 +300,14 @@
       "sort_by_label": "Sort by:",
       "sort_by_labels": "Sort by",
       "to": "To",
+      "occasions": "Occasions",
+      "occasions_option": {
+        "chrismas": "Christmas",
+        "father": "Father's Day",
+        "mother": "Mother's Day",
+        "halloween": "Halloween",
+        "valentino": "Valentine"
+      },
       "clear_filter": "Remove filter",
       "hide_filter": "Hide filters",
       "show_filter": "Show filters"
@@ -336,7 +346,7 @@
       "search_for": "Search for “{{ terms }}”"
     },
     "cart": {
-      "cart": "Cart"
+      "cart": "Basket"
     },
     "contact": {
       "form": {
@@ -385,8 +395,8 @@
       "chat_with_us_now": "Chat with us now"
     },
     "cart": {
-      "title": "SHOPPING CART",
-      "caption": "Cart items",
+      "title": "SHOPPING BASKET",
+      "caption": "Basket items",
       "remove_title": "Remove {{ title }}",
       "remove": "Remove",
       "cancel": "Cancel",
@@ -398,10 +408,11 @@
       "not_freeship": "Buy ${{ lack }} more to enjoy Free Standard Shipping!",
       "freeship": "You’re qualified for Free Shipping",
       "note": "Order special instructions",
+      "free_shipping": "FREE SHIPPING on all U.S. orders over ",
       "checkout": "Checkout",
-      "empty": "You have no items in your shopping cart.",
-      "cart_error": "There was an error while updating your cart. Please try again.",
-      "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
+      "empty": "You have no items in your basket.",
+      "cart_error": "There was an error while updating your basket. Please try again.",
+      "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your basket.",
       "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping<\/a> calculated at checkout",
       "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
       "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping<\/a> calculated at checkout.",
@@ -449,14 +460,14 @@
       "see_more": "See more",
       "see_less": "See Less",
       "clear": "Clear",
-      "reset": "Reset",
+      "clear_all": "Clear all",
       "empty": "No products found",
       "from": "From",
       "active_filter": "Filters",
       "filter_by": "Filter by",
       "filter_and_sort": "Filter and sort",
       "filter_by_label": "Filter",
-      "use_fewer_filters_html": "<a class=\"form-message form-message--error\" href=\"{{ link }}\"><li>No products were found matching your selection.<\/li><\/a>",
+      "use_fewer_filters_html": "No products were found matching your selection.",
       "filter_button": "Filter",
       "current_view_html": "Viewing <span class=\"js-current-products\">{{ products_count }}<\/span> of {{ all_products_count }}",
       "filters_selected": {
@@ -468,6 +479,7 @@
         "one": "{{ product_count }} product",
         "other": "{{ product_count }} products"
       },
+      "reset": "Reset",
       "sort_button": "Sort",
       "sort_by_label": "Sort by",
       "to": "To",

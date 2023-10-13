@@ -1,0 +1,27 @@
+{%- if settings.minimum_freeshipping != 0 -%}
+  <div class="page-width-desktop mb-6" id="cart-shipping-bar">
+    {%- assign total = cart.total_price | money_without_currency -%}
+    {%- assign total = total | plus: 0.0 -%}
+    <div class="flex items-center justify-between py-4 px-4 md:px-6 bg-[#f2f2f2] js-shipping-bar">
+      <div class="flex items-center gap-2 md:gap-4">
+        {%- assign minimun_freeshipping = settings.minimum_freeshipping | times: 1.00 -%}
+        {% assign oject = total | divided_by: minimun_freeshipping | times: 100  %}
+        <div class="pie" style="--p:{{ cart.total_price | money_without_currency | divided_by: minimun_freeshipping | times: 100 }}; {% if oject >= 100 %} --c: #12B76A{% endif %}">
+          {% render 'icon-checks' %}
+          <div class="back-border" style="{% if oject >= 100 %} z-index:1{% endif %}"></div>
+        </div>
+
+        {%- if minimun_freeshipping > total -%}
+          {%- assign lack = minimun_freeshipping | minus: total -%}
+          <h5 class="font-light text-sm md:text-base">{{ 'sections.cart.not_freeship' | t: lack: lack }}</h5>
+        {%- else -%}
+          <h5 class="font-light text-sm md:text-base">{{ 'sections.cart.freeship' | t }}</h5>
+        {%- endif -%}
+      </div>
+
+      <a href="{{ routes.all_products_collection_url }}" class="btn py-2 px-3 flex items-center text-xs leading-none">
+        {% render 'icon-plus', class: 'w-2.5 h-2.5 mr-2 inline fill-current' %} {{ 'general.add' | t }}
+      </a>
+    </div>
+  </div>
+{%- endif -%}

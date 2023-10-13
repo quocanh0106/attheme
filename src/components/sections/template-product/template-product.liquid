@@ -62,7 +62,7 @@
                 {%- for option in product.options_with_values -%}
                   {% if option.name == 'Product' %}
                     <fieldset class="js product-form__input block mb-5 lg:mb-10 selector-wrapper data-layer-{{ forloop.index0 }}" data-name="Product">
-                      <legend class="form__label mb-2 flex gap-2 text-xl text-secondary leading-6 capitalize font-bold font-heading">{{ 'products.product.product_type' | t }}:<span class="selected-value capitalize text-text font-normal">{{ option.selected_value }}</span></legend>
+                      <legend class="form__label mb-2 flex gap-2 text-xl text-secondary leading-6 capitalize font-bold font-heading">{{ 'products.product.product_type' | t }}</legend>
                       <div class="option-values flex flex-wrap gap-5">
                         {%- for value in option.values -%}
                           <input
@@ -83,8 +83,8 @@
                       </div>
                     </fieldset>
                   {% elsif option.name == 'Color' or option.name == 'Farbe' or option.name == 'Colore' or option.name == 'Couleur' %}
-                    <fieldset class="js product-form__input block mb-5 lg:mb-10 option-color-wrapper data-layer-{{ forloop.index0 }}" data-name="Color">
-                      <legend class="form__label mb-2 flex gap-2 text-xl text-secondary leading-6 capitalize font-bold font-heading">{{ option.name }}:<span class="selected-value capitalize text-text font-normal">{{ option.selected_value }}</span>
+                    <fieldset class="js product-form__input block mb-5 lg:mb-12 option-color-wrapper data-layer-{{ forloop.index0 }}" data-name="Color">
+                      <legend class="form__label mb-2 flex gap-2 text-xl text-secondary leading-6 capitalize font-bold font-heading">{{ option.name }}
                       </legend>
                       <div class="option-color flex flex-wrap gap-5">
                         {% assign values = '' %}
@@ -112,7 +112,7 @@
                   {% elsif option.name == 'Size' or option.name == 'Taille' or option.name == 'Taglia' or option.name == 'Größe' %}
                     <fieldset class="js product-form__input block mb-5 lg:mb-10 option-size-wrapper data-layer-{{ forloop.index0 }}" data-name="Size">
                       <div class="title-option-size flex justify-between items-baseline mb-2">
-                        <legend class="form__label flex gap-2 text-xl text-secondary leading-6 capitalize font-bold font-heading">{{ 'products.product.size' | t }}:<span class="selected-value capitalize text-text font-normal">{{ option.selected_value }}</span>
+                        <legend class="form__label flex gap-2 text-xl text-secondary leading-6 capitalize font-bold font-heading">{{ 'products.product.size' | t }}
                         </legend>
                         <modal-opener data-id="#PopupModal-Sizeguide" class="size-popup flex gap-2 text-sm items-center underline underline-offset-2 cursor-pointer">{{ 'products.product.size_guide' | t }}</modal-opener>
                       </div>
@@ -128,7 +128,7 @@
                     </fieldset>
                   {% else %}
                     <fieldset class="js product-form__input block mb-5 lg:mb-10 selector-wrapper data-layer-{{ forloop.index0 }}">
-                      <legend class="form__label mb-2 flex gap-2 text-xl text-secondary leading-6 capitalize font-bold font-heading">{{ option.name }}:<span class="selected-value capitalize text-text font-normal">{{ option.selected_value }}</span></legend>
+                      <legend class="form__label mb-2 flex gap-2 text-xl text-secondary leading-6 capitalize font-bold font-heading">{{ option.name }}</legend>
                       <div class="option-values flex flex-wrap gap-5">
                         {%- for value in option.values -%}
                           <input type="radio" class="absolute opacity-0 invisible option-item {% if option.selected_value == value %} selected {% endif %}" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" name="{{ option.name }}" data-index="{{ forloop.index0 }}" value="{{ value | escape }}" form="{{ product_form_id }}"{% if option.selected_value == value %} checked{% endif %}>
