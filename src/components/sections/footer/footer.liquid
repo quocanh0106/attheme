@@ -102,12 +102,19 @@
 
   <div class="bg-grey-900 text-grey-300 py-10">
     <div class="page-width flex justify-center md:justify-between">
-      <ul class="flex items-center gap-2 justify-center mb-6 md:mb-0 order-1 md:order-2 " role="list">
-        {% for type in shop.enabled_payment_types %}
-          <li>
-            {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
-            {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
-            {{- first_svg -}}{{- last_svg -}}
+      <ul class="flex items-center gap-2 md:gap-5 justify-center mb-6 md:mb-0 order-1 md:order-2 " role="list">
+        {%- assign enabled_payment_types = "paypal,visa,master,apple_pay" | remove: ' ' | split: ',' -%}
+        {% for type in enabled_payment_types %}
+          <li class="list-payment__item">
+            {% if type == 'visa' %}
+              {% render 'icon-visa' %}
+            {% elsif type == 'master' %}
+              {% render 'icon-mastercard' %}
+            {% elsif type == 'paypal' %}
+              {% render 'icon-paypal' %}
+            {% else %}
+              {% render 'icon-applepay' %}
+            {% endif %}
           </li>
         {%- endfor -%}
       </ul>

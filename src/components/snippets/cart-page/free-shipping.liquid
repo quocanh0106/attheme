@@ -1,26 +1,21 @@
 {%- if settings.minimum_freeshipping != 0 -%}
-  <div class="page-width mb-6" id="cart-shipping-bar">
+  <div class="mb-2.5" id="cart-shipping-bar">
     {%- assign total = cart.total_price | money_without_currency -%}
     {%- assign total = total | plus: 0.0 -%}
-    <div class="flex items-center justify-between py-4 px-4 md:px-6 bg-[#f2f2f2] js-shipping-bar">
-      <div class="flex items-center gap-2 md:gap-4">
-        {%- assign minimun_freeshipping = settings.minimum_freeshipping | times: 1.00 -%}
-        {% assign oject = total | divided_by: minimun_freeshipping | times: 100  %}
-        <div class="pie" style="--p:{{ cart.total_price | money_without_currency | divided_by: minimun_freeshipping | times: 100 }}; {% if oject >= 100 %} --c: #12B76A{% endif %}">
-          <div class="back-border" style="{% if oject >= 100 %} z-index:1{% endif %}"></div>
-        </div>
-
-        {%- if minimun_freeshipping > total -%}
-          {%- assign lack = minimun_freeshipping | minus: total -%}
-          <h5 class="font-light text-sm md:text-base">{{ 'sections.cart.not_freeship' | t: lack: lack }}</h5>
-        {%- else -%}
-          <h5 class="font-light text-sm md:text-base">{{ 'sections.cart.freeship' | t }}</h5>
-        {%- endif -%}
+    <div class="flex items-center justify-center gap-3 px-4 js-shipping-bar">
+      {%- assign minimun_freeshipping = settings.minimum_freeshipping | times: 1.00 -%}
+      {% assign oject = total | divided_by: minimun_freeshipping | times: 100  %}
+      <div class="process-bar{% if oject >= 100 %} active{% endif %} relative w-5 h-5 rounded-full overflow-hidden" style="--p:{{ cart.total_price | money_without_currency | divided_by: minimun_freeshipping | times: 100 }}; 
+        {% if oject >= 100 %} --c: {{ settings.color_success }} {% else %} --c: #555 {% endif %}">
+        <div class="process" style="--p:{{ cart.total_price | money_without_currency | divided_by: minimun_freeshipping | times: 100 }}; 
+        {% if oject >= 100 %} --c: {{ settings.color_success }} {% else %} --c: #555 {% endif %}"></div>
       </div>
-
-      <!-- <a href="{{ routes.all_products_collection_url }}" class="btn py-2 px-3 flex items-center text-xs leading-none">
-        {% render 'icon-plus', class: 'w-2.5 h-2.5 mr-2 inline fill-current' %} {{ 'general.add' | t }}
-      </a> -->
+      {%- if minimun_freeshipping > total -%}
+        {%- assign lack = minimun_freeshipping | minus: total -%}
+        <h5 class="font-normal italic text-sm md:text-base">Add just <span class="text-primary">{{ lack | times: 100 | money_without_trailing_zeros }}</span> more to your order and <span class="text-primary">get Free Standard Shipping</span></h5>
+      {%- else -%}
+        <h5 class="font-normal italic text-sm md:text-base">You’re qualified for <span class="text-success">Free Shipping</span></h5>
+      {%- endif -%}
     </div>
   </div>
 {%- endif -%}

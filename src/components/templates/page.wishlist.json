@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "background_color": "#FFFFFF",
+        "color_text_breadcrumb_link": "#333",
+        "color_text_breadcrumb_link_hover": "#eeab47",
+        "color_text_breadcrumb": "#eeab47",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "padding_top_mb": 16,
+        "padding_bottom_mb": 16
+      }
+    },
+    "page-banner": {
+      "type": "page-banner",
+      "settings": {
+        "color_title": "#ffffff",
+        "color_subtitle": "#E6E6E6",
+        "background_color": "#000",
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "template-wishlist": {
+      "type": "template-wishlist",
+      "settings": {}
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "page-banner",
+    "template-wishlist"
+  ]
+}

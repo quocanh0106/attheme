@@ -80,7 +80,7 @@
       </div>
       <span class="hidden w-5 h-5 cursor-pointer text-primary" id="open-search">{% render 'icon-search' %}</span>
     </predictive-search>
-    <div class="flex items-center gap-x-4 lg:gap-x-10 m-0 p-0 justify-end w-fit lg:w-full lg:max-w-1/2">
+    <div class="flex items-center gap-x-8 lg:gap-x-10 m-0 p-0 justify-end w-fit lg:w-full lg:max-w-1/2">
       <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="account" class="bright-link hidden lg:flex flex-col items-center justify-center relative w-5 lg:w-7.5">
         {% render 'icon-customer', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
         <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Account</span>

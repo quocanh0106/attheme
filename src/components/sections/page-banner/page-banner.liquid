@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ 'page-banner.css' | asset_url }}" />
 
 <div class="page-width-desktop">
-  <div data-section-id="{{ section.id }}" class="px-4{% unless template contains "collection" %} py-6{% endunless %} bg-cover max-w-[832px] mx-auto">
+  <div data-section-id="{{ section.id }}" class="px-4{% unless template contains "collection" %} py-6{% endunless %} bg-cover{% if template contains 'collection' %} max-w-[832px]{% endif %} mx-auto">
     {% if template contains 'product' %}
       {% elsif template == 'cart'  %}
         <h1 class="page-title flex items-start justify-center gap-4 lg:gap-6 uppercase text-2xl lg:text-5xl font-bold m-0 font-heading">{% render 'icon-cart', class: 'w-5 h-5 lg:w-10 lg:h-10 text-primary' %}<span>{{ 'cart.general.title' | t }}</span></h1>

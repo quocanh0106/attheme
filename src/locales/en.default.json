@@ -405,7 +405,7 @@
       "subtotal": "Subtotal",
       "total": "Total",
       "new_subtotal": "New subtotal",
-      "not_freeship": "Buy ${{ lack }} more to enjoy Free Standard Shipping!",
+      "not_freeship": "Add just ${{ lack }} more to your order and get Free Standard Shipping",
       "freeship": "You’re qualified for Free Shipping",
       "note": "Order special instructions",
       "free_shipping": "FREE SHIPPING on all U.S. orders over ",

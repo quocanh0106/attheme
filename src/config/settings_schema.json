@@ -255,6 +255,23 @@
     ]
   },
   {
+    "name": "t:settings_schema.cart.name",
+    "settings": [
+      {
+        "type": "number",
+        "id": "minimum_freeshipping",
+        "label": "Minimum for free shipping",
+        "default": 80
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_note",
+        "label": "t:settings_schema.cart.settings.show_cart_note.label",
+        "default": false
+      }
+    ]
+  },
+  {
     "name": "Insert custom code into head",
     "settings": [
       {

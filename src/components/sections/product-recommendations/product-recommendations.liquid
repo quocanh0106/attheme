@@ -1,0 +1,206 @@
+{%- style -%}
+  [data-section-id="{{ section.id }}"] {
+    background: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top_mb }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mb }}px;
+  }
+  @media screen and (min-width: 1024px) {
+    [data-section-id="{{ section.id }}"] {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+{% unless product %}
+  {% assign product = collections['all'].products[0] %}
+  {% if template.name == "cart" %}
+    {% if cart.items.size > 0 %}
+      {% assign product = cart.items[0].product %}
+    {% endif %}
+  {% endif %}
+{% endunless %}
+
+<div data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="flex items-center justify-between px-4 md:px-0 mb-4 md:mb-7.5">
+      <{{ section.settings.heading_tag }} class="text-2xl font-bold lg:text-3xl !leading-none text-secondary capitalize">{{ section.settings.title | escape }}</{{ section.settings.heading_tag }}>
+
+      <div class="hidden lg:flex items-center gap-4 justify-end">
+        <button class="prev-{{ section.id }} flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary-opacity-30 overflow-hidden w-10 h-10 disabled:hidden">{% render 'icon-chevron-left', class: 'w-2 h-3' %}</button>
+        <button class="next-{{ section.id }} flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary-opacity-30 overflow-hidden w-10 h-10 disabled:hidden">{% render 'icon-chevron-right', class: 'w-2 h-3' %}</button>
+      </div>
+    </div>
+    <swiper-component class="flex overflow-hidden" data-infor-swiper='{
+                  "modules": ["Navigation", "Scrollbar"],
+                  "slidesPerView": 2,
+                  "slidesPerGroup": 2,
+                  "spaceBetween": 2,
+                  "navigation": {
+                    "nextEl": ".next-{{ section.id }}",
+                    "prevEl": ".prev-{{ section.id }}"
+                  },
+                  "scrollbar": {
+                    "el": ".scrollbar-recommendations--{{ section.id }}",
+                    "draggable": true
+                  },
+                  "breakpoints": {
+                    "768": {
+                      "slidesPerView": 3,
+                      "slidesPerGroup": 1
+                    },
+                    "1024": {
+                      "slidesPerView": 4,
+                      "slidesPerGroup": 1,
+                      "spaceBetween": 10
+                    }
+                  },
+                  "speed": 400
+            }'>
+      <ul
+        class="flex swiper-wrapper product-recommendations"
+        data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}"
+        aria-labelledby="related-heading">
+        {%- if recommendations.performed -%}
+          {%- if recommendations.products_count > 0 -%}
+            {%- for product in recommendations.products -%}
+              <li class="swiper-slide max-w-1/2 md:max-w-1/3 lg:max-w-1/4 mr-0.5 lg:mr-2.5">
+                {%- render 'product-card', product: product -%}
+              </li>
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endif -%}
+      </ul>
+    </swiper-component>
+  </div>
+</div>
+{% capture src_url %}
+  {{ 'product-recommendations.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
+{% schema %}
+  {
+    "name": "Product recommendations",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "Heading 1"
+          },
+          {
+            "value": "h2",
+            "label": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "label": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "label": "Heading 4"
+          },
+          {
+            "value": "h5",
+            "label": "Heading 5"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "product_per_row",
+        "label": "Products per row",
+        "min": 1,
+        "max": 5,
+        "step": 1,
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "product_per_row_tablet",
+        "label": "Products per row tablet",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "default": 3
+      },
+      {
+        "type": "range",
+        "id": "product_per_row_mobile",
+        "label": "Products per row mobile",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 2
+      }, {
+        "type": "range",
+        "id": "limit",
+        "label": "Limit",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "default": 12
+      }, {
+        "type": "header",
+        "content": "Common settings"
+      }, {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background",
+        "default": "#FAFAFA"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 50,
+        "max": 150,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top DeskTop",
+        "default": 64
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 50,
+        "max": 150,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom Desktop",
+        "default": 92
+      }, {
+        "type": "header",
+        "content": "Mobile settings"
+      }, {
+        "type": "range",
+        "id": "padding_top_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top Mobile",
+        "default": 32
+      }, {
+        "type": "range",
+        "id": "padding_bottom_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom Mobile",
+        "default": 32
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product recommendations"
+      }
+    ]
+  }
+{% endschema %}
