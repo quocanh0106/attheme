@@ -30,14 +30,14 @@
   endif
 -%}
 
-<div class="flex gap-1 items-end{% if template.name contains 'product' and show %} my-10{% endif %}">
+<div class="flex gap-1 items-end{% if template.name contains 'product' and show %} my-4 lg:my-10{% endif %}">
   {% if product %}
-    {% if compare_at_price %} 
-      <div class="{% if compare_at_price > price %}text-opacity-25 line-through text-xs md:text-sm font-medium{% else %}text-primary text-sm md:text-base font-bold{% endif %} !leading-none{% if template.name contains 'product' and show %} text-black lg:text-xl order-2 {% else %} text-secondary {% endif %}">{{ compare_at_price | money }}</div>
+    {% if compare_at_price > price %} 
+      <div class="text-opacity-25 line-through {% if template.name contains 'product' and show %}text-2xl order-1 {% else %} text-xs md:text-sm {% endif %} font-medium !leading-none{% if template.name contains 'product' and show %} text-black lg:text-xl order-2 {% else %} text-secondary {% endif %}">{{ compare_at_price | money }}</div>
     {% endif %}
-    <div class="text-primary text-sm md:text-base font-bold {% if template.name contains 'product' and show %}lg:text-3xl order-1{% else %}font-bold{% endif %} !leading-none">{{ price | money }}</div>
+    <div class="text-primary font-bold {% if template.name contains 'product' and show %}text-3xl order-1 {% else %} text-sm md:text-base {% endif %} !leading-none">{{ price | money }}</div>
   {% else %}
-    <div class="text-primary text-sm md:text-base font-bold {% if template.name contains 'product' and show %}lg:text-3xl{% else %}font-bold{% endif %} !leading-none">{{ price | money }}</div>
+    <div class="text-primary font-bold {% if template.name contains 'product' and show %}text-3xl {% else %} text-sm md:text-base{% endif %} !leading-none">{{ price | money }}</div>
   {% endif %}
   {% unless product.selected_or_first_available_variant.unit_price_measurement == nil %}
     <small class="items-center{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% else %} flex{% endif %}">

@@ -46,7 +46,7 @@
                                 </a>
                               {% endif %}
                             </div>
-                            <div class="w-full ml-4 md:ml-6 lg:ml-9 pr-0 md:pr-4 lg:pr-6">
+                            <div class="w-full ml-4 md:ml-6 lg:ml-9 pr-0 md:pr-4 lg:pr-6 md:max-w-[300px]">
                               {%- if settings.show_vendor -%}
                                 <p class="caption-with-letter-spacing">{{ item.product.vendor }}</p>
                               {%- endif -%}
@@ -68,10 +68,10 @@
                                 </cart-remove-button>
                               </div>
                               {%- if item.product.has_only_default_variant == false or item.properties.size != 0 or item.selling_plan_allocation != nil -%}
-                                <dl class="mt-1.5 mb-4 md:mb-2.5">
+                                <dl class="my-1.5">
                                   {%- if item.product.has_only_default_variant == false -%}
                                     {%- for option in item.options_with_values -%}
-                                      <div class="product-option flex text-grey-500 text-sm leading-4 gap-0.5 md:font-xs">
+                                      <div class="product-option flex text-grey-500 text-sm leading-4 gap-0.5 md:font-xs mb-1 last:mb-0">
                                         <dt class="font-light">{{ option.name }}:
                                         </dt>
                                         <dd class="font-normal">{{ option.value }}</dd>
@@ -79,13 +79,13 @@
                                     {%- endfor -%}
                                   {%- endif -%}
                                 </dl>
-                                <div class="flex gap-20 items-center">
-                                  <div class="flex flex-col md:flex-row gap-2 md:gap-4">
+                                <div class="flex flex-wrap gap-2 justify-between items-center">
+                                  <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
                                     <span class="text-sm md:text-base text-grey-700 font-medium md:font-normal">{{ item.original_price | money }}</span>
                                     {% if item.variant.compare_at_price > item.variant.price %}
                                       <s class="mt-0.5 md:mt-0 md:ml-2 font-light text-xs md:text-sm text-[#b3b3b3]">{{ item.variant.compare_at_price | money }}</s>
                                     {% endif %}
-                                    <div class="flex items-center justify-center mt-1 text-sm text-grey-700 gap-1 lg:hidden">
+                                    <div class="flex items-center justify-center text-sm text-grey-700 gap-1 lg:hidden">
                                       <span>{{ 'sections.cart.subtotal' | t }}:</span>
                                       {%- if item.original_line_price != item.final_line_price -%}
                                         <dl class="cart-item__discounted-prices">

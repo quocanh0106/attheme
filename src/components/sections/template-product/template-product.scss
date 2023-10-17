@@ -9,7 +9,7 @@ input:checked+label.color {
   @apply border-secondary border-4;
 }
 #customily-options {
-  @apply p-0 lg:p-6 lg:pb-0 !mb-6 lg:bg-[#FAFAFA];
+  @apply p-0 lg:p-6 lg:pb-0 !mb-6 lg:bg-[#FAFAFA] rounded-circle;
   #cl_optionsapp {
     label {
       @apply mt-0;
