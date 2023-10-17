@@ -1,0 +1,16 @@
+.eye {
+  .icon-eye {
+    @apply block;
+  }
+  .icon-eye-hidden {
+    @apply hidden;
+  }
+  &.active {
+    .icon-eye {
+      @apply hidden;
+    }
+    .icon-eye-hidden {
+      @apply block;
+    }
+  }
+}
