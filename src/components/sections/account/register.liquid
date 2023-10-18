@@ -3,6 +3,10 @@
 <div class="h-full flex items-center justify-center py-12 page-width">
   <div class="p-4 md:p-7.5 lg:p-12.5 max-w-[500px] w-full border border-solid border-primary rounded-3xl scroll-m-44">
     <h1 class="text-primary text-center font-heading lg:text-h1">Register</h1>
+    <div class="flex items-center gap-1.5 justify-center text-center text-sm lg:text-base text-secondary font-light mt-1">
+      <span>Have an account?</span>
+      <a href="{{ routes.account_login_url }}" class="underline underline-offset-2 bright-link capitalize font-medium block">Login</a>
+    </div>
     <div class="mt-6">
       {%- form 'create_customer' -%}
         {% if form.errors %}
