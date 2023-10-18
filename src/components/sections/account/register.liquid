@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ 'account.css' | asset_url }}" />
+
 <div class="h-full flex items-center justify-center py-12 page-width">
   <div class="p-4 md:p-7.5 lg:p-12.5 max-w-[500px] w-full border border-solid border-primary rounded-3xl scroll-m-44">
     <h1 class="text-primary text-center font-heading lg:text-h1">Register</h1>
@@ -41,7 +43,7 @@
             class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
             id="email_address"
             name="customer[email]"
-            placeholder="email address"
+            placeholder="Email address"
             required
             type="email">
         </div>
@@ -53,7 +55,7 @@
             class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
             id="password"
             name="customer[password]"
-            placeholder="password"
+            placeholder="Password"
             required
             type="current-password">
             <span class="eye absolute top-1/2 right-4 -translate-y-1/2 z-10 cursor-pointer">
@@ -62,8 +64,11 @@
             </span>
             </toggle-password>
         </div>
-        <button type="submit" class="relative w-full max-w-[200px] mx-auto text-center btn text-lg lg:text-xl font-bold !leading-6 py-3 !rounded-[10px] mt-7">Register</button>
+        <button type="submit" class="relative block w-full max-w-[200px] mx-auto text-center btn text-lg lg:text-xl font-bold !leading-6 py-3 !rounded-[10px] mt-7">Register</button>
       {%- endform -%}
     </div>
   </div>
 </div>
+
+{% capture src_url %}{{ 'account.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
