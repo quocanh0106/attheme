@@ -1,32 +1,62 @@
 <link rel="stylesheet" href="{{ 'account.css' | asset_url }}" />
 
-<div class="h-full flex items-center justify-center py-12 px-6 md:px-4 lg:px-8">
-  <div class="p-8 border border-solid border-primary rounded-3xl">
-    <h1 class="text-primary text-center font-heading lg:text-h1">Log in</h1>
-    <div class="flex">
-      <span>Don't have an account</span>
-    </div>
-    <div class="mt-8">
-      {% form 'customer_login' %} +
+<div class="h-full flex items-center justify-center py-12 px-4 md:px-7.5 lg:px-12.5">
+  <div id="recover" class="p-4 md:p-7.5 lg:p-12.5 max-w-[500px] w-full border border-solid border-primary rounded-3xl scroll-m-44">
+    <h1 class="text-primary text-center font-heading lg:text-h1">Recover your password</h1>
+    <div class="mt-6">
+      {% form 'recover_customer_password' %}
         {% if form.errors %}
-          <span class="block text-error p-1 px-2">{{ form.errors | default_errors }}</span>
+          <span class="block text-error p-1 px-2 bg-red-400 bg-opacity-20 rounded-md mb-4">{{ form.errors | default_errors }}</span>
         {% endif %}
 
-        <div class="my-2">
-          <label for="email_address" class="block w-full text-secondary ">Email address</label>
+        <div class="w-full mb-4">
+          <label for="email_address" class="block w-full text-secondary text-sm lg:text-base leading-6">Email address</label>
           <input
             type="email"
             name="customer[email]"
             id="email_address"
             autocomplete="email"
-            class="relative block w-full px-3 py-2 border rounded-lg"
+            class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
             placeholder="Email address"
+            required
+          />
+        </div>
+
+        <div class="flex items-center flex-wrap justify-center md:justify-between gap-4 mt-7">
+          <a href="#login" class="bright-link text-sm lg:text-base underline underline-offset-2">Cancel</a>
+          <button type="submit" class="relative w-full max-w-[160px] btn text-lg lg:text-xl font-bold !leading-6 py-3 !rounded-[10px]">Submit</button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+  <div id="login" class="p-4 md:p-7.5 lg:p-12.5 max-w-[500px] w-full border border-solid border-primary rounded-3xl scroll-m-44">
+    <h1 class="text-primary text-center font-heading lg:text-h1">Log in</h1>
+    <div class="flex items-center gap-1.5 justify-center text-center text-sm lg:text-base text-secondary font-light mt-1">
+      <span>Don't have an account</span>
+      <a href="{{ routes.account_register_url }}" class="underline underline-offset-2 bright-link capitalize font-medium block">Register now</a>
+    </div>
+    <div class="mt-6">
+      {% form 'customer_login' %}
+        {% if form.errors %}
+          <span class="block text-error p-1 px-2 bg-red-400 bg-opacity-20 rounded-md mb-4">{{ form.errors | default_errors }}</span>
+        {% endif %}
+
+        <div class="w-full mb-4">
+          <label for="email_address" class="block w-full text-secondary text-sm lg:text-base leading-6">Email address</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="email_address"
+            autocomplete="email"
+            class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
+            placeholder="Email address"
+            required
           />
         </div>
 
         {% if form.password_needed %}
         <div class="w-full mb-4">
-          <label for="password" class="block w-full text-secondary">Password</label>
+          <label for="password" class="block w-full text-secondary text-sm lg:text-base leading-6">Password</label>
           <toggle-password class="relative field w-full block">
             
             <input
@@ -34,8 +64,9 @@
               name="customer[password]"
               id="password"
               autocomplete="current-password"
-              class="relative block w-full px-3 py-2 border"
+              class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
               placeholder="Password"
+              required
             />
             <span class="eye absolute top-1/2 right-4 -translate-y-1/2 z-10 cursor-pointer">
               <span class="icon-eye">{% render 'icon-eye' %}</span>
@@ -45,53 +76,20 @@
         </div>
         {% endif %}
 
-        <div class="my-2 text-sm">
-          <a href="#" class="underline text-copyColor hover:text-headerColor">
-            Forgot your password?
-          </a>
+        <div class="flex items-center flex-wrap justify-center md:justify-between gap-4 mt-7">
+          <a href="#recover" class="bright-link text-sm lg:text-base underline underline-offset-2">Forgotten password?</a>
+          <button type="submit" class="relative w-full max-w-[160px] btn text-lg lg:text-xl font-bold !leading-6 py-3 !rounded-[10px]">Log in</button>
         </div>
 
-        <button type="submit" class="relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900">Sign in</button>
       {% endform %}
     </div>
 
     {% if shop.checkout.guest_login %}
       <h1 class="text-primary text-center font-heading lg:text-h1">Continue as a guest</h1>
       {% form 'guest_login' %}
-        <button type="submit" class="relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900">Continue</button>
+        <button type="submit" class="relative w-full btn text-lg lg:text-xl font-bold !leading-6 py-3 !rounded-[10px] mt-7">Continue</button>
       {% endform %}
     {% endif %}
-  </div>
-  <div class="hidden">
-    <h1 class="text-primary text-center font-heading lg:text-h1">Recover your password</h1>
-    <div class="mt-8">
-      {% form 'recover_customer_password' %}
-        {% if form.errors %}
-          <div class="relative border border-red-400 bg-red-100 text-red 700 px-4 py-3">
-            <strong class="font-bold">Error!</strong>
-            <p class="block sm:inline">{{ form.errors | default_errors }}</p>
-          </div>
-        {% endif %}
-
-        <div class="my-2">
-          <label for="email" class="sr-only">Email address</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            autocomplete="email"
-            class="relative block w-full px-3 py-2 border"
-            placeholder="Email address"
-          />
-        </div>
-
-        <button type="submit" class="relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-600 hover:bg-gray-900">Recover password</button>
-
-        <div class="mt-8 text-sm">
-          <a href="#" class="underline text-copyColor hover:text-headerColor">Back to login</a>
-        </div>
-      {% endform %}
-    </div>
   </div>
 </div>
 

@@ -14,3 +14,15 @@
     }
   }
 }
+#recover {
+  @apply hidden;
+}
+#recover:target {
+  @apply block;
+}
+#recover:target~#login {
+  @apply hidden;
+}
+input:checked~.icon-checkmark {
+  @apply opacity-100 visible;
+}

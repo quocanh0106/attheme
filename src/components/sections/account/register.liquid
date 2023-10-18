@@ -1,71 +1,68 @@
-<div class="flex items-center justify-center h-full px-6 py-12 md:px-4 lg:px-8">
-  <div class="w-full max-w-md space-y-8">
-    <div>
-      <h1 class="mt-6 text-3xl font-bold text-center">Register an account</h1>
-    </div>
-    <div class="mt-8">
+<div class="h-full flex items-center justify-center py-12 page-width">
+  <div class="p-4 md:p-7.5 lg:p-12.5 max-w-[500px] w-full border border-solid border-primary rounded-3xl scroll-m-44">
+    <h1 class="text-primary text-center font-heading lg:text-h1">Register</h1>
+    <div class="mt-6">
       {%- form 'create_customer' -%}
-        {%- if form.errors -%}
-          <div
-            class="relative px-4 py-3 text-red-700 bg-red-100 border border-red-400 rounded"
-            role="alert">
-            <strong class="font-bold">Error!</strong>
-            <p class="block sm:inline">{{ form.errors | default_errors }}</p>
-          </div>
-        {%- endif -%}
-        <div class="my-2">
-          <label class="sr-only" for="first_name">First Name</label>
+        {% if form.errors %}
+          <span class="block text-error p-1 px-2 bg-red-400 bg-opacity-20 rounded-md mb-4">{{ form.errors | default_errors }}</span>
+        {% endif %}
+        <div class="w-full mb-4">
+          <label class="block w-full text-secondary text-sm lg:text-base leading-6" for="first_name">First Name</label>
           <input
             autocomplete="first_name"
-            class="relative block w-full px-3 py-2 border rounded"
+            class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
             id="first_name"
             name="customer[first_name]"
             placeholder="First name"
             type="text">
         </div>
-        <div class="my-2">
-          <label class="sr-only" for="last_name">Last Name</label>
+        <div class="w-full mb-4">
+          <label class="block w-full text-secondary text-sm lg:text-base leading-6" for="last_name">Last Name</label>
           <input
             autocomplete="last_name"
-            class="relative block w-full px-3 py-2 border rounded"
+            class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
             id="last_name"
             name="customer[last_name]"
             placeholder="Last name"
             type="text">
         </div>
-        <div class="my-2">
-          <label class="sr-only" for="birthday">Birthday</label>
+        <div class="w-full mb-4">
+          <label class="block w-full text-secondary text-sm lg:text-base leading-6" for="birthday">Birthday</label>
           <input
-            class="relative block w-full px-3 py-2 border rounded"
+            class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
             id="birthday"
             name="customer[note][Birthday]"
             type="date">
         </div>
-        <div class="my-2">
-          <label class="sr-only" for="email_address">Email address</label>
+        <div class="w-full mb-4">
+          <label class="block w-full text-secondary text-sm lg:text-base leading-6" for="email_address">Email address</label>
           <input
             autocomplete="email"
-            class="relative block w-full px-3 py-2 border rounded"
+            class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
             id="email_address"
             name="customer[email]"
             placeholder="email address"
+            required
             type="email">
         </div>
-        <div class="my-2">
-          <label class="sr-only" for="password">Password</label>
+        <div class="w-full mb-4">
+          <label class="block w-full text-secondary text-sm lg:text-base leading-6" for="password">Password</label>
+          <toggle-password class="relative field w-full block">
           <input
             autocomplete="new-password"
-            class="relative block w-full px-3 py-2 border rounded"
+            class="border border-black border-opacity-25 focus:border-black hover:border-black active:border-black !ring-0 font-light text-sm leading-normal h-11 tracking-normal px-4 py-2 rounded-[10px] border-solid w-full"
             id="password"
             name="customer[password]"
             placeholder="password"
+            required
             type="current-password">
+            <span class="eye absolute top-1/2 right-4 -translate-y-1/2 z-10 cursor-pointer">
+              <span class="icon-eye">{% render 'icon-eye' %}</span>
+              <span class="icon-eye-hidden">{% render 'icon-eye-hidden' %}</span>
+            </span>
+            </toggle-password>
         </div>
-        <div>
-          <button
-            class="relative w-full px-4 py-2 text-sm font-medium text-white bg-gray-600 rounded hover:bg-gray-900"
-            type="submit">Create account</button>
-        </div>
+        <button type="submit" class="relative w-full max-w-[200px] mx-auto text-center btn text-lg lg:text-xl font-bold !leading-6 py-3 !rounded-[10px] mt-7">Register</button>
       {%- endform -%}
     </div>
   </div>
