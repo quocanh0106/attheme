@@ -1,5 +1,10 @@
 {
   "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+      }
+    },
     "template": {
       "type": "template-article",
       "blocks": {
@@ -31,9 +36,16 @@
         "title_sidebar": "",
         "blog_show_share": false
       }
+    },
+    "recommendation-article": {
+      "type": "recommendation-article",
+      "settings": {
+      }
     }
   },
   "order": [
-    "template"
+    "breadcrumb",
+    "template",
+    "recommendation-article"
   ]
 }
