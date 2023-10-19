@@ -1,4 +1,3 @@
-<cart-notification class="flex justify-between items-center gap-4 opacity-0 invisible transition-all fixed top-11 lg:top-15 right-4 bg-primary p-2 text-secondary z-30 rounded-sm font-montserrat">
-  <div class="text-xs">Item added to your cart</div>
-  <a href="{{ routes.cart_url }}" title="View cart" class="block text-xs underline underline-offset-2 !text-secondary">View</a>
+<cart-notification class="flex justify-center items-center shadow-button gap-4 opacity-0 invisible transition-all fixed bottom-8 left-8 lg:bottom-10 lg:left-auto lg:right-10 text-primary hover:bg-primary hover:text-background p-2 w-10 h-10 lg:w-15 lg:h-15 bg-background z-30 rounded-full">
+  <a href="{{ routes.cart_url }}" title="View cart" class="block text-xs underline underline-offset-2 !text-inherit">{% render 'icon-cart', class: 'w-7.5 h-7.5 lg:w-10 lg:h-10' %}</a>
 </cart-notification>

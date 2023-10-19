@@ -332,9 +332,9 @@ class CartNotification extends HTMLElement {
     this.classList.remove('opacity-0', 'invisible');
     setTimeout(() => {
       this.close();
-    }, 1500);
+    }, 2500);
   }
-
+  
   close() {
     this.classList.add('opacity-0', 'invisible');
     removeTrapFocus(this.activeElement);

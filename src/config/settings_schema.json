@@ -25,7 +25,7 @@
         "min": 150,
         "max": 350,
         "step": 2,
-        "default": 278,
+        "default": 280,
         "unit": "px",
         "label": "Logo desktop width"
       },
@@ -40,7 +40,7 @@
         "min": 50,
         "max": 200,
         "step": 2,
-        "default": 178,
+        "default": 180,
         "unit": "px",
         "label": "Logo mobile width"
       }

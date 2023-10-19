@@ -42,6 +42,35 @@
       </div>
     </div>
   {%- endif -%}
+{% elsif template contains 'product' %}
+  {%- if product.description != blank and current_page == 1 -%}
+    <div data-section-id="{{ section.id }}">
+      <div class="page-width">
+        {% if section.settings.heading != blank and section.settings.heading_style == 'inner' %}
+          <{{ section.settings.heading_tag }} class="text-center text-transparent bg-black bg-opacity-75 bg-clip-text [text-shadow:_0.5px_0.5px_2px_var(--color-primary)] text-xl md:text-2xl lg:text-5xl !leading-none font-bold mb-6">
+            {{ section.settings.heading }}
+          </{{ section.settings.heading_tag }}>
+        {% endif %}
+        <drop-caps class="block px-4 py-6 lg:py-10 lg:px-25 rounded-3xl bg-[#f5f5f5] relative overflow-hidden"> 
+          <div class="drop-content">
+            {% if section.settings.heading != blank and section.settings.heading_style == 'drop' %}
+              <{{ section.settings.heading_tag }} class="text-center text-primary text-xl md:text-2xl lg:text-4xl !leading-none font-bold [text-shadow:_0_4px_4px_rgb(0,0,0,0.25)] mb-6">
+                {{ section.settings.heading }}
+              </{{ section.settings.heading_tag }}>
+            {% endif %}
+            <div class="drop-caps max-h-35 lg:max-h-76 overflow-hidden transition-all duration-500">
+              {{ product.description }}
+            </div>
+          </div>
+          <span class="toggle-button relative rounded-[35px] block w-full mx-auto text-center shadow-button text-base lg:text-xl !leading-none bg-[#f5f5f5] font-medium hover:font-bold max-w-[160px] p-3 lg:p-4" 
+                data-more="{{ 'sections.drop_caps.see_more' | t }}" 
+                data-less="{{ 'sections.drop_caps.see_less' | t }}">
+            {{ 'sections.drop_caps.see_more' | t }}
+          </span>
+        </drop-caps>
+      </div>
+    </div>
+  {%- endif -%}
 {%- else -%}
   <div data-section-id="{{ section.id }}">
     <div class="page-width">

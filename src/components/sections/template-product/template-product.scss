@@ -56,9 +56,18 @@ accordion-toggle:not(.active) .icon-text::before {
 .cl-canvas-container canvas {
   @apply -z-10;
 }
-.sticky-header cart-notification {
-  @apply top-3 lg:top-[23px];
-}
 .change-resize.active {
   @apply bg-primary text-secondary;
+}
+
+.customily-modal-preview-only .main {
+  @apply !h-fit relative;
+}
+
+.customily-modal-preview-only .main.cl-use-image .customily-close-button {
+  @apply absolute !top-[calc(100%_-_45px)] md:!top-[-15px] md:!right-[-15px];
+}
+
+.customily-modal-preview-only .main .cl-preview-image {
+  @apply rounded-3xl !max-w-[calc(100%_-_32px)] md:!max-w-full;
 }

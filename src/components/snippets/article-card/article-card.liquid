@@ -1,17 +1,18 @@
 {%- if article and article != empty -%}
   {%- liquid
-    assign ratio = 1
-    if media_aspect_ratio != nil
-      assign ratio = media_aspect_ratio
+    if ratio == 'landscape'
+      assign image_ratio = 5 | divided_by: 3.0
+    else
+      assign image_ratio = 1
     endif
   -%}
   <div class="h-full flex flex-col">
-    <div class="relative" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;">
+    <div class="relative" style="padding-bottom: {{ 1 | divided_by: image_ratio | times: 100 }}%;">
       <a href="{{ article.url }}"
         class="block absolute top-0 left-0 w-full h-full group overflow-hidden rounded-t-lg"
         title="{{ article.title }}"
         style="border-radius: {{ settings.article_card_radius | default: '20' }}px;">
-        {%- if show_image == true and article.image -%}
+        {%- if article.image -%}
           <img
             srcset="{%- if article.image.src.width >= 165 -%}
             {{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}

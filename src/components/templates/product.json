@@ -48,10 +48,25 @@
         "padding_top": 24,
         "padding_bottom": 58
       }
+    },
+    "drop-caps": {
+      "type": "drop-caps",
+      "settings": {
+        "heading": "",
+        "heading_tag": "h2",
+        "heading_style": "inner",
+        "text": "",
+        "content_alignment": "center",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "padding_top_mb": 24,
+        "padding_bottom_mb": 32
+      }
     }
   },
   "order": [
     "breadcrumb",
-    "main"
+    "main",
+    "drop-caps"
   ]
 }

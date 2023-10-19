@@ -1,0 +1,136 @@
+<link rel="stylesheet" href="{{ 'template-article.css' | asset_url }}" />
+
+{%- style -%}
+  .main-article-wrapper article {
+    background-color: {{ section.settings.background_color }}
+    ;
+  }
+{%- endstyle -%}
+<div class="page-width pt-2 pb-6 lg:pt-0 lg:pb-20 flex flex-wrap">
+  {% if section.settings.blog_show_share %}
+    <div class="flex flex-col w-full lg:max-w-1/5">
+      {% render 'article-share' %}
+    </div>
+  {% endif %}
+  <article class="w-full px-4 py-6 md:px-7.5 md:py-10 lg:px-18 lg:py-12 bg-background overflow-hidden rounded-xl {% if section.settings.blog_show_share %}lg:max-w-4/5{% endif %}">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          <div class="">
+            {% render block %}
+          </div>
+        {%- when 'featured_image' -%}
+          {%- if article.image -%}
+            <div class="-mx-4 md:mx-0">
+              <div class="w-full max-h-[480px] md:rounded-circle overflow-hidden">
+                <img srcset="{% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                  {% if article.image.width >= 750 %}
+                    {{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                  {% if article.image.width >= 1100 %}
+                    {{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                  {% if article.image.width >= 1500 %}
+                    {{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                  {% if article.image.width >= 2200 %}
+                    {{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                  {% if article.image.width >= 3000 %}
+                    {{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                  {{ article.image | image_url }} {{ article.image.width }}w" sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"src="{{ article.image | image_url: width: 1100 }}"loading="lazy"
+                  class="object-cover object-center"
+                  width="{{ article.image.width }}"
+                  height="{{ article.image.height }}"
+                  {% if article.image.alt != blank %}
+                    alt="{{ article.image.alt | escape }}"
+                  {% else %}
+                    alt="{{ article.image | split: "/" | last | replace: "-", " " | split: "." | first }}"
+                  {% endif %}>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- when 'title' -%}
+          <h1 class="my-7 lg:my-8 text-secondary text-2xl lg:text-3xl">{{ article.title | escape }}</h1>
+          {%- if block.settings.blog_show_date -%}
+            <div class="flex items-center mb-7.5 text-xs gap-2.5 text-black text-opacity-40">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="w-4.5 h-4.5" viewBox="0 0 18 18" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9 18C4.0293 18 0 13.9707 0 9C0 4.0293 4.0293 0 9 0C13.9707 0 18 4.0293 18 9C18 13.9707 13.9707 18 9 18ZM16.2 9C16.2 7.09044 15.4414 5.25909 14.0912 3.90883C12.7409 2.55857 10.9096 1.8 9 1.8C7.09044 1.8 5.25909 2.55857 3.90883 3.90883C2.55857 5.25909 1.8 7.09044 1.8 9C1.8 10.9096 2.55857 12.7409 3.90883 14.0912C5.25909 15.4414 7.09044 16.2 9 16.2C10.9096 16.2 12.7409 15.4414 14.0912 14.0912C15.4414 12.7409 16.2 10.9096 16.2 9ZM12.6 8.1C12.8387 8.1 13.0676 8.19482 13.2364 8.3636C13.4052 8.53239 13.5 8.7613 13.5 9C13.5 9.23869 13.4052 9.46761 13.2364 9.6364C13.0676 9.80518 12.8387 9.9 12.6 9.9H9.9C8.91 9.9 8.1 9.09 8.1 8.1V4.5C8.1 4.2613 8.19482 4.03239 8.3636 3.8636C8.53239 3.69482 8.7613 3.6 9 3.6C9.23869 3.6 9.46761 3.69482 9.6364 3.8636C9.80518 4.03239 9.9 4.2613 9.9 4.5V8.1H12.6Z" fill="black" fill-opacity="0.4"/>
+              </svg>
+              <span>{{ 'blogs.article.Posted' | t }}{{ article.created_at | date: '%d %b %Y' }}</span>
+              <span class="block w-fit ml-4 capitalize text-xxs lg:text-xs leading-5 lg:leading-6 px-3 lg:px-4 text-black bg-primary-opacity-20 rounded-3xl">{{ blog.title }}</span>
+            </div>
+          {%- endif -%}
+        {%- when 'content' -%}  
+        <div class="article-template__content">
+          {{ article.content }}
+        </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </article>
+</div>
+
+{% capture src_url %}{{ 'template-article.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
+
+{% schema %}
+  {
+    "name": "t:sections.main-article.name",
+    "tag": "section",
+    "class": "section main-article-wrapper",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "default": "#F7F7F7"
+      },
+      {
+        "type": "header",
+        "content": "Sidebar"
+      },
+      {
+        "type": "text",
+        "id": "title_sidebar",
+        "label": "Heading"
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_share",
+        "default": false,
+        "label": "Show share"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "featured_image",
+        "name": "t:sections.main-article.blocks.featured_image.name",
+        "limit": 1,
+        "settings": []
+      },
+      {
+        "type": "title",
+        "name": "t:sections.main-article.blocks.title.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_blog_title",
+            "default": true,
+            "label": "Show blog title"
+          },
+          {
+            "type": "checkbox",
+            "id": "blog_show_date",
+            "default": true,
+            "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+          }
+        ]
+      },
+      {
+        "type": "content",
+        "name": "t:sections.main-article.blocks.content.name",
+        "limit": 1
+      },
+      {
+        "type": "@app"
+      }
+    ]
+  }
+{% endschema %}

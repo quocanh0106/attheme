@@ -8,7 +8,7 @@
           "settings": {
             "heading": "Personalized Gifts For Everyone",
             "heading_tag": "h2",
-            "description": "Discover unique gift ideas from Personal Sunday and customise your present with our personalisation options"
+            "description": "Personalized gifts for everyone with unique gift ideas from Personal Sunday. We don't sell gifts, we help you express emotions, joy and appreciation!"
           }
         },
         "55e59f89-1cfd-4224-88a9-2abb075f2a00": {
@@ -57,7 +57,7 @@
           "settings": {
             "heading": "Personalized Gifts For All Seasons",
             "heading_tag": "h2",
-            "description": "Discover unique gift ideas from Personal Sunday and customise your present with our personalisation options"
+            "description": "Make every occasion truly special and meaningful. Explore personalized gifts for every occasion at Personal Sunday with many surprises awaiting you"
           }
         }
       },
@@ -86,7 +86,7 @@
           "settings": {
             "heading": "Personalized Gifts For Your Sunday",
             "heading_tag": "h2",
-            "description": "Discover unique gift ideas from Personal Sunday and customise your present with our personalisation options"
+            "description": "Hey there, Sunday is the day to build and spread joy. Customize your Sunday and add some pizzazz with quirky gifts!"
           }
         },
         "b8f488fd-4a3c-4116-bd16-1ac2483337ff": {
@@ -133,7 +133,7 @@
           "settings": {
             "heading": "One-of-a-kind Personalised Gifts",
             "heading_tag": "h2",
-            "description": "Discover unique gift ideas from Personal House and customise your present with our personalisation options"
+            "description": "Not fancy, but definitely special! Personalized gifts at Personal Sunday are always unique, practical, and one of a kind"
           }
         }
       },
@@ -160,9 +160,9 @@
         "4dee9515-82d2-4f4a-ac7c-42f4d4d3bee9": {
           "type": "Text",
           "settings": {
-            "heading": "Personal Sunday: Personalized Gifts Day!",
+            "heading": "Personal Sunday: Personalized Gift Day!",
             "heading_tag": "h2",
-            "description": ""
+            "description": "Personalized Gift Day (Personal Sunday) - The first Sunday of December every year"
           }
         },
         "6e56058f-346f-4e92-9112-20a6826945ac": {
@@ -185,11 +185,25 @@
         "padding_top_mb": 64,
         "padding_bottom_mb": 64,
         "padding_top": 92,
-        "padding_bottom": 92,
+        "padding_bottom": 0,
         "margin_top_mb": 0,
         "margin_bottom_mb": 0,
-        "margin_top": 0,
-        "margin_bottom": 0
+        "margin_top": 92,
+        "margin_bottom": 92
+      }
+    },
+    "67c9e5ac-22bb-4659-ac9c-422546e8c70d": {
+      "type": "drop-caps",
+      "settings": {
+        "heading": "",
+        "heading_tag": "h2",
+        "heading_style": "inner",
+        "text": "",
+        "content_alignment": "center",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "padding_top_mb": 24,
+        "padding_bottom_mb": 32
       }
     }
   },
@@ -198,6 +212,7 @@
     "image-with-text-2",
     "image-with-text-3",
     "image-with-text-4",
-    "1e8d6f55-7817-4feb-9182-cb130b7f9050"
+    "1e8d6f55-7817-4feb-9182-cb130b7f9050",
+    "67c9e5ac-22bb-4659-ac9c-422546e8c70d"
   ]
 }

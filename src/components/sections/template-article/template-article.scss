@@ -1,0 +1,104 @@
+.article-template__content h1,
+.article-template__content h2,
+.article-template__content h3,
+.article-template__content h4,
+.article-template__content h5,
+.article-template__content h6 {
+  @apply my-4 mx-0 text-black;
+}
+.article-template__content a {
+  @apply inline;
+}
+.article-template__content a,
+.article-template__content li,
+.article-template__content p,
+.article-template__content span,
+.article-template__content ul {
+  @apply font-normal md:text-base text-sm leading-[1.6];
+}
+.article-template__content b a,
+.article-template__content b li,
+.article-template__content b p,
+.article-template__content b span,
+.article-template__content b ul {
+  @apply font-bold;
+}
+.article-template__content ul {
+  @apply list-inside pl-6;
+}
+.article-template__content blockquote,
+.article-template__content blockquote * {
+  @apply text-xs md:text-sm italic m-0 p-0;
+}
+.article-template__content blockquote {
+  @apply mx-auto my-2;
+}
+.article-template__content p {
+  @apply mx-0 my-3;
+}
+.article-template__content table tr {
+  @apply flex flex-wrap gap-4;
+}
+.article-template__content table tr td {
+  @apply flex-[1_0_0] w-[unset] p-0;
+}
+.article-template__content a,
+.article-template__content a * {
+  @apply italic font-bold;
+}
+.article-template__content li {
+  @apply mb-2.5 list-disc;
+}
+.article-template__content {
+  @apply mt-7 mb-9 text-secondary;
+}
+.article-template__content h1,
+h1.article-template__title {
+  @apply text-3xl font-bold lg:text-[34px] leading-[1.4];
+}
+.article-template__content h2 {
+  @apply text-2xl font-bold leading-[1.4] lg:text-[26px];
+}
+.article-template__content h3,
+.article-template__content h4,
+.article-template__content h5,
+.article-template__content h6 {
+  @apply font-semibold leading-[1.4];
+}
+.article-template__content h3 {
+  @apply text-xl lg:text-[22px];
+}
+.article-template__content h4 {
+  @apply text-lg lg:text-lg;
+}
+.article-template__content h5 {
+  @apply text-base lg:text-base;
+}
+.article-template__content h6 {
+  @apply text-sm lg:text-sm;
+}
+.article-template__content h1,
+.article-template__content h2,
+.article-template__content h3,
+.article-template__content h4,
+.article-template__content h5,
+.article-template__content h6 {
+  @apply lg:mx-0 lg:my-[18px];
+}
+.article-template__content a[title="Acheter Maintenant"],
+.article-template__content a[title="Jetzt Kaufen"],
+.article-template__content a[title="Shop Now"] {
+  @apply !text-background !border !not-italic !text-xs !font-medium !capitalize !overflow-hidden !block !w-full !max-w-[117px] !text-center !transition-all !duration-[0.3s] !ease-[ease] !mx-auto !my-6 !p-3 !rounded-[100px] !border-solid !border-secondary text-secondary;
+  * {
+    @apply !font-medium !text-background !text-xs !not-italic;
+  }
+}
+.article-template__content a[title="Shop Now"]:hover,
+.article-template__content a[title="Acheter Maintenant"]:hover,
+.article-template__content a[title="Jetzt Kaufen"]:hover {
+  @apply !bg-background !text-secondary;
+  * {
+    @apply !text-secondary;
+
+  }
+}

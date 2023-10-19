@@ -1,10 +1,15 @@
 {
   "sections": {
-    "72b922c6-d729-4b54-b96e-64249f23ba4c": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+      }
+    },
+    "page-banner": {
       "type": "page-banner",
       "settings": {
-        "color_title": "#333333",
-        "color_subtitle": "#E6E6E6",
+        "color_title": "#eeab47",
+        "color_subtitle": "#eeab47",
         "background_color": "#ffffff",
         "subtile": "",
         "margin_top": 60,
@@ -25,7 +30,8 @@
     }
   },
   "order": [
-    "72b922c6-d729-4b54-b96e-64249f23ba4c",
+    "breadcrumb",
+    "page-banner",
     "template"
   ]
 }
