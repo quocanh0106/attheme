@@ -101,8 +101,8 @@
   </div>
 
   <div class="bg-grey-900 text-grey-300 py-10">
-    <div class="page-width flex justify-center md:justify-between">
-      <ul class="flex items-center gap-2 md:gap-5 justify-center mb-6 md:mb-0 order-1 md:order-2 " role="list">
+    <div class="page-width flex flex-wrap justify-center gap-2 md:justify-between">
+      <ul class="flex items-center gap-2 md:gap-5 justify-center mb-6 md:mb-0 order-1 md:order-2 w-full md:w-fit" role="list">
         {%- assign enabled_payment_types = "paypal,visa,master,apple_pay" | remove: ' ' | split: ',' -%}
         {% for type in enabled_payment_types %}
           <li class="list-payment__item">
@@ -120,7 +120,7 @@
       </ul>
       {%- if section.blocks.size > 0 -%}
         {% if  section.settings.copyright != blank %}
-          <p class="text-sm text-background order-2 md:order-1">{{ section.settings.copyright }}</p>
+          <p class="text-sm text-center text-background order-2 md:order-1 w-full md:w-fit">{{ section.settings.copyright }}</p>
         {% endif %}
       {% endif %}
     </div>

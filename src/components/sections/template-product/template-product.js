@@ -1,20 +1,10 @@
 import './template-product.scss';
 
-const trapFocusHandlers = {};
-
 function fetchConfig(type = 'json') {
   return {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': `application/${type}` }
   };
-}
-
-function removeTrapFocus(elementToFocus = null) {
-  document.removeEventListener('focusin', trapFocusHandlers.focusin);
-  document.removeEventListener('focusout', trapFocusHandlers.focusout);
-  document.removeEventListener('keydown', trapFocusHandlers.keydown);
-
-  if (elementToFocus) elementToFocus.focus();
 }
 
 class VariantSelects extends HTMLElement {
@@ -335,11 +325,6 @@ class CartNotification extends HTMLElement {
     }, 2500);
   }
   
-  close() {
-    this.classList.add('opacity-0', 'invisible');
-    removeTrapFocus(this.activeElement);
-  }
-
   renderContents(parsedState) {
     this.cartItemKey = parsedState.key;
     this.getSectionsToRender().forEach((section) => {

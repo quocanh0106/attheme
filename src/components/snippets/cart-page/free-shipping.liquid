@@ -5,7 +5,7 @@
     <div class="flex items-center justify-center gap-3 px-4 js-shipping-bar">
       {%- assign minimun_freeshipping = settings.minimum_freeshipping | times: 1.00 -%}
       {% assign oject = total | divided_by: minimun_freeshipping | times: 100  %}
-      <div class="process-bar{% if oject >= 100 %} active{% endif %} relative w-5 h-5 rounded-full overflow-hidden" style="--p:{{ cart.total_price | money_without_currency | divided_by: minimun_freeshipping | times: 100 }}; 
+      <div class="process-bar{% if oject >= 100 %} active{% endif %} relative w-5 h-5 rounded-full overflow-hidden flex-none" style="--p:{{ cart.total_price | money_without_currency | divided_by: minimun_freeshipping | times: 100 }}; 
         {% if oject >= 100 %} --c: {{ settings.color_success }} {% else %} --c: #555 {% endif %}">
         <div class="process" style="--p:{{ cart.total_price | money_without_currency | divided_by: minimun_freeshipping | times: 100 }}; 
         {% if oject >= 100 %} --c: {{ settings.color_success }} {% else %} --c: #555 {% endif %}"></div>

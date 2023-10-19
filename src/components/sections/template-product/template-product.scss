@@ -65,7 +65,7 @@ accordion-toggle:not(.active) .icon-text::before {
 }
 
 .customily-modal-preview-only .main.cl-use-image .customily-close-button {
-  @apply absolute !top-[calc(100%_-_45px)] md:!top-[-15px] md:!right-[-15px];
+  @apply absolute !top-[calc(100%_+_20px)] md:!-top-5 md:!-right-5 w-10 h-10 opacity-60 hover:opacity-100;
 }
 
 .customily-modal-preview-only .main .cl-preview-image {
