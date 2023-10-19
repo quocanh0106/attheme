@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ 'account.css' | asset_url }}" />
+
 <div class="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
   <div class="w-full max-w-md space-y-8">
     <div>
@@ -52,3 +54,6 @@
     </div>
   </div>
 </div>
+
+{% capture src_url %}{{ 'account.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
