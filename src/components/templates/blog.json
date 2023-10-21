@@ -3,6 +3,14 @@
     "breadcrumb": {
       "type": "breadcrumb",
       "settings": {
+        "background_color": "#ffffff",
+        "color_text_breadcrumb_link": "#333333",
+        "color_text_breadcrumb_link_hover": "#eeab47",
+        "color_text_breadcrumb": "#eeab47",
+        "padding_top": 32,
+        "padding_bottom": 8,
+        "padding_top_mb": 32,
+        "padding_bottom_mb": 8
       }
     },
     "page-banner": {
@@ -10,10 +18,11 @@
       "settings": {
         "color_title": "#eeab47",
         "color_subtitle": "#eeab47",
-        "background_color": "#ffffff",
         "subtile": "",
-        "margin_top": 60,
-        "margin_bottom": 60
+        "margin_top": 64,
+        "margin_bottom": 0,
+        "margin_top_mobile": 0,
+        "margin_bottom_mobile": 0
       }
     },
     "template": {

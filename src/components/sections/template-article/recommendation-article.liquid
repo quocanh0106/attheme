@@ -1,17 +1,3 @@
-{% for link in linklists['list-blogs'].links %}
-  {% if allArticle %}
-    {% assign allArticle = allArticle | concat: link.object.articles  %}
-  {% else %}
-    {% assign allArticle = link.object.articles  %}
-  {% endif %}
-{% endfor %}
-{% for tag in article.metafields.custom.anchor.value %}
-  {% if anchor != blank %}
-    {% assign anchor = anchor | append: "," | append: tag.tag  %}
-  {% else %}
-    {% assign anchor = tag.tag %}
-  {% endif %}
-{% endfor %}
 {%- style -%}
   [data-section-id="{{ section.id }}"] {
     background: {{ section.settings.background_color }};
@@ -44,23 +30,6 @@
           }
         }'>
         <ul class="flex swiper-wrapper">
-          {% if anchor != blank %}
-          {% assign allArticle = allArticle | sort: 'published_at' %}
-            {%- for item in allArticle -%}
-              {% assign sameAnchor = false %}
-              {% for tag in item.metafields.custom.anchor.value %}
-                {% if anchor contains tag.tag %}
-                  {% assign sameAnchor = true %}
-                {% endif %}
-              {% endfor %}
-              {% if sameAnchor and item != article %}
-              {% assign blogofitem = item.handle | split: "/" | first %}
-                <li class="swiper-slide lg:max-w-1/3 mr-0.5 lg:mr-2.5 !h-auto" >
-                  {% render 'article-card', blog: blogs[blogofitem], article: item, ratio: section.settings.ratio, card_tag: section.settings.card_tag -%}
-                </li>
-              {% endif %}
-            {%- endfor -%}
-          {% else %}
             {% assign relatedArticles = blog.articles | sort: 'published_at' | offset: forloop.index0  %}
             {% if relatedArticles.size < 6 %}
               {% assign relatedArticles = blog.articles | sort: 'published_at' %}
@@ -68,11 +37,10 @@
             {%- for item in relatedArticles limit: section.settings.post_limit -%}
               {% if item != article %}
                 <li class="swiper-slide lg:max-w-1/3 mr-0.5 lg:mr-2.5 !h-auto" >
-                  {%- render 'article-card', article: article, blog: section.settings.blog, ratio: section.settings.ratio, card_tag: section.settings.card_tag -%}
+                  {%- render 'article-card', article: item, blog: section.settings.blog, ratio: section.settings.ratio, card_tag: section.settings.card_tag -%}
                 </li>
               {% endif %}
             {%- endfor -%}
-          {% endif %}
         </ul>
       </swiper-component>
   </div>

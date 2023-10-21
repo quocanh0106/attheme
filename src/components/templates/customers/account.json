@@ -1,5 +1,18 @@
 {
   "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "background_color": "#FFFFFF",
+        "color_text_breadcrumb_link": "#333",
+        "color_text_breadcrumb_link_hover": "#eeab47",
+        "color_text_breadcrumb": "#eeab47",
+        "padding_top": 18,
+        "padding_bottom": 54,
+        "padding_top_mb": 24,
+        "padding_bottom_mb": 24
+      }
+    },
     "main": {
       "type": "account",
       "settings": {
@@ -7,6 +20,7 @@
     }
   },
   "order": [
+    "breadcrumb",
     "main"
   ]
 }

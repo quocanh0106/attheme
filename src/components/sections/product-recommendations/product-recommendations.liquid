@@ -22,7 +22,7 @@
 
 <div data-section-id="{{ section.id }}">
   <div class="page-width">
-    <div class="flex items-center justify-between px-4 md:px-0 mb-4 md:mb-7.5">
+    <div class="flex items-center justify-between mb-4 md:mb-7.5">
       <{{ section.settings.heading_tag }} class="text-2xl font-bold lg:text-3xl !leading-none text-secondary capitalize">{{ section.settings.title | escape }}</{{ section.settings.heading_tag }}>
 
       <div class="hidden lg:flex items-center gap-4 justify-end">
@@ -32,9 +32,8 @@
     </div>
     <swiper-component class="flex overflow-hidden" data-infor-swiper='{
                   "modules": ["Navigation", "Scrollbar"],
-                  "slidesPerView": 2,
-                  "slidesPerGroup": 2,
-                  "spaceBetween": 2,
+                  "slidesPerView": {{ section.settings.product_per_row_mobile }},
+                  "spaceBetween": 16,
                   "navigation": {
                     "nextEl": ".next-{{ section.id }}",
                     "prevEl": ".prev-{{ section.id }}"
@@ -45,13 +44,10 @@
                   },
                   "breakpoints": {
                     "768": {
-                      "slidesPerView": 3,
-                      "slidesPerGroup": 1
+                      "slidesPerView": {{ section.settings.product_per_row_tablet }}
                     },
                     "1024": {
-                      "slidesPerView": 4,
-                      "slidesPerGroup": 1,
-                      "spaceBetween": 10
+                      "slidesPerView": {{ section.settings.product_per_row }}
                     }
                   },
                   "speed": 400

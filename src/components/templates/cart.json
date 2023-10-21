@@ -18,10 +18,11 @@
       "settings": {
         "color_title": "#333333",
         "color_subtitle": "",
-        "background_color": "",
         "subtile": "",
         "margin_top": 48,
-        "margin_bottom": 48
+        "margin_bottom": 48,
+        "margin_top_mobile": 32,
+        "margin_bottom_mobile": 32
       }
     },
     "template": {

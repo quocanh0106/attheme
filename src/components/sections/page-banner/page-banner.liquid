@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ 'page-banner.css' | asset_url }}" />
 
 <div class="page-width-desktop">
-  <div data-section-id="{{ section.id }}" class="px-4{% unless template contains "collection" %} py-6{% endunless %} bg-cover{% if template contains 'collection' %} max-w-[832px]{% endif %} mx-auto">
+  <div data-section-id="{{ section.id }}" class="px-4 bg-cover{% if template contains 'collection' %} max-w-[832px]{% endif %} mx-auto">
     {% if template contains 'product' %}
       {% elsif template == 'cart'  %}
         <h1 class="page-title flex items-start justify-center gap-4 lg:gap-6 uppercase text-2xl lg:text-5xl font-bold m-0 font-heading">{% render 'icon-cart', class: 'w-5 h-5 lg:w-10 lg:h-10 text-primary' %}<span>{{ 'cart.general.title' | t }}</span></h1>
@@ -79,10 +79,14 @@
 
 {% style %}
   [data-section-id="{{ section.id }}"] {
-    background: {% if section.settings.background_color %}{{ section.settings.background_color }}{% endif %}; 
-    background-size: cover;
-    margin-top: {{ section.settings.margin_top }}px;
-    margin-bottom: {{ section.settings.margin_bottom }}px;
+    margin-top: {{ section.settings.margin_top_mobile }}px;
+    margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+  }
+  @media (min-width: 768px) {
+    [data-section-id="{{ section.id }}"] {
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
   }
 
   [data-section-id="{{ section.id }}"] h1 {
@@ -114,12 +118,6 @@
         "default": "#E6E6E6"
       },
       {
-        "type": "color",
-        "id": "background_color",
-        "label": "Background color",
-        "default": "#000"
-      },
-      {
         "type": "richtext",
         "id": "subtile",
         "default": "<p>Slash Sales begins in April. Get up to 80% Discount on all products...</p>",
@@ -127,7 +125,7 @@
       },
       {
         "type": "header",
-        "content": "margin"
+        "content": "Margin desktop"
       },
       {
         "type": "range",
@@ -142,6 +140,30 @@
       {
         "type": "range",
         "id": "margin_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin bottom",
+        "default": 16
+      },
+      {
+        "type": "header",
+        "content": "Margin mobile"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Margin top",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_mobile",
         "min": 0,
         "max": 100,
         "step": 2,

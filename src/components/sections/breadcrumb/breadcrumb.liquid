@@ -197,7 +197,7 @@
           {% render 'icon-chevron-right', class: "w-1" %}
         </li>
         <li class="flex items-center gap-1 text-xs leading-none">
-          <span>{{ current_tags | join: " + " }}</span>
+          <span class="whitespace-nowrap">{{ current_tags | join: " + " }}</span>
         </li>
       {% else %}
           <li class="flex items-center gap-1 text-xs leading-none">
@@ -209,7 +209,7 @@
         {% render 'icon-chevron-right', class: "w-1" %}
       </li>
       <li class="flex items-center gap-1 text-xs leading-none">
-        <span>{{ article.title }}</span>
+        <span class="whitespace-nowrap">{{ article.title }}</span>
       </li>
     {% elsif template contains 'page' %}
       <li class="flex items-center gap-1 text-xs leading-none">
