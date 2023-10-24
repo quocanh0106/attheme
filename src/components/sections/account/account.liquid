@@ -3,61 +3,30 @@
     <h1 class="text-h3 lg:text-h1 capitalize mb-3 text-primary">Hi, {{ customer.name }}</h1>
     <span class="text-secondary text-sm lg:text-base font-normal italic">Wishing you a wonderful day!</span>
   </div>
-  <div class="flex flex-wrap md:justify-between">
-    {% assign full_url = request.host | append: request.path | append: request.origin %}
-    {{ full_url }}
-    <accordion-toggle>
+  {%- assign pageUrl = content_for_header | split: '"pageurl":"' | last | split: '"' | first | split: '.myshopify.com' | last | replace: '\/', '/' | replace: '%20', ' ' | replace: '\u0026', '&' -%}
+  <div class="flex flex-wrap md:justify-between mt-6 lg:mt-17">
+
+    <accordion-toggle class="block w-full lg:max-w-1/5">
       <div class="summary lg:hidden"></div>
       <div class="details lg:block lg:!max-h-full">
-        <ul>
-          <li class="{% if 'a' == 'a' %}{% endif %}"></li>
-          
+        <ul class="flex-col flex gap-6">
+          <li>
+            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none {% if pageUrl contains routes.account_url %}{% unless pageUrl contains '?view=' %} !text-primary !text-opacity-100{% endunless %}{% endif %}" href="{{ routes.account_url }}">{% render 'icon-customer', class: 'w-4.5 h-4.5' %} <span>Account</span></a>
+          </li>
+          <li>
+            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none {% if pageUrl contains '?view=orders' %} !text-primary !text-opacity-100{% endif %}" href="{{ routes.account_url }}?view=orders">{% render 'icon-order', class: 'w-4.5 h-4.5' %} <span>Order</span></a>
+          </li>
+          <li>
+            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none" href="pages/wishlist">{% render 'icon-wishlist', class: 'w-4.5 h-4.5' %} <span>Wishlist</span></a>
+          </li>
+          <li>
+            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none" href="{{ routes.account_logout_url }}">{% render 'icon-logout', class: 'w-4.5 h-4.5' %} <span>Logout</span></a>
+          </li>
         </ul>
       </div>
     </accordion-toggle>
-    
+    <div class="w-full lg:max-w-4/5">
+    page account
+    </div>
   </div>
-</div>
-
-<div class="block gap-4 md:flex">
-  {%- if customer.orders.size > 0 -%}
-    <div class="w-full my-6 md:my-12">
-      <h2 class="text-xl font-bold text-headerColor">Order History</h2>
-      {%- paginate customer.orders by 10 -%}
-        <div class="grid grid-cols-1 mt-6 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-cols-8">
-          {%- for order in customer.orders -%}
-            <div class="relative">
-              <div class="w-full bg-gray-200 rounded-medium min-80 overflo-hidden lg:h-80">
-                {%- if order.line_items.first.image -%}
-                  <a href="{{ order.customer_url }}">
-                    <img class="object-cover object-center w-full h-full" src="{{ order.line_items.first.image | image_url: width: '240' }}" alt="{{ order.line_items.first.alt }}" width="{{ order.line_items.first.width }}" height="{{ order.line_items.first.height }}" loading="lazy">
-                  </a>
-                {%- else -%}
-                  {{ 'product-1' | placeholder_svg_tag: 'object-cover object-center w-full h-full' }}
-                {%- endif -%}
-              </div>
-              <div class="flex items-start justify-between mt-4">
-                <div>
-                  <h3 class="text-sm text-headerColor">{{ order.name | link_to: order.customer_url }}</h3>
-                  <p class="mt-1 text-sm text-copyColor">{{ order.financial_status_label }}</p>
-                </div>
-                <div class="text-right">
-                  <p class="px-3 py-1 text-sm font-medium text-white bg-gray-700 rounded-full">{{ order.fulfillment_status_label }}</p>
-                  <p class="text-sm">{{ order.total_price | money }}</p>
-                </div>
-              </div>
-            </div>
-          {%- endfor -%}
-        </div>
-        <div class="max-w-6xl mx-auto">
-          {% render 'pagination', pagination: paginate %}
-        </div>
-      {%- endpaginate -%}
-    </div>
-  {%- else -%}
-    <div class="flex items-center justify-center w-full h-80">
-      <h2 class="text-base font-medium md:text-2xl">You have no orders yet.</h2>
-    </div>
-  {%- endif -%}
-
 </div>

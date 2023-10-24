@@ -6,9 +6,9 @@
   "scripts": {
     "build": "webpack",
     "webpack": "yarn install && webpack --watch --progress",
-    "deploy": "cd dist && shopify theme push -t 154313818461 --ignore templates/*.json config/settings_data.json",
+    "deploy": "cd dist && shopify theme push --ignore templates/*.json config/settings_data.json -t 154313818461",
     "deploy1": "cd dist && shopify theme push --ignore templates/*.json config/settings_data.json",
-    "serve": "cd dist && shopify theme push -t 154394820957 --ignore templates/*.json config/settings_data.json",
+    "serve": "cd dist && shopify theme push --ignore templates/*.json config/settings_data.json -t 154394820957",
     "fetch": "cd src && cd components && shopify theme pull --only templates/*.json",
     "cy": "cypress open",
     "cy:run": "cypress run",
