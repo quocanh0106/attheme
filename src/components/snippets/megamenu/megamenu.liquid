@@ -4,7 +4,38 @@
   <div class="block lg:flex lg:items-center lg:justify-between lg:gap-4 w-3/4 lg:w-full h-full ">
     <ul class="flex flex-col lg:flex-row items-start justify-start w-full h-full lg:h-fit lg:items-center transition-all relative megamenu bg-background duration-300 -translate-x-full lg:translate-x-0">
       <li class="lg:hidden flex items-center justify-between w-full px-3 py-4 border-b border-border">
-        <span class="h6 font-heading">Menu</span>
+        <a
+          href="{{ routes.root_url }}"
+          class="inline-block lg:hidden no-underline"
+          title="{{ shop.name }}"
+          style="max-width: {{ settings.logo_width_mb }}px;">
+          {%- if settings.logo_mb != blank -%}
+            {%- assign logo_mb_alt = settings.logo_mb.alt | default: shop.name | escape -%}
+            {%- assign logo_mb_height = settings.logo_mb_width | divided_by: settings.logo_mb.aspect_ratio -%}
+            <img
+              srcset="{%- if settings.logo_mb.width >= 100 -%}
+              {{ settings.logo_mb | img_url: '100x' }} 100w,{%- endif -%}
+            {%- if settings.logo_mb.width >= 120 -%}
+              {{ settings.logo_mb | img_url: '120x' }} 120w,{%- endif -%}
+            {%- if settings.logo_mb.width >= 140 -%}
+              {{ settings.logo_mb | img_url: '140x' }} 140w,{%- endif -%}
+            {%- if settings.logo_mb.width >= 160 -%}
+              {{ settings.logo_mb | img_url: '160x' }} 160w,{%- endif -%}
+            {%- if settings.logo_mb.width >= 180 -%}
+              {{ settings.logo_mb | img_url: '180x' }} 180w,{%- endif -%}
+            {%- if settings.logo_mb.width >= 200 -%}
+              {{ settings.logo_mb | img_url: '200x' }} 200w,{%- endif -%}
+            {{ settings.logo_mb | img_url: 'master' }} {{ settings.logo_mb_width }}w"
+            src="{{ settings.logo_mb | image_url: width: settings.logo_width_mb }}"
+            loading="lazy"
+            sizes="{{ settings.logo_width_mb }}px"
+            width="{{ settings.logo_width_mb }}"
+            height="{{ logo_mb_height }}"
+            alt="{{ logo_mb_alt }}">
+          {%- else -%}
+            <span class="h3">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
         <span class="close-menu absolute top-5 right-3 w-3 h-3 z-30 before:absolute before:content-empty before:block before:p-4 before:-top-2.5 before:-left-2.5 cursor-pointer">
           {% render 'icon-close', class: "w-3 h-3" %}
         </span>
@@ -178,53 +209,19 @@
             {% endif %}
           </li>
         {% endfor %}
-        <li class="flex lg:hidden items-center gap-x-8 lg:gap-x-10 m-0 p-4 justify-end w-fit lg:w-full lg:max-w-1/2">
-          <button type="button" onclick="document.getElementById('open-search').click()" class="w-5 h-5 text-primary">{% render 'icon-search' %}</button>
-          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="account" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5">
+        <li class="flex lg:hidden items-center gap-x-8 lg:gap-x-10 m-0 p-4 justify-between w-full lg:max-w-1/2 mt-auto">
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="account" class="bright-link flex flex-col items-center justify-center relative w-7.5">
             {% render 'icon-customer', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
             <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Account</span>
           </a>
-          <a href="/pages/wishlist" title="account" class="bright-link flex flex-col items-center justify-center relative w-5 lg:w-7.5">
+          <a href="/pages/wishlist" title="account" class="bright-link flex flex-col items-center justify-center relative w-7.5">
             {% render 'icon-wishlist', class: 'w-5 h-5 lg:w-7.5 lg:h-7.5' %}
             <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Wishlist</span>
             <wishlist-count class="absolute bg-secondary text-success w-4 h-4 lg:w-5 lg:h-5 rounded-full flex justify-center items-center -top-1 left-0 -translate-x-1/2" style="display:none;">
               <span aria-hidden="true" class="flex justify-center items-center h-full text-xs lg:text-base leading-none font-bold"></span>
             </wishlist-count>
           </a>
-        </li>
-        <li class="lg:hidden w-ful px-3 mt-2">
-          <a
-            href="{{ routes.root_url }}"
-            class="inline-block lg:hidden no-underline"
-            title="{{ shop.name }}"
-            style="max-width: {{ settings.logo_width_mb }}px;">
-            {%- if settings.logo_mb != blank -%}
-              {%- assign logo_mb_alt = settings.logo_mb.alt | default: shop.name | escape -%}
-              {%- assign logo_mb_height = settings.logo_mb_width | divided_by: settings.logo_mb.aspect_ratio -%}
-              <img
-                srcset="{%- if settings.logo_mb.width >= 100 -%}
-                {{ settings.logo_mb | img_url: '100x' }} 100w,{%- endif -%}
-              {%- if settings.logo_mb.width >= 120 -%}
-                {{ settings.logo_mb | img_url: '120x' }} 120w,{%- endif -%}
-              {%- if settings.logo_mb.width >= 140 -%}
-                {{ settings.logo_mb | img_url: '140x' }} 140w,{%- endif -%}
-              {%- if settings.logo_mb.width >= 160 -%}
-                {{ settings.logo_mb | img_url: '160x' }} 160w,{%- endif -%}
-              {%- if settings.logo_mb.width >= 180 -%}
-                {{ settings.logo_mb | img_url: '180x' }} 180w,{%- endif -%}
-              {%- if settings.logo_mb.width >= 200 -%}
-                {{ settings.logo_mb | img_url: '200x' }} 200w,{%- endif -%}
-              {{ settings.logo_mb | img_url: 'master' }} {{ settings.logo_mb_width }}w"
-              src="{{ settings.logo_mb | image_url: width: settings.logo_width_mb }}"
-              loading="lazy"
-              sizes="{{ settings.logo_width_mb }}px"
-              width="{{ settings.logo_width_mb }}"
-              height="{{ logo_mb_height }}"
-              alt="{{ logo_mb_alt }}">
-            {%- else -%}
-              <span class="h3">{{ shop.name }}</span>
-            {%- endif -%}
-          </a>
+          <button type="button" onclick="document.getElementById('open-search').click()" class="w-7.5 h-7.5 text-primary">{% render 'icon-search' %}</button>
         </li>
         {% if section.settings.banner_image_mb_1 != blank or section.settings.banner_image_mb_2 != blank %}
           <li class="lg:hidden w-ful px-3 h-fit py-6 bg-[#ebeeee] lg:max-w-1/3 w-full">

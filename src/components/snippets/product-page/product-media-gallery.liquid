@@ -45,7 +45,7 @@
 
 <media-gallery class="flex gap-5">
   {%- if media_count > 1 -%}
-    <div class="swiper sub-slider-media !px-4 md:!px-0 max-w-1/5 w-full overflow-hidden" thumbsSlider="" data-infor-swiper='{
+    <div class="swiper sub-slider-media max-w-1/5 w-full overflow-hidden" thumbsSlider="" data-infor-swiper='{
         "direction": "vertical",
         "freeMode": true,
         "watchSlidesProgress": true,
@@ -121,5 +121,8 @@
   </div>
 </media-gallery>
 <div class="free-shipping flex justify-center items-center text-subtext text-base gap-2.5 mt-4">
-  {% render 'icon-truck', class: 'text-primary' %}<span class="text-sm lg:text-base font-medium leading-6">Estimated delivery time: <strong class="text-base lg:text-lg leading-6">Aug 23 - Aug 25</strong></span>
+  {% assign secondDelivery = settings.delivery | times: 86400 %}
+  {% assign currentDate = "now" | date: "%s" | plus: secondDelivery %} 
+  {% assign futureDate = currentDate | date: "%b %d" %}
+  {% render 'icon-truck', class: 'text-primary' %}<span class="text-xs lg:text-sm font-medium leading-6">Estimated delivery time: <strong class="text-xs lg:text-sm leading-6">{{ "now" | date: "%b %d" }} - {{ futureDate | date: '%b %d' }}</strong></span>
 </div>

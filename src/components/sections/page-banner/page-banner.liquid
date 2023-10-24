@@ -55,16 +55,21 @@
           </truncate-paragraph>
         {% endunless %}
       {% elsif template contains 'list-collections' %}
-        <h1 class="page-title text-center uppercase text-2xl lg:text-4xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ page_title }}</h1>
+        <h1 class="page-title text-center uppercase text-3xl lg:text-5xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ page_title }}</h1>
       {% elsif template contains 'blog' %}
-        <h1 class="page-title text-center uppercase text-2xl lg:text-4xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ blog.title }}</h1>
+        <h1 class="page-title text-center uppercase text-3xl lg:text-5xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ blog.title }}</h1>
       {% elsif template contains 'article' %}
       {% elsif template contains 'page' %}
-        <h1 class="page-title text-2xl leading-tight font-medium m-0 tracking-normal font-heading">{{ page.title }}</h1>
+        <h1 class="page-title text-center uppercase text-3xl lg:text-5xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ page.title }}</h1>
         {%- if template.suffix == 'wishlist' -%}
         <wishlist-count class="block" style="display:none;">
           <p class="page-sub-title js-wishlist-count text-sm leading-5 font-light mt-2"><span aria-hidden="true" class=""></span> {{ "templates.search.products" | t }}</p>
         </wishlist-count>
+        {%- endif -%}
+        {%- if template.suffix == 'faqs' -%}
+          {% if page.content %}
+            <p class="text-center mt-5 text-secondary text-base lg:text-xl">{{ page.content | strip_html }}</p>
+          {% endif %}
         {%- endif -%}
       {% elsif template contains 'search' %}
         <h1 class="page-title text-2xl leading-tight font-medium m-0 tracking-normal font-heading">{{ 'templates.search.title' | t }}</h1>

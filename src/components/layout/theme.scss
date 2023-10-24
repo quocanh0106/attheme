@@ -78,11 +78,11 @@ modal-opener.bright-link {
   @apply btn-2;
 }
 .swiper-pagination-bullet {
-  @apply w-1.5 h-1.5 rounded-full transition-all relative after:absolute after:content-empty after:block after:top-[-3px] after:left-[-3px]  after:p-[6px];
+  @apply w-2 h-2 lg:w-4 lg:h-4 rounded-full !block cursor-pointer bg-white bg-opacity-30 transition-all relative after:absolute after:content-empty after:block after:-top-1 after:-left-1 after:lg:-top-1.5 after:lg:-left-1.5 after:p-2 after:lg:p-3;
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  @apply bg-primary;
+  @apply bg-opacity-100;
 }
 
 /***** End button ******/

@@ -36,19 +36,19 @@ input:checked+label.color {
 }
 #customily-preview-button {
   -webkit-text-fill-color: initial !important;
-  @apply !w-full !h-15 lg:!h-20 !mb-5 !text-lg lg:!text-2xl !relative !top-0 !left-0 !capitalize !border-4 !border-black !border-opacity-25 !font-heading !text-secondary !bg-background hover:!text-background hover:!bg-primary-opacity-30 hover:!border-primary-opacity-30 !whitespace-nowrap !inline-block !tracking-[0] !transition-all !cursor-pointer !shadow-button !no-underline !rounded-[100px] !font-semibold;
+  @apply !w-full !h-18 lg:!h-20 !mb-5 !text-lg lg:!text-2xl !relative !top-0 !left-0 !capitalize !border-4 !border-black !border-opacity-25 !font-heading !text-secondary !bg-background hover:!text-background hover:!bg-primary-opacity-30 hover:!border-primary-opacity-30 !whitespace-nowrap !inline-block !tracking-[0] !transition-all !cursor-pointer !shadow-button !no-underline !rounded-[100px] !font-semibold;
 }
 
 .product-form__submit,
 .product-form__submit.ld-over-inverse {
-  @apply !w-full !z-10 !h-15 lg:!h-20 !absolute !bottom-0 !left-0 !mb-5 !text-lg lg:!text-2xl  !capitalize !border-4 !border-background !font-heading !text-background !bg-primary hover:!text-background hover:!bg-primary-opacity-30 hover:!border-primary-opacity-30 !whitespace-nowrap !inline-block !tracking-[0] !transition-all !cursor-pointer !shadow-button !no-underline !rounded-[100px] !font-semibold;
+  @apply !w-full !z-10 !h-18 lg:!h-20 !absolute !bottom-0 !left-0 !mb-5 !text-lg lg:!text-2xl  !capitalize !border-4 !border-background !font-heading !text-background !bg-primary hover:!text-background hover:!bg-primary-opacity-30 hover:!border-primary-opacity-30 !whitespace-nowrap !inline-block !tracking-[0] !transition-all !cursor-pointer !shadow-button !no-underline !rounded-[100px] !font-semibold;
 }
 
 .product-form__submit.ld-over-inverse.sticky-button {
   @apply !rounded-none !fixed !bottom-0 !left-0 !border-0 !mb-0 !border-t lg:!border-4 lg:!mb-4 lg:!absolute lg:!rounded-[100px];
 }
 .product-form__submit.ld-over-inverse.btn-secondary {
-  @apply !w-full !z-10 !h-15 lg:!h-20 !absolute !bottom-0 !left-0 !mb-5 !text-lg lg:!text-2xl !capitalize !border-4 !border-background !font-heading !text-background !bg-primary hover:!text-background hover:!bg-primary-opacity-30 hover:!border-primary-opacity-30 !whitespace-nowrap !inline-block !tracking-[0] !transition-all !cursor-pointer !shadow-button !no-underline !rounded-[100px] !font-semibold;
+  @apply !w-full !z-10 !h-18 lg:!h-20 !absolute !bottom-0 !left-0 !mb-5 !text-lg lg:!text-2xl !capitalize !border-4 !border-background !font-heading !text-background !bg-primary hover:!text-background hover:!bg-primary-opacity-30 hover:!border-primary-opacity-30 !whitespace-nowrap !inline-block !tracking-[0] !transition-all !cursor-pointer !shadow-button !no-underline !rounded-[100px] !font-semibold;
 }
 accordion-toggle:not(.active) .icon-text::before {
   @apply opacity-0 invisible;

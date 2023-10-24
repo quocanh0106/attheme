@@ -1,0 +1,180 @@
+{%- style -%}
+  [data-section-id="{{ section.id }}"] {
+    margin-top: {{ section.settings.margin_top_mb }}px;
+    margin-bottom: {{ section.settings.margin_bottom_mb }}px;
+  }
+  @media(min-width:1024px) {
+    [data-section-id="{{ section.id }}"] {
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="relative w-full{% unless section.settings.fullwidth %} page-width-desktop{% endunless %}" data-section-id="{{ section.id }}">
+  <swiper-component class="block overflow-hidden{% unless section.settings.fullwidth %} lg:rounded-circle{% endunless %}" data-infor-swiper='{
+      "modules": ["Pagination"],
+      "slidesPerView": 1,
+      "pagination": {
+        "clickable": true,
+        "el": ".swiper-pagination-{{ section.id }}"
+      }
+
+    }'>
+    <ul class="flex swiper-wrapper">
+      {%- for block in section.blocks -%}
+        <li class="swiper-slide w-full">
+          {% if block.settings.image_mobile != blank or block.settings.image_desktop != blank %} 
+            <a class="w-full block" {% if block.settings.link %}href="{{ block.settings.link }}"{% endif %} {% if block.settings.image_mobile.alt != blank %} title="{{ block.settings.image_mobile.alt | escape }}"{% else %} title="{{ block.settings.image_mobile | split: "/" | last | replace: "-", " " | split: "." | first }}"{% endif %}>
+              {% if block.settings.image_mobile %}
+                <img
+                  srcset="{%- if block.settings.image_mobile.width >= 180 -%}
+                  {{ block.settings.image_mobile | image_url: width: 180 }} 180w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 360 -%}
+                    {{ block.settings.image_mobile | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 540 -%}
+                    {{ block.settings.image_mobile | image_url: width: 540 }} 540w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 720 -%}
+                    {{ block.settings.image_mobile | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 900 -%}
+                    {{ block.settings.image_mobile | image_url: width: 900 }} 900w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 1080 -%}
+                    {{ block.settings.image_mobile | image_url: width: 1080 }} 1080w{%- endif -%}"
+                  src="{{ block.settings.image_mobile | image_url: width: 737 }}"
+                  sizes="calc(100vw - 30px)"
+                  {% if block.settings.image_mobile.alt != blank %}
+                  alt="{{ block.settings.image_mobile.alt | escape }}"
+                  {% else %}
+                  alt="{{ block.settings.image_mobile | split: "/" | last | replace: "-", " " | split: "." | first }}"
+                  {% endif %}
+                  loading="lazy"
+                  class="w-full{% if block.settings.image_mobile %} block lg:hidden{% else %} block{% endif %}"
+                  width="{{ block.settings.image_mobile.width }}"
+                  height="{{ block.settings.image_mobile.height }}"
+                >
+              {% endif %}
+              {% if block.settings.image_desktop %}
+                <img
+                  srcset="{%- if block.settings.image_desktop.width >= 180 -%}
+                  {{ block.settings.image_desktop | image_url: width: 180 }} 180w,{%- endif -%}
+                  {%- if block.settings.image_desktop.width >= 360 -%}
+                    {{ block.settings.image_desktop | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if block.settings.image_desktop.width >= 540 -%}
+                    {{ block.settings.image_desktop | image_url: width: 540 }} 540w,{%- endif -%}
+                  {%- if block.settings.image_desktop.width >= 720 -%}
+                    {{ block.settings.image_desktop | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if block.settings.image_desktop.width >= 900 -%}
+                    {{ block.settings.image_desktop | image_url: width: 900 }} 900w,{%- endif -%}
+                  {%- if block.settings.image_desktop.width >= 1080 -%}
+                    {{ block.settings.image_desktop | image_url: width: 1080 }} 1080w{%- endif -%}"
+                  src="{{ block.settings.image_desktop | image_url: width: 737 }}"
+                  sizes="calc(100vw - 30px)"
+                  {% if block.settings.image_desktop.alt != blank %}
+                  alt="{{ block.settings.image_desktop.alt | escape }}"
+                  {% else %}
+                  alt="{{ block.settings.image_desktop | split: "/" | last | replace: "-", " " | split: "." | first }}"
+                  {% endif %}
+                  loading="lazy"
+                  class="w-full{% if block.settings.image_mobile %} hidden lg:block{% else %} block{% endif %}"
+                  width="{{ block.settings.image_desktop.width }}"
+                  height="{{ block.settings.image_desktop.height }}"
+                >
+              {% endif %}
+            </a>
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag }}
+          {% endif %}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </swiper-component>
+  <div class="swiper-pagination swiper-pagination-{{ section.id }} absolute bottom-5 left-1/2 -translate-x-1/2 w-fit mx-auto flex gap-2 lg:gap-4 z-10"></div>
+</div>
+
+{% schema %}
+  {
+    "name": "Banner",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "fullwidth",
+        "label": "Full width",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Margin top section desktop",
+        "default": 72
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin bottom section desktop",
+        "default": 72
+      },
+      {
+        "type": "range",
+        "id": "margin_top_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Margin top section mobile",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Margin bottom section mobile",
+        "default": 32
+      }
+    ],
+    "blocks": [
+      {
+        "type": "slide", 
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Slide image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_desktop",
+            "label": "Image desktop"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Image mobile"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link to"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner"
+      }
+    ]
+  }
+{% endschema %}

@@ -320,9 +320,6 @@ class CartNotification extends HTMLElement {
 
   open() {
     this.classList.remove('opacity-0', 'invisible');
-    setTimeout(() => {
-      this.close();
-    }, 2500);
   }
   
   renderContents(parsedState) {
@@ -342,6 +339,9 @@ class CartNotification extends HTMLElement {
     return [
       {
         id: 'cart-icon-bubble'
+      },
+      {
+        id: 'cart-icon-bubble-notification'
       }
     ];
   }

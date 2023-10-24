@@ -1,1 +1,17 @@
-{"sections":{"template":{"type":"template-404","settings":{}}},"order":["template"]}
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+      }
+    },
+    "template": {
+      "type": "template-404",
+      "settings": {}
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "template"
+  ]
+}

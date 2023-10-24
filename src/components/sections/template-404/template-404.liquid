@@ -1,0 +1,107 @@
+{%- style -%}
+  [data-section-id="{{ section.id }}"] {
+    background: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top_mb }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mb }}px;
+  }
+  @media screen and (min-width: 768px) {
+    [data-section-id="{{ section.id }}"] {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width" data-section-id="{{ section.id }}">
+  <div class="max-w-sm mx-auto text-center">
+    <h1 class="my-4">{{ section.settings.title }}</h1>
+    <p class="text-base leading-normal md:text-xl my-4">{{ section.settings.subtext_title }}</p>
+    <div class="my-4">
+      {%- if section.settings.button_url == blank -%} 
+        {%- assign shop_url = shop.secure_url -%} 
+      {%- else -%} 
+        {%- assign shop_url = section.settings.button_url -%}
+      {%- endif -%}
+      <a class="btn py-4 px-8" href="{{ shop_url }}">{{ section.settings.button_label }}</a>
+    </div>
+  </div>
+</div>
+
+{% schema %} {
+  "name": "Template 404",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "404 Heading Title",
+      "default": "404"
+    },
+    {
+      "type": "text",
+      "id": "subtext_title",
+      "label": "404 Subtitle Text",
+      "default": "The page you are looking for is missing"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Back to homepage"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Common settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 50,
+      "max": 150,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top DeskTop",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 50,
+      "max": 150,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom Desktop",
+      "default": 92
+    },
+    {
+      "type": "header",
+      "content": "Mobile settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top Mobile",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mb",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom Mobile",
+      "default": 32
+    }
+  ]
+}
+ {% endschema %}

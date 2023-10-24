@@ -1,34 +1,34 @@
-.drop-caps h1 {
-  @apply font-semibold my-5 text-h3;
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content h4,
+.page-content h5,
+.page-content h6 {
+  @apply font-semibold mb-2 text-primary;
 }
-.drop-caps h2 {
-  @apply font-semibold my-5 text-h4;
+
+.page-content h1,
+.page-content h2 {
+  @apply font-semibold;
 }
-.drop-caps h3 {
-  @apply font-semibold my-5 text-h5;
-}
-.drop-caps h4 {
-  @apply font-semibold my-5 text-lg;
-}
-.drop-caps h5 {
-  @apply font-semibold my-5 text-button-lg;
-}
-.drop-caps h6 {
-  @apply font-semibold my-5 text-overline-lg;
-}
-.drop-caps ul {
+
+.page-content ul {
   @apply list-inside list-disc pl-4;
 }
-.drop-caps p,
-.drop-caps li {
-  @apply font-normal text-overline-lg;
+
+.page-content p,
+.page-content li {
+  @apply font-normal text-secondary text-sm lg:text-base;
 }
-.drop-caps p {
-  @apply mt-3 mb-6;
+
+.page-content li * {
+  @apply inline;
 }
-.drop-caps li {
+
+.page-content p {
+  @apply text-secondary mb-5 lg:mb-6;
+}
+
+.page-content li {
   @apply mt-3;
-}
-.drop-content:not(.active) {
-  @apply before:content-empty before:absolute before:w-full before:h-32 before:left-0 before:bottom-0 before:bg-gradient-to-t before:from-[#F5F5F5_41.67%] before:to-[rgba(245,245,245,0.00)_100%];
 }

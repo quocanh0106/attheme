@@ -255,6 +255,17 @@
     ]
   },
   {
+    "name": "Delivery",
+    "settings": [
+      {
+        "type": "number",
+        "id": "delivery",
+        "label": "Delivery time",
+        "default": 7
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.cart.name",
     "settings": [
       {
