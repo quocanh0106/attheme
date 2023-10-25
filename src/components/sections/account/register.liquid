@@ -62,14 +62,14 @@
         </div>
         <div class="w-full mt-8 mb-4 rounded-[10px] p-7.5 border border-primary-opacity-30">
           <h2 class="uppercase text-primary text-xs font-semibold leading-6 text-center">GET EXCLUSIVE DISCOUNTS AND SALES UPDATES</h2>
-          <label class="flex items-center gap-4 w-full text-secondary text-xs leading-4 mt-4" for="customer[accepts_marketing]">
-            <input type="checkbox" c id="customer[accepts_marketing]" name="customer[accepts_marketing]" class="opacity-0 invisible absolute top-0 left-0" checked>
+          <label class="relative flex items-center gap-4 w-full text-secondary text-xs leading-4 mt-4" for="accepts_marketing">
+            <input type="checkbox" id="accepts_marketing" name="customer[accepts_marketing]" class="opacity-0 invisible absolute top-0 left-0" checked>
             <span>Tick the box to get our personalized marketing emails with discounts and sales notifications</span>
-            <svg aria-hidden="true" class="icon icon-checkmark absolute w-2.5 h-2.5 top-1/2 left-2.5 -translate-x-1/2 -translate-y-1/2 opacity-0 invisible" width="0.625rem" height="0.625rem" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg aria-hidden="true" class="icon icon-checkmark absolute w-2.5 h-2.5 top-1/2 right-[55px] -translate-x-1/2 -translate-y-1/2 opacity-0 invisible" width="0.625rem" height="0.625rem" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-            {% render 'icon-box', class: 'w-5 h-5' %}
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            {% render 'icon-box', class: 'w-4.5 h-4.5 flex-none' %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" class="flex-none" viewBox="0 0 40 40" fill="none">
               <g clip-path="url(#clip0_353_838)">
                 <path d="M12.5375 2.50002C12.8125 1.52345 12.4062 0.453141 11.625 0.109391C10.8438 -0.23436 9.9875 0.273453 9.7125 1.25002L9.04375 3.60939L8.425 1.28127C8.1625 0.29689 7.3125 -0.234359 6.525 0.0937655C5.7375 0.42189 5.3125 1.48439 5.575 2.46877L6.09375 4.42189L4.38125 2.85939C3.7125 2.25002 2.775 2.43752 2.2875 3.27345C1.8 4.10939 1.95 5.28127 2.61875 5.89064L4.3875 7.50002H3C1.34375 7.50002 0 9.1797 0 11.25V36.25C0 38.3203 1.34375 40 3 40H12.5375C12.2 39.2656 12 38.4141 12 37.5V20C12 17.6641 13.2812 15.7031 15.0125 15.1563C15.125 12.7344 16.0812 10.6094 17.5187 9.21095C16.9812 8.1797 16.0562 7.50002 15 7.50002H13.6125L15.3813 5.89064C16.05 5.28127 16.2 4.10939 15.7125 3.27345C15.225 2.43752 14.2875 2.25002 13.6187 2.85939L12.0312 4.3047L12.5375 2.50002ZM22.7188 14.4922L24.5688 17.5H21.5C20.6688 17.5 20 16.6641 20 15.625C20 14.6016 20.675 13.75 21.5125 13.75C21.9875 13.75 22.4312 14.0235 22.7188 14.4922ZM17 15.625C17 16.2813 17.0875 16.9141 17.2563 17.5H17C15.3438 17.5 14 19.1797 14 21.25V27.5H26V20H28V27.5H40V21.25C40 19.1797 38.6562 17.5 37 17.5H36.7438C36.9125 16.9141 37 16.2813 37 15.625C37 12.5078 34.9688 10 32.4875 10C31.0875 10 29.7625 10.8125 28.9062 12.2031L27 15.2969L25.0938 12.2031C24.2375 10.8125 22.9062 10 21.5125 10C19.0312 10 17 12.5078 17 15.625ZM14 36.25C14 38.3203 15.3438 40 17 40H26V30H14V36.25ZM28 40H37C38.6562 40 40 38.3203 40 36.25V30H28V40ZM34 15.625C34 16.6641 33.3312 17.5 32.5 17.5H29.4312L31.2812 14.4922C31.5688 14.0313 32.0125 13.75 32.4875 13.75C33.325 13.75 34 14.6016 34 15.625Z" fill="#EEAB47"/>
               </g>
