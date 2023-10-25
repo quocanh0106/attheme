@@ -14,9 +14,12 @@ class WishlistWrapper extends HTMLElement {
     if(this.products.length) {
       document.querySelector('[data-id="#PopupModal-ClearWishlist"]').classList.remove('hidden')
     }
+    console.log(this.products)
     this.products.forEach((product) => {
-      let newProduct = this.productCard(product).replace('<li class="swiper-slide max-w-1/2 md:max-w-1/3 lg:max-w-1/4 mr-0.5 lg:mr-2.5">', '').replace('</li>', '')
-      this.dom += newProduct;
+      if(this.productCard(product)) {
+        let newProduct = this.productCard(product).replace('<li class="swiper-slide max-w-1/2 md:max-w-1/3 lg:max-w-1/4 mr-0.5 lg:mr-2.5">', '').replace('</li>', '')
+        this.dom += newProduct;
+      }
     })
 
 

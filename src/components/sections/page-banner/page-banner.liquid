@@ -61,11 +61,6 @@
       {% elsif template contains 'article' %}
       {% elsif template contains 'page' %}
         <h1 class="page-title text-center uppercase text-3xl lg:text-5xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ page.title }}</h1>
-        {%- if template.suffix == 'wishlist' -%}
-        <wishlist-count class="block" style="display:none;">
-          <p class="page-sub-title js-wishlist-count text-sm leading-5 font-light mt-2"><span aria-hidden="true" class=""></span> {{ "templates.search.products" | t }}</p>
-        </wishlist-count>
-        {%- endif -%}
         {%- if template.suffix == 'faqs' -%}
           {% if page.content %}
             <p class="text-center mt-5 text-secondary text-base lg:text-xl">{{ page.content | strip_html }}</p>

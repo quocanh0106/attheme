@@ -11,25 +11,33 @@
     }
   }
 {%- endstyle -%}
-
-<wishlist-wrapper class="block page-width-desktop" data-section-id="{{ section.id }}">
-  <div class="grid gap-0.5 md:gap-2.5 grid-cols-{{ section.settings.product_per_row_mobile }} md:grid-cols-{{ section.settings.product_per_row_tablet }} lg:grid-cols-{{ section.settings.product_per_row }}" id="whislist-wrapper">
-
+<div class="page-width flex flex-wrap gap-7.5" data-section-id="{{ section.id }}">
+  <div class="w-full flex items-center justify-center h-12.5 gap-4 lg:max-w-[200px] lg:border lg:border-primary-opacity-30 lg:rounded-[10px]">
+    {% render 'icon-heart', class: 'w-6 h-5 text-primary' %}
+    <h1 class="text-2xl capitalize text-secondary font-bold leading-none">{{ page.title }}</h1>
   </div>
-  <modal-opener data-id="#PopupModal-ClearWishlist" class="flex items-center justify-center gap-2 text-sm lg:text-base text-grey-900 cursor-pointer mt-8 hidden">
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" fill="none"><path fill="#000" d="M20.375 3H16.25v-.75C16.25 1.01 15.24 0 14 0h-3C9.76 0 8.75 1.01 8.75 2.25V3H4.625A1.877 1.877 0 0 0 2.75 4.875V7.5c0 .414.336.75.75.75h.41l.648 13.607A2.247 2.247 0 0 0 6.805 24h11.39c1.203 0 2.19-.941 2.247-2.143L21.09 8.25h.41a.75.75 0 0 0 .75-.75V4.875A1.877 1.877 0 0 0 20.375 3ZM10.25 2.25A.75.75 0 0 1 11 1.5h3a.75.75 0 0 1 .75.75V3h-4.5v-.75Zm-6 2.625c0-.207.168-.375.375-.375h15.75c.207 0 .375.168.375.375V6.75H4.25V4.875Zm14.694 16.91a.75.75 0 0 1-.75.715H6.806a.749.749 0 0 1-.749-.714L5.412 8.25h14.176l-.644 13.536Z"/><path fill="#000" d="M12.5 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM16.25 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM8.75 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75Z"/></svg>
-    <span>{{ "app_wishlist-king.general.clear_wishlist" | t }}</span>
-  </modal-opener>
-</wishlist-wrapper>
-
-<modal-dialog id="PopupModal-ClearWishlist" class="hidden fixed w-full h-full bg-black bg-opacity-20 top-0 left-0 z-20">
-  <div class="text-center px-11 py-6 shadow-popup w-87.75 bg-background rounded-sm max-w-full absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
-    <h3 class="mb-2 text-base uppercase font-semibold leading-5 font-heading">{{ "app_wishlist-king.general.clear_wishlist_title" | t }}</h3>
-    <p class="text-sm text-grey-500 mb-6">{{ "app_wishlist-king.general.clear_wishlist_subtitle" | t }}</p>
-    <wishlist-clear class="btn btn-2 close w-full font-heading border hover:border-grey-250 border-grey-50 p-1 mb-2 cursor-pointer">{{ "app_wishlist-king.general.remove" | t }}</wishlist-clear>
-    <button class="btn close w-full font-heading border border-grey-250 hover:border-grey-50 p-1">{{ "app_wishlist-king.general.cancel" | t }}</button>
+  <div class="w-full lg:max-w-[calc(100%_-_230px)]">
+    <wishlist-wrapper class="block" >
+      <div class="grid gap-4 grid-cols-{{ section.settings.product_per_row_mobile }} md:grid-cols-{{ section.settings.product_per_row_tablet }} lg:grid-cols-{{ section.settings.product_per_row }}" id="whislist-wrapper">
+    
+      </div>
+      <modal-opener data-id="#PopupModal-ClearWishlist" class="flex items-center justify-center gap-2 text-sm lg:text-base text-grey-900 cursor-pointer mt-8 hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" fill="none"><path fill="#000" d="M20.375 3H16.25v-.75C16.25 1.01 15.24 0 14 0h-3C9.76 0 8.75 1.01 8.75 2.25V3H4.625A1.877 1.877 0 0 0 2.75 4.875V7.5c0 .414.336.75.75.75h.41l.648 13.607A2.247 2.247 0 0 0 6.805 24h11.39c1.203 0 2.19-.941 2.247-2.143L21.09 8.25h.41a.75.75 0 0 0 .75-.75V4.875A1.877 1.877 0 0 0 20.375 3ZM10.25 2.25A.75.75 0 0 1 11 1.5h3a.75.75 0 0 1 .75.75V3h-4.5v-.75Zm-6 2.625c0-.207.168-.375.375-.375h15.75c.207 0 .375.168.375.375V6.75H4.25V4.875Zm14.694 16.91a.75.75 0 0 1-.75.715H6.806a.749.749 0 0 1-.749-.714L5.412 8.25h14.176l-.644 13.536Z"/><path fill="#000" d="M12.5 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM16.25 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM8.75 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75Z"/></svg>
+        <span>{{ "app_wishlist-king.general.clear_wishlist" | t }}</span>
+      </modal-opener>
+    </wishlist-wrapper>
+    
+    <modal-dialog id="PopupModal-ClearWishlist" class="hidden fixed w-full h-full bg-black bg-opacity-20 top-0 left-0 z-20">
+      <div class="text-center px-11 py-6 shadow-popup w-87.75 bg-background rounded-sm max-w-full absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+        <h3 class="mb-2 text-base uppercase font-semibold leading-5 font-heading">{{ "app_wishlist-king.general.clear_wishlist_title" | t }}</h3>
+        <p class="text-sm text-secondary mb-6">{{ "app_wishlist-king.general.clear_wishlist_subtitle" | t }}</p>
+        <wishlist-clear class="btn btn-2 block close w-full font-heading py-2 px-4 mb-4 cursor-pointer">{{ "app_wishlist-king.general.remove" | t }}</wishlist-clear>
+        <button class="btn close w-full font-heading py-2 px-4">{{ "app_wishlist-king.general.cancel" | t }}</button>
+      </div>
+    </modal-dialog>
   </div>
-</modal-dialog>
+</div>
+
 {% capture src_url %}{{ 'template-wishlist.js' | asset_url }}{% endcapture %}
 {% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
 
