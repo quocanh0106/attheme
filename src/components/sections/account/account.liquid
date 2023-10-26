@@ -4,16 +4,32 @@
     <span class="text-secondary text-sm lg:text-base font-normal italic">Wishing you a wonderful day!</span>
   </div>
   {%- assign pageUrl = content_for_header | split: '"pageurl":"' | last | split: '"' | first | split: '.myshopify.com' | last | replace: '\/', '/' | replace: '%20', ' ' | replace: '\u0026', '&' -%}
-  <div class="flex flex-wrap md:justify-between mt-6 lg:mt-17">
-
+  <div class="flex flex-wrap md:justify-between my-6 lg:my-17">
     <accordion-toggle class="block w-full lg:max-w-1/5">
-      <div class="summary lg:hidden"></div>
+      <div class="summary lg:hidden">
+        {% if pageUrl contains routes.account_url %}
+          {% unless pageUrl contains '?view=' %}        
+            <a class="flex items-center gap-5 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none text-primary text-opacity-100 w-fit" href="{{ routes.account_url }}">
+              {% render 'icon-customer', class: 'w-4.5 h-4.5' %}
+              <span>Account</span>
+            </a>
+          {% else %}
+            <a class="flex items-center gap-5 !text-primary !text-opacity-100 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none  w-fit" href="{{ routes.account_url }}?view=orders">
+              {% render 'icon-order', class: 'w-4.5 h-4.5' %}
+              <span>Order</span>
+            </a>
+          {% endunless %}
+        {% endif %}
+      </div>
       <div class="details lg:block lg:!max-h-full">
-        <ul class="flex-col flex gap-6">
-          <li>
-            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none {% if pageUrl contains routes.account_url %}{% unless pageUrl contains '?view=' %} !text-primary !text-opacity-100{% endunless %}{% endif %}" href="{{ routes.account_url }}">{% render 'icon-customer', class: 'w-4.5 h-4.5' %} <span>Account</span></a>
+        <ul class="flex-col flex gap-4 lg:gap-6">
+          <li class="{% if pageUrl contains routes.account_url %}{% unless pageUrl contains '?view=' %}hidden lg:inline-block{% endunless %}{% endif %}">
+            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none {% if pageUrl contains routes.account_url %}{% unless pageUrl contains '?view=' %} !text-primary !text-opacity-100{% endunless %}{% endif %}" href="{{ routes.account_url }}">
+              {% render 'icon-customer', class: 'w-4.5 h-4.5' %} 
+              <span>Account</span>
+            </a>
           </li>
-          <li>
+          <li class="{% if pageUrl contains '?view=orders' %}hidden lg:inline-block{% endif %}">
             <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none {% if pageUrl contains '?view=orders' %} !text-primary !text-opacity-100{% endif %}" href="{{ routes.account_url }}?view=orders">{% render 'icon-order', class: 'w-4.5 h-4.5' %} <span>Order</span></a>
           </li>
           <li>
@@ -26,7 +42,13 @@
       </div>
     </accordion-toggle>
     <div class="w-full lg:max-w-4/5">
-    page account
+    {% if pageUrl contains routes.account_url %}
+      {% unless pageUrl contains '?view=' %}        
+        {% render 'account' %}
+      {% else %}
+        {% render 'account-order' %}
+      {% endunless %}
+    {% endif %}
     </div>
   </div>
 </div>

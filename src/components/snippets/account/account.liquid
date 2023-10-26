@@ -1,0 +1,34 @@
+<div class="account-address">
+  <div class="account-address__content">
+    {%- if customer.addresses.size > 0 -%}
+      <h2 class="account-address__heading">{{'customer.addresses.address_list' | t}}</h2>
+      {%- for address in customer.addresses -%}
+        {%- assign is_default = false -%}
+        {%- if address.id == customer.default_address.id -%}
+            {% render 'account-address-form', address: address, default_address: true %}
+          {% break %}
+        {%- endif -%}
+      {% endfor %}
+      {%- for address in customer.addresses -%}
+        {%- if address.id != customer.default_address.id -%}
+          {% render 'account-address-form', address: address, default_address: false %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      <div class="account-address-no-address">
+        <div class="account-address-no-address__icon">
+          {%- render 'icon-location' -%}
+        </div>
+        <h2 class="account-address-no-address__title">{{ 'customer.addresses.title_no_have_address' | t }}</h2>
+        <div class="account-address-no-address__description">
+          {{ 'customer.addresses.description_no_have_address' | t }}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+  <modal-opener class="account-address__bottom" data-modal="#address-new">
+    <button class="account-address__button-add">
+      <span>{{- add_new_label -}}</span>
+    </button>
+  </modal-opener>
+</div>
