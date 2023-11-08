@@ -54,6 +54,10 @@ accordion-toggle:not(.active) .icon-text::before {
   @apply opacity-0 invisible;
 }
 .cl-canvas-container {
+  @apply !h-auto aspect-1;
+  .canvas-container {
+    @apply !h-auto aspect-1;
+  }
   canvas {
     @apply -z-10 !touch-auto !select-auto;
   }

@@ -267,6 +267,12 @@
         "id": "delivery",
         "label": "Delivery time",
         "default": 7
+      },
+      {
+        "type": "number",
+        "id": "delivery_fluctuation",
+        "label": "Delivery time fluctuation",
+        "default": 4
       }
     ]
   },

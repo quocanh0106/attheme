@@ -1,0 +1,95 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mb }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mb }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="page-width">
+  {% if section.settings.heading != blank %}
+    <h2 class="text-h5 font-semibold lg:text-h2 text-grey-900 mb-5 lg:mb-10 text-center text-grey-900">
+      {{ section.settings.heading }}
+    </h2>
+  {% endif %}
+
+  {% assign listCollections =  product.collections | sort: "all_products_count" | reverse %}
+  {% assign excludedHandles = "bestsellers,recipients,new-arrivals,personalized-milestone-birthdays-gifts,personalized-gifts-for-occasion" %}
+  {% assign count = 0 %}
+  <div class="flex flex-wrap gap-3">
+    {% for collection in listCollections %}
+      {% unless excludedHandles contains collection.handle %}
+        {% if count < 5 %}
+          {% assign count = count | plus: 1 %}
+          <a href="{{ collection.url }}" class="inline-block py-2 px-6 w-fit text-base text-grey-900 border border-solid border-grey-200 rounded-3xl hover:text-background hover:bg-grey-900 hover:border-grey-900" title="{{ collection.title }}">{{ collection.title | replace: "Personalized", "Custom" }}</a>
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Recommend collections",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Similar Categories"
+      },
+      {
+        "type": "header",
+        "content": "Padding mobile"
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mb",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mb",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "header",
+        "content": "Padding desktop"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ]
+  }
+{% endschema %}

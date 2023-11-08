@@ -186,7 +186,7 @@
               </div>
               {% if block.settings.show_shipping %}
                 <div class="free-shipping flex justify-center items-center text-subtext text-base gap-2 text-center">
-                  <span><strong class="uppercase text-primary">FREE SHIPPING</strong> on all U.S orders over $100</span>
+                  <span><strong class="uppercase text-primary">FREE SHIPPING</strong> on all U.S orders over {{ settings.minimum_freeshipping | append: '00' | plus: 0 | money_without_trailing_zeros }}</span>
                 </div>
               {% endif %}
               {%- endform -%}
