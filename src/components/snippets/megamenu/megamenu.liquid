@@ -259,19 +259,17 @@
             </div>
           </li>
         {% endif %}
-        <li class="flex lg:hidden items-center gap-x-8 lg:gap-x-10 m-0 p-4 justify-around w-full lg:max-w-1/2 mt-auto">
-          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="account" class="bright-link flex flex-col items-center justify-center relative w-10">
-            {% render 'icon-customer', class: 'w-10 h-10' %}
-            <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Account</span>
+        <li class="flex lg:hidden items-center gap-x-12 m-0 p-4 justify-center w-full lg:max-w-1/2 mt-auto">
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" title="account" class="bright-link flex items-center justify-center relative w-10 h-10 shadow-button rounded-full">
+            {% render 'icon-customer', class: 'w-5 h-5' %}
           </a>
-          <a href="/pages/wishlist" title="account" class="bright-link flex flex-col items-center justify-center relative w-10">
-            {% render 'icon-wishlist', class: 'w-10 h-10' %}
-            <span class="hidden lg:block lg:text-sm text-center mt-3.5 !leading-none">Wishlist</span>
+          <a href="/pages/wishlist" title="account" class="bright-link flex items-center justify-center relative w-10 h-10 shadow-button rounded-full">
+            {% render 'icon-wishlist', class: 'w-5 h-5' %}
             <wishlist-count class="absolute bg-secondary text-success w-4 h-4 lg:w-5 lg:h-5 rounded-full flex justify-center items-center -top-1 left-0 -translate-x-1/2" style="display:none;">
               <span aria-hidden="true" class="flex justify-center items-center h-full text-xs lg:text-base leading-none font-bold"></span>
             </wishlist-count>
           </a>
-          <button type="button" onclick="document.getElementById('open-search').click()" class="w-10 h-10 text-primary">{% render 'icon-search', class: 'w-10 h-10' %}</button>
+          <button type="button" onclick="document.getElementById('open-search').click()" class="bright-link flex items-center justify-center relative w-10 h-10 shadow-button rounded-full text-primary">{% render 'icon-search', class: 'w-5 h-5' %}</button>
         </li>
 
       </ul>

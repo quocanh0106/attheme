@@ -64,14 +64,9 @@
     
     <div class="w-full lg:max-w-[calc(100%_-_236px)] transition-all duration-500 lg:ml-auto" data-total-pages="{{ paginate.pages }}" data-pagination="{{ products_per_page }}" data-current-page="{{ paginate.current_page }}"  id="product-grid">
       <div id="main-collection-product" class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-10 transition-all duration-500">
-        {% assign listIncludeProduct = '' %}
         {% if collection.products.size > 0 %}
           {% for product in collection.products %}
-            {% assign lastKey = product.handle | split: '-' | last %}
-            {% unless listIncludeProduct contains lastKey %}
-              {%- render 'product-card', product: product -%}
-              {% assign listIncludeProduct = listIncludeProduct | append: lastKey | append: ',' %}
-            {% endunless %}
+            {%- render 'product-card', product: product -%}
           {% endfor %}
         {% else %}
           {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}

@@ -153,6 +153,7 @@ module.exports = {
             },
             colors: {
                 primary: 'var(--color-primary)',
+                primaryDarker: 'var(--color-primary-darker)',
                 secondary: 'var(--color-secondary)',
                 background: 'var(--color-background)',
                 overlay: 'rgba(0,0,0,0.5)',

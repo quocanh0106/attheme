@@ -5,7 +5,7 @@
     {%- if section.blocks.size > 0 -%}
       <div class="grid gap-y-6 gap-x-4 md:gap-y-12 lg:gap-4 grid-cols-{{ section.settings.col_per_row_mobile }} md:grid-cols-{{ section.settings.col_per_row_tablet }} lg:grid-cols-{{ section.settings.col_per_row_desktop }}">
         {%- for block in section.blocks -%}
-          <{% unless block.type == 'link_list' %}div{% else %}accordion-toggle{% endunless %} data-block-id="{{ block.id }}" class="col-span-{{ block.settings.col_span_mobile }} md:col-span-{{ block.settings.col_span_tablet }} lg:col-span-{{ block.settings.col_span_desktop }} {% unless forloop.first %}md:justify-center{% endunless %} auto-cols-max {% if block.type == 'link_list' %}md:grid pb-8 pt-4 lg:py-0 border-b border-grey-250 md:0 md:border-none grid-rows-[min-content] auto-rows-min active{% endif %}">
+          <{% unless block.type == 'link_list' %}div{% else %}accordion-toggle{% endunless %} data-block-id="{{ block.id }}" class="col-span-{{ block.settings.col_span_mobile }} md:col-span-{{ block.settings.col_span_tablet }} lg:col-span-{{ block.settings.col_span_desktop }} {% unless forloop.first %}md:justify-center{% endunless %} auto-cols-max {% if block.type == 'link_list' %}md:grid pb-8 pt-4 lg:py-0 grid-rows-[min-content] auto-rows-min active{% endif %}">
             {%- if block.settings.heading != blank -%}
               <div class="summary flex items-center justify-between gap-x-2 h-fit">
                 <h4 class="text-h5 lg:text-h4 font-heading p-0 font-bold">{{- block.settings.heading | escape -}}</h4>

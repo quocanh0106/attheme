@@ -1,8 +1,8 @@
 {%- if cart != empty -%}
   {%- if cart.item_count < 100 -%}
-    <span aria-hidden="true" class="flex justify-center items-center h-full text-[10px] leading-none">{{ cart.item_count }}</span>
+    <span aria-hidden="true" class="flex justify-center items-center h-full text-xs lg:text-base leading-none font-bold">{{ cart.item_count }}</span>
   {% else %}
-    <span aria-hidden="true" class="flex justify-center items-center h-full text-[10px]">+99</span>
+    <span aria-hidden="true" class="flex justify-center items-center h-full text-xs lg:text-base leading-none font-bold">+99</span>
   {%- endif -%}
   <span class="hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
 {%- endif -%}

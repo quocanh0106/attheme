@@ -36,24 +36,24 @@
   elsif section.settings.media_size == 'small'
     assign media_width = 0.45
   endif
-
-  assign id_append = ''
-  if is_duplicate
-    assign id_append = '-duplicate'
-  endif
 -%}
 
-<media-gallery class="flex gap-5">
+<media-gallery class="flex flex-col lg:flex-row gap-5">
   {%- if media_count > 1 -%}
-    <div class="swiper sub-slider-media max-w-1/5 w-full overflow-hidden" thumbsSlider="" data-infor-swiper='{
-        "direction": "vertical",
+    <div class="swiper sub-slider-media lg:max-w-1/6 w-full overflow-hidden order-2 lg:order-1" thumbsSlider="" data-infor-swiper='{
         "freeMode": true,
         "watchSlidesProgress": true,
-        "spaceBetween": 10,
         "slideToClickedSlide": true,
-        "slidesPerView": 4
+        "slidesPerView": 6,
+        "spaceBetween": 16,
+        "breakpoints": {
+          "1024": {
+            "slidesPerView": 6,
+            "direction": "vertical"
+          }
+        }
       }'>
-      <ul class="flex flex-col swiper-wrapper">
+      <ul class="flex lg:flex-col swiper-wrapper">
         {%- if featured_media != null -%}
           <li class="swiper-slide !h-fit border-solid border-4 border-transparent rounded-[15px] overflow-hidden">
             {% render 'product-thumbnail', media: featured_media, lazy_load: true, thumb: true %}
@@ -70,18 +70,21 @@
 
     </div>
   {%- endif -%}
-  <div class="relative swiper main-slider-media overflow-hidden max-w-4/5 w-full h-fit aspect-1 rounded-[25px]" data-infor-swiper='{
+  <div class="relative swiper main-slider-media overflow-hidden lg:max-w-5/6 w-full h-fit aspect-1 rounded-[25px] order-1 lg:order-2" data-infor-swiper='{
       "modules": ["Navigation", "Thumbs"],
-      "direction": "vertical",
       "slidesPerView": 1,
-      "spaceBetween": 10,
       "allowTouchMove": false,
       "navigation": {
         "nextEl": ".next-main-{{ section.id }}",
         "prevEl": ".prev-main-{{ section.id }}"
+      },
+      "breakpoints": {
+        "1024": {
+          "direction": "vertical"
+        }
       }
     }'>
-    <ul class="flex flex-col swiper-wrapper">
+    <ul class="flex lg:flex-col swiper-wrapper">
       {%- if product.selected_or_first_available_variant.featured_media != null -%}
         {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
         <li class="swiper-slide !h-fit">
@@ -109,15 +112,20 @@
     </wishlist-button>
     <button
       type="button"
-      class="prev-main-{{ section.id }} absolute top-[calc(50%_-_24px)] -translate-y-1/2 right-2.5 z-10 h-10 w-10 hover:bg-backgorund disabled:!opacity-0 disabled:!bg-background-opacity-20 leading-none cursor-pointer transition-all flex items-center justify-center p-0 rounded-full border-0 bg-background-opacity-80 disabled:!bg-opacity-75 disabled:text-text"
+      class="prev-main-{{ section.id }} absolute top-1/2 left-4 lg:top-[calc(50%_-_24px)] -translate-y-1/2 lg:left-auto lg:right-2.5 z-10 h-10 w-10 flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary-opacity-30 overflow-hidden disabled:hidden"
       name="previous"
       aria-label="{{ 'accessibility.previous_slide' | t }}">
-      {%- render 'icon-chevron-up' -%}</button>
+      {%- render 'icon-chevron-up', class: 'hidden lg:block' -%}
+      {%- render 'icon-chevron-left', class: 'lg:hidden block' -%}
+    </button>
     <button
       type="button"
-      class="next-main-{{ section.id }} absolute top-[calc(50%_+_24px)] -translate-y-1/2 right-2.5 z-10 h-10 w-10 hover:bg-backgorund disabled:!opacity-0 disabled:!bg-background-opacity-20 leading-none cursor-pointer transition-all flex items-center justify-center p-0 rounded-full border-0 bg-background-opacity-80 disabled:!bg-opacity-75 disabled:text-text"
+      class="next-main-{{ section.id }} absolute top-1/2 right-4 lg:top-[calc(50%_+_24px)] -translate-y-1/2 lg:right-2.5 z-10 h-10 w-10 flex items-center justify-center rounded-full transition-all duration-200 bg-[#EEE] text-secondary hover:bg-primary-opacity-30 overflow-hidden disabled:hidden"
       name="next"
-      aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-chevron-down' -%}</button>
+      aria-label="{{ 'accessibility.next_slide' | t }}">
+      {%- render 'icon-chevron-right', class: 'lg:hidden block' -%}
+      {%- render 'icon-chevron-down', class: 'hidden lg:block' -%}
+    </button>
   </div>
 </media-gallery>
 <div class="free-shipping flex justify-center items-center text-subtext text-base gap-2.5 mt-4">

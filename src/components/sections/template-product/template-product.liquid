@@ -88,14 +88,22 @@
                       </legend>
                       <div class="option-color flex flex-wrap gap-5">
                         {% assign values = '' %}
+                        {% assign customColor = settings.swatch_color | split: ',' %}
                         {%- for value in option.values -%}
                           {%- unless values contains value -%}
+
                             {%- liquid
                               assign values = values | join: ','
                               assign values = values | append: ',' | append: value 
                               assign values = values | split: ','
                               assign bgColor =  value | split: ' ' | first | handle 
                             -%}
+                            {% for item in customColor %}
+                              {% assign labelColor = item | split: ':' | first %}
+                              {% if value == labelColor %}
+                                {% assign bgColor = item | split: ':' | last %}
+                              {% endif %}
+                            {% endfor %}
                             <input type="radio" class="absolute opacity-0 invisible option-item" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" data-index="{{ forloop.index0 }}" name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}"{% if option.selected_value == value %} checked{% endif %}>
                             <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
                               class="color border-[3px] w-10 h-10 inline-block rounded-full border-[#F5F5F5] overflow-hidden option-item shadow-button"

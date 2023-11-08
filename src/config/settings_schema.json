@@ -91,6 +91,11 @@
       },
       {
         "type": "color",
+        "id": "color_primary_darker",
+        "label": "Color primary darker"
+      },
+      {
+        "type": "color",
         "id": "color_secondary",
         "label": "Color secondary"
       },
@@ -262,6 +267,18 @@
         "id": "delivery",
         "label": "Delivery time",
         "default": 7
+      }
+    ]
+  },
+  {
+    "name": "Product page",
+    "settings": [
+      {
+        "type": "text",
+        "id": "swatch_color",
+        "label": "Swatch color",
+        "default": "Black:#0e0e0e,Navy:#0f1830,Dark Heather:#424848,White:#ffffff,Sport Grey:#d1d2d6,Indigo Blue:#395d82,Military Green:#7e8560,Sand:#e7d3b3,Light Blue:#a1c5e1,Light Pink:#f3d4e3",
+        "info":"EX:Black:#0e0e0e,Navy:#0f1830"
       }
     ]
   },
