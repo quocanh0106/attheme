@@ -1,5 +1,5 @@
 <cart-notification class="flex justify-center items-center shadow-button gap-4 opacity-0 invisible transition-all fixed bottom-8 right-8 lg:bottom-10 lg:left-auto lg:right-10 text-primary hover:bg-primary-opacity-30 hover:text-background p-2 w-15 h-15 lg:w-20 lg:h-20 bg-background z-30 rounded-full">
-  <a href="{{ routes.cart_url }}" title="View cart" class="relative bright-link flex flex-col items-center justify-center">        
+  <a href="{{ routes.cart_url }}" title="View basket" class="relative bright-link flex flex-col items-center justify-center">        
     {%- render 'icon-cart', class: 'w-10 h-10' -%}
     <div class="absolute bg-secondary text-success w-4 h-4 lg:w-5 lg:h-5 rounded-full flex justify-center items-center top-0 left-1 -translate-x-1/2 empty:hidden" id="cart-icon-bubble-notification">
       {%- if cart != empty -%}
