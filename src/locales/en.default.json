@@ -187,7 +187,8 @@
       "order_ships": "Order ships",
       "delivered": "Delivered",
       "delivered_mess": "Estimated to arrive at your doorstep {{ date }}!",
-      "order_ships_mess": "We put your order in the mail."
+      "order_ships_mess": "We put your order in the mail.",
+      "standard_html": "<strong class=\"uppercase text-primary\">FREE SHIPPING<\/strong> on all U.K, U.S, EU orders over {{ priceFreeShip }}"
     },
     "description": {
       "see_more": "See more",
@@ -205,7 +206,7 @@
       "new": "New",
       "new_arrival": "New Arrival",
       "hot": "Hot",
-      "shop_now": "Customize Now",
+      "shop_now": "Customise Now",
       "product_variants": "Product variants",
       "media": {
         "gallery_viewer": "Gallery Viewer",
@@ -261,6 +262,7 @@
         "calculate_your_size": "Calculate your size",
         "width": "Width",
         "length": "Length",
+        "sleeve": "Sleeve length",
         "calculate": "Calculate",
         "size": "Size",
         "size_chart": "Size chart"
@@ -346,7 +348,8 @@
       "search_for": "Search for “{{ terms }}”"
     },
     "cart": {
-      "cart": "Basket"
+      "cart": "Basket",
+      "reload": "Image is loading, Please wait a few seconds"
     },
     "contact": {
       "form": {

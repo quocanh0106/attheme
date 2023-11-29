@@ -11,7 +11,7 @@
           {% assign current = paginate.current_page %}
         {%- endpaginate -%}
         {% unless current > 1 or collection.metafields.custom.collection_content_banner.value == blank %}
-          <truncate-paragraph class="metafield-rich_text_field mt-2 lg:mt-4 block leading-none">
+          <div class="metafield-rich_text_field mt-2 lg:mt-4 block leading-none">
             {% assign json = collection.metafields.custom.collection_content_banner.value %}
             {% capture results %}
               {% for element in json.children %}
@@ -48,26 +48,22 @@
               {% endfor %}
             {% endcapture %}
             <p class="details inline text-sm lg:text-base !leading-6 font-light">{{ results }}</p>
-            <span class="inline toggle-truncate text-sm leading-6 font-bold italic cursor-pointer align-top">
-              <span class="see-more">{{ 'sections.collection_template.see_more' | t }}</span>
-              <span class="see-less">{{ 'sections.collection_template.see_less' | t }}</span>
-            </span>
-          </truncate-paragraph>
+          </div>
         {% endunless %}
       {% elsif template contains 'list-collections' %}
-        <h1 class="page-title text-center uppercase text-3xl lg:text-5xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ page_title }}</h1>
+        <h1 class="page-title text-center uppercase text-3xl lg:text-4xl leading-tight font-semibold m-0 font-heading">{{ page_title }}</h1>
       {% elsif template contains 'blog' %}
-        <h1 class="page-title text-center uppercase text-3xl lg:text-5xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ blog.title }}</h1>
+        <h1 class="page-title text-center uppercase text-3xl lg:text-4xl leading-tight font-semibold m-0 font-heading">{{ blog.title }}</h1>
       {% elsif template contains 'article' %}
       {% elsif template contains 'page' %}
-        <h1 class="page-title text-center uppercase text-3xl lg:text-5xl leading-tight font-semibold m-0 tracking-tight font-heading">{{ page.title }}</h1>
+        <h1 class="page-title text-center uppercase text-3xl lg:text-4xl leading-tight font-semibold m-0 font-heading">{{ page.title }}</h1>
         {%- if template.suffix == 'faqs' -%}
           {% if page.content %}
             <p class="text-center mt-5 text-secondary text-base lg:text-xl">{{ page.content | strip_html }}</p>
           {% endif %}
         {%- endif -%}
       {% elsif template contains 'search' %}
-        <h1 class="page-title text-2xl leading-tight font-medium m-0 tracking-normal font-heading">{{ 'templates.search.title' | t }}</h1>
+        <h1 class="page-title text-2xl lg:text-3xl leading-tight m-0 tracking-normal font-bold text-center  font-heading">{{ 'templates.search.title' | t }}</h1>
         <p class="page-sub-title text-sm leading-5 font-light mt-2">
           {{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
         </p>

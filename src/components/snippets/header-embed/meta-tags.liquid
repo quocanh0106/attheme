@@ -50,9 +50,12 @@
   {%- endif -%}
 {%- endif -%}
 
-{%- if request.page_type == 'index' or request.page_type == 'collection' or request.page_type == 'product' or request.page_type == 'page' -%}
-
+{%- if request.page_type == 'index' or request.page_type == 'collection' or request.page_type == 'product' or request.page_type == 'page' or request.page_type == 'article' or request.page_type == 'blog' -%}
+  {%- if robots_index == true -%}
+    <meta name="robots" content="index,follow">
+  {%- else -%}
     <meta name="robots" content="noindex,nofollow">
+  {%- endif -%}
 {%- endif -%}
 
 {%- if request.page_type == 'list-collections' -%}

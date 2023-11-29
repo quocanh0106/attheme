@@ -135,5 +135,5 @@
   {% assign futureDate = currentDate | date: "%b %d" %}
   {% assign lastFutureDate = currentDate | plus: thirdDelivery | date: "%b %d" %}
 
-  {% render 'icon-truck', class: 'text-primary' %}<span class="text-xs lg:text-sm font-medium leading-6">Estimated delivery time: <strong class="text-xs lg:text-sm leading-6">{{ "now" | date: "%b %d" }} -> ({{ futureDate | date: '%b %d' }} - {{ lastFutureDate | date: '%b %d' }})</strong></span>
+  {% render 'icon-truck', class: 'text-primary' %}<span class="text-xs lg:text-sm font-medium leading-6">Estimated delivery time: <strong class="text-xs lg:text-sm leading-6">{{ futureDate | date: "%b %d, %Y" }} - {{ lastFutureDate | date: "%b %d, %Y" }}</strong></span>
 </div>

@@ -220,3 +220,20 @@ if (!customElements.get('cart-note')) {
     }
   });
 };
+
+class ReloadImage extends HTMLElement {
+  constructor() {
+    super();
+    this.reloadImage();
+  }
+
+  reloadImage() {
+    setTimeout(() => {
+      this.querySelector('img').src = this.dataset.src;
+    }, 8000)
+  }
+}
+
+if (!customElements.get('reload-image')) {
+  customElements.define('reload-image', ReloadImage );
+};

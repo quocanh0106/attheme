@@ -6,6 +6,15 @@ class DropCaps extends HTMLElement {
     this.content = this.querySelector('.drop-content');
     this.caps = this.querySelector('.drop-caps');
     this.toggleButton = this.querySelector('.toggle-button');
+    if(window.innerWidth >= 1024) {
+      if(this.caps.scrollHeight < 304) {
+        this.toggleButton.classList.add('!hidden')
+      }
+    } else {
+      if(this.caps.scrollHeight < 140) {
+        this.toggleButton.classList.add('!hidden')
+      }
+    }
     this.toggleButton.addEventListener('click', this.toggle.bind(this));
   }
 

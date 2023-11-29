@@ -17,7 +17,7 @@
   <ul class="grid gap-4 lg:gap-6 grid-cols-{{ section.settings.col_mb }} md:grid-cols-{{ section.settings.col_tl }} lg:grid-cols-{{ section.settings.col_dt }}">
     {% for block in section.blocks %}
       <li class="rounded-circle p-4 lg:p-10 border border-primary-opacity-30">
-        <{{ block.settings.block_heading_tag }} class="text-xl lg:text-2xl !leading-none mb-3 lg:mb-4 text-center text-primary">{{ block.settings.heading }}</{{ block.settings.block_heading_tag }}>
+        <a href="{{ block.settings.block_heading_link }}" class="text-primary hover:text-secondary block text-center" title="{{ block.settings.heading }}"><{{ block.settings.block_heading_tag }} class="text-xl lg:text-2xl !leading-none mb-3 lg:mb-4 text-center">{{ block.settings.heading }}</{{ block.settings.block_heading_tag }}></a>
         <ul class="grid gap-2.5">
           {% for item in block.settings.listfaqs.links %}
             <li>
@@ -28,10 +28,7 @@
       </li>
     {% endfor %}
   </ul>
-
 </div>
-<!--- heading 24 text 16 padding: 40 gap 24 gapheading 16 gaptext 10 --- >rgba(238, 171, 71, 0.30);
-
 
 {% schema %}
   {
@@ -127,6 +124,11 @@
             "type": "text",
             "id": "heading",
             "label": "Heading"
+          },
+          {
+            "type": "url",
+            "id": "block_heading_link",
+            "label": "Heading link"
           },
           {
             "type": "select",

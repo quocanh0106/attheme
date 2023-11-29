@@ -1,0 +1,21 @@
+{% style %}
+  {% if settings.base_font.family != settings.heading_font.family %}
+    {{ settings.heading_font_light | font_face: font_display: 'swap' }}
+    {{ settings.heading_font | font_face: font_display: 'swap' }}
+    {{ settings.heading_font_medium | font_face: font_display: 'swap' }}
+    {{ settings.heading_font_semibold | font_face: font_display: 'swap' }}
+    {{ settings.heading_font_bold | font_face: font_display: 'swap' }}
+
+    {{ settings.base_font_light | font_face: font_display: 'swap' }}
+    {{ settings.base_font | font_face: font_display: 'swap' }}
+    {{ settings.base_font_medium | font_face: font_display: 'swap' }}
+    {{ settings.base_font_semibold | font_face: font_display: 'swap' }}
+    {{ settings.base_font_bold | font_face: font_display: 'swap' }}
+  {% else %}
+    {{ settings.base_font_light | font_face: font_display: 'swap' }}
+    {{ settings.base_font | font_face: font_display: 'swap' }}
+    {{ settings.base_font_medium | font_face: font_display: 'swap' }}
+    {{ settings.base_font_semibold | font_face: font_display: 'swap' }}
+    {{ settings.base_font_bold | font_face: font_display: 'swap' }}
+  {% endif %}
+{% endstyle %}

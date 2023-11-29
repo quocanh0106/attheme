@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ 'template-cart.css' | asset_url }}" />
+<link rel="stylesheet" href="{{ 'template-cart.css' | asset_url }}"/>
 
 <div class="flex flex-wrap page-width gap-6 pb-10 lg:pb-25">
   <cart-items class="lg:max-w-[calc(100%_-_294px)] w-full inline-block{% if cart == empty %} hidden{% endif %}">
@@ -27,24 +27,72 @@
                           <div class="flex items-center">
                             <div class="leading-[0]">
                               {% if item.image %}
-                                <a
-                                  href="{{ item.url }}"
-                                  title="{{ item.title | escape }}"
-                                  class="w-37.5 h-37.5 rounded-2xl overflow-hidden">
-                                  {% if item.properties == empty %}
-                                    <img src="{{ item.image | image_url: width: 200 }}"class="w-full h-full block object-cover" loading="lazy" alt="{{ item.image.alt | escape }}" width="150" height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}">
-                                  {% else %}
-                                    {% for p in item.properties %}
-                                      {% if p.first == '_customily-thumb' %}
-                                        <img
-                                          src="{{ p.last }}"
-                                          class="w-full h-full block object-cover"
-                                          width="150" 
-                                          height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
-                                          loading="lazy"
-                                          alt="{{ item.title | escape }}" />
-                                      {% endif %}
-                                    {% endfor %}
+                                {% if item.properties == empty %}
+                                  <modal-opener class="group block w-37.5 h-37.5 rounded-2xl flex-none overflow-hidden relative cursor-pointer" data-id="#preview-image-{{ item.index | plus: 1 }}">
+                                    <img
+                                      src="{{ item.image | image_url: width: 150 }}"
+                                      class="w-full h-full block object-cover leading-tight !max-w-full !max-h-full bg-cover bg-no-repeat"
+                                      style="background-image: url('{{ item.image | image_url: width: item.image.width }}');"
+                                      alt="{{ item.image.alt | escape }}"
+                                      width="150"
+                                      height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}">
+                                    <div class="absolute bottom-1 right-1 rounded flex items-center justify-center p-1 w-5 h-5 bg-white bg-opacity-30 group-hover:bg-opacity-100 transition-all text-grey-700">
+                                      {% render 'icon-zoom', class: 'w-4 h-4' %}
+                                    </div>
+                                  </modal-opener>
+                                  <modal-dialog class="hidden fixed w-full h-full bg-black bg-opacity-20 top-0 left-0 z-20" id="preview-image-{{ item.index | plus: 1 }}">
+                                    <div class="text-center p-4 lg:p-12 rounded-xl shadow-popup max-w-[calc(100vw_-_32px)] max-h-[calc(100vh_-_32px)] w-[860px] lg:overflow-auto bg-background absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+                                      <img
+                                        src="{{ item.image | image_url: width: item.image.width }}"
+                                        class="w-full h-full block object-cover leading-tight !max-w-full !max-h-full"
+                                        style="background-image: url('{{ item.image | image_url: width: item.image.width }}');"
+                                        width="{{ item.image.width }}"
+                                        height="{{ item.image.height }}"
+                                        loading="lazy"
+                                        alt="{{ 'templates.cart.reload' | t }}"/>
+                                      <span class="text-grey-700 shadow-megamenu cursor-pointer bg-background w-10 h-10 flex items-center justify-center rounded-full absolute -top-3 left-1/2 -translate-x-1/2 -translate-y-full lg:top-7 lg:right-7 lg:left-auto lg:translate-y-0 lg:translate-x-0 close">
+                                        {% render 'icon-close', class: 'w-6 h-6' %}
+                                      </span>
+                                    </div>
+                                  </modal-dialog>                                  
+                                {% else %}
+                                  {% for p in item.properties %}
+                                    {% if p.first == '_customily-thumb' %}
+                                      <modal-opener class="group block w-37.5 h-37.5 rounded-2xl flex-none overflow-hidden relative cursor-pointer" data-id="#preview-image-{{ item.index | plus: 1 }}">
+                                        <reload-image class="w-full h-full block object-cover leading-tight !max-w-full !max-h-full" data-src="{{ dataPreview }}" data-src-thumb="{{ p.last }}">
+                                          <img
+                                            src="{{ p.last }}"
+                                            class="w-full h-full block object-cover leading-tight !max-w-full !max-h-full bg-cover bg-no-repeat"
+                                            style="background-image: url('{{ item.image | image_url: width: item.image.width }}');"
+                                            width="150"
+                                            height="150"
+                                            loading="lazy"
+                                            alt="{{ 'templates.cart.reload' | t }}"/>
+                                        </reload-image>
+                                        <div class="absolute bottom-1 right-1 rounded flex items-center justify-center p-1 w-5 h-5 bg-white bg-opacity-30 group-hover:bg-opacity-100 transition-all text-grey-700">
+                                          {% render 'icon-zoom', class: 'w-4 h-4' %}
+                                        </div>
+                                      </modal-opener>
+                                    {% endif %}
+                                    {% if p.first == '_customily-preview' %}
+                                      {% assign dataPreview = p.last %}
+                                      <modal-dialog class="hidden fixed w-full h-full bg-black bg-opacity-20 top-0 left-0 z-20" id="preview-image-{{ item.index | plus: 1 }}">
+                                        <div class="text-center p-4 lg:p-12 rounded-xl shadow-popup max-w-[calc(100vw_-_32px)] max-h-[calc(100vh_-_32px)] w-[860px] lg:overflow-auto bg-background absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+                                          <img
+                                            src="{{ p.last }}"
+                                            class="w-full h-full block object-cover leading-[0] !max-w-full !max-h-full"
+                                            width="765"
+                                            height="765"
+                                            loading="lazy"
+                                            alt="{{ 'templates.cart.reload' | t }}"/>
+                                          <span class="text-grey-700 shadow-megamenu cursor-pointer bg-background w-10 h-10 flex items-center justify-center rounded-full absolute -top-3 left-1/2 -translate-x-1/2 -translate-y-full lg:top-7 lg:right-7 lg:left-auto lg:translate-y-0 lg:translate-x-0 close">
+                                            {% render 'icon-close'
+                                              , class: 'w-6 h-6' %}
+                                          </span>
+                                        </div>
+                                      </modal-dialog>
+                                    {% endif %}
+                                  {% endfor %}
                                   {% endif %}
                                 </a>
                               {% endif %}
@@ -313,7 +361,7 @@
           {{ 'sections.cart.checkout' | t }}
         </button>
         <div class="w-full flex flex-wrap items-center justify-center md:justify-between lg:justify-center mt-9">
-          <div class="text-xs font-normal w-full md:w-fit lg:w-full text-secondary lg:mb-2 text-center md:text-left lg:text-center"><strong class="text-primary">FREE SHIPPING</strong> on all U.S and EU orders over {{ settings.minimum_freeshipping | append: '00' | plus: 0 | money_without_trailing_zeros }}</div>
+          <div class="text-xs font-normal w-full md:w-fit lg:w-full text-secondary lg:mb-2 text-center md:text-left lg:text-center">{{ 'products.shipping_information.standard_html' | t: priceFreeShip: priceFreeShip }}</div>
           <ul class="list list-payment flex items-center gap-4 w-full md:w-fit lg:w-full justify-center lg:justify-between" role="list">
             {%- assign enabled_payment_types = "visa,master,paypal" | remove: ' ' | split: ',' -%}
             {% for type in enabled_payment_types %}

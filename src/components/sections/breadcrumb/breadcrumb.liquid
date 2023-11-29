@@ -21,7 +21,7 @@
 {%- endstyle -%}
 <div data-section-id="{{ section.id }}" class="page-width overflow-hidden">
   <ul class="flex items-center gap-1 overflow-x-auto slider-mobile">
-    <li class="flex items-center gap-1 text-xs leading-none">
+    <li class="flex items-center gap-1 text-xs leading-none capitalize">
       <a href="{{ routes.root_url }}" class="whitespace-nowrap" title="{{ 'general.breadcrumbs.home' | t }}">{{ 'general.breadcrumbs.home' | t }}</a>
       {% render 'icon-chevron-right', class: "w-1" %}
     </li>
@@ -37,12 +37,12 @@
         {%- endif -%}
       {%- endfor -%}
       {%- if product_type_link != nil -%}
-        <li class="flex items-center gap-1 text-xs leading-none">
+        <li class="flex items-center gap-1 text-xs leading-none capitalize">
           <a class="whitespace-nowrap" href="{{ product_type_link.url }}">{{ product_type_link.title }}</a>
           {% render 'icon-chevron-right', class: "w-1" %}
         </li>
       {%- endif -%}
-      <li class="flex items-center gap-1 text-xs leading-none"><span class="whitespace-nowrap">{{ product.title }}</span></li>
+      <li class="flex items-center gap-1 text-xs leading-none capitalize"><span class="whitespace-nowrap">{{ product.title }}</span></li>
       <script type="application/ld+json">
         {
           "@context": "http://schema.org",
@@ -79,7 +79,7 @@
         }
       </script>
     {% elsif template == 'cart' %}
-      <li class="flex items-center gap-1 text-xs leading-none">
+      <li class="flex items-center gap-1 text-xs leading-none capitalize">
         <span class="whitespace-nowrap">{{ 'cart.general.title' | t }}
         </span>
       </li>
@@ -107,13 +107,13 @@
         {%- endif -%}
       {%- endfor -%}
       {%- if grandparent_collection != nil -%}
-        <li class="flex items-center gap-1 text-xs leading-none">
+        <li class="flex items-center gap-1 text-xs leading-none capitalize">
           <a class="whitespace-nowrap" href="{{ grandparent_collection.url }}">{{- grandparent_collection.title -}}</a>
           {% render 'icon-chevron-right', class: "w-1" %}
         </li>
       {%- endif -%}
       {%- if parent_collection != nil -%}
-        <li class="flex items-center gap-1 text-xs leading-none">
+        <li class="flex items-center gap-1 text-xs leading-none capitalize">
           <a class="whitespace-nowrap" href="{{ parent_collection.url }}">{{- parent_collection.title -}}</a>
           {% render 'icon-chevron-right', class: "w-1" %}
         </li>
@@ -121,15 +121,15 @@
       {% if current_tags %}
         {% capture url %}/collections/{{ collection.handle }}
         {% endcapture %}
-        <li class="flex items-center gap-1 text-xs leading-none">{{ current_link.title | link_to: url }}
+        <li class="flex items-center gap-1 text-xs leading-none capitalize">{{ current_link.title | link_to: url }}
           {% render 'icon-chevron-right', class: "w-1" %}
         </li>
-        <li class="flex items-center gap-1 text-xs leading-none">
+        <li class="flex items-center gap-1 text-xs leading-none capitalize">
           <span class="whitespace-nowrap">{{ current_tags | join: " + " }}
           </span>
         </li>
       {% else %}
-        <li class="flex items-center gap-1 text-xs leading-none">
+        <li class="flex items-center gap-1 text-xs leading-none capitalize">
           <span class="whitespace-nowrap">{{ current_link.title }}
           </span>
         </li>
@@ -193,34 +193,34 @@
       </script>
     {% elsif template == 'blog' %}
       {% if current_tags %}
-        <li class="flex items-center gap-1 text-xs leading-none">{{ blog.title | link_to: blog.url }}
+        <li class="flex items-center gap-1 text-xs leading-none capitalize">{{ blog.title | link_to: blog.url }}
           {% render 'icon-chevron-right', class: "w-1" %}
         </li>
-        <li class="flex items-center gap-1 text-xs leading-none">
+        <li class="flex items-center gap-1 text-xs leading-none capitalize">
           <span class="whitespace-nowrap">{{ current_tags | join: " + " }}</span>
         </li>
       {% else %}
-          <li class="flex items-center gap-1 text-xs leading-none">
+          <li class="flex items-center gap-1 text-xs leading-none capitalize">
             <span class="whitespace-nowrap">{{ blog.title }}</span>
           </li>
       {% endif %}
     {% elsif template == 'article' %}
-      <li class="flex items-center gap-1 text-xs leading-none">{{ blog.title | link_to: blog.url }}
+      <li class="flex items-center gap-1 text-xs leading-none capitalize">{{ blog.title | link_to: blog.url }}
         {% render 'icon-chevron-right', class: "w-1" %}
       </li>
-      <li class="flex items-center gap-1 text-xs leading-none">
+      <li class="flex items-center gap-1 text-xs leading-none capitalize">
         <span class="whitespace-nowrap">{{ article.title }}</span>
       </li>
     {% elsif template contains 'page' %}
-      <li class="flex items-center gap-1 text-xs leading-none">
+      <li class="flex items-center gap-1 text-xs leading-none capitalize">
         <span class="whitespace-nowrap">{{ page.title }}</span>
       </li> 
     {% elsif template contains 'search' %}
-      <li class="flex items-center gap-1 text-xs leading-none">
+      <li class="flex items-center gap-1 text-xs leading-none capitalize">
         <span class="whitespace-nowrap">{{ 'general.search.title' | t }}</span>
       </li>
     {% else %}
-      <li class="flex items-center gap-1 text-xs leading-none">
+      <li class="flex items-center gap-1 text-xs leading-none capitalize">
         <span class="whitespace-nowrap">{{ page_title }}</span>
       </li>
     {% endif %}

@@ -1,7 +1,7 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Personalized",
+    "theme_name": "Personalised",
     "theme_version": "1.0.0",
     "theme_author": "Anden",
     "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes",
@@ -162,20 +162,68 @@
         "content": "Heading font"
       },
       {
-        "type": "text",
-        "label": "Font name",
+        "type": "font_picker",
+        "id": "heading_font_light",
+        "default": "josefin_sans_n3",
+        "label": "Font heading light"
+      },
+      {
+        "type": "font_picker",
         "id": "heading_font",
-        "default": "Josefin Sans"
+        "default": "josefin_sans_n4",
+        "label": "Font heading normal"
+      },
+      {
+        "type": "font_picker",
+        "id": "heading_font_medium",
+        "default": "josefin_sans_n4",
+        "label": "Font heading medium"
+      },
+      {
+        "type": "font_picker",
+        "id": "heading_font_semibold",
+        "default": "josefin_sans_n6",
+        "label": "Font heading semibold"
+      },
+      {
+        "type": "font_picker",
+        "id": "heading_font_bold",
+        "default": "josefin_sans_n7",
+        "label": "Font heading bold"
       },
       {
         "type": "header",
         "content": "Body font"
       },
       {
-        "type": "text",
-        "label": "Font name",
+        "type": "font_picker",
+        "id": "base_font_light",
+        "default": "josefin_sans_n3",
+        "label": "Font body light"
+      },
+      {
+        "type": "font_picker",
         "id": "base_font",
-        "default": "Josefin Sans"
+        "default": "josefin_sans_n4",
+        "label": "Font body normal"
+      },
+      {
+        "type": "font_picker",
+        "id": "base_font_medium",
+        "default": "josefin_sans_n6",
+        "label": "Font body medium"
+      },
+      {
+        "type": "font_picker",
+        "id": "base_font_semibold",
+        "default": "josefin_sans_n6",
+        "label": "Font body semibold"
+      },
+      {
+        "type": "font_picker",
+        "id": "base_font_bold",
+        "default": "josefin_sans_n7",
+        "label": "Font body bold"
       }
     ]
   },
@@ -314,13 +362,27 @@
       },
       {
         "type": "textarea",
-        "id": "custom_code_index",
-        "label": "Custom code at the home page"
+        "id": "custom_code_header_home",
+        "label": "Custom code at the header"
       },
       {
         "type": "textarea",
-        "id": "custom_code_all",
-        "label": "Custom code at the all pages"
+        "id": "custom_code_footer_home",
+        "label": "Custom code at the footer"
+      },
+      {
+        "type": "header",
+        "content": "All pages"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_code_header_all",
+        "label": "Custom code at the header"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_code_footer_all",
+        "label": "Custom code at the footer"
       }
     ]
   }

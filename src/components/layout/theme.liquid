@@ -10,13 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    {% if settings.heading_font != settings.base_font %}
-      <link href="https://fonts.googleapis.com/css2?family={{ settings.heading_font | replace: ' ', '+' }}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family={{ settings.base_font | replace: ' ', '+' }}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    {% else %}
-      <link href="https://fonts.googleapis.com/css2?family={{ settings.heading_font | replace: ' ', '+' }}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    {% if settings.custom_code_header_all %}
+      {{ settings.custom_code_header_all }}
     {% endif %}
-    {{ settings.custom_code_all }}
+    {% if template contains 'index' %}
+      {% if settings.custom_code_header_home %}
+        {{ settings.custom_code_header_home }}
+      {% endif %}
+    {% endif %}
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: '32', height: '32' }}" />
@@ -61,11 +62,12 @@
       {%- endif -%}
     {% endif %}
 
+    {% render 'font' %}
 
     {% style %}
       :root {
-        --font-heading: {{ settings.heading_font }};
-        --font-base: {{ settings.base_font }};
+        --font-heading: {{ settings.heading_font.family }};
+        --font-base: {{ settings.base_font.family }};
         --rem: {{ settings.rem }}px;
         --page-width: {{ settings.page_width | plus: settings.rem | plus: settings.rem | append: 'px' }};
         --color-primary: {{ settings.color_primary }};
@@ -100,6 +102,8 @@
     {% capture main %}{{ 'theme.js' | asset_url }}{% endcapture %}
     {% render 'atom_script', src: main, priority: 'normal', type: "defer" %}
 
+    {%- render 'schema' -%}
+
     <script>
       window.shopUrl = '{{ request.origin }}';
       window.routes = {
@@ -132,7 +136,6 @@
         currency_format: '{{ cart.currency.symbol }}{% raw %}{{ amount }}{% endraw %}'
       };
     </script>
-    <meta name="robots" content="noindex,nofollow">
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
@@ -152,6 +155,14 @@
     {% section 'footer' %}
 
     {%- render 'delay-load', urls: urls, snippets: '', on_delay_load: on_delay_load, load_apps: true, delay: 1000, delay_load: true -%}
-
+    
+    {% if settings.custom_code_footer_all %}
+      {{ settings.custom_code_footer_all }}
+    {% endif %}
+    {% if template contains 'index' %}
+      {% if settings.custom_code_footer_home %}
+        {{ settings.custom_code_footer_home }}
+      {% endif %}
+    {% endif %}
   </body>
 </html>

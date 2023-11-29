@@ -13,22 +13,17 @@
 {%- endstyle -%}
 <div class="page-width">
   {% if section.settings.heading != blank %}
-    <h2 class="text-h5 font-semibold lg:text-h2 text-grey-900 mb-5 lg:mb-10 text-center text-grey-900">
-      {{ section.settings.heading }}
-    </h2>
+    <{{ section.settings.heading_tag }} class="text-2xl font-bold lg:text-3xl !leading-none text-secondary capitalize mb-4 md:mb-7.5">{{ section.settings.heading | escape }}</{{ section.settings.heading_tag }}>
   {% endif %}
 
   {% assign listCollections =  product.collections | sort: "all_products_count" | reverse %}
-  {% assign excludedHandles = "bestsellers,recipients,new-arrivals,personalized-milestone-birthdays-gifts,personalized-gifts-for-occasion" %}
   {% assign count = 0 %}
   <div class="flex flex-wrap gap-3">
     {% for collection in listCollections %}
-      {% unless excludedHandles contains collection.handle %}
-        {% if count < 5 %}
-          {% assign count = count | plus: 1 %}
-          <a href="{{ collection.url }}" class="inline-block py-2 px-6 w-fit text-base text-grey-900 border border-solid border-grey-200 rounded-3xl hover:text-background hover:bg-grey-900 hover:border-grey-900" title="{{ collection.title }}">{{ collection.title | replace: "Personalized", "Custom" }}</a>
-        {% endif %}
-      {% endunless %}
+      {% if count < 5 %}
+        {% assign count = count | plus: 1 %}
+        <{{ section.settings.card_tag }}><a href="{{ collection.url }}" class="inline-block py-4 px-6 w-fit text-sm leading-none text-secondary border border-solid border-secondary rounded-3xl hover:text-background hover:bg-primary hover:border-primary" title="{{ collection.title }}">{{ collection.title | replace: "Personalised", "Custom" }}</a></{{ section.settings.card_tag }}>
+      {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -41,6 +36,62 @@
         "id": "heading",
         "label": "Heading",
         "default": "Similar Categories"
+      },
+      {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "h2",
+        "options": [
+          {
+            "value": "h1",
+            "label": "Heading 1"
+          },
+          {
+            "value": "h2",
+            "label": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "label": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "label": "Heading 4"
+          },
+          {
+            "value": "h5",
+            "label": "Heading 5"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "card_tag",
+        "label": "Card tag",
+        "default": "h3",
+        "options": [
+          {
+            "value": "h1",
+            "label": "Heading 1"
+          },
+          {
+            "value": "h2",
+            "label": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "label": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "label": "Heading 4"
+          },
+          {
+            "value": "h5",
+            "label": "Heading 5"
+          }
+        ]
       },
       {
         "type": "header",
@@ -89,6 +140,11 @@
         "unit": "px",
         "label": "t:sections.all.padding.padding_bottom",
         "default": 36
+      }
+    ],
+    "presets": [
+      {
+        "name": "Recommend collections"
       }
     ]
   }
