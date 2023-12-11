@@ -1,0 +1,88 @@
+{% unless pageUrl %}
+  {%- assign pageUrl = content_for_header | split: '"pageurl":"' | last | split: '"' | first | split: '.myshopify.com' | last | replace: '\/', '/' | replace: '%20', ' ' | replace: '\u0026', '&' -%}
+{% endunless %}
+
+<accordion-toggle class="block w-full col-span-1 relative">
+  <div class="summary flex items-center justify-between gap-2.5 px-6 py-2.5 pl-[21px] text-base font-heading font-semibold leading-4 text-grey-800 bg-[#FAFAFA] border-l-[3px] border-solid rounded-r border-l-grey-700 lg:hidden">
+    {% if pageUrl contains routes.account_addresses_url %}
+      <span class="flex items-center gap-2.5">
+        {% render 'icon-address', class: 'w-5 h-5' %}
+        <span>{{ 'customer.addresses.title' | t }}</span>
+      </span>
+    {% elsif pageUrl contains '?view=orders' or pageUrl contains '/orders/' %}
+      <span class="flex items-center gap-2.5">
+        {% render 'icon-bag', class: 'w-5 h-5' %}
+        <span>{{ 'customer.orders.title' | t }}</span>
+      </span>
+    {% elsif pageUrl contains '?view=wishlist' %}
+      <span class="flex items-center gap-2.5">
+        {% render 'icon-wishlist-header', class: 'w-5 h-5', stroke: '0.5' %}
+        <span>{{ 'customer.wishlist.title' | t }}</span>
+      </span>
+    {% else %}
+      <span class="flex items-center gap-2.5">
+        {% render 'icon-customer', class: 'w-5 h-5' %}
+        <span>{{ 'customer.account.title' | t }}</span>
+      </span>
+    {% endif %}
+    {% render 'icon-down', class: 'w-6 h-6 icon-add' %}
+    {% render 'icon-up', class: 'w-6 h-6 icon-minus' %}
+  </div>
+  <div class="details lg:block lg:!max-h-full !mt-0.5 lg:!mt-0 absolute w-full bg-background lg:static shadow-megamenu lg:shadow-none rounded-b-md lg:rounded-none">
+    <ul class="flex-col flex gap-0.5 pb-1.5 lg:pb-0">
+      <li class="{% if pageUrl contains routes.account_url %}{% unless pageUrl contains routes.account_addresses_url %}{% unless pageUrl contains '?view=' %}{% unless pageUrl contains '/orders/' %}hidden lg:inline-block{% endunless %}{% endunless %}{% endunless %}{% endif %}">
+        <a class="flex items-center gap-2.5 px-6 py-2.5 pl-[21px] text-grey-400 text-base font-heading font-semibold leading-4 hover:text-grey-800 hover:bg-[#FAFAFA] border-l-[3px] border-transparent border-solid rounded-r hover:border-l-grey-700 transition-all 
+                  {% if pageUrl contains routes.account_url %}{% unless pageUrl contains routes.account_addresses_url %}{% unless pageUrl contains '?view=' %}{% unless pageUrl contains '/orders/' %} !text-grey-800 !bg-[#FAFAFA] !border-l-grey-700{% endunless %}{% endunless %}{% endunless %}{% endif %}" href="{{ routes.account_url }}">
+          {% render 'icon-customer', class: 'w-5 h-5' %}
+          <span>{{ 'customer.account.title' | t }}</span>
+        </a>
+      </li>
+      <li class="{% if pageUrl contains routes.account_addresses_url %}{% unless pageUrl contains '?view=' %}hidden lg:inline-block{% endunless %}{% endif %}">
+        <a class="flex items-center gap-2.5 px-6 py-2.5 pl-[21px] text-grey-400 text-base font-heading font-semibold leading-4 hover:text-grey-800 hover:bg-[#FAFAFA] border-l-[3px] border-transparent border-solid rounded-r hover:border-l-grey-700 transition-all 
+                  {% if pageUrl contains routes.account_addresses_url %} !text-grey-800 !bg-[#FAFAFA] !border-l-grey-700{% endif %}" href="{{ routes.account_addresses_url }}">
+          {% render 'icon-address', class: 'w-5 h-5' %}
+          <span>{{ 'customer.addresses.title' | t }}</span>
+        </a>
+      </li>
+      <li class="{% if pageUrl contains '?view=orders' or pageUrl contains '/orders/' %}hidden lg:inline-block{% endif %}">
+        <a class="flex items-center gap-2.5 px-6 py-2.5 pl-[21px] text-grey-400 text-base font-heading font-semibold leading-4 hover:text-grey-800 hover:bg-[#FAFAFA] border-l-[3px] border-transparent border-solid rounded-r hover:border-l-grey-700 transition-all 
+                  {% if pageUrl contains '?view=orders' or pageUrl contains '/orders/' %} !text-grey-800 !bg-[#FAFAFA] !border-l-grey-700{% endif %}" href="{{ routes.account_url }}?view=orders">
+          {% render 'icon-bag', class: 'w-5 h-5' %}
+          <span>{{ 'customer.orders.title' | t }}</span>
+        </a>
+      </li>
+      <li class="{% if pageUrl contains '?view=wishlist' %}hidden lg:inline-block{% endif %}">
+        <a class="flex items-center gap-2.5 px-6 py-2.5 pl-[21px] text-grey-400 text-base font-heading font-semibold leading-4 hover:text-grey-800 hover:bg-[#FAFAFA] border-l-[3px] border-transparent border-solid rounded-r hover:border-l-grey-700 transition-all 
+                  {% if pageUrl contains '?view=wishlist' %} !text-grey-800 !bg-[#FAFAFA] !border-l-grey-700{% endif %}" href="{{ routes.account_url }}?view=wishlist">
+          {% render 'icon-wishlist-header', class: 'w-5 h-5', stroke: '0.5' %}
+          <span>{{ 'customer.wishlist.title' | t }}</span>
+        </a>
+      </li>
+      <li>
+        <modal-opener data-id="#logout" class="flex items-center gap-2.5 px-6 py-2.5 pl-[21px] text-grey-400 text-base font-heading font-semibold leading-4 hover:text-grey-800 hover:bg-[#FAFAFA] border-l-[3px] border-transparent border-solid rounded-r hover:border-l-grey-700 transition-all cursor-pointer">
+          {% render 'icon-logout', class: 'w-5 h-5' %}
+          <span>{{ 'customer.logout.title' | t }}</span>
+        </modal-opener>
+        <modal-dialog id="logout" class="hidden fixed w-full h-full bg-black bg-opacity-20 top-0 left-0 z-20">
+          <div class="p-4 lg:p-8 lg:pt-10 rounded-xl shadow-popup max-w-[calc(100vw_-_32px)] max-h-[calc(100vh_-_32px)] w-[334px] lg:overflow-auto bg-background absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+            <span class="block text-h5 lg:text-h4 font-semibold text-grey-700 font-heading mb-2">
+              {{ 'customer.logout.popup.title' | t }}
+            </span>
+            <span class="block text-sm leading-5 font-light lg:text-base lg:leading-6 text-grey-700 mb-6">
+              {{ 'customer.logout.popup.description' | t }}
+            </span>
+            <div class="grid grid-cols-2 gap-3">
+              <button type="button" class="btn btn-2 w-full p-3.5 !text-sm !leading-none !uppercase !font-bold !font-heading close">{{ 'customer.addresses.no' | t }}</button>
+              <logout-account class="btn btn-error w-full text-center p-3.5 !text-sm !leading-none !uppercase !font-bold !font-heading cursor-pointer">
+                <span>{{ 'customer.logout.popup.logout' | t }}</span>
+              </logout-account>
+            </div>
+            <span class="text-grey-700 shadow-megamenu cursor-pointer bg-background w-10 h-10 flex items-center justify-center rounded-full absolute top-3 right-3 lg:top-2 lg:right-2 close">
+              {% render 'icon-close', class: 'w-6 h-6' %}
+            </span>
+          </div>
+        </modal-dialog>
+      </li>
+    </ul>
+  </div>
+</accordion-toggle>

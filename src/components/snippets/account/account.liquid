@@ -1,34 +1,32 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+
 <div class="account-address">
-  <div class="account-address__content">
-    {%- if customer.addresses.size > 0 -%}
-      <h2 class="account-address__heading">{{'customer.addresses.address_list' | t}}</h2>
-      {%- for address in customer.addresses -%}
-        {%- assign is_default = false -%}
-        {%- if address.id == customer.default_address.id -%}
-            {% render 'account-address-form', address: address, default_address: true %}
-          {% break %}
-        {%- endif -%}
-      {% endfor %}
-      {%- for address in customer.addresses -%}
-        {%- if address.id != customer.default_address.id -%}
-          {% render 'account-address-form', address: address, default_address: false %}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- else -%}
-      <div class="account-address-no-address">
-        <div class="account-address-no-address__icon">
-          {%- render 'icon-location' -%}
+  <div class="text-h5 md:text-h4 text-grey-800 font-heading font-semibold capitalize mb-6 lg:mb-5"> {{ 'customer.account.greeting' | t: name: customer.name }}</div>
+  <account-information class="block">
+    <div class="account-info__wrapper">
+      <form id="customer_update" action="" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="w-full">
+          <label class="block font-heading text-base text-grey-800 leading-4 font-normal capitalize mb-2" for="customer_first_name">{{ 'customer.information.first_name' | t }}</label>
+          <input class="border border-grey-100 focus:border-grey-250 hover:border-grey-100 active:border-grey-250 !ring-0 font-light border-solid w-full text-sm leading-5 lg:text-base lg:leading-6 px-6 py-3 rounded-full"
+                 type="text" id="customer_first_name" name="customer[firstName]" value="{{ customer.first_name }}" placeholder="{{ 'customer.information.pl_first_name' | t }}" required >
         </div>
-        <h2 class="account-address-no-address__title">{{ 'customer.addresses.title_no_have_address' | t }}</h2>
-        <div class="account-address-no-address__description">
-          {{ 'customer.addresses.description_no_have_address' | t }}
+        <div class="w-full">
+          <label class="block font-heading text-base text-grey-800 leading-4 font-normal capitalize mb-2" for="customer_last_name">{{ 'customer.information.last_name' | t }}</label>
+          <input class="border border-grey-100 focus:border-grey-250 hover:border-grey-100 active:border-grey-250 !ring-0 font-light border-solid w-full text-sm leading-5 lg:text-base lg:leading-6 px-6 py-3 rounded-full"
+                 type="text" id="customer_last_name" name="customer[lastName]" value="{{ customer.last_name }}" placeholder="{{ 'customer.information.pl_last_name' | t }}" required >
         </div>
-      </div>
-    {%- endif -%}
-  </div>
-  <modal-opener class="account-address__bottom" data-modal="#address-new">
-    <button class="account-address__button-add">
-      <span>{{- add_new_label -}}</span>
-    </button>
-  </modal-opener>
+        <div class="w-full">
+          <label class="block font-heading text-base text-grey-800 leading-4 font-normal capitalize mb-2" for="customer_email">{{ 'customer.information.email' | t }}</label>
+          <input class="border border-grey-100 focus:border-grey-250 hover:border-grey-100 active:border-grey-250 !ring-0 font-light border-solid w-full text-sm leading-5 lg:text-base lg:leading-6 px-6 py-3 rounded-full"
+                 type="email" id="customer_email" name="customer[email]" value="{{ customer.email }}" placeholder="{{ 'customer.information.pl_email' | t }}" required >
+        </div>
+        <div class="w-full">
+          <label class="block font-heading text-base text-grey-800 leading-4 font-normal capitalize mb-2" for="customer_phone">{{ 'customer.information.phone' | t }}</label>
+          <input class="border border-grey-100 focus:border-grey-250 hover:border-grey-100 active:border-grey-250 !ring-0 font-light border-solid w-full text-sm leading-5 lg:text-base lg:leading-6 !pr-6 !pl-19 py-3 rounded-full"
+                 type="tel" id="customer_phone" name="customer[phone]" value="{{ customer.phone }}" placeholder="{{ 'customer.information.pl_phone' | t }}" required>
+        </div>
+        <button type="submit" class="btn btn-2 text-sm leading-none px-6 py-3.5 !font-heading !font-bold !uppercase w-full mt-3 md:w-fit">{{- 'customer.information.button_save_change' | t -}}</button>
+      </form>
+    </div>
+  </account-information>
 </div>

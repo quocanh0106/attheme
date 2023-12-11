@@ -1,54 +1,92 @@
+<link rel="stylesheet" href="{{ 'account.css' | asset_url }}" />
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top_mb }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mb }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
 <div class="page-width">
-  <div class="text-center p-4 lg:py-8 max-w-[500px] w-full rounded-[20px] mx-auto border border-solid border-primary-opacity-30 shadow-[0px_5px_8px_0px_rgba(0,_0,_0,_0.25)]">
-    <h1 class="text-h3 lg:text-h1 capitalize mb-3 text-primary">Hi, {{ customer.name }}</h1>
-    <span class="text-secondary text-sm lg:text-base font-normal italic">Wishing you a wonderful day!</span>
-  </div>
   {%- assign pageUrl = content_for_header | split: '"pageurl":"' | last | split: '"' | first | split: '.myshopify.com' | last | replace: '\/', '/' | replace: '%20', ' ' | replace: '\u0026', '&' -%}
-  <div class="flex flex-wrap md:justify-between my-6 lg:my-17">
-    <accordion-toggle class="block w-full lg:max-w-1/5">
-      <div class="summary lg:hidden">
-        {% if pageUrl contains routes.account_url %}
-          {% unless pageUrl contains '?view=' %}        
-            <a class="flex items-center gap-5 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none text-primary text-opacity-100 w-fit" href="{{ routes.account_url }}">
-              {% render 'icon-customer', class: 'w-4.5 h-4.5' %}
-              <span>Account</span>
-            </a>
-          {% else %}
-            <a class="flex items-center gap-5 !text-primary !text-opacity-100 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none  w-fit" href="{{ routes.account_url }}?view=orders">
-              {% render 'icon-order', class: 'w-4.5 h-4.5' %}
-              <span>Order</span>
-            </a>
-          {% endunless %}
-        {% endif %}
-      </div>
-      <div class="details lg:block lg:!max-h-full">
-        <ul class="flex-col flex gap-4 lg:gap-6">
-          <li class="{% if pageUrl contains routes.account_url %}{% unless pageUrl contains '?view=' %}hidden lg:inline-block{% endunless %}{% endif %}">
-            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none {% if pageUrl contains routes.account_url %}{% unless pageUrl contains '?view=' %} !text-primary !text-opacity-100{% endunless %}{% endif %}" href="{{ routes.account_url }}">
-              {% render 'icon-customer', class: 'w-4.5 h-4.5' %} 
-              <span>Account</span>
-            </a>
-          </li>
-          <li class="{% if pageUrl contains '?view=orders' %}hidden lg:inline-block{% endif %}">
-            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none {% if pageUrl contains '?view=orders' %} !text-primary !text-opacity-100{% endif %}" href="{{ routes.account_url }}?view=orders">{% render 'icon-order', class: 'w-4.5 h-4.5' %} <span>Order</span></a>
-          </li>
-          <li>
-            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none" href="pages/wishlist">{% render 'icon-wishlist', class: 'w-4.5 h-4.5' %} <span>Wishlist</span></a>
-          </li>
-          <li>
-            <a class="flex items-center gap-5 text-black text-opacity-40 hover:text-primary hover:text-opacity-100 text-base lg:text-xl !leading-none" href="{{ routes.account_logout_url }}">{% render 'icon-logout', class: 'w-4.5 h-4.5' %} <span>Logout</span></a>
-          </li>
-        </ul>
-      </div>
-    </accordion-toggle>
-    <div class="w-full lg:max-w-4/5">
-    {% if pageUrl contains routes.account_url %}
-      {% unless pageUrl contains '?view=' %}        
-        {% render 'account' %}
-      {% else %}
+  <div class="grid grid-cols-1 lg:grid-cols-6 gap-3 md:gap-4">
+    {% render 'account-menu', pageUrl: pageUrl %}
+    <div class="w-full col-span-1 lg:col-span-5 lg:rounded-2xl py-5 md:p-8 lg:py-10 lg:px-12 md:shadow-megamenu">
+      {% if pageUrl contains '?view=orders' %}
         {% render 'account-order' %}
-      {% endunless %}
-    {% endif %}
+      {% elsif pageUrl contains '?view=wishlist' %}
+        {% render 'account-wishlist' %}
+      {% else %}
+        {% render 'account' %}
+      {% endif %}
     </div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+{% capture src_url %}{{ 'account.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}
+
+{% schema %}
+  {
+    "name": "Account",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Padding mobile"
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mb",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom_mb",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      },
+      {
+        "type": "header",
+        "content": "Padding desktop"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 36
+      }
+    ]
+  }
+{% endschema %}

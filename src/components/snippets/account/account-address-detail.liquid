@@ -1,0 +1,111 @@
+{{ 'account-address-form.css' | asset_url | stylesheet_tag }}
+
+{%- capture all_data_country -%}{{ all_country_option_tags }}{%- endcapture -%}
+{%- assign all_data_country = all_data_country | split: '<option value="---" data-provinces="[]">---</option>' -%}
+{%- assign all_data_country = all_data_country[1] -%}
+{%- assign all_data_country = all_data_country | split: '<option value="Aland Islands" data-provinces="[]">Åland Islands</option>' -%}
+{%- assign all_data_country = all_data_country[1] -%}
+{% assign countrySelected = '>' | append: address.country %}
+{%- assign all_data_country = all_data_country | split: countrySelected -%}
+{%- assign all_data_country = all_data_country[0] | append: ' selected' |  append: countrySelected | append: all_data_country[1]  -%}
+{% style %}
+  :root {
+    --color-foreground: 0, 0, 0;
+    --text-black: #000000;
+    --color-grey: #808080;
+  }
+{% endstyle %}
+
+{%- liquid 
+  assign heading = heading | default: nil
+  assign class = class | default: nil
+  assign default_address = default_address | default: false
+  assign address_id = address.id
+
+  assign email_id = 'address_email_' | append: address_id
+  assign phone_id = 'address_phone_' | append: address_id
+  assign country_id = 'address_country_' | append: address_id
+  assign first_name_id = 'address_first_name_' | append: address_id
+  assign last_name_id = 'address_last_name_' | append: address_id
+  assign address_id = 'address_address_' | append: address.id
+  assign province_id = 'address_province_' | append: address_id
+  assign city_id = 'address_city_' | append: address_id
+  assign zip_id = 'address_zip_' | append: address_id
+  assign set_default_id = 'address_default_address_' | append: address_id
+
+  assign phone_label = 'customer.addresses.phone' | t
+  assign country_label = 'customer.addresses.country' | t
+  assign name_label = 'customer.addresses.name' | t
+  assign address_label = 'customer.addresses.address' | t
+  assign placehoder_phone = 'customer.addresses.placehoder_phone' | t
+  assign placehoder_first_name = 'customer.addresses.placehoder_first_name' | t
+  assign placehoder_last_name = 'customer.addresses.placehoder_last_name' | t
+  assign placehoder_address = 'customer.addresses.placehoder_address' | t
+  assign placehoder_city = 'customer.addresses.placehoder_city' | t
+  assign placehoder_province = 'customer.addresses.placehoder_province' | t
+  assign placehoder_postcode = 'customer.addresses.placehoder_postcode' | t
+  assign text_set_address_default = 'customer.addresses.set_address_default' | t
+
+  assign btn_text_add = 'customer.addresses.add' | t
+  assign btn_text_save = 'customer.addresses.save' | t
+  assign btn_cancel = 'customer.addresses.cancel' | t
+  assign btn_delete = 'customer.addresses.delete' | t
+
+-%}
+
+<div class="div" id="address-form-{{- address.id | default: 'new' -}}">
+  {% form 'customer_address', address, class: "grid gap-4 w-full" %}
+    <div class="grid items-center grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="w-full">
+        <label class="block">First name</label>
+        <input type="text" name="address[first_name]" id="{{ first_name_id }}" value="{{ address.first_name }}" class="w-full border-0 border-b !shadow-none !border-grey-200 !ring-0 !ring-inherit focus:!shadow-none focus:!border-grey-200" placeholder="{{ placehoder_first_name }}">
+      </div>
+
+      <div class="w-full">
+        <label class="block">Last name</label>
+        <input type="text" name="address[last_name]" id="{{ last_name_id }}" value="{{ address.last_name }}" class="w-full border-0 border-b !shadow-none !border-grey-200 !ring-0 !ring-inherit focus:!shadow-none focus:!border-grey-200" placeholder="{{ placehoder_last_name }}" required>
+      </div>
+
+      <div class="w-full col-span-2 lg:col-span-1">
+        <label class="block" for="{{ phone_id }}">{{ phone_label }}</label>
+        <input type="tel" name="address[phone]" id="{{ phone_id }}" value="{{ address.phone }}" class="w-full border-0 border-b !shadow-none !border-grey-200 !ring-0 !ring-inherit focus:!shadow-none focus:!border-grey-200" placeholder="{{ placehoder_phone }}" pattern="[0-9.+* * *]+" required>
+      </div>
+    </div>
+
+    <div class="block">
+      <label class="block" for="{{ country_id }}">Country</label>
+      <select name="address[country]" id="{{ country_id }}" value="{{ address.country }}" class="w-full border-0 border-b !shadow-none !border-grey-200 !ring-0 !ring-inherit focus:!shadow-none focus:!border-grey-200" data-country-selector data-id="{{ form.id }}">
+        {{ all_data_country }}
+      </select>
+    </div>
+    
+
+    <div class="block">
+      <label class="block">Address</label>
+      <div class="grid grid-cols-2 gap-4">
+        <input type="text" name="address[address1]" id="{{ address_id }}" value="{{ address.address1 }}" class="w-full border-0 border-b !shadow-none !border-grey-200 !ring-0 !ring-inherit focus:!shadow-none focus:!border-grey-200" placeholder="{{ placehoder_address }}" required>
+        <input type="text" name="address[province]" id="{{ province_id }}" value="{{ address.province }}" class="w-full border-0 border-b !shadow-none !border-grey-200 !ring-0 !ring-inherit focus:!shadow-none focus:!border-grey-200" placeholder="{{ placehoder_province }}">
+        <input type="text" name="address[city]" id="{{ city_id }}" value="{{ address.city }}" class="w-full border-0 border-b !shadow-none !border-grey-200 !ring-0 !ring-inherit focus:!shadow-none focus:!border-grey-200" placeholder="{{ placehoder_city }}" required>
+        <input type="text" name="address[zip]" id="{{ zip_id }}" value="{{ address.zip }}" class="w-full border-0 border-b !shadow-none !border-grey-200 !ring-0 !ring-inherit focus:!shadow-none focus:!border-grey-200" placeholder="{{ placehoder_postcode }}" required>
+      </div>  
+    </div>
+    <div class="div__address-default">
+      <input type="checkbox" id="{{ set_default_id }}" class="div__checkbox" name="address[default]"{% if default_address %} checked{% endif %}>
+      <label class="div__address-default_label" for="{{ set_default_id }}">{{ text_set_address_default }}</label>
+    </div>
+    <div class="div__content-bottom {% if type == 'new' %}account-address-form__content-bottom--revert {% endif %} ">
+      {%- if type == 'new' -%}
+        <button class="account-address-form__btn-add" type="submit" disabled>{{ btn_text_add }}</button>
+        <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-cancel" type="reset">{{- btn_cancel -}}</button>
+      {%- else -%}
+        <button class="account-address-form__btn-add" type="submit">{{ btn_text_save }}</button>
+      {%- endif -%}
+    </div>
+  {% endform %}
+  {%- unless type == 'new' -%}
+    <form class="inline" method="post" action="/account/addresses/{{- address.id -}}">
+      <input type="hidden" name="_method" value="delete">
+      <button class="account-address-form__btn-delete" type="submit">{{ btn_delete }}</button>
+    </form>
+  {%- endunless -%}
+</account-address-form>

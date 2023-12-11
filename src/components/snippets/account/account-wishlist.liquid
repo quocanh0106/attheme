@@ -1,0 +1,47 @@
+{%- style -%}
+  wishlist-count.hidden ~ svg {
+    display: none;
+  }
+{%- endstyle -%}
+
+<wishlist-wrapper class="block -mx-2 md:mx-0">
+  <div class="flex items-center gap-2 px-2 md:px-0">
+    <wishlist-count class="block capitalize text-base text-grey-800 font-semibold leading-4 font-heading hidden mb-6">
+      <span class="">0</span> {{ 'wishlist.items' | t }}
+    </wishlist-count>
+    {% render 'icon-dot', class: 'w-1 h-1 text-grey-200 mb-6' %}
+    <modal-opener data-id="#PopupModal-ClearWishlist" class="flex items-center justify-center gap-0.5 text-sm leading-4 text-grey-500 font-bold font-heading cursor-pointer mb-6 hidden">
+      {% render 'icon-trash', class: 'w-5 h-5' %}
+      <span>{{ "wishlist.clear_wishlist" | t }}</span>
+    </modal-opener>
+  </div>
+  <div class="md:px-0 grid gap-x-2 gap-y-8 md:gap-x-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-3" id="whislist-wrapper">
+    <span class="!block py-20 relative spinning col-span-2 md:col-span-3 lg:col-span-3"></span>
+  </div>
+  <div class="hidden text-center p-6 lg:py-20 rounded-2xl bg-[#FAFAFA] max-w-full mx-auto" id="whislist-blank">
+    <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" class="w-20 h-20 lg:w-32 lg:h-32 mb-3 mx-auto block text-center" viewBox="0 0 128 128" fill="none">
+      <path d="M25.2529 72.6939C25.2529 73.358 25.7238 73.829 26.4628 73.8966C26.6214 73.8963 26.7784 73.8647 26.9247 73.8037C27.0711 73.7428 27.2041 73.6535 27.316 73.5412C27.4279 73.4288 27.5166 73.2955 27.577 73.1489C27.6373 73.0023 27.6683 72.8452 27.6679 72.6866L27.5762 40.0853L46.967 51.3565L47.1529 118.643L27.7597 107.372L27.7163 90.1188C27.715 89.7993 27.5872 89.4934 27.3609 89.268C27.1345 89.0426 26.8281 88.9161 26.5087 88.9161H26.5039C26.184 88.9173 25.8778 89.0455 25.6523 89.2723C25.4268 89.4991 25.3005 89.8062 25.3012 90.126L25.3495 108.07C25.3498 108.281 25.4053 108.488 25.5104 108.67C25.6154 108.853 25.7664 109.005 25.9484 109.111L47.7639 121.793C47.9475 121.899 48.1558 121.955 48.3677 121.955C48.5797 121.955 48.7879 121.899 48.9715 121.793L102.248 91.0486C102.432 90.9424 102.585 90.7896 102.691 90.6056C102.797 90.4215 102.853 90.2128 102.852 90.0004L102.632 19.9144C102.624 19.7052 102.564 19.5013 102.46 19.3201C102.355 19.1388 102.208 18.9856 102.031 18.8735L102.026 18.8687L95.9716 15.3474C95.7877 15.2402 95.5787 15.1835 95.3658 15.1831C95.1529 15.1826 94.9436 15.2385 94.7593 15.345L86.9054 19.8782L86.8861 10.7612C86.7895 10.5197 86.8015 10.0198 86.2847 9.72028L80.2228 6.19424C80.0395 6.08789 79.8313 6.03168 79.6194 6.03125C79.4074 6.03083 79.199 6.08621 79.0153 6.19183L25.76 36.936C25.5771 37.0421 25.4252 37.1943 25.3193 37.3773C25.2134 37.5603 25.1572 37.7678 25.1562 37.9793V37.9841L25.2529 72.6939ZM55.7241 40.6745L64.0658 35.8564L68.925 38.6821L69.0868 52.5979L65.8603 50.7938C65.592 50.6429 65.2761 50.6003 64.9775 50.6749C64.6789 50.7494 64.4201 50.9354 64.2542 51.1947L60.5929 56.8991L60.4649 44.2513C60.4601 43.848 60.0978 43.3625 59.8901 43.237L55.7241 40.6745ZM49.5656 118.663L49.3821 51.3589L58.0716 46.3428L58.2165 60.9638C58.2334 62.2558 59.8805 62.478 60.4432 61.6038L65.6743 53.4552L69.7292 55.7254C69.914 55.8287 70.1227 55.8817 70.3344 55.8789C70.5461 55.8761 70.7533 55.8177 70.9353 55.7096C71.1174 55.6015 71.2677 55.4474 71.3714 55.2628C71.4751 55.0782 71.5284 54.8696 71.5261 54.6579L71.3401 38.6773L100.225 22.0083L100.432 89.3097L49.5656 118.663ZM95.363 17.7891L99.0171 19.9144L70.1301 36.5882L66.4809 34.4653L95.363 17.7891ZM48.2204 42.2154L40.9244 37.9865L84.4758 12.8551L84.4951 21.2717L48.2204 42.2154ZM79.6166 8.6359L83.2683 10.7612L37.9079 36.9384C37.7244 37.0444 37.572 37.1968 37.466 37.3804C37.36 37.5639 37.3042 37.7722 37.3042 37.9841C37.3042 38.1961 37.36 38.4043 37.466 38.5879C37.572 38.7714 37.7244 38.9239 37.9079 39.0299L47.6166 44.657C47.9886 44.8744 48.4522 44.8744 48.8266 44.657L53.3356 42.0415L56.8978 44.2296L48.1745 49.2674L28.7716 37.989L79.6166 8.6359Z" fill="#A8A8A8"/>
+      <path d="M26.489 84.8651C26.5566 84.8651 26.6145 84.8361 26.6797 84.8264C26.9663 84.7921 27.2296 84.6515 27.4174 84.4323C27.6053 84.2132 27.704 83.9315 27.6941 83.643L27.6748 78.0569C27.671 77.736 27.5413 77.4293 27.3136 77.203C27.086 76.9767 26.7786 76.8488 26.4576 76.847H26.4503C26.1305 76.8489 25.8245 76.9776 25.5994 77.2049C25.3744 77.4322 25.2487 77.7395 25.25 78.0593L25.2742 83.6624C25.2754 83.9818 25.4032 84.2877 25.6295 84.5131C25.8559 84.7385 26.1623 84.8651 26.4817 84.8651H26.489ZM80.2103 53.1766C78.3628 54.2441 76.4669 56.28 74.4407 59.3907C72.3516 58.6686 70.3302 58.8449 68.4174 59.9123L68.4029 59.9196C63.138 62.9578 58.9961 70.0799 58.972 76.1345C58.9768 87.698 73.2065 88.7606 74.8271 88.8452H74.8899C75.2449 88.8452 75.5902 88.6858 75.8197 88.4104C78.3193 85.4206 90.7933 69.9664 90.8271 59.3182C90.8391 52.783 85.9124 49.9235 80.2103 53.1766ZM74.3561 86.389C71.5305 86.1403 61.3895 84.6526 61.3871 76.1393C61.4088 70.9566 65.0918 64.6242 69.6008 62.0159C71.1151 61.173 72.6825 61.1633 74.402 61.9796C74.6698 62.107 74.9751 62.1313 75.2597 62.0481C75.5443 61.9648 75.7884 61.7797 75.9453 61.528C77.9667 58.2749 79.7563 56.2269 81.413 55.2729C85.48 52.9496 88.4216 54.6426 88.412 59.3134C88.383 68.7274 76.9644 83.2059 74.3561 86.389Z" fill="#A8A8A8"/>
+    </svg>
+    <span class="block text-center text-grey-700 text-h5 lg:text-h4 mb-1 font-heading">{{ 'wishlist.wishlist_empty_note' | t }}</span>
+    <span class="block text-center text-grey-700 text-sm leading-5 lg:text-base lg:leading-6 font-light max-w-[263px] lg:max-w-[386px] mx-auto mb-4 lg:mb-6">{{ 'wishlist.wishlist_empty_subtitle' | t }}</span>
+    <a href="{{ routes.all_products_collection_url }}" title="{{ 'wishlist.wishlist_empty_continue_shopping' | t }}" class="block mx-auto w-fit btn btn-2 px-6 lg:px-8 py-3.5 text-sm leading-none lg:text-base lg:leading-none !font-heading !font-bold">{{ 'wishlist.wishlist_empty_continue_shopping' | t }}</a>
+  </div>
+</wishlist-wrapper>
+
+<modal-dialog id="PopupModal-ClearWishlist" class="hidden fixed w-full h-full bg-black bg-opacity-20 top-0 left-0 z-20">
+  <div class="pt-8 pb-6 px-4 lg:px-10 lg:pt-12 lg:pb-8 shadow-popup w-99.5 bg-background rounded-xl max-w-[calc(100%_-_32px)] absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+    <span class="block mb-2 text-h5 lg:text-h4 text-grey-700 font-semibold font-heading">{{ "wishlist.clear_wishlist_title" | t }}</span>
+    <p class="text-sm text-grey-700 font-light leading-5 lg:text-base lg:leading-6 mb-6 lg:mb-5">{{ "wishlist.clear_wishlist_subtitle" | t }}</p>
+    <div class="grid items-center gap-3 grid-cols-2">
+      <button class="btn btn-2 close w-full text-center !text-sm !leading-none !font-heading cursor-pointer py-3.5 px-2 uppercase">{{ "wishlist.cancel" | t }}</button>
+      <wishlist-clear class="btn close w-full text-center !text-sm !leading-none !font-heading cursor-pointer py-3.5 px-2 uppercase">{{ "wishlist.remove" | t }}</wishlist-clear>
+    </div>
+    <button class="btn btn-2 close w-10 h-10 !flex items-center justify-center rounded-full absolute top-3 right-3 lg:top-2.5 lg:right-2.5 !shadow-megamenu !border-none">
+      {% render 'icon-close', class: 'w-6 h-6' %}
+    </button>
+  </div>
+</modal-dialog>
+
+{% capture src_url %}{{ 'template-wishlist.js' | asset_url }}{% endcapture %}
+{% render 'atom_script', src: src_url, priority: 'normal', type: "defer" %}

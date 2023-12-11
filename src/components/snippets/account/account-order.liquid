@@ -1,23 +1,32 @@
 <div class="account-orders">
   {%- if customer.orders.size > 0 -%}
-    <div class="account-order__header">
-      <h2 class="account-order__title">{{ 'customer.order.title_order_list' | t }}</h2>
-    </div>
-    <div class="account-orders__content">
-      <div class="account-orders__list-label">
-        {%- assign class_header = "py-4 px-6 text-sm font-medium text-primary" -%}
-        <div class="account-order__label account-order__label-order">{{- 'customer.order.order' | t -}}</div>
-        <div class="account-order__label account-order__label-date">{{- 'customer.order.date' | t -}}</div>
-        <div class="account-order__label account-order__label-payment">{{- 'customer.order.payment_status' | t -}}</div>
-        <div class="account-order__label account-order__label-fullfillment">{{- 'customer.order.fulfillment_status' | t -}}</div>
-        <div class="account-order__label account-order__label-tracking">{{- 'customer.order.tracking_number' | t -}}</div>
-        <div class="account-order__label account-order__label-total">{{- 'customer.order.total' | t -}}</div>
+    <div class="flex flex-wrap items-center justify-between gap-1 mb-3 md:mb-5 lg:mb-6">
+      <span class="text-h4 font-heading font-semibold capitalize text-grey-800">{{ 'account_order_detail.order_list' | t }}</span>
+      <div class="flex items-center gap-1.5">
+        {% render 'icon-help', class: 'w-4 h-4' %}
+        <span class="text-xs leading-5 font-light text-grey-700">
+          {{ 'customer.orders.help_center_html' | t }}
+        </span>
       </div>
-      {%- assign total_pages = customer.orders.size | divided_by: 10.0 | ceil -%}
-      <order-list data-total-pages="{{ total_pages }}">
-        {% paginate customer.orders by 10 %}
-          <div class="account-order__items js-order-items">
-            {%- for order in customer.orders -%}
+    </div>
+    {% paginate customer.orders by 10 %}
+      <table class="text-center w-full rounded-lg overflow-hidden table-fixed" role="table">
+        <thead role="rowgroup" class="hidden lg:table-row-group">
+          <tr class="text-grey-700 md:bg-[#FAFAFA]" role="row">
+            <th class="text-sm leading-4 font-body font-normal md:py-4 md:px-1 lg:py-3.5" role="columnheader">{{- 'customer.order.order' | t -}}</th>
+            <th class="text-sm leading-4 font-body font-normal md:py-4 md:px-1 lg:py-3.5" role="columnheader">{{- 'customer.order.date' | t -}}</th>
+            <th class="text-sm leading-4 font-body font-normal md:py-4 md:px-1 lg:py-3.5" role="columnheader">{{- 'customer.order.payment_status' | t -}}</th>
+            <th class="text-sm leading-4 font-body font-normal md:py-4 md:px-1 lg:py-3.5" role="columnheader">{{- 'customer.order.fulfillment_status' | t -}}</th>
+            <th class="text-sm leading-4 font-body font-normal md:py-4 md:px-1 lg:py-3.5" role="columnheader">{{- 'customer.order.tracking_number' | t -}}</th>
+            <th class="text-sm leading-4 font-body font-normal md:py-4 md:px-1 lg:py-3.5" role="columnheader">{{- 'customer.order.total' | t -}}</th>
+            <th class="text-sm leading-4 font-body font-normal md:py-4 md:px-1 lg:py-3.5" role="columnheader">{{- 'customer.order.detail' | t -}}</th>
+          </tr>
+        </thead>
+        {%- assign total_pages = customer.orders.size | divided_by: 10.0 | ceil -%}
+        <tbody role="rowgroup">
+          {%- for order in customer.orders -%}
+            {% assign greyBackground = forloop.index | modulo: 2 %}
+            <tr class="grid md:table-row text-left md:text-center p-3.5 md:p-0 gap-2 text-grey-700{% if greyBackground == 0 %} bg-background md:bg-[#FAFAFA]{% else %} bg-[#FAFAFA] md:bg-background{% endif %}" role="row">
               {%- assign tracking_number = '' -%}
               {%- assign tracking_url = '' -%}
               {%- for _line_item in order.line_items -%}
@@ -27,69 +36,51 @@
                   {%- break -%}
                 {%- endif -%}
               {%- endfor -%}
-              <div class="account-order__item">
-                <div class="account-order__number">
-                  <span class="account-order-label">{{ 'customer.order.order_number' | t }}:</span>
-                  <a href="{{- order.customer_url -}}" class="account-order__number-link">#{{- order.order_number -}}</a>
-                </div>
-                <div class="account-order__field account-order__date">
-                  <span class="account-order-label">{{- 'customer.order.date' | t -}}</span>
-                  <span class="account-order__info">{{- order.created_at | date: '%b %d, %Y' -}}</span>
-                </div>
-                <div class="account-order__field account-order__payment">
-                  <span class="account-order-label">{{- 'customer.order.payment_status' | t -}}</span>
-                  <span class="account-order__info">{{- order.financial_status_label -}}</span>
-                </div>
-                <div class="account-order__field account-order__fullfill">
-                  <span class="account-order-label">{{- 'customer.order.fulfillment_status' | t -}}</span>
-                  <span class="account-order__info">{{- order.fulfillment_status_label -}}</span>
-                </div>
-                <div class="account-order__field account-order__tracking">
-                  <span class="account-order-label">{{- 'customer.order.tracking_number' | t -}}:</span>
-                  {%- if tracking_url != '' -%}
-                    <a class="account-order__tracking" href="{{ tracking_url }}" target="_blank">
-                  {%- endif -%}
-                    {%- if tracking_number != '' -%}
-                      <span class="account-order__tracking-text">{{ tracking_number }}</span>
-                    {%- endif -%}
-                  {%- if tracking_url != '' -%}
-                    </a>
-                  {%- endif -%}
-                </div>
-                <div class="account-order__field account-order__total">
-                  <span class="account-order-label">{{- 'customer.order.total' | t -}}</span>
-                  <span class="account-order__info account-order__total-info">{{- order.total_price | money -}}</span>
-                </div>
-              </div>
-            {%- endfor -%}
-          </div>
-          {%- if paginate.pages > 1 -%}
-            <div class="account-order__bottom">
-              <button class="account-order__show-more js-button-loadmore">
-                {{- 'customer.order.show_more' | t -}}
-                <div class="load-more_spinner"></div>
-              </button>
-            </div>
-          {%- endif -%}
-        {% endpaginate %}
-        <div class="account-order__support-wrapper">
-          <div class="account-order__support">
-            <span>{{- 'customer.order.text_support' | t -}}</span>
-            <a class="account-order__support-link" href="/pages/help-center">{{- 'customer.order.help_center' | t -}}</a>
-          </div>
-        </div>
-      </order-list>
-    </div>
+              <td class="text-sm leading-5 font-light md:py-3 md:px-1 lg:py-3.5 flex items-center md:table-cell text-left md:text-center before:content-[attr(data-label)':'] before:inline-block before:font-normal before:text-grey-600 before:md:hidden before:w-1/2" role="cell" data-label="{{- 'customer.order.order' | t -}}">
+                <a href="{{- order.customer_url -}}" class="flex gap-3 items-center md:justify-center">{{ order.name }} {% render 'icon-linkto', class: 'w-4 h-4 md:hidden' %}</a>
+              </td>
+              <td class="text-sm leading-5 font-light md:py-3 md:px-1 lg:py-3.5 flex items-center md:table-cell text-left md:text-center before:content-[attr(data-label)':'] before:inline-block before:font-normal before:text-grey-600 before:md:hidden before:w-1/2" role="cell" data-label="{{- 'customer.order.date' | t -}}">
+                {{- order.created_at | date: '%b %d, %Y' -}}
+              </td>
+              <td class="text-sm leading-5 font-light md:py-3 md:px-1 lg:py-3.5 flex items-center md:table-cell text-left md:text-center before:content-[attr(data-label)':'] before:inline-block before:font-normal before:text-grey-600 before:md:hidden before:w-1/2" role="cell" data-label="{{- 'customer.order.payment_status' | t -}}">
+                {{- order.financial_status_label -}}
+              </td>
+              <td class="text-sm leading-5 font-light md:py-3 md:px-1 lg:py-3.5 flex items-center md:table-cell text-left md:text-center before:content-[attr(data-label)':'] before:inline-block before:font-normal before:text-grey-600 before:md:hidden before:w-1/2" role="cell" data-label="{{- 'customer.order.fulfillment_status' | t -}}">
+                {{- order.fulfillment_status_label -}}
+              </td>
+              <td class="text-sm leading-5 font-light md:py-3 md:px-1 lg:py-3.5 flex items-center md:table-cell text-left md:text-center before:content-[attr(data-label)':'] before:inline-block before:font-normal before:text-grey-600 before:md:hidden before:w-1/2" role="cell" data-label="{{- 'customer.order.tracking_number' | t -}}">
+                {%- if tracking_url != '' -%}
+                  <a href="{{ tracking_url }}" target="_blank">
+                {%- endif -%}
+                {%- if tracking_number != '' -%}
+                  {{ tracking_number }}
+                {%- endif -%}
+                {%- if tracking_url != '' -%}
+                  </a>
+                {%- endif -%}
+              </td>
+              <td class="text-sm leading-5 font-light md:py-3 md:px-1 lg:py-3.5 flex items-center md:table-cell text-left md:text-center before:content-[attr(data-label)':'] before:inline-block before:font-normal before:text-grey-600 before:md:hidden before:w-1/2" role="cell" data-label="{{- 'customer.order.total' | t -}}">
+                {{- order.total_price | money -}}
+              </td>
+              <td class="text-sm leading-5 font-light md:py-3 md:px-1 lg:py-3.5 hidden md:table-cell" role="cell" data-label="{{- 'customer.order.detail' | t -}}">
+                <a href="{{- order.customer_url -}}" class="w-fit block mx-auto">{% render 'icon-linkto', class: 'w-4 h-4' %}</a>
+              </td>
+            </tr>
+        {%- endfor -%}
+        </tbody>
+      </table>
+      {%- if paginate.pages > 1 -%}
+        {% render 'pagination', paginate: paginate %}
+      {%- endif -%}
+    {% endpaginate %}
   {%- else -%}
-    <div class="account-order-empty">
-      <div class="py-18 text-center">
-        {% render 'icon-shoppingcartfilled', class: 'mx-auto' %}
-        <span class="font-medium text-sm mt-4 mb-12 max-w-62.5 lg:max-w-[700px] lg:text-[22px] font-heading text-grey-700 block mx-auto">NO ORDERS YET</span>
-        <a href="{{ routes.all_products_collection_url }}" class="btn btn-2 py-2.5 px-6 !inline-flex items-center gap-2 lg:gap-3">
-          {% render 'icon-arrowleft' %}
-          {{ 'general.continue_shopping' | t }}
-        </a>
-      </div>
+    <div class="text-center p-10 lg:py-16 rounded-2xl bg-[#FAFAFA] max-w-full mx-auto">
+      <svg xmlns="http://www.w3.org/2000/svg" width="81" height="80" class="block w-20 h-20 lg:w-24 lg:h-24 mx-auto mb-3" viewBox="0 0 81 80" fill="none">
+        <path d="M16.06 64.001C16.1474 64.0517 16.2439 64.0847 16.3441 64.0981C16.4442 64.1115 16.546 64.1051 16.6436 64.0792C16.7413 64.0532 16.8329 64.0083 16.9132 63.947C16.9934 63.8857 17.0609 63.8091 17.1116 63.7218C17.1623 63.6344 17.1953 63.5379 17.2087 63.4377C17.2221 63.3376 17.2157 63.2358 17.1897 63.1382C17.1638 63.0405 17.1189 62.9489 17.0576 62.8687C16.9963 62.7884 16.9197 62.7209 16.8323 62.6702L15.0093 61.6118C14.9218 61.5563 14.8241 61.5191 14.722 61.5023C14.6198 61.4856 14.5153 61.4896 14.4147 61.5142C14.3142 61.5388 14.2196 61.5834 14.1367 61.6454C14.0538 61.7074 13.9842 61.7855 13.9322 61.875C13.8802 61.9645 13.8468 62.0636 13.834 62.1663C13.8212 62.269 13.8293 62.3733 13.8577 62.4728C13.8862 62.5724 13.9345 62.6651 13.9996 62.7456C14.0648 62.826 14.1455 62.8925 14.237 62.941L16.06 64.001Z" fill="#A8A8A8"/>
+        <path d="M71.5833 19.8578L71.5802 19.8562L42.8879 3.1824C42.7709 3.11436 42.6381 3.0784 42.5027 3.07813C42.3674 3.07786 42.2344 3.11329 42.1171 3.18086C35.9694 6.72701 10.6956 21.3209 9.29868 22.1286C9.18618 22.2006 9.09256 22.2985 9.02565 22.4141C8.95874 22.5298 8.92048 22.6597 8.91406 22.7932V22.7962L9.04176 59.4824C9.04176 59.7547 9.18791 60.0055 9.42483 60.1439L12.3787 61.8609C12.5544 61.954 12.7593 61.9755 12.9505 61.9209C13.1417 61.8662 13.3043 61.7397 13.4042 61.5677C13.5041 61.3958 13.5335 61.1918 13.4863 60.9987C13.4391 60.8055 13.3189 60.6381 13.151 60.5316L10.5787 59.0362L10.4556 24.1347L37.6094 39.9147L37.7325 74.8147L19.0802 63.9762C18.9045 63.8831 18.6996 63.8616 18.5084 63.9162C18.3172 63.9709 18.1546 64.0974 18.0547 64.2694C17.9548 64.4413 17.9254 64.6453 17.9726 64.8384C18.0198 65.0316 18.14 65.199 18.3079 65.3055L38.1187 76.8193L38.1218 76.8224C38.2386 76.8902 38.3713 76.9259 38.5064 76.9259C38.6415 76.9259 38.7742 76.8902 38.891 76.8224L71.7079 57.8732C71.8253 57.8054 71.9227 57.7078 71.9902 57.5903C72.0578 57.4728 72.0931 57.3395 72.0925 57.2039L71.9648 20.5193C71.9513 20.3884 71.9103 20.2619 71.8445 20.1479C71.7788 20.0339 71.6898 19.9351 71.5833 19.8578ZM50.9848 33.0793L58.6956 28.6286V32.5316L50.9848 37.0424V33.0793ZM21.5202 16.8486L48.6818 32.6332L38.3787 38.5809L11.2171 22.7962L21.5202 16.8486ZM30.7694 11.5086L57.9294 27.2932L50.2171 31.7455L23.0571 15.9609L30.7694 11.5086ZM42.5002 4.73624L69.6618 20.5209L59.4679 26.4055L32.3033 10.6209L42.5002 4.73624ZM39.2694 74.8255L39.1479 39.9132L49.4464 33.9686V38.3839C49.446 38.5196 49.4815 38.6529 49.5494 38.7703C49.6172 38.8878 49.715 38.9851 49.8327 39.0525C49.9504 39.1199 50.0839 39.1549 50.2195 39.1539C50.3551 39.1529 50.4881 39.1161 50.6048 39.047L59.8525 33.6362C59.9687 33.5685 60.065 33.4714 60.132 33.3548C60.1989 33.2382 60.2341 33.1061 60.2341 32.9716V27.7409L70.431 21.8532L70.5541 56.7639L39.2694 74.8255Z" fill="#A8A8A8"/>
+      </svg>
+      <span class="block text-center text-grey-700 text-sm leading-5 lg:text-base lg:leading-6 font-light max-w-[263px] lg:max-w-[386px] mx-auto mb-4 md:mb-6">{{ 'wishlist.wishlist_empty_subtitle' | t }}</span>
+      <a href="{{ routes.all_products_collection_url }}" title="{{ 'wishlist.wishlist_empty_continue_shopping' | t }}" class="block mx-auto w-fit btn btn-2 px-6 lg:px-8 py-3.5 text-sm leading-none lg:text-base lg:leading-none !font-heading !font-bold">{{ 'wishlist.wishlist_empty_continue_shopping' | t }}</a>
     </div>
   {%- endif -%}
 </div>
